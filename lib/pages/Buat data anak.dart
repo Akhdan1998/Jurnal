@@ -24,7 +24,7 @@ class _dataanakState extends State<dataanak> {
       },
       headers: {
         "Accept": "application/json",
-        "Authorization": "Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
       },
     );
     print(response.body.toString());
@@ -33,7 +33,7 @@ class _dataanakState extends State<dataanak> {
       BuatDataAnak data = BuatDataAnak.fromJson(body['data']);
       print(response.statusCode);
       Get.off(navigation(
-        'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
+        "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
       ));
     } else {
       throw 'Error ${response.statusCode} => ${body['meta']['message']}';
@@ -44,18 +44,16 @@ class _dataanakState extends State<dataanak> {
   //
   // Future getImage() async {
   //   final ImagePicker _picker = ImagePicker();
-  //   final XFile? imagePicked = await _picker.pickImage(
-  //       source: ImageSource.gallery);
+  //   final XFile? imagePicked =
+  //       await _picker.pickImage(source: ImageSource.gallery);
   //   image = File(imagePicked!.path);
-  //   setState(() {
-  //
-  //   });
+  //   setState(() {});
   // }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +94,21 @@ class _dataanakState extends State<dataanak> {
           children: [
             SizedBox(height: 40),
             Stack(
-                children: [
-                  Stack(
-                    fit: StackFit.loose,
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Positioned(
-                        // top: 90,
-                        // left: 90,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Image.asset('assets/foto.png'),
-                        ),
-                      ),
-                      Container(
+              children: [
+                Stack(
+                  fit: StackFit.loose,
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Positioned(
+                      // top: 90,
+                      // left: 90,
+                      child: Image.asset('assets/foto.png'),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // getImage();
+                      },
+                      child: Container(
                         padding: EdgeInsets.only(top: 85, left: 85),
                         child: Container(
                           width: 35,
@@ -118,13 +117,15 @@ class _dataanakState extends State<dataanak> {
                             borderRadius: BorderRadius.circular(50),
                             color: 'FF6969'.toColor(),
                           ),
-                          child: Icon(Icons.edit, color: Colors.white, size: 18),
+                          child:
+                              Icon(Icons.edit, color: Colors.white, size: 18),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
             SizedBox(height: 30),
             Container(
               padding: EdgeInsets.only(left: 16, right: 16),
@@ -142,20 +143,17 @@ class _dataanakState extends State<dataanak> {
                   SizedBox(height: 5),
                   Container(
                     height: 40,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: namaAnakEditingController,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
+                              BorderSide(width: 1, color: 'FF6969'.toColor()),
                         ),
                         contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
                         hintStyle: GoogleFonts.poppins().copyWith(
                           fontSize: 10,
                           fontWeight: FontWeight.w300,
@@ -180,10 +178,7 @@ class _dataanakState extends State<dataanak> {
                   SizedBox(height: 5),
                   Container(
                     height: 40,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: tanggalLahirEditingController,
                       decoration: InputDecoration(
@@ -201,10 +196,10 @@ class _dataanakState extends State<dataanak> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
+                              BorderSide(width: 1, color: 'FF6969'.toColor()),
                         ),
                         contentPadding:
-                        EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
                       ),
@@ -299,7 +294,7 @@ class _dataanakState extends State<dataanak> {
                                     ),
                                     padding: EdgeInsets.all(3),
                                     child:
-                                    Image.asset('assets/cwe.png', scale: 1),
+                                        Image.asset('assets/cwe.png', scale: 1),
                                   ),
                                   SizedBox(width: 8),
                                   Text(
@@ -334,10 +329,7 @@ class _dataanakState extends State<dataanak> {
           },
           child: Container(
             alignment: Alignment.center,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             height: 40,
             decoration: BoxDecoration(
               color: 'FF6969'.toColor(),

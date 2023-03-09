@@ -37,7 +37,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
     var res = await http.post(
       _url,
       body: {
-        'imunisasi_id': widget.imunisasi!.id,
+        'imunisasi_id': widget.imunisasi!.id.toString(),
         'merek': merek,
         'lokasi': lokasi,
         'tenaga_kesehatan': tenaga,
@@ -51,11 +51,13 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
     );
     Map<String, dynamic> body = jsonDecode(res.body);
     if (res.statusCode == 200) {
-      SimpanDataImunisasi data = SimpanDataImunisasi.fromJson(body['body']);
+      SimpanDataImunisasi data = SimpanDataImunisasi.fromJson(body['data']);
       Get.to(successimunisasi(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
         widget.imunisasi!.id.toString(),
       ));
+    } else {
+      throw "Error ${res.statusCode} => ${body["message"]}";
     }
   }
 
@@ -140,7 +142,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                     if (pickeddate != null) {
                       setState(() {
                         tanggalcek.text =
-                            DateFormat('yMMMMd').format(pickeddate);
+                            DateFormat('yyyy-MM-dd').format(pickeddate);
                       });
                     }
                   },
@@ -160,39 +162,39 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 if (snapshot is MerekLoaded) {
                   if (snapshot.merekImun != null) {
                     return Container(
+                      padding: EdgeInsets.only(left: 10, right: 10, top: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(width: 1, color: 'B8B8B8'.toColor()),
+                      ),
                       height: 35,
                       width: MediaQuery.of(context).size.width,
-                      child: DropdownButtonFormField<String>(
-                        // value: _dropdownMerek,
-                        hint: Text('Imunisasi', style: GoogleFonts.poppins().copyWith(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w300,
-                          color: '989797'.toColor(),
-                        ),),
+                      child: DropdownButton<String>(
+                        iconEnabledColor: 'B8B8B8'.toColor(),
+                        isExpanded: true,
+                        isDense: true,
+                        underline: SizedBox(),
+                        hint: Text(
+                          'Imunisasi',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w300,
+                            color: '989797'.toColor(),
+                          ),
+                        ),
                         icon: Icon(
                           Icons.expand_more_outlined,
                           color: 'B8B8B8'.toColor(),
                         ),
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(left: 10, top: 5, right: 5),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            borderSide:
-                                BorderSide(width: 1, color: 'FF6969'.toColor()),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
                         onChanged: (value) {
                           setState(() {
-                            _dropdownMerek = value!;
+                            _dropdownMerek = value!.toString();
                           });
                         },
                         items: snapshot.merekImun!
                             .map((e) => DropdownMenuItem<String>(
-                                  value: e.imunisasi_id.toString(),
+                                  value: e.nama_merek.toString(),
                                   child: Text(e.nama_merek.toString()),
                                 ))
                             .toList(),
@@ -323,8 +325,8 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.to(successimunisasi(widget.imunisasi!.id.toString(),
-                'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'));
+            simpan(tanggalcek.text, _dropdownMerek, lokasiimunisasi.text,
+                namatenagakesehatan.text, nomerbatchimunisasi.text);
           },
           child: Container(
             alignment: Alignment.center,

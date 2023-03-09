@@ -8,8 +8,8 @@ class SimpanDataImunisasi {
   SimpanDataImunisasi.fromJson(Map<String, dynamic> json) {
     accessToken = json['access_token'];
     tokenType = json['token_type'];
-    dataImun = json['pertanyaan'] != null
-        ? SimpanData.fromJson(json['pertanyaan'])
+    dataImun = json['dataimun'] != null
+        ? SimpanData.fromJson(json['dataimun'])
         : null;
   }
 
