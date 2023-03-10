@@ -104,55 +104,51 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
               Text(
                 'Tanggal Cek',
                 style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: '5A5A5A'.toColor()),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: tanggalcek,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '10 Januari 2023',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: tanggalcek,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  onTap: () async {
-                    DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1945),
-                        lastDate: DateTime(2500));
-
-                    if (pickeddate != null) {
-                      setState(() {
-                        tanggalcek.text =
-                            DateFormat('yyyy-MM-dd').format(pickeddate);
-                      });
-                    }
-                  },
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: '10 Januari 2023',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                 ),
+                onTap: () async {
+                  DateTime? pickeddate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1945),
+                      lastDate: DateTime(2500));
+
+                  if (pickeddate != null) {
+                    setState(() {
+                      tanggalcek.text =
+                          DateFormat('yyyy-MM-dd').format(pickeddate);
+                    });
+                  }
+                },
               ),
               SizedBox(height: 20),
               Text(
                 'Merek Imunisasi',
                 style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: '5A5A5A'.toColor()),
               ),
@@ -162,53 +158,22 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 if (snapshot is MerekLoaded) {
                   if (snapshot.merekImun != null) {
                     return Container(
-                      // margin: EdgeInsets.only(left: 10),
-                      // padding: EdgeInsets.only(left: 10),
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(5),
-                      //   border: Border.all(width: 1, color: 'B8B8B8'.toColor()),
-                      // ),
-                      // color: Colors.green,
-                      height: 58,
-                      // width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.only(left: 10, right: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 1, color: 'B8B8B8'.toColor()),
+                      ),
                       child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          // enabledBorder: const UnderlineInputBorder(
-                          //   borderSide: BorderSide(color: Colors.white),
-                          // ),
-                          // alignLabelWithHint: true,
-                          hintText: 'Imunisasi',
-                            // style: GoogleFonts.poppins().copyWith(
-                            //   fontSize: 11,
-                            //   fontWeight: FontWeight.w300,
-                            //   color: '989797'.toColor(),
-                            // ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            borderSide:
-                                BorderSide(width: 1, color: 'FF6969'.toColor()),
-                          ),
-                          border: OutlineInputBorder(
-                            // borderSide:
-                            //     BorderSide(width: 1, color: 'FF6969'.toColor()),
-                            // borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        // isExpanded: true,
-                        // alignment: AlignmentDirectional.topStart,
-                        // isDense: true,
+                        decoration: InputDecoration(border: InputBorder.none),
+                          hint: Text('Imunisasi', style: GoogleFonts.poppins().copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: '989797'.toColor(),
+                          ),),
                         icon: Icon(
                       Icons.expand_more_outlined,
                       color: 'B8B8B8'.toColor(),
                     ),
-                        // hint: Text(
-                        //   'Imunisasi',
-                        //   style: GoogleFonts.poppins().copyWith(
-                        //     fontSize: 11,
-                        //     fontWeight: FontWeight.w300,
-                        //     color: '989797'.toColor(),
-                        //   ),
-                        // ),
                         onChanged: (value) {
                           setState(() {
                             _dropdownMerek = value!.toString();
@@ -239,33 +204,29 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
               Text(
                 'Lokasi Imunisasi',
                 style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: '5A5A5A'.toColor()),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: lokasiimunisasi,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Opsional',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: lokasiimunisasi,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Opsional',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -273,33 +234,29 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
               Text(
                 'Nama Tenaga Kesehatan',
                 style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: '5A5A5A'.toColor()),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: namatenagakesehatan,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Opsional',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: namatenagakesehatan,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Opsional',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -307,34 +264,30 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
               Text(
                 'Nomer Batch Imunisasi',
                 style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: '5A5A5A'.toColor()),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  controller: nomerbatchimunisasi,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '000318847514',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: nomerbatchimunisasi,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: '000318847514',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
