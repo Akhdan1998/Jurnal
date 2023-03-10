@@ -41,7 +41,6 @@ class _imunisasiState extends State<imunisasi> {
         'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK');
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,11 +54,8 @@ class _imunisasiState extends State<imunisasi> {
                 scrollDirection: Axis.vertical,
                 child: Container(
                   // height: MediaQuery.of(context).size.height,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  // color: Colors.red,
+                  // width: MediaQuery.of(context).size.width,
+                  color: Colors.white,
                   child: Column(
                     children: [
                       BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
@@ -71,19 +67,13 @@ class _imunisasiState extends State<imunisasi> {
                                 children: [
                                   Container(
                                     color: Colors.white,
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     height: 225,
                                   ),
                                   Container(
                                     alignment: Alignment.topLeft,
                                     color: 'D9D9D9'.toColor(),
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     height: 187,
                                     padding: EdgeInsets.only(left: 16, top: 43),
                                     child: Row(
@@ -123,65 +113,65 @@ class _imunisasiState extends State<imunisasi> {
                                           color: 'F0F0F0'.toColor(),
                                         ),
                                       ),
-                                      width: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width,
+                                      width: MediaQuery.of(context).size.width,
                                       // height: 131,
                                       child: Row(children: [
                                         Container(
                                           width: 40,
                                           height: 40,
                                           child: Image.asset((snapshot.dataanak!
-                                              .firstWhere((e) => e.is_active == 1)
-                                              .gender == 'Laki-laki')
+                                                      .firstWhere((e) =>
+                                                          e.is_active == 1)
+                                                      .gender ==
+                                                  'Laki-laki')
                                               ? 'assets/laki.png'
                                               : 'assets/cwe.png'),
                                         ),
                                         SizedBox(width: 9),
                                         Container(
-                                          width:
-                                          MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width - 113,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              113,
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     snapshot.dataanak!
-                                                        .firstWhere((e) =>
-                                                    e.is_active ==
-                                                        1)
-                                                        .name ??
+                                                            .firstWhere((e) =>
+                                                                e.is_active ==
+                                                                1)
+                                                            .name ??
                                                         '',
                                                     style: GoogleFonts.poppins()
                                                         .copyWith(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        color: '323232'
-                                                            .toColor()),
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: '323232'
+                                                                .toColor()),
                                                   ),
                                                   Row(
                                                     children: [
                                                       Text(
                                                         snapshot.dataanak!
-                                                            .firstWhere((e) =>
-                                                        e.is_active == 1)
-                                                            .gender ?? '',
+                                                                .firstWhere((e) =>
+                                                                    e.is_active ==
+                                                                    1)
+                                                                .gender ??
+                                                            '',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -191,10 +181,10 @@ class _imunisasiState extends State<imunisasi> {
                                                       Text(
                                                         '|',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -204,10 +194,10 @@ class _imunisasiState extends State<imunisasi> {
                                                       Text(
                                                         '0',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -217,10 +207,10 @@ class _imunisasiState extends State<imunisasi> {
                                                       Text(
                                                         'Tahun',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -230,10 +220,10 @@ class _imunisasiState extends State<imunisasi> {
                                                       Text(
                                                         '0',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -243,10 +233,10 @@ class _imunisasiState extends State<imunisasi> {
                                                       Text(
                                                         'Bulan',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontWeight:
-                                                          FontWeight.w300,
+                                                              FontWeight.w300,
                                                           fontSize: 11,
                                                           color: '7A7A7A'
                                                               .toColor(),
@@ -266,17 +256,19 @@ class _imunisasiState extends State<imunisasi> {
                                                     // useSafeArea: true,
                                                     // useRootNavigator: true,
                                                     shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius
-                                                            .only(
-                                                            topRight:
-                                                            Radius.circular(15),
-                                                            topLeft:
-                                                            Radius.circular(
-                                                                15))),
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        15),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        15))),
                                                     context: context,
-                                                    builder: (
-                                                        BuildContext context) {
-                                                      return bottomsheetImunisasi(snapshot.dataanak!);
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return bottomsheetImunisasi(
+                                                          snapshot.dataanak!);
                                                     },
                                                   );
                                                 },
@@ -285,13 +277,13 @@ class _imunisasiState extends State<imunisasi> {
                                                     Text(
                                                       'Ganti Anak',
                                                       style:
-                                                      GoogleFonts.poppins()
-                                                          .copyWith(
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
                                                         fontWeight:
-                                                        FontWeight.w300,
+                                                            FontWeight.w300,
                                                         fontSize: 10,
                                                         color:
-                                                        'FF6969'.toColor(),
+                                                            'FF6969'.toColor(),
                                                       ),
                                                     ),
                                                     SizedBox(width: 5),
@@ -317,19 +309,13 @@ class _imunisasiState extends State<imunisasi> {
                                 children: [
                                   Container(
                                     color: Colors.white,
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     height: 265,
                                   ),
                                   Container(
                                     alignment: Alignment.topLeft,
                                     color: 'D9D9D9'.toColor(),
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     height: 187,
                                     padding: EdgeInsets.only(left: 16, top: 43),
                                     child: Row(
@@ -369,19 +355,16 @@ class _imunisasiState extends State<imunisasi> {
                                           color: 'F0F0F0'.toColor(),
                                         ),
                                       ),
-                                      width: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width,
+                                      width: MediaQuery.of(context).size.width,
                                       // height: 131,
                                       child: Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'Hi Bunda, Selamat Datang!!',
                                             style:
-                                            GoogleFonts.poppins().copyWith(
+                                                GoogleFonts.poppins().copyWith(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               color: '323232'.toColor(),
@@ -391,7 +374,7 @@ class _imunisasiState extends State<imunisasi> {
                                           Text(
                                             'Untuk memantau jadwal dan pilihan imunisasi anak, isi terlebih dahulu data anak ya Moms.',
                                             style:
-                                            GoogleFonts.poppins().copyWith(
+                                                GoogleFonts.poppins().copyWith(
                                               fontWeight: FontWeight.w300,
                                               fontSize: 11,
                                               color: '7A7A7A'.toColor(),
@@ -399,8 +382,7 @@ class _imunisasiState extends State<imunisasi> {
                                           ),
                                           SizedBox(height: 11),
                                           Container(
-                                            width: MediaQuery
-                                                .of(context)
+                                            width: MediaQuery.of(context)
                                                 .size
                                                 .width,
                                             height: 32,
@@ -412,30 +394,29 @@ class _imunisasiState extends State<imunisasi> {
                                                 },
                                                 child: Container(
                                                   alignment: Alignment.center,
-                                                  width: MediaQuery
-                                                      .of(context)
+                                                  width: MediaQuery.of(context)
                                                       .size
                                                       .width,
                                                   height: 40,
                                                   decoration: BoxDecoration(
                                                     color: 'FF6969'.toColor(),
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                   ),
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Text(
                                                         'Buat Data Anak',
                                                         style: GoogleFonts
-                                                            .poppins()
+                                                                .poppins()
                                                             .copyWith(
                                                           fontSize: 12,
                                                           fontWeight:
-                                                          FontWeight.bold,
+                                                              FontWeight.bold,
                                                           color: 'FFFFFF'
                                                               .toColor(),
                                                         ),
@@ -444,7 +425,7 @@ class _imunisasiState extends State<imunisasi> {
                                                       Icon(
                                                         Icons.add_outlined,
                                                         color:
-                                                        'FFFFFF'.toColor(),
+                                                            'FFFFFF'.toColor(),
                                                         size: 15,
                                                       ),
                                                     ],
@@ -470,136 +451,137 @@ class _imunisasiState extends State<imunisasi> {
                         },
                       ),
                       SizedBox(height: 5),
-                      SingleChildScrollView(
-                        clipBehavior: Clip.hardEdge,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: 16),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedButton = '1';
-                                });
-                                pageController.animateToPage(0,
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.bounceInOut);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: SingleChildScrollView(
+                          clipBehavior: Clip.hardEdge,
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // SizedBox(width: 16),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedButton = '1';
+                                  });
+                                  pageController.animateToPage(0,
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.bounceInOut);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: (selectedButton == '1')
+                                          ? Colors.white
+                                          : 'F0F0F0'.toColor(),
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     color: (selectedButton == '1')
-                                        ? Colors.white
-                                        : 'F0F0F0'.toColor(),
+                                        ? 'FF6969'.toColor()
+                                        : Colors.white,
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: (selectedButton == '1')
-                                      ? 'FF6969'.toColor()
-                                      : Colors.white,
-                                ),
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 8, bottom: 8),
-                                child: Text(
-                                  'Semua',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: (selectedButton == '1')
-                                        ? Colors.white
-                                        : '989797'.toColor(),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 8, bottom: 8),
+                                  child: Text(
+                                    'Semua',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 11,
+                                      color: (selectedButton == '1')
+                                          ? Colors.white
+                                          : '989797'.toColor(),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedButton = '2';
-                                });
-                                pageController.animateToPage(1,
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.bounceInOut);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
+                              // SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedButton = '2';
+                                  });
+                                  pageController.animateToPage(1,
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.bounceInOut);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: (selectedButton == '2')
+                                          ? Colors.white
+                                          : 'F0F0F0'.toColor(),
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     color: (selectedButton == '2')
-                                        ? Colors.white
-                                        : 'F0F0F0'.toColor(),
+                                        ? 'FF6969'.toColor()
+                                        : Colors.white,
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: (selectedButton == '2')
-                                      ? 'FF6969'.toColor()
-                                      : Colors.white,
-                                ),
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 8, bottom: 8),
-                                child: Text(
-                                  'Sudah Imunisasi',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: (selectedButton == '2')
-                                        ? Colors.white
-                                        : '989797'.toColor(),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 8, bottom: 8),
+                                  child: Text(
+                                    'Sudah Imunisasi',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 11,
+                                      color: (selectedButton == '2')
+                                          ? Colors.white
+                                          : '989797'.toColor(),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedButton = '3';
-                                });
-                                pageController.animateToPage(2,
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.bounceInOut);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
+                              // SizedBox(width: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedButton = '3';
+                                  });
+                                  pageController.animateToPage(2,
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.bounceInOut);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: (selectedButton == '3')
+                                          ? Colors.white
+                                          : 'F0F0F0'.toColor(),
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     color: (selectedButton == '3')
-                                        ? Colors.white
-                                        : 'F0F0F0'.toColor(),
+                                        ? 'FF6969'.toColor()
+                                        : Colors.white,
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: (selectedButton == '3')
-                                      ? 'FF6969'.toColor()
-                                      : Colors.white,
-                                ),
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 8, bottom: 8),
-                                child: Text(
-                                  'Belum Imunisasi',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: (selectedButton == '3')
-                                        ? Colors.white
-                                        : '989797'.toColor(),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 8, bottom: 8),
+                                  child: Text(
+                                    'Belum Imunisasi',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 11,
+                                      color: (selectedButton == '3')
+                                          ? Colors.white
+                                          : '989797'.toColor(),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 16),
-                          ],
+                              // SizedBox(width: 16),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Container(
-                        color: Colors.white,
+                        // color: Colors.green,
                         padding: EdgeInsets.only(left: 16, right: 16),
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
+                        width: MediaQuery.of(context).size.width,
                         height: 76 * snapshot.imunisasi!.length.toDouble(),
                         child: PageView(
                           // physics: NeverScrollableScrollPhysics(),
@@ -613,7 +595,7 @@ class _imunisasiState extends State<imunisasi> {
                           children: [
                             semua(snapshot.imunisasi),
                             sudahimunisasi(snapshot.imunisasi),
-                            belumimunisasi(),
+                            belumimunisasi(snapshot.imunisasi),
                           ],
                         ),
                       ),

@@ -1,15 +1,15 @@
 part of 'pages.dart';
 
-class listimunisasi extends StatefulWidget {
+class listbelumimunisasi extends StatefulWidget {
   ImunisasiGroup imunisasi;
 
-  listimunisasi(this.imunisasi);
+  listbelumimunisasi(this.imunisasi);
 
   @override
-  State<listimunisasi> createState() => _listimunisasiState();
+  State<listbelumimunisasi> createState() => _listbelumimunisasiState();
 }
 
-class _listimunisasiState extends State<listimunisasi> {
+class _listbelumimunisasiState extends State<listbelumimunisasi> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +17,7 @@ class _listimunisasiState extends State<listimunisasi> {
         Get.to(imunisasidetail(widget.imunisasi));
       },
       child: Container(
-        // color: Colors.amberAccent,
+        color: Colors.white,
         // padding: EdgeInsets.only(top: 5, bottom: 5),
         child: Column(
           children: [
@@ -27,7 +27,6 @@ class _listimunisasiState extends State<listimunisasi> {
                 Image.asset(widget.imunisasi.icon ?? '', scale: 1.5),
                 SizedBox(width: 14),
                 Container(
-                  // color: Colors.blue,
                   // height: 40,
                   width: MediaQuery.of(context).size.width - 93,
                   child: Row(
@@ -90,8 +89,7 @@ class _listimunisasiState extends State<listimunisasi> {
                 ),
               ],
             ),
-            Divider(color: Colors.grey),
-            // Divider(color: 'ECECEC'.toColor()),
+            Divider(color: 'ECECEC'.toColor()),
           ],
         ),
       ),

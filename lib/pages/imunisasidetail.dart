@@ -92,9 +92,10 @@ class _imunisasidetailState extends State<imunisasidetail> {
                                       padding: EdgeInsets.all(2.5),
                                       decoration: BoxDecoration(
                                         // color: '86C3BB'.toColor(),
-                                        color: (widget.imunisasi.is_active == true)
-                                            ? '86C3BB'.toColor()
-                                            : 'C6C6C6'.toColor(),
+                                        color:
+                                            (widget.imunisasi.is_active == true)
+                                                ? '86C3BB'.toColor()
+                                                : 'C6C6C6'.toColor(),
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                       child: Icon(
@@ -354,11 +355,16 @@ class _imunisasidetailState extends State<imunisasidetail> {
             width: MediaQuery.of(context).size.width,
             height: 40,
             decoration: BoxDecoration(
-              color: '86C3BB'.toColor(),
+              color: (widget.imunisasi.is_active == true)
+                  ? 'FF6969'.toColor()
+                  : '86C3BB'.toColor(),
+              // color: '86C3BB'.toColor(),
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              'Tandai Sudah Imunisasi',
+              (widget.imunisasi.is_active == true)
+                  ? 'Reset Tanda'
+                  : 'Tandai Sudah Imunisasi',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,

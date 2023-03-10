@@ -1,6 +1,10 @@
 part of 'pages.dart';
 
 class belumimunisasi extends StatefulWidget {
+  List<ImunisasiGroup>? imunisasi;
+
+  belumimunisasi(this.imunisasi);
+
   @override
   State<belumimunisasi> createState() => _belumimunisasiState();
 }
@@ -15,10 +19,10 @@ class _belumimunisasiState extends State<belumimunisasi> {
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
-          children: [
-            onprogres2(),
-            Divider(),
-          ],
+          children: widget.imunisasi!
+              .where((e) => e.is_active == false)
+              .map((e) => listbelumimunisasi(e))
+              .toList(),
         ),
       ),
     );

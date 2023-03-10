@@ -11,14 +11,13 @@ class semua extends StatefulWidget {
 class _semuaState extends State<semua> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        // clipBehavior: Clip.hardEdge,
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        child: Column(
-            children: widget.imunisasi!.map((e) => listimunisasi(e)).toList()),
+    return SingleChildScrollView(
+      padding: EdgeInsets.zero,
+      // clipBehavior: Clip.hardEdge,
+      physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: widget.imunisasi!.map((e) => listimunisasi(e)).toList()
       ),
     );
   }
