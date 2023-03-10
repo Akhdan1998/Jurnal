@@ -171,7 +171,6 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                       height: 35,
                       width: MediaQuery.of(context).size.width,
                       child: DropdownButton<String>(
-                        iconEnabledColor: 'B8B8B8'.toColor(),
                         isExpanded: true,
                         isDense: true,
                         underline: SizedBox(),
@@ -201,7 +200,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                       ),
                     );
                   } else {
-                    return const Center(
+                    return Center(
                       child: SizedBox(),
                     );
                   }

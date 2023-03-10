@@ -91,7 +91,10 @@ class _imunisasidetailState extends State<imunisasidetail> {
                                       height: 15,
                                       padding: EdgeInsets.all(2.5),
                                       decoration: BoxDecoration(
-                                        color: '86C3BB'.toColor(),
+                                        // color: '86C3BB'.toColor(),
+                                        color: (widget.imunisasi.is_active == true)
+                                            ? '86C3BB'.toColor()
+                                            : 'C6C6C6'.toColor(),
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                       child: Icon(

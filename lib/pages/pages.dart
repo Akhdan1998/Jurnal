@@ -44,10 +44,15 @@ part 'riwayatpencatatan.dart';
 part 'ubahdatakelahirananak.dart';
 
 part '../widget/pertanyaanTes.dart';
+
 part '../widget/bottomsheetImunisasi.dart';
+
 part '../widget/bottomsheetProfil.dart';
+
 part '../widget/bottomsheetTumbuh.dart';
+
 part '../widget/bottomsheetKembang.dart';
+
 part 'ubahprofilanak.dart';
 
 part 'detailperkembangan.dart';
@@ -74,7 +79,10 @@ part 'kecillahir.dart';
 
 part 'lingkarkepala.dart';
 
-part 'listvaksin.dart';
+part 'listsudahimunisasi.dart';
+
+part 'listimunisasi.dart';
+
 part 'listAnak.dart';
 
 part 'main.dart';

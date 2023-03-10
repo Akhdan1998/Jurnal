@@ -612,7 +612,7 @@ class _imunisasiState extends State<imunisasi> {
                           },
                           children: [
                             semua(snapshot.imunisasi),
-                            sudahimunisasi(),
+                            sudahimunisasi(snapshot.imunisasi),
                             belumimunisasi(),
                           ],
                         ),

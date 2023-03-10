@@ -18,7 +18,7 @@ class _semuaState extends State<semua> {
         physics: NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
-            children: widget.imunisasi!.map((e) => listvaksin(e)).toList()),
+            children: widget.imunisasi!.map((e) => listimunisasi(e)).toList()),
       ),
     );
   }

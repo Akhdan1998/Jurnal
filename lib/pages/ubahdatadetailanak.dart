@@ -70,7 +70,6 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
       warna: 'A60077',
     ),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
