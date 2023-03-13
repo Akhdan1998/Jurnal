@@ -40,15 +40,16 @@ class _dataanakState extends State<dataanak> {
     }
   }
 
-  // File? image;
-  //
-  // Future getImage() async {
-  //   final ImagePicker _picker = ImagePicker();
-  //   final XFile? imagePicked =
-  //       await _picker.pickImage(source: ImageSource.gallery);
-  //   image = File(imagePicked!.path);
-  //   setState(() {});
-  // }
+  File? _image;
+
+  Future getImage() async {
+    final Image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (Image == null) return;
+    final imageTemporary = File(Image.path);
+    setState(() {
+      this._image = imageTemporary;
+    });
+  }
 
   // @override
   // void initState() {
@@ -94,35 +95,35 @@ class _dataanakState extends State<dataanak> {
           children: [
             SizedBox(height: 40),
             Stack(
+              fit: StackFit.loose,
+              alignment: Alignment.topCenter,
               children: [
-                Stack(
-                  fit: StackFit.loose,
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Positioned(
-                      // top: 90,
-                      // left: 90,
-                      child: Image.asset('assets/foto.png'),
+                Positioned(
+                  // top: 90,
+                  // left: 90,
+                  child: GestureDetector(
+                    onTap: () {
+                      getImage();
+                    },
+                    child: _image != null
+                        ? Image.file(
+                        _image!,
+                            width: 110, height: 110, fit: BoxFit.cover
+                    )
+                        : Image.asset('assets/foto.png'),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 85, left: 85),
+                  child: Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: 'FF6969'.toColor(),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // getImage();
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(top: 85, left: 85),
-                        child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: 'FF6969'.toColor(),
-                          ),
-                          child:
-                              Icon(Icons.edit, color: Colors.white, size: 18),
-                        ),
-                      ),
-                    ),
-                  ],
+                    child: Icon(Icons.edit, color: Colors.white, size: 18),
+                  ),
                 ),
               ],
             ),
@@ -141,28 +142,24 @@ class _dataanakState extends State<dataanak> {
                     ),
                   ),
                   SizedBox(height: 5),
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width,
-                    child: TextField(
-                      controller: namaAnakEditingController,
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          borderSide:
-                              BorderSide(width: 1, color: 'FF6969'.toColor()),
-                        ),
-                        contentPadding:
-                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                        hintStyle: GoogleFonts.poppins().copyWith(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w300,
-                          color: '989797'.toColor(),
-                        ),
-                        hintText: 'Nama panggilan',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
+                  TextField(
+                    controller: namaAnakEditingController,
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        borderSide:
+                            BorderSide(width: 1, color: 'FF6969'.toColor()),
+                      ),
+                      contentPadding:
+                          EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                      hintStyle: GoogleFonts.poppins().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                        color: '989797'.toColor(),
+                      ),
+                      hintText: 'Nama panggilan',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                   ),
@@ -176,48 +173,44 @@ class _dataanakState extends State<dataanak> {
                     ),
                   ),
                   SizedBox(height: 5),
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width,
-                    child: TextField(
-                      controller: tanggalLahirEditingController,
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.date_range,
-                          size: 20,
-                          color: '8F8F8F'.toColor(),
-                        ),
-                        hintStyle: GoogleFonts.poppins().copyWith(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w300,
-                          color: '989797'.toColor(),
-                        ),
-                        hintText: '24-03-1998',
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          borderSide:
-                              BorderSide(width: 1, color: 'FF6969'.toColor()),
-                        ),
-                        contentPadding:
-                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                  TextField(
+                    controller: tanggalLahirEditingController,
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(
+                        Icons.date_range,
+                        size: 20,
+                        color: '8F8F8F'.toColor(),
                       ),
-                      onTap: () async {
-                        DateTime? pickeddate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1945),
-                            lastDate: DateTime(2500));
-
-                        if (pickeddate != null) {
-                          setState(() {
-                            tanggalLahirEditingController.text =
-                                DateFormat('yyyy-MM-dd').format(pickeddate);
-                          });
-                        }
-                      },
+                      hintStyle: GoogleFonts.poppins().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                        color: '989797'.toColor(),
+                      ),
+                      hintText: '24-03-1998',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        borderSide:
+                            BorderSide(width: 1, color: 'FF6969'.toColor()),
+                      ),
+                      contentPadding:
+                          EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5)),
                     ),
+                    onTap: () async {
+                      DateTime? pickeddate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1945),
+                          lastDate: DateTime(2500));
+
+                      if (pickeddate != null) {
+                        setState(() {
+                          tanggalLahirEditingController.text =
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
+                        });
+                      }
+                    },
                   ),
                   SizedBox(height: 20),
                   Container(

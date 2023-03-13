@@ -11,7 +11,6 @@ import 'package:jurnal/Models/model_button_imunisasi.dart';
 import 'package:jurnal/Models/model_tes.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:cross_file/cross_file.dart';
 import 'package:jurnal/cubit/buatdataanak_cubit.dart';
 import 'package:jurnal/cubit/imunisasi_cubit.dart';
 import 'package:supercharged/supercharged.dart';
@@ -45,13 +44,7 @@ part 'ubahdatakelahirananak.dart';
 
 part '../widget/pertanyaanTes.dart';
 
-part '../widget/bottomsheetImunisasi.dart';
-
-part '../widget/bottomsheetProfil.dart';
-
-part '../widget/bottomsheetTumbuh.dart';
-
-part '../widget/bottomsheetKembang.dart';
+part '../widget/bottomsheet.dart';
 
 part 'ubahprofilanak.dart';
 
@@ -80,6 +73,7 @@ part 'kecillahir.dart';
 part 'lingkarkepala.dart';
 
 part 'listsudahimunisasi.dart';
+
 part 'listbelumimunisasi.dart';
 
 part 'listimunisasi.dart';
@@ -89,10 +83,6 @@ part 'listAnak.dart';
 part 'main.dart';
 
 part 'navigasi.dart';
-
-part '../widget/OnProgres1.dart';
-
-part '../widget/OnProgres2.dart';
 
 part 'profil.dart';
 

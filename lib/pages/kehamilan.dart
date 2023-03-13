@@ -311,74 +311,66 @@ class _KehamilanState extends State<Kehamilan> {
                           ),
                         ),
                         SizedBox(height: 10),
-                        Container(
-                          height: 35,
-                          width: MediaQuery.of(context).size.width,
-                          child: DropdownButtonFormField<String>(
-                            value: dropdownValue,
-                            icon: Icon(
-                              Icons.expand_more_outlined,
-                              color: 'B8B8B8'.toColor(),
-                            ),
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.only(left: 10, top: 5, right: 5),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                    width: 1, color: 'FF6969'.toColor()),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                            ),
-                            onChanged: (String? value) {
-                              // This is called when the user selects an item.
-                              setState(() {
-                                dropdownValue = value!;
-                              });
-                            },
-                            items: list
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w300,
-                                    color: '989797'.toColor(),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue,
+                          icon: Icon(
+                            Icons.expand_more_outlined,
+                            color: 'B8B8B8'.toColor(),
                           ),
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.only(left: 10, top: 5, right: 5),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(
+                                  width: 1, color: 'FF6969'.toColor()),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          onChanged: (String? value) {
+                            // This is called when the user selects an item.
+                            setState(() {
+                              dropdownValue = value!;
+                            });
+                          },
+                          items: list
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w300,
+                                  color: '989797'.toColor(),
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ),
                         SizedBox(height: 13),
-                        Container(
-                          height: 35,
-                          width: MediaQuery.of(context).size.width,
-                          child: TextField(
-                            controller: hurufawalan,
-                            decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                    width: 1, color: 'FF6969'.toColor()),
-                              ),
-                              contentPadding:
-                                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                              hintStyle: GoogleFonts.poppins().copyWith(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w300,
-                                color: '989797'.toColor(),
-                              ),
-                              hintText: 'Ketik Awalan Huruf',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                        TextField(
+                          controller: hurufawalan,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(
+                                  width: 1, color: 'FF6969'.toColor()),
+                            ),
+                            contentPadding:
+                                EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                            hintStyle: GoogleFonts.poppins().copyWith(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w300,
+                              color: '989797'.toColor(),
+                            ),
+                            hintText: 'Ketik Awalan Huruf',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                         ),
@@ -453,7 +445,7 @@ class _KehamilanState extends State<Kehamilan> {
                           onTap: () {},
                           child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.only(top: 7, bottom: 7),
+                            padding: EdgeInsets.only(top: 11, bottom: 11),
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),

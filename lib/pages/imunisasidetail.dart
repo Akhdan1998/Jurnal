@@ -347,9 +347,52 @@ class _imunisasidetailState extends State<imunisasidetail> {
         height: 60,
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
-          onTap: () {
-            Get.to(isidataimunisasi(widget.imunisasi));
-          },
+          onTap: () => (widget.imunisasi.is_active == true)
+              ? showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(
+                        'Information',
+                        style: GoogleFonts.poppins().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      content: Text(
+                        'Are you sure you want to reset imunizations?',
+                        style: GoogleFonts.poppins().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            'No',
+                            style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: 'FF6969'.toColor()),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.to(isidataimunisasi(widget.imunisasi));
+                          },
+                          child: Text(
+                            'Yes',
+                            style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: 'FF6969'.toColor()),
+                          ),
+                        ),
+                      ],
+                    );
+                  })
+              : Get.to(isidataimunisasi(widget.imunisasi)),
           child: Container(
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width,
@@ -377,3 +420,36 @@ class _imunisasidetailState extends State<imunisasidetail> {
     );
   }
 }
+
+// Future<void> _showDialog(BuildContext context) {
+//   return showDialog(
+//       context: context,
+//       builder: (BuildContext context)  {
+//         return AlertDialog(
+//           title: Text(
+//             'Information',
+//             style: GoogleFonts.poppins().copyWith(
+//                 fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+//           ),
+//           content: Text(
+//             'Are you sure you want to reset immunizations?',
+//             style: GoogleFonts.poppins().copyWith(
+//                 fontSize: 11, fontWeight: FontWeight.w300, color: Colors.black),
+//           ),
+//           actions: [
+//             TextButton(
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//               child: Text('No'),
+//             ),
+//             TextButton(
+//               onPressed: () {
+//                 Get.to(isidataimunisasi(widget.imunisasi));
+//               },
+//               child: Text('Yes'),
+//             ),
+//           ],
+//         );
+//       });
+// }

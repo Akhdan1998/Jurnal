@@ -457,342 +457,130 @@ class _TumbuhState extends State<Tumbuh> {
                   }
                 },
               ),
-              // Stack(
-              //   children: [
-              //     Container(
-              //       color: Colors.white,
-              //       width: MediaQuery
-              //           .of(context)
-              //           .size
-              //           .width,
-              //       height: 220,
-              //     ),
-              //     Container(
-              //       alignment: Alignment.topLeft,
-              //       color: 'D9D9D9'.toColor(),
-              //       width: MediaQuery
-              //           .of(context)
-              //           .size
-              //           .width,
-              //       height: 187,
-              //       padding: EdgeInsets.only(left: 16, top: 43),
-              //       child: Row(
-              //         children: [
-              //           Container(
-              //             width: 20,
-              //             child: GestureDetector(
-              //               onTap: () {},
-              //               child: Icon(Icons.arrow_back),
-              //             ),
-              //           ),
-              //           SizedBox(width: 12),
-              //           Text(
-              //             'Pertumbuhan Anak',
-              //             style: GoogleFonts.poppins().copyWith(
-              //               fontSize: 13,
-              //               fontWeight: FontWeight.bold,
-              //               color: '747474'.toColor(),
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //     Positioned(
-              //       left: 16,
-              //       right: 16,
-              //       top: 150,
-              //       child: Container(
-              //         padding: EdgeInsets.all(15),
-              //         decoration: BoxDecoration(
-              //           color: Colors.white,
-              //           borderRadius: BorderRadius.circular(5),
-              //           border: Border.all(
-              //             width: 1,
-              //             color: 'F0F0F0'.toColor(),
-              //           ),
-              //         ),
-              //         width: MediaQuery
-              //             .of(context)
-              //             .size
-              //             .width,
-              //         // height: 131,
-              //         child: Column(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Row(
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     Image.asset(
-              //                       'assets/cwe.png',
-              //                       scale: 2.1,
-              //                     ),
-              //                     SizedBox(width: 10),
-              //                     Container(
-              //                       width:
-              //                       MediaQuery
-              //                           .of(context)
-              //                           .size
-              //                           .width - 113,
-              //                       child: Row(
-              //                         crossAxisAlignment:
-              //                         CrossAxisAlignment.start,
-              //                         mainAxisAlignment:
-              //                         MainAxisAlignment.spaceBetween,
-              //                         children: [
-              //                           Column(
-              //                             crossAxisAlignment:
-              //                             CrossAxisAlignment.start,
-              //                             children: [
-              //                               Text(
-              //                                 '-',
-              //                                 style: GoogleFonts.poppins()
-              //                                     .copyWith(
-              //                                   fontWeight: FontWeight.bold,
-              //                                   fontSize: 12,
-              //                                   color: '323232'.toColor(),
-              //                                 ),
-              //                               ),
-              //                               // SizedBox(height: 2),
-              //                               Row(
-              //                                 children: [
-              //                                   Text(
-              //                                     '-',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                   SizedBox(width: 3),
-              //                                   Text(
-              //                                     '|',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                   SizedBox(width: 3),
-              //                                   Text(
-              //                                     '0',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                   SizedBox(width: 3),
-              //                                   Text(
-              //                                     'Tahun',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                   SizedBox(width: 3),
-              //                                   Text(
-              //                                     '0',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                   SizedBox(width: 3),
-              //                                   Text(
-              //                                     'Bulan',
-              //                                     style: GoogleFonts.poppins()
-              //                                         .copyWith(
-              //                                       fontWeight: FontWeight.w300,
-              //                                       fontSize: 11,
-              //                                       color: '7A7A7A'.toColor(),
-              //                                     ),
-              //                                   ),
-              //                                 ],
-              //                               ),
-              //                             ],
-              //                           ),
-              //                           GestureDetector(
-              //                             onTap: () {
-              //                               showModalBottomSheet(
-              //                                 isScrollControlled: true,
-              //                                 shape: RoundedRectangleBorder(
-              //                                     borderRadius: BorderRadius
-              //                                         .only(
-              //                                         topRight:
-              //                                         Radius.circular(15),
-              //                                         topLeft:
-              //                                         Radius.circular(15))),
-              //                                 context: context,
-              //                                 builder: (BuildContext context) {
-              //                                   return bottomsheetTumbuh();
-              //                                 },
-              //                               );
-              //                             },
-              //                             child: Row(
-              //                               children: [
-              //                                 Text(
-              //                                   'Ganti Anak',
-              //                                   style: GoogleFonts.poppins()
-              //                                       .copyWith(
-              //                                     fontWeight: FontWeight.w300,
-              //                                     fontSize: 10,
-              //                                     color: 'FF6969'.toColor(),
-              //                                   ),
-              //                                 ),
-              //                                 SizedBox(width: 3),
-              //                                 Icon(
-              //                                   Icons
-              //                                       .keyboard_arrow_down_outlined,
-              //                                   color: 'FF6969'.toColor(),
-              //                                   size: 18,
-              //                                 ),
-              //                               ],
-              //                             ),
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     ),
-              //                   ],
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               SizedBox(height: 15),
               SingleChildScrollView(
                 clipBehavior: Clip.hardEdge,
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(width: 16),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedButton = '1';
-                        });
-                        pageController.animateToPage(0,
-                            duration: Duration(milliseconds: 250),
-                            curve: Curves.bounceInOut);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child:                 Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(width: 16),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedButton = '1';
+                          });
+                          pageController.animateToPage(0,
+                              duration: Duration(milliseconds: 250),
+                              curve: Curves.bounceInOut);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1,
+                              color: (selectedButton == '1')
+                                  ? Colors.white
+                                  : 'F0F0F0'.toColor(),
+                            ),
+                            borderRadius: BorderRadius.circular(5),
                             color: (selectedButton == '1')
-                                ? Colors.white
-                                : 'F0F0F0'.toColor(),
+                                ? 'FF6969'.toColor()
+                                : Colors.white,
                           ),
-                          borderRadius: BorderRadius.circular(5),
-                          color: (selectedButton == '1')
-                              ? 'FF6969'.toColor()
-                              : Colors.white,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 8, bottom: 8),
-                        child: Text(
-                          'Tinggi Badan',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 11,
-                            color: (selectedButton == '1')
-                                ? Colors.white
-                                : '989797'.toColor(),
+                          padding: EdgeInsets.only(
+                              left: 20, right: 20, top: 8, bottom: 8),
+                          child: Text(
+                            'Tinggi Badan',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 11,
+                              color: (selectedButton == '1')
+                                  ? Colors.white
+                                  : '989797'.toColor(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedButton = '2';
-                        });
-                        pageController.animateToPage(1,
-                            duration: Duration(milliseconds: 250),
-                            curve: Curves.bounceInOut);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
+                      // SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedButton = '2';
+                          });
+                          pageController.animateToPage(1,
+                              duration: Duration(milliseconds: 250),
+                              curve: Curves.bounceInOut);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1,
+                              color: (selectedButton == '2')
+                                  ? Colors.white
+                                  : 'F0F0F0'.toColor(),
+                            ),
+                            borderRadius: BorderRadius.circular(5),
                             color: (selectedButton == '2')
-                                ? Colors.white
-                                : 'F0F0F0'.toColor(),
+                                ? 'FF6969'.toColor()
+                                : Colors.white,
                           ),
-                          borderRadius: BorderRadius.circular(5),
-                          color: (selectedButton == '2')
-                              ? 'FF6969'.toColor()
-                              : Colors.white,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 8, bottom: 8),
-                        child: Text(
-                          'Berat Badan',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 11,
-                            color: (selectedButton == '2')
-                                ? Colors.white
-                                : '989797'.toColor(),
+                          padding: EdgeInsets.only(
+                              left: 20, right: 20, top: 8, bottom: 8),
+                          child: Text(
+                            'Berat Badan',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 11,
+                              color: (selectedButton == '2')
+                                  ? Colors.white
+                                  : '989797'.toColor(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedButton = '3';
-                        });
-                        pageController.animateToPage(2,
-                            duration: Duration(milliseconds: 250),
-                            curve: Curves.bounceInOut);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
+                      // SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedButton = '3';
+                          });
+                          pageController.animateToPage(2,
+                              duration: Duration(milliseconds: 250),
+                              curve: Curves.bounceInOut);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1,
+                              color: (selectedButton == '3')
+                                  ? Colors.white
+                                  : 'F0F0F0'.toColor(),
+                            ),
+                            borderRadius: BorderRadius.circular(5),
                             color: (selectedButton == '3')
-                                ? Colors.white
-                                : 'F0F0F0'.toColor(),
+                                ? 'FF6969'.toColor()
+                                : Colors.white,
                           ),
-                          borderRadius: BorderRadius.circular(5),
-                          color: (selectedButton == '3')
-                              ? 'FF6969'.toColor()
-                              : Colors.white,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 8, bottom: 8),
-                        child: Text(
-                          'Lingkar Kepala',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 11,
-                            color: (selectedButton == '3')
-                                ? Colors.white
-                                : '989797'.toColor(),
+                          padding: EdgeInsets.only(
+                              left: 20, right: 20, top: 8, bottom: 8),
+                          child: Text(
+                            'Lingkar Kepala',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 11,
+                              color: (selectedButton == '3')
+                                  ? Colors.white
+                                  : '989797'.toColor(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 16),
-                  ],
+                      SizedBox(width: 16),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(width: 15),
@@ -863,52 +651,45 @@ class _TumbuhState extends State<Tumbuh> {
                           ),
                         ),
                         SizedBox(height: 3),
-                        Container(
-                          height: 40,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          child: TextField(
-                            controller: tanggalcek,
-                            decoration: InputDecoration(
-                              suffixIcon: Icon(
-                                Icons.date_range,
-                                size: 20,
-                                color: '8F8F8F'.toColor(),
-                              ),
-                              hintStyle: GoogleFonts.poppins().copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w300,
-                                color: '989797'.toColor(),
-                              ),
-                              hintText: '24 Maret 1998',
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                    width: 1, color: 'FF6969'.toColor()),
-                              ),
-                              contentPadding:
-                              EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5)),
+                        TextField(
+                          controller: tanggalcek,
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(
+                              Icons.date_range,
+                              size: 20,
+                              color: '8F8F8F'.toColor(),
                             ),
-                            onTap: () async {
-                              DateTime? pickeddate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1945),
-                                  lastDate: DateTime(2500));
-
-                              if (pickeddate != null) {
-                                setState(() {
-                                  tanggalcek.text =
-                                      DateFormat('yMMMMd').format(pickeddate);
-                                });
-                              }
-                            },
+                            hintStyle: GoogleFonts.poppins().copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300,
+                              color: '989797'.toColor(),
+                            ),
+                            hintText: '24 Maret 1998',
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(
+                                  width: 1, color: 'FF6969'.toColor()),
+                            ),
+                            contentPadding:
+                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5)),
                           ),
+                          onTap: () async {
+                            DateTime? pickeddate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1945),
+                                lastDate: DateTime(2500));
+
+                            if (pickeddate != null) {
+                              setState(() {
+                                tanggalcek.text =
+                                    DateFormat('yMMMMd').format(pickeddate);
+                              });
+                            }
+                          },
                         ),
                         SizedBox(height: 14),
                         Text(
@@ -919,33 +700,26 @@ class _TumbuhState extends State<Tumbuh> {
                           ),
                         ),
                         SizedBox(height: 3),
-                        Container(
-                          height: 40,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: tinggi,
-                            decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                    width: 1, color: 'FF6969'.toColor()),
-                              ),
-                              contentPadding:
-                              EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                              hintStyle: GoogleFonts.poppins().copyWith(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w300,
-                                color: '989797'.toColor(),
-                              ),
-                              hintText: '10',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                        TextField(
+                          keyboardType: TextInputType.number,
+                          controller: tinggi,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5)),
+                              borderSide: BorderSide(
+                                  width: 1, color: 'FF6969'.toColor()),
+                            ),
+                            contentPadding:
+                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                            hintStyle: GoogleFonts.poppins().copyWith(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300,
+                              color: '989797'.toColor(),
+                            ),
+                            hintText: '10',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                         ),

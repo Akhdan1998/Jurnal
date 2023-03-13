@@ -141,46 +141,42 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: DropdownButtonFormField<String>(
-                  value: dropdownValue2,
-                  icon: Icon(
-                    Icons.expand_more_outlined,
-                    color: 'B8B8B8'.toColor(),
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownValue2 = value!;
-                    });
-                  },
-                  items: list2.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: GoogleFonts.poppins().copyWith(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w300,
-                          color: '989797'.toColor(),
-                        ),
-                      ),
-                    );
-                  }).toList(),
+              DropdownButtonFormField<String>(
+                value: dropdownValue2,
+                icon: Icon(
+                  Icons.expand_more_outlined,
+                  color: 'B8B8B8'.toColor(),
                 ),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    dropdownValue2 = value!;
+                  });
+                },
+                items: list2.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: GoogleFonts.poppins().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                        color: '989797'.toColor(),
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
               SizedBox(height: 15),
               Text(
@@ -192,28 +188,24 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: hobi,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Olahraga, Membaca, dll',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: hobi,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Olahraga, Membaca, dll',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -227,28 +219,24 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: citacita,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Presiden, Bisnismen, dll',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: citacita,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Presiden, Bisnismen, dll',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -262,60 +250,56 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                // width: MediaQuery.of(context).size.width,
-                child: DropdownButtonFormField<String>(
-                  value: dropdownValue3,
-                  icon: Icon(
-                    Icons.expand_more_outlined,
-                    color: 'B8B8B8'.toColor(),
-                  ),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownValue3 = value!;
-                    });
-                  },
-                  items: list3.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: BoxDecoration(
-                              color: kesukaan.firstWhere((element) => element.nama == value).warna!.toColor(),
-                              // border: Border.all(width: 1),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            value,
-                            style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w300,
-                              color: '989797'.toColor(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
+              DropdownButtonFormField<String>(
+                value: dropdownValue3,
+                icon: Icon(
+                  Icons.expand_more_outlined,
+                  color: 'B8B8B8'.toColor(),
                 ),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    dropdownValue3 = value!;
+                  });
+                },
+                items: list3.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 15,
+                          height: 15,
+                          decoration: BoxDecoration(
+                            color: kesukaan.firstWhere((element) => element.nama == value).warna!.toColor(),
+                            // border: Border.all(width: 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          value,
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: '989797'.toColor(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
               ),
               SizedBox(height: 15),
             ],

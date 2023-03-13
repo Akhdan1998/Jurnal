@@ -63,29 +63,25 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: bb,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                      BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                    EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Ex: 2000',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: bb,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Ex: 2000',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -99,29 +95,25 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: tb,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                      BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                    EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Ex : 40',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                controller: tb,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Ex : 40',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -135,29 +127,25 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 ),
               ),
               SizedBox(height: 5),
-              Container(
-                height: 35,
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  controller: lk,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                      BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                    EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: 'Ex : 35',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: lk,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide:
+                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                  ),
+                  contentPadding:
+                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  hintStyle: GoogleFonts.poppins().copyWith(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w300,
+                    color: '989797'.toColor(),
+                  ),
+                  hintText: 'Ex : 35',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
