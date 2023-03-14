@@ -302,6 +302,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
+
             simpan(tanggalcek.text, _dropdownMerek, lokasiimunisasi.text,
                 namatenagakesehatan.text, nomerbatchimunisasi.text);
           },
