@@ -52,92 +52,89 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
       scrollDirection: Axis.vertical,
       child: Container(
         // height: MediaQuery.of(context).size.height,
-        child: Container(
-          // height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.only(left: 15, right: 15, top: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Pilih Profil Anak :',
-                    style: GoogleFonts.poppins().copyWith(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: '323232'.toColor(),
-                    ),
+        padding: EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Pilih Profil Anak :',
+                  style: GoogleFonts.poppins().copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: '323232'.toColor(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(dataanak());
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Buat Data Anak',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w300,
-                            color: 'FF6969'.toColor(),
-                          ),
-                        ),
-                        SizedBox(width: 3),
-                        Icon(
-                          Icons.add_outlined,
-                          color: 'FF6969'.toColor(),
-                          size: 15,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15),
-              Column(
-                children: [
-                  Column(
-                    children: widget.listAnak
-                        .map((e) =>
-                            // listAnak(e, (selectedAnak == e) ? true : ((e.is_active == 1) ?  true : false),
-                    listAnak(e, (selectedAnak == e) ? true : false,
-                                onChanged: (value) {
-                              setState(() {
-                                selectedAnak = value;
-                              });
-                            }))
-                        .toList(),
-                  ),
-                  SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: () {
-                      pilihAnak();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: 'FF6969'.toColor(),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        'Pilih Profil',
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(dataanak());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Buat Data Anak',
                         style: GoogleFonts.poppins().copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: 'FFFFFF'.toColor(),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w300,
+                          color: 'FF6969'.toColor(),
                         ),
+                      ),
+                      SizedBox(width: 3),
+                      Icon(
+                        Icons.add_outlined,
+                        color: 'FF6969'.toColor(),
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Column(
+              children: [
+                Column(
+                  children: widget.listAnak
+                      .map((e) =>
+                          // listAnak(e, (selectedAnak == e) ? true : ((e.is_active == 1) ?  true : false),
+                  listAnak(e, (selectedAnak == e) ? true : false,
+                              onChanged: (value) {
+                            setState(() {
+                              selectedAnak = value;
+                            });
+                          }))
+                      .toList(),
+                ),
+                SizedBox(height: 10),
+                GestureDetector(
+                  onTap: () {
+                    pilihAnak();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    // width: MediaQuery.of(context).size.width,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: 'FF6969'.toColor(),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      'Pilih Profil',
+                      style: GoogleFonts.poppins().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: 'FFFFFF'.toColor(),
                       ),
                     ),
                   ),
-                  SizedBox(height: 15),
-                ],
-              ),
-            ],
-          ),
+                ),
+                SizedBox(height: 15),
+              ],
+            ),
+          ],
         ),
       ),
     );

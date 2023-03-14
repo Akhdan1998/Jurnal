@@ -9,16 +9,6 @@ class _ubahdataanakState extends State<ubahdataanak> {
   final namaAnak = TextEditingController();
   final tanggalLahir = TextEditingController();
   String selectedKelamin3 = '';
-  List<ButtonKelamin3> button = [
-    ButtonKelamin3(
-      id: '1',
-      kelamin: 'Laki - laki',
-    ),
-    ButtonKelamin3(
-      id: '2',
-      kelamin: 'Perempuan',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -273,8 +263,10 @@ class _ubahdataanakState extends State<ubahdataanak> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+        height: (Platform.isIOS) ? 80 : 60,
+        padding: (Platform.isIOS)
+            ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
+            : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
             Get.off(navigation('Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK'));

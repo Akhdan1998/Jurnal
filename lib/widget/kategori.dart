@@ -10,7 +10,6 @@ class kategori extends StatefulWidget {
 }
 
 class _kategoriState extends State<kategori> {
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,7 +17,9 @@ class _kategoriState extends State<kategori> {
         Column(
           children: [
             Container(
-              width: (Platform.isIOS) ? (MediaQuery.of(context).size.width - 211) : (MediaQuery.of(context).size.width - 205),
+              width: (Platform.isIOS)
+                  ? (MediaQuery.of(context).size.width - 211)
+                  : (MediaQuery.of(context).size.width - 205),
               height: 130,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -90,7 +91,9 @@ class _kategoriState extends State<kategori> {
                   Container(
                     padding: EdgeInsets.only(bottom: 11, right: 12),
                     child: LinearPercentIndicator(
-                      width: (Platform.isIOS) ? (MediaQuery.of(context).size.width - 245) : (MediaQuery.of(context).size.width - 239),
+                      width: (Platform.isIOS)
+                          ? (MediaQuery.of(context).size.width - 245)
+                          : (MediaQuery.of(context).size.width - 239),
                       // animation: true,
                       // animationDuration: 1000,
                       lineHeight: 7,
@@ -112,70 +115,72 @@ class _kategoriState extends State<kategori> {
             ),
             Container(
               // padding: EdgeInsets.only(bottom: 4, top: 4),
-              width: (Platform.isIOS) ? (MediaQuery.of(context).size.width - 211) : (MediaQuery.of(context).size.width - 205),
+              width: (Platform.isIOS)
+                  ? (MediaQuery.of(context).size.width - 211)
+                  : (MediaQuery.of(context).size.width - 205),
               height: 25,
               child: GestureDetector(
                 onTap: () {
                   showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.tes!.judul ?? '',
-                                style: GoogleFonts.poppins().copyWith(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                    color: '323232'.toColor()),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    '0',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w300,
-                                        color: '939393'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '/',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w300,
-                                        color: '939393'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '5',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w300,
-                                        color: '939393'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'Pencapaian',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w300,
-                                        color: '939393'.toColor()),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.tes!.listTes!
-                                .map((e) => pertanyaanTes(e))
-                                .toList(),
-                          ),
-                        );
-                      },
-                    );
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.tes!.judul ?? '',
+                              style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: '323232'.toColor()),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '0',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300,
+                                      color: '939393'.toColor()),
+                                ),
+                                SizedBox(width: 3),
+                                Text(
+                                  '/',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300,
+                                      color: '939393'.toColor()),
+                                ),
+                                SizedBox(width: 3),
+                                Text(
+                                  '5',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300,
+                                      color: '939393'.toColor()),
+                                ),
+                                SizedBox(width: 3),
+                                Text(
+                                  'Pencapaian',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300,
+                                      color: '939393'.toColor()),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.tes!.listTes!
+                              .map((e) => pertanyaanTes(e))
+                              .toList(),
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: Container(
                   alignment: Alignment.center,

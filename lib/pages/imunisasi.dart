@@ -12,22 +12,6 @@ class imunisasi extends StatefulWidget {
 class _imunisasiState extends State<imunisasi> {
   PageController pageController = PageController(initialPage: 0);
   int pageChanged = 0;
-  String selectedVaksin = '';
-  List<Button1> button = [
-    Button1(
-      id: '1',
-      teks: 'Semua',
-    ),
-    Button1(
-      id: '2',
-      teks: 'Sudah Vaksin',
-    ),
-    Button1(
-      id: '3',
-      teks: 'Belum Vaksin',
-    ),
-  ];
-
   String selectedButton = '1';
 
   @override
@@ -249,21 +233,7 @@ class _imunisasiState extends State<imunisasi> {
                                               GestureDetector(
                                                 onTap: () {
                                                   showModalBottomSheet(
-                                                    // clipBehavior: Clip.none,
-                                                    // isScrollControlled: true,
-                                                    // isDismissible: true,
-                                                    // enableDrag: true,
-                                                    // useSafeArea: true,
-                                                    // useRootNavigator: true,
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        15),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        15))),
+                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15))),
                                                     context: context,
                                                     builder:
                                                         (BuildContext context) {
@@ -451,130 +421,127 @@ class _imunisasiState extends State<imunisasi> {
                         },
                       ),
                       SizedBox(height: 5),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: SingleChildScrollView(
-                          clipBehavior: Clip.hardEdge,
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // SizedBox(width: 16),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedButton = '1';
-                                  });
-                                  pageController.animateToPage(0,
-                                      duration: Duration(milliseconds: 250),
-                                      curve: Curves.bounceInOut);
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: (selectedButton == '1')
-                                          ? Colors.white
-                                          : 'F0F0F0'.toColor(),
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
+                      SingleChildScrollView(
+                        clipBehavior: Clip.hardEdge,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(width: 16),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedButton = '1';
+                                });
+                                pageController.animateToPage(0,
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.bounceInOut);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
                                     color: (selectedButton == '1')
-                                        ? 'FF6969'.toColor()
-                                        : Colors.white,
+                                        ? Colors.white
+                                        : 'F0F0F0'.toColor(),
                                   ),
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 8, bottom: 8),
-                                  child: Text(
-                                    'Semua',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 11,
-                                      color: (selectedButton == '1')
-                                          ? Colors.white
-                                          : '989797'.toColor(),
-                                    ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: (selectedButton == '1')
+                                      ? 'FF6969'.toColor()
+                                      : Colors.white,
+                                ),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 8, bottom: 8),
+                                child: Text(
+                                  'Semua',
+                                  style: GoogleFonts.poppins().copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 11,
+                                    color: (selectedButton == '1')
+                                        ? Colors.white
+                                        : '989797'.toColor(),
                                   ),
                                 ),
                               ),
-                              // SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedButton = '2';
-                                  });
-                                  pageController.animateToPage(1,
-                                      duration: Duration(milliseconds: 250),
-                                      curve: Curves.bounceInOut);
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: (selectedButton == '2')
-                                          ? Colors.white
-                                          : 'F0F0F0'.toColor(),
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
+                            ),
+                            SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedButton = '2';
+                                });
+                                pageController.animateToPage(1,
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.bounceInOut);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
                                     color: (selectedButton == '2')
-                                        ? 'FF6969'.toColor()
-                                        : Colors.white,
+                                        ? Colors.white
+                                        : 'F0F0F0'.toColor(),
                                   ),
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 8, bottom: 8),
-                                  child: Text(
-                                    'Sudah Imunisasi',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 11,
-                                      color: (selectedButton == '2')
-                                          ? Colors.white
-                                          : '989797'.toColor(),
-                                    ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: (selectedButton == '2')
+                                      ? 'FF6969'.toColor()
+                                      : Colors.white,
+                                ),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 8, bottom: 8),
+                                child: Text(
+                                  'Sudah Imunisasi',
+                                  style: GoogleFonts.poppins().copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 11,
+                                    color: (selectedButton == '2')
+                                        ? Colors.white
+                                        : '989797'.toColor(),
                                   ),
                                 ),
                               ),
-                              // SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedButton = '3';
-                                  });
-                                  pageController.animateToPage(2,
-                                      duration: Duration(milliseconds: 250),
-                                      curve: Curves.bounceInOut);
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: (selectedButton == '3')
-                                          ? Colors.white
-                                          : 'F0F0F0'.toColor(),
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
+                            ),
+                            SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedButton = '3';
+                                });
+                                pageController.animateToPage(2,
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.bounceInOut);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
                                     color: (selectedButton == '3')
-                                        ? 'FF6969'.toColor()
-                                        : Colors.white,
+                                        ? Colors.white
+                                        : 'F0F0F0'.toColor(),
                                   ),
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 8, bottom: 8),
-                                  child: Text(
-                                    'Belum Imunisasi',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 11,
-                                      color: (selectedButton == '3')
-                                          ? Colors.white
-                                          : '989797'.toColor(),
-                                    ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: (selectedButton == '3')
+                                      ? 'FF6969'.toColor()
+                                      : Colors.white,
+                                ),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 8, bottom: 8),
+                                child: Text(
+                                  'Belum Imunisasi',
+                                  style: GoogleFonts.poppins().copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 11,
+                                    color: (selectedButton == '3')
+                                        ? Colors.white
+                                        : '989797'.toColor(),
                                   ),
                                 ),
                               ),
-                              // SizedBox(width: 16),
-                            ],
-                          ),
+                            ),
+                            SizedBox(width: 16),
+                          ],
                         ),
                       ),
                       SizedBox(height: 10),

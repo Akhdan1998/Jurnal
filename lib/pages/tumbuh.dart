@@ -12,21 +12,6 @@ class _TumbuhState extends State<Tumbuh> {
   int pageChanged = 0;
   String selectedButton = '1';
 
-  List<Button2> button = [
-    Button2(
-      id: '1',
-      teks: 'Tinggi Badan',
-    ),
-    Button2(
-      id: '2',
-      teks: 'Berat Badan',
-    ),
-    Button2(
-      id: '3',
-      teks: 'Lingkar Kepala',
-    ),
-  ];
-
   @override
   void initState() {
     // TODO: implement initState
@@ -44,10 +29,7 @@ class _TumbuhState extends State<Tumbuh> {
         // physics: BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
@@ -59,19 +41,13 @@ class _TumbuhState extends State<Tumbuh> {
                         children: [
                           Container(
                             color: Colors.white,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             height: 225,
                           ),
                           Container(
                             alignment: Alignment.topLeft,
                             color: 'D9D9D9'.toColor(),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             height: 187,
                             padding: EdgeInsets.only(left: 16, top: 43),
                             child: Row(
@@ -111,133 +87,109 @@ class _TumbuhState extends State<Tumbuh> {
                                   color: 'F0F0F0'.toColor(),
                                 ),
                               ),
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
+                              width: MediaQuery.of(context).size.width,
                               // height: 131,
                               child: Row(children: [
                                 Container(
                                   width: 40,
                                   height: 40,
                                   child: Image.asset((snapshot.dataanak!
-                                      .firstWhere((e) => e.is_active == 1)
-                                      .gender == 'Laki-laki')
+                                              .firstWhere(
+                                                  (e) => e.is_active == 1)
+                                              .gender ==
+                                          'Laki-laki')
                                       ? 'assets/laki.png'
                                       : 'assets/cwe.png'),
                                 ),
                                 SizedBox(width: 9),
                                 Container(
                                   width:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width - 113,
+                                      MediaQuery.of(context).size.width - 113,
                                   child: Row(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             snapshot.dataanak!
-                                                .firstWhere((e) =>
-                                            e.is_active ==
-                                                1)
-                                                .name ??
+                                                    .firstWhere(
+                                                        (e) => e.is_active == 1)
+                                                    .name ??
                                                 '',
                                             style: GoogleFonts.poppins()
                                                 .copyWith(
-                                                fontSize: 12,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: '323232'
-                                                    .toColor()),
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: '323232'.toColor()),
                                           ),
                                           Row(
                                             children: [
                                               Text(
                                                 snapshot.dataanak!
-                                                    .firstWhere((e) =>
-                                                e.is_active == 1)
-                                                    .gender ?? '',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                        .firstWhere((e) =>
+                                                            e.is_active == 1)
+                                                        .gender ??
+                                                    '',
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Text(
                                                 '|',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Text(
                                                 '0',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Text(
                                                 'Tahun',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Text(
                                                 '0',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Text(
                                                 'Bulan',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
+                                                  fontWeight: FontWeight.w300,
                                                   fontSize: 11,
-                                                  color: '7A7A7A'
-                                                      .toColor(),
+                                                  color: '7A7A7A'.toColor(),
                                                 ),
                                               ),
                                             ],
@@ -254,17 +206,15 @@ class _TumbuhState extends State<Tumbuh> {
                                             // useSafeArea: true,
                                             // useRootNavigator: true,
                                             shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius
-                                                    .only(
+                                                borderRadius: BorderRadius.only(
                                                     topRight:
-                                                    Radius.circular(15),
+                                                        Radius.circular(15),
                                                     topLeft:
-                                                    Radius.circular(
-                                                        15))),
+                                                        Radius.circular(15))),
                                             context: context,
-                                            builder: (
-                                                BuildContext context) {
-                                              return bottomsheetImunisasi(snapshot.dataanak!);
+                                            builder: (BuildContext context) {
+                                              return bottomsheetImunisasi(
+                                                  snapshot.dataanak!);
                                             },
                                           );
                                         },
@@ -272,14 +222,11 @@ class _TumbuhState extends State<Tumbuh> {
                                           children: [
                                             Text(
                                               'Ganti Anak',
-                                              style:
-                                              GoogleFonts.poppins()
+                                              style: GoogleFonts.poppins()
                                                   .copyWith(
-                                                fontWeight:
-                                                FontWeight.w300,
+                                                fontWeight: FontWeight.w300,
                                                 fontSize: 10,
-                                                color:
-                                                'FF6969'.toColor(),
+                                                color: 'FF6969'.toColor(),
                                               ),
                                             ),
                                             SizedBox(width: 5),
@@ -305,19 +252,13 @@ class _TumbuhState extends State<Tumbuh> {
                         children: [
                           Container(
                             color: Colors.white,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             height: 265,
                           ),
                           Container(
                             alignment: Alignment.topLeft,
                             color: 'D9D9D9'.toColor(),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             height: 187,
                             padding: EdgeInsets.only(left: 16, top: 43),
                             child: Row(
@@ -357,19 +298,14 @@ class _TumbuhState extends State<Tumbuh> {
                                   color: 'F0F0F0'.toColor(),
                                 ),
                               ),
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
+                              width: MediaQuery.of(context).size.width,
                               // height: 131,
                               child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Hi Bunda, Selamat Datang!!',
-                                    style:
-                                    GoogleFonts.poppins().copyWith(
+                                    style: GoogleFonts.poppins().copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12,
                                       color: '323232'.toColor(),
@@ -378,8 +314,7 @@ class _TumbuhState extends State<Tumbuh> {
                                   SizedBox(height: 2),
                                   Text(
                                     'Untuk memantau jadwal dan pilihan imunisasi anak, isi terlebih dahulu data anak ya Moms.',
-                                    style:
-                                    GoogleFonts.poppins().copyWith(
+                                    style: GoogleFonts.poppins().copyWith(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 11,
                                       color: '7A7A7A'.toColor(),
@@ -387,10 +322,7 @@ class _TumbuhState extends State<Tumbuh> {
                                   ),
                                   SizedBox(height: 11),
                                   Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     height: 32,
                                     child: Container(
                                       height: 60,
@@ -400,39 +332,31 @@ class _TumbuhState extends State<Tumbuh> {
                                         },
                                         child: Container(
                                           alignment: Alignment.center,
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width,
+                                          width:
+                                              MediaQuery.of(context).size.width,
                                           height: 40,
                                           decoration: BoxDecoration(
                                             color: 'FF6969'.toColor(),
                                             borderRadius:
-                                            BorderRadius.circular(
-                                                5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .center,
+                                                MainAxisAlignment.center,
                                             children: [
                                               Text(
                                                 'Buat Data Anak',
-                                                style: GoogleFonts
-                                                    .poppins()
+                                                style: GoogleFonts.poppins()
                                                     .copyWith(
                                                   fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.bold,
-                                                  color: 'FFFFFF'
-                                                      .toColor(),
+                                                  fontWeight: FontWeight.bold,
+                                                  color: 'FFFFFF'.toColor(),
                                                 ),
                                               ),
                                               SizedBox(width: 3),
                                               Icon(
                                                 Icons.add_outlined,
-                                                color:
-                                                'FFFFFF'.toColor(),
+                                                color: 'FFFFFF'.toColor(),
                                                 size: 15,
                                               ),
                                             ],
@@ -463,8 +387,8 @@ class _TumbuhState extends State<Tumbuh> {
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child:                 Row(
+                  // width: MediaQuery.of(context).size.width,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(width: 16),
@@ -504,7 +428,7 @@ class _TumbuhState extends State<Tumbuh> {
                           ),
                         ),
                       ),
-                      // SizedBox(width: 10),
+                      SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -541,7 +465,7 @@ class _TumbuhState extends State<Tumbuh> {
                           ),
                         ),
                       ),
-                      // SizedBox(width: 10),
+                      SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -586,14 +510,8 @@ class _TumbuhState extends State<Tumbuh> {
               SizedBox(width: 15),
               Container(
                 padding: EdgeInsets.only(left: 16, right: 16),
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 1.2,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 1.2,
                 // height: 360 * grafik!.length.toDouble(),
                 child: PageView(
                   physics: NeverScrollableScrollPhysics(),
@@ -630,132 +548,132 @@ class _TumbuhState extends State<Tumbuh> {
               return SingleChildScrollView(
                 child: Container(
                   // height: MediaQuery.of(context).size.height,
-                  padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: MediaQuery.of(context).viewInsets.bottom),
+                  padding: EdgeInsets.only(
+                      top: 16,
+                      right: 16,
+                      left: 16,
+                      bottom: MediaQuery.of(context).viewInsets.bottom
+                  ),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Isi Data Tinggi',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: '323232'.toColor(),
-                          ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Isi Data Tinggi',
+                        style: GoogleFonts.poppins().copyWith(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: '323232'.toColor(),
                         ),
-                        SizedBox(height: 14),
-                        Text(
-                          'Tanggal Cek',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 11,
-                            color: '5A5A5A'.toColor(),
-                          ),
+                      ),
+                      SizedBox(height: 14),
+                      Text(
+                        'Tanggal Cek',
+                        style: GoogleFonts.poppins().copyWith(
+                          fontSize: 11,
+                          color: '5A5A5A'.toColor(),
                         ),
-                        SizedBox(height: 3),
-                        TextField(
-                          controller: tanggalcek,
-                          decoration: InputDecoration(
-                            suffixIcon: Icon(
-                              Icons.date_range,
-                              size: 20,
-                              color: '8F8F8F'.toColor(),
-                            ),
-                            hintStyle: GoogleFonts.poppins().copyWith(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300,
-                              color: '989797'.toColor(),
-                            ),
-                            hintText: '24 Maret 1998',
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(5)),
-                              borderSide: BorderSide(
-                                  width: 1, color: 'FF6969'.toColor()),
-                            ),
-                            contentPadding:
-                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5)),
+                      ),
+                      SizedBox(height: 3),
+                      TextField(
+                        controller: tanggalcek,
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(
+                            Icons.date_range,
+                            size: 20,
+                            color: '8F8F8F'.toColor(),
                           ),
-                          onTap: () async {
-                            DateTime? pickeddate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1945),
-                                lastDate: DateTime(2500));
+                          hintStyle: GoogleFonts.poppins().copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: '989797'.toColor(),
+                          ),
+                          hintText: '24 Maret 1998',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide:
+                                BorderSide(width: 1, color: 'FF6969'.toColor()),
+                          ),
+                          contentPadding:
+                              EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        onTap: () async {
+                          DateTime? pickeddate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1945),
+                              lastDate: DateTime(2500));
 
-                            if (pickeddate != null) {
-                              setState(() {
-                                tanggalcek.text =
-                                    DateFormat('yMMMMd').format(pickeddate);
-                              });
-                            }
-                          },
+                          if (pickeddate != null) {
+                            setState(() {
+                              tanggalcek.text =
+                                  DateFormat('yMMMMd').format(pickeddate);
+                            });
+                          }
+                        },
+                      ),
+                      SizedBox(height: 14),
+                      Text(
+                        'Tinggi Badan (cm)',
+                        style: GoogleFonts.poppins().copyWith(
+                          fontSize: 11,
+                          color: '5A5A5A'.toColor(),
                         ),
-                        SizedBox(height: 14),
-                        Text(
-                          'Tinggi Badan (cm)',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 11,
-                            color: '5A5A5A'.toColor(),
+                      ),
+                      SizedBox(height: 3),
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        controller: tinggi,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderSide:
+                                BorderSide(width: 1, color: 'FF6969'.toColor()),
+                          ),
+                          contentPadding:
+                              EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                          hintStyle: GoogleFonts.poppins().copyWith(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300,
+                            color: '989797'.toColor(),
+                          ),
+                          hintText: '10',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
-                        SizedBox(height: 3),
-                        TextField(
-                          keyboardType: TextInputType.number,
-                          controller: tinggi,
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(5)),
-                              borderSide: BorderSide(
-                                  width: 1, color: 'FF6969'.toColor()),
-                            ),
-                            contentPadding:
-                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                            hintStyle: GoogleFonts.poppins().copyWith(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300,
-                              color: '989797'.toColor(),
-                            ),
-                            hintText: '10',
-                            border: OutlineInputBorder(
+                      ),
+                      SizedBox(height: 14),
+                      Container(
+                        // height: 60,
+                        // padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            //
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: 'FF6969'.toColor(),
                               borderRadius: BorderRadius.circular(5),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 14),
-                        Container(
-                          // height: 60,
-                          // padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
-                          child: GestureDetector(
-                            onTap: () {
-                              //
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: 'FF6969'.toColor(),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text(
-                                'Simpan Data',
-                                style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: 'FFFFFF'.toColor(),
-                                ),
+                            child: Text(
+                              'Simpan Data',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: 'FFFFFF'.toColor(),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 16),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               );
             },

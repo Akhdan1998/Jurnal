@@ -13,6 +13,7 @@ class _ProfilState extends State<Profil> {
     context.read<BuatdataanakCubit>().getBuatDataAnak(
         'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK');
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,198 +79,198 @@ class _ProfilState extends State<Profil> {
                                 color: 'F0F0F0'.toColor(),
                               ),
                             ),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             // height: 131,
                             child: Column(
                               children: [
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    child: Image.asset((snapshot.dataanak!
-                                        .firstWhere((e) => e.is_active == 1)
-                                        .gender == 'Laki-laki')
-                                        ? 'assets/laki.png'
-                                        : 'assets/cwe.png'),
-                                  ),
-                                  SizedBox(width: 9),
-                                  Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width - 113,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        child: Image.asset((snapshot.dataanak!
+                                                    .firstWhere(
+                                                        (e) => e.is_active == 1)
+                                                    .gender ==
+                                                'Laki-laki')
+                                            ? 'assets/laki.png'
+                                            : 'assets/cwe.png'),
+                                      ),
+                                      SizedBox(width: 9),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                113,
+                                        child: Row(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              snapshot.dataanak!
-                                                  .firstWhere((e) =>
-                                              e.is_active ==
-                                                  1)
-                                                  .name ??
-                                                  '',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.bold,
-                                                  color: '323232'
-                                                      .toColor()),
-                                            ),
-                                            Row(
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   snapshot.dataanak!
-                                                      .firstWhere((e) =>
-                                                  e.is_active == 1)
-                                                      .gender ?? '',
-                                                  style: GoogleFonts
-                                                      .poppins()
+                                                          .firstWhere((e) =>
+                                                              e.is_active == 1)
+                                                          .name ??
+                                                      '',
+                                                  style: GoogleFonts.poppins()
                                                       .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: '323232'
+                                                              .toColor()),
                                                 ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  '|',
-                                                  style: GoogleFonts
-                                                      .poppins()
-                                                      .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  '0',
-                                                  style: GoogleFonts
-                                                      .poppins()
-                                                      .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  'Tahun',
-                                                  style: GoogleFonts
-                                                      .poppins()
-                                                      .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  '0',
-                                                  style: GoogleFonts
-                                                      .poppins()
-                                                      .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
-                                                ),
-                                                SizedBox(width: 3),
-                                                Text(
-                                                  'Bulan',
-                                                  style: GoogleFonts
-                                                      .poppins()
-                                                      .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w300,
-                                                    fontSize: 11,
-                                                    color: '7A7A7A'
-                                                        .toColor(),
-                                                  ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      snapshot.dataanak!
+                                                              .firstWhere((e) =>
+                                                                  e.is_active ==
+                                                                  1)
+                                                              .gender ??
+                                                          '',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      '|',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      '0',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      'Tahun',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      '0',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      'Bulan',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color:
+                                                            '7A7A7A'.toColor(),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                  // clipBehavior: Clip.none,
+                                                  // isScrollControlled: true,
+                                                  // isDismissible: true,
+                                                  // enableDrag: true,
+                                                  // useSafeArea: true,
+                                                  // useRootNavigator: true,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topRight: Radius
+                                                                  .circular(15),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      15))),
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return bottomsheetImunisasi(
+                                                        snapshot.dataanak!);
+                                                  },
+                                                );
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Ganti Anak',
+                                                    style: GoogleFonts.poppins()
+                                                        .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 10,
+                                                      color: 'FF6969'.toColor(),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_outlined,
+                                                    color: 'FF6969'.toColor(),
+                                                    size: 18,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            showModalBottomSheet(
-                                              // clipBehavior: Clip.none,
-                                              // isScrollControlled: true,
-                                              // isDismissible: true,
-                                              // enableDrag: true,
-                                              // useSafeArea: true,
-                                              // useRootNavigator: true,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius
-                                                      .only(
-                                                      topRight:
-                                                      Radius.circular(15),
-                                                      topLeft:
-                                                      Radius.circular(
-                                                          15))),
-                                              context: context,
-                                              builder: (
-                                                  BuildContext context) {
-                                                return bottomsheetImunisasi(snapshot.dataanak!);
-                                              },
-                                            );
-                                          },
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Ganti Anak',
-                                                style:
-                                                GoogleFonts.poppins()
-                                                    .copyWith(
-                                                  fontWeight:
-                                                  FontWeight.w300,
-                                                  fontSize: 10,
-                                                  color:
-                                                  'FF6969'.toColor(),
-                                                ),
-                                              ),
-                                              SizedBox(width: 5),
-                                              Icon(
-                                                Icons
-                                                    .keyboard_arrow_down_outlined,
-                                                color: 'FF6969'.toColor(),
-                                                size: 18,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ]),
+                                      ),
+                                    ]),
                                 SizedBox(height: 12),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -280,14 +281,17 @@ class _ProfilState extends State<Profil> {
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
-                                      padding: EdgeInsets.only(
-                                          top: 5, bottom: 5, left: 10, right: 10),
+                                      padding: (Platform.isIOS)
+                                          ? EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15)
+                                          : EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Berat Badan',
-                                            style: GoogleFonts.poppins().copyWith(
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 10,
                                               color: '323232'.toColor(),
@@ -298,7 +302,8 @@ class _ProfilState extends State<Profil> {
                                             children: [
                                               Text(
                                                 '-',
-                                                style: GoogleFonts.poppins().copyWith(
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18,
                                                   color: 'FF6969'.toColor(),
@@ -326,14 +331,17 @@ class _ProfilState extends State<Profil> {
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
-                                      padding: EdgeInsets.only(
+                                      padding: (Platform.isIOS) ? EdgeInsets.only(
+                                          top: 5, bottom: 5, left: 15, right: 15) : EdgeInsets.only(
                                           top: 5, bottom: 5, left: 10, right: 10),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Tinggi Badan',
-                                            style: GoogleFonts.poppins().copyWith(
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 10,
                                               color: '323232'.toColor(),
@@ -344,7 +352,8 @@ class _ProfilState extends State<Profil> {
                                             children: [
                                               Text(
                                                 '-',
-                                                style: GoogleFonts.poppins().copyWith(
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18,
                                                   color: '86C3BB'.toColor(),
@@ -372,14 +381,17 @@ class _ProfilState extends State<Profil> {
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
-                                      padding: EdgeInsets.only(
+                                      padding: (Platform.isIOS) ? EdgeInsets.only(
+                                          top: 5, bottom: 5, left: 15, right: 15) : EdgeInsets.only(
                                           top: 5, bottom: 5, left: 10, right: 10),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Lingkar Kepala',
-                                            style: GoogleFonts.poppins().copyWith(
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 10,
                                               color: '323232'.toColor(),
@@ -390,7 +402,8 @@ class _ProfilState extends State<Profil> {
                                             children: [
                                               Text(
                                                 '-',
-                                                style: GoogleFonts.poppins().copyWith(
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18,
                                                   color: 'D1B654'.toColor(),
@@ -422,19 +435,13 @@ class _ProfilState extends State<Profil> {
                       children: [
                         Container(
                           color: Colors.white,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          height: 265,
+                          width: MediaQuery.of(context).size.width,
+                          height: 274,
                         ),
                         Container(
                           alignment: Alignment.topLeft,
                           color: 'D9D9D9'.toColor(),
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           height: 187,
                           padding: EdgeInsets.only(left: 16, top: 43),
                           child: Row(
@@ -474,19 +481,14 @@ class _ProfilState extends State<Profil> {
                                 color: 'F0F0F0'.toColor(),
                               ),
                             ),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             // height: 131,
                             child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Hi Bunda, Selamat Datang!!',
-                                  style:
-                                  GoogleFonts.poppins().copyWith(
+                                  style: GoogleFonts.poppins().copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
                                     color: '323232'.toColor(),
@@ -495,8 +497,7 @@ class _ProfilState extends State<Profil> {
                                 SizedBox(height: 2),
                                 Text(
                                   'Untuk memantau jadwal dan pilihan imunisasi anak, isi terlebih dahulu data anak ya Moms.',
-                                  style:
-                                  GoogleFonts.poppins().copyWith(
+                                  style: GoogleFonts.poppins().copyWith(
                                     fontWeight: FontWeight.w300,
                                     fontSize: 11,
                                     color: '7A7A7A'.toColor(),
@@ -504,52 +505,41 @@ class _ProfilState extends State<Profil> {
                                 ),
                                 SizedBox(height: 11),
                                 Container(
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
-                                  height: 32,
+                                  width: MediaQuery.of(context).size.width,
+                                  // height: 32,
                                   child: Container(
-                                    height: 60,
+                                    // height: 60,
                                     child: GestureDetector(
                                       onTap: () {
                                         Get.to(dataanak());
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         height: 40,
                                         decoration: BoxDecoration(
                                           color: 'FF6969'.toColor(),
                                           borderRadius:
-                                          BorderRadius.circular(
-                                              5),
+                                              BorderRadius.circular(5),
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center,
+                                              MainAxisAlignment.center,
                                           children: [
                                             Text(
                                               'Buat Data Anak',
-                                              style: GoogleFonts
-                                                  .poppins()
+                                              style: GoogleFonts.poppins()
                                                   .copyWith(
                                                 fontSize: 12,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: 'FFFFFF'
-                                                    .toColor(),
+                                                fontWeight: FontWeight.bold,
+                                                color: 'FFFFFF'.toColor(),
                                               ),
                                             ),
                                             SizedBox(width: 3),
                                             Icon(
                                               Icons.add_outlined,
-                                              color:
-                                              'FFFFFF'.toColor(),
+                                              color: 'FFFFFF'.toColor(),
                                               size: 15,
                                             ),
                                           ],
@@ -613,8 +603,11 @@ class _ProfilState extends State<Profil> {
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.only(
-                              top: 5, bottom: 5, left: 10, right: 10),
+                          padding: (Platform.isIOS)
+                              ? EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 15, right: 15)
+                              : EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -659,8 +652,11 @@ class _ProfilState extends State<Profil> {
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.only(
-                              top: 5, bottom: 5, left: 10, right: 10),
+                          padding: (Platform.isIOS)
+                              ? EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 15, right: 15)
+                              : EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -705,8 +701,11 @@ class _ProfilState extends State<Profil> {
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.only(
-                              top: 5, bottom: 5, left: 10, right: 10),
+                          padding: (Platform.isIOS)
+                              ? EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 15, right: 15)
+                              : EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 10, right: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [

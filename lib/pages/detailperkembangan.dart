@@ -161,8 +161,10 @@ class _detailperkembanganState extends State<detailperkembangan> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+        height: (Platform.isIOS) ? 80 : 60,
+        padding: (Platform.isIOS)
+            ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
+            : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
             //

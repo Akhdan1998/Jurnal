@@ -10,16 +10,6 @@ class Kehamilan extends StatefulWidget {
 class _KehamilanState extends State<Kehamilan> {
   final hurufawalan = TextEditingController();
   String selectedKelamin2 = '';
-  List<ButtonKelamin2> button = [
-    ButtonKelamin2(
-      id: '1',
-      kelamin: 'Laki - laki',
-    ),
-    ButtonKelamin2(
-      id: '2',
-      kelamin: 'Perempuan',
-    ),
-  ];
 
   String dropdownValue = list.first;
 
@@ -555,7 +545,7 @@ class _KehamilanState extends State<Kehamilan> {
                       Divider(color: 'E5E3E3'.toColor()),
                       GestureDetector(
                         onTap: () {
-                          Get.to(kecillahir());
+                          Get.to(sukseskecillahir());
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -606,7 +596,9 @@ class _KehamilanState extends State<Kehamilan> {
                       ),
                       Divider(color: 'E5E3E3'.toColor()),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(keguguran());
+                        },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [

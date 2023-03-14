@@ -3,11 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jurnal/Models/model_popuptes.dart';
 import 'package:jurnal/Models/model_warna_kesukaan.dart';
-import 'package:jurnal/Models/Model_kelamin2.dart';
-import 'package:jurnal/Models/Model_kelamin3.dart';
-import 'package:jurnal/Models/model_button_PA.dart';
-import 'package:jurnal/Models/model_button_grafik.dart';
-import 'package:jurnal/Models/model_button_imunisasi.dart';
 import 'package:jurnal/Models/model_tes.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:http/http.dart' as http;
+import '../Models/api_return_foto.dart';
 import '../Models/api_return_merek.dart';
 import '../Models/model_buatdataanak.dart';
 import '../Models/model_cubit_imunisasi.dart';
@@ -64,11 +60,11 @@ part 'inputdatakehamilan.dart';
 
 part 'kehamilan.dart';
 
-part 'keguguran.dart';
+part 'sukses_keguguran.dart';
 
 part 'kembang.dart';
 
-part 'kecillahir.dart';
+part 'sukses_kecillahir.dart';
 
 part 'lingkarkepala.dart';
 

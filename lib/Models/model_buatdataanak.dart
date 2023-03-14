@@ -9,7 +9,7 @@ class BuatDataAnak {
   int? is_active;
   String? darah;
   String? hobby;
-  String? citi_cita;
+  String? cita_cita;
   String? warna;
   int? berat_lahir;
   int? tinggi_lahir;
@@ -29,7 +29,7 @@ class BuatDataAnak {
       this.is_active,
       this.darah,
       this.hobby,
-      this.citi_cita,
+      this.cita_cita,
       this.warna,
       this.berat_lahir,
       this.tinggi_lahir,
@@ -46,6 +46,13 @@ class BuatDataAnak {
     gender = json['gender'];
     birthday = json['birthday'];
     is_active = json['is_active'];
+    darah = json['darah'];
+    hobby = json['hobby'];
+    cita_cita = json['cita_cita'];
+    warna = json['warna'];
+    berat_lahir = json['berat_lahir'];
+    tinggi_lahir = json['tinggi_lahir'];
+    lingkar_kepala_lahir = json['lingkar_kepala_lahir'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
@@ -60,6 +67,13 @@ class BuatDataAnak {
     data['gender'] = gender;
     data['birthday'] = birthday;
     data['is_active'] = is_active;
+    data['darah'] = darah;
+    data['hobby'] = hobby;
+    data['cita_cita'] = cita_cita;
+    data['warna'] = warna;
+    data['berat_lahir'] = berat_lahir;
+    data['tinggi_lahir'] = tinggi_lahir;
+    data['lingkar_kepala_lahir'] = lingkar_kepala_lahir;
     data['created_at'] = created_at;
     data['updated_at'] = updated_at;
     data['deleted_at'] = deleted_at;

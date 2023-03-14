@@ -51,10 +51,35 @@ class _dataanakState extends State<dataanak> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+  static Future<ApiReturnFoto<String>> uploadPhoto(File photoFile,
+      {String? token, http.MultipartRequest? request}) async {
+    String url = 'https://dashboard.parentoday.com/api/anak/photo';
+    var uri = Uri.parse(url);
+
+    if (request == null) {
+      request = http.MultipartRequest('POST', uri)
+        ..headers["Content-Type"] = "application/json"
+        ..headers["Authorization"] =
+            "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4n";
+    }
+
+    var multiPartFile =
+        await http.MultipartFile.fromPath('file', photoFile.path);
+    request.files.add(multiPartFile);
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      String responseBody = await response.stream.bytesToString();
+      var data = jsonDecode(responseBody);
+
+      String imagePath = data['data'];
+
+      return ApiReturnFoto(value: imagePath, message: '');
+    } else {
+      return ApiReturnFoto(message: 'Upload Photo Gagal ', value: '');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +131,16 @@ class _dataanakState extends State<dataanak> {
                       getImage();
                     },
                     child: _image != null
-                        ? Image.file(
-                        _image!,
-                            width: 110, height: 110, fit: BoxFit.cover
-                    )
+                        ? Container(
+                            padding: EdgeInsets.all(10),
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover, image: FileImage(_image!)),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                          )
                         : Image.asset('assets/foto.png'),
                   ),
                 ),
@@ -313,17 +344,20 @@ class _dataanakState extends State<dataanak> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+        height: (Platform.isIOS) ? 80 : 60,
+        padding: (Platform.isIOS)
+            ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
+            : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
             saveData(namaAnakEditingController.text,
                 tanggalLahirEditingController.text);
+            uploadPhoto(_image!);
           },
           child: Container(
             alignment: Alignment.center,
-            width: MediaQuery.of(context).size.width,
-            height: 40,
+            // width: MediaQuery.of(context).size.width,
+            // height: 40,
             decoration: BoxDecoration(
               color: 'FF6969'.toColor(),
               borderRadius: BorderRadius.circular(5),

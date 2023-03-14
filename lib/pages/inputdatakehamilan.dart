@@ -56,12 +56,13 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
               Row(
                 children: [
                   Container(
-                    height: 16,
-                    width: 40,
+                    // color: Colors.yellow,
+                    height: (Platform.isIOS) ? 16 : 16,
+                    width: (Platform.isIOS) ? 40 : 40,
                     padding: EdgeInsets.zero,
                     child: Switch.adaptive(
-                      activeColor: Colors.white,
-                      activeTrackColor: '86C3BB'.toColor(),
+                      activeColor: (Platform.isIOS) ? 'FF6969'.toColor() : Colors.white,
+                      activeTrackColor: (Platform.isIOS) ? Colors.green : '86C3BB'.toColor(),
                       value: value,
                       onChanged: (value) => setState(() {
                         this.value = value;
@@ -69,7 +70,7 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
                       }),
                     ),
                   ),
-                  SizedBox(width: 5),
+                  SizedBox(width: (Platform.isIOS) ? 15 : 5),
                   Text(
                     'Nama Calon Bayi',
                     style: GoogleFonts.poppins().copyWith(
@@ -216,8 +217,10 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+        height: (Platform.isIOS) ? 80 : 60,
+        padding: (Platform.isIOS)
+            ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
+            : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
             //

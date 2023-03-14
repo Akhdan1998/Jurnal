@@ -10,6 +10,29 @@ class imunisasidetail extends StatefulWidget {
 }
 
 class _imunisasidetailState extends State<imunisasidetail> {
+  void reset() async {
+    Uri url_ = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/imunisasi/reset');
+    var res = await http.post(
+      url_,
+      body: {
+        'id': widget.imunisasi.id.toString(),
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      bool data = body["data"];
+      Get.to(
+          navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'));
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -344,8 +367,10 @@ class _imunisasidetailState extends State<imunisasidetail> {
       ),
       bottomNavigationBar: Container(
         color: Colors.transparent,
-        height: 60,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
+        height: (Platform.isIOS) ? 80 : 60,
+        padding: (Platform.isIOS)
+            ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
+            : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () => (widget.imunisasi.is_active == true)
               ? showDialog(
@@ -353,14 +378,16 @@ class _imunisasidetailState extends State<imunisasidetail> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text(
-                        'Information',
+                        'Reset Data Imunisasi',
                         style: GoogleFonts.poppins().copyWith(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                       content: Text(
-                        'Are you sure you want to reset imunizations?',
+                        'Moms yakin akan menghapus data' + ' ' +
+                            widget.imunisasi.title.toString() + ' ' +
+                            'si Kecil?',
                         style: GoogleFonts.poppins().copyWith(
                             fontSize: 13,
                             fontWeight: FontWeight.w300,
@@ -380,7 +407,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(isidataimunisasi(widget.imunisasi));
+                            reset();
                           },
                           child: Text(
                             'Yes',
@@ -406,7 +433,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
             ),
             child: Text(
               (widget.imunisasi.is_active == true)
-                  ? 'Reset Tanda'
+                  ? 'Reset Data Imunisasi'
                   : 'Tandai Sudah Imunisasi',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 12,
@@ -420,36 +447,3 @@ class _imunisasidetailState extends State<imunisasidetail> {
     );
   }
 }
-
-// Future<void> _showDialog(BuildContext context) {
-//   return showDialog(
-//       context: context,
-//       builder: (BuildContext context)  {
-//         return AlertDialog(
-//           title: Text(
-//             'Information',
-//             style: GoogleFonts.poppins().copyWith(
-//                 fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-//           ),
-//           content: Text(
-//             'Are you sure you want to reset immunizations?',
-//             style: GoogleFonts.poppins().copyWith(
-//                 fontSize: 11, fontWeight: FontWeight.w300, color: Colors.black),
-//           ),
-//           actions: [
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//               child: Text('No'),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//                 Get.to(isidataimunisasi(widget.imunisasi));
-//               },
-//               child: Text('Yes'),
-//             ),
-//           ],
-//         );
-//       });
-// }

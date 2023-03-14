@@ -33,7 +33,8 @@ class _navigationState extends State<navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body:
+      Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(

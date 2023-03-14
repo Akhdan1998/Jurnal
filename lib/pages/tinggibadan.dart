@@ -9,16 +9,6 @@ class _tinggibadanState extends State<tinggibadan> {
   final tanggalcek = TextEditingController();
   final tinggibadan = TextEditingController();
   String selectedGrafik = '1';
-  List<Grafik> grafik = [
-    Grafik(
-      id: '1',
-      grafik: 'Per Bulan',
-    ),
-    Grafik(
-      id: '2',
-      grafik: 'Per Minggu',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
