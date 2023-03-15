@@ -71,7 +71,7 @@ class _successimunisasiState extends State<successimunisasi> {
         child: GestureDetector(
           onTap: () {
             Get.offAll(navigation(
-                'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK'));
+                'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', index: 4,));
           },
           child: Container(
             alignment: Alignment.center,

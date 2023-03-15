@@ -11,6 +11,7 @@ class bottomsheetImunisasi extends StatefulWidget {
 
 class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
   BuatDataAnak? selectedAnak;
+  bool isLoading = false;
 
   void pilihAnak() async {
     Uri url = Uri.parse("https://dashboard.parentoday.com/api/anak/active");
@@ -22,7 +23,7 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
       headers: {
         // 'Content-Type': 'application/json',
         "Accept": "application/json",
-        "Authorization": "Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
       },
     );
     print(res.body.toString());
@@ -31,7 +32,7 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
       bool data = body["data"];
       print(res.statusCode);
       context.read<BuatdataanakCubit>().getBuatDataAnak(
-          'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK');
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
       Navigator.pop(context);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
@@ -51,7 +52,6 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: Container(
-        // height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,8 +99,7 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
                 Column(
                   children: widget.listAnak
                       .map((e) =>
-                          // listAnak(e, (selectedAnak == e) ? true : ((e.is_active == 1) ?  true : false),
-                  listAnak(e, (selectedAnak == e) ? true : false,
+                          listAnak(e, (selectedAnak == e) ? true : false,
                               onChanged: (value) {
                             setState(() {
                               selectedAnak = value;
@@ -112,6 +111,14 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
                 GestureDetector(
                   onTap: () {
                     pilihAnak();
+                    setState(() {
+                      isLoading = true;
+                    });
+                    Future.delayed(const Duration(seconds: 3), () {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    });
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -121,14 +128,23 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
                       color: 'FF6969'.toColor(),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Text(
-                      'Pilih Profil',
-                      style: GoogleFonts.poppins().copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: 'FFFFFF'.toColor(),
-                      ),
-                    ),
+                    child: isLoading
+                        ? Container(
+                            width: 20,
+                            height: 20,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white, strokeWidth: 2),
+                            ),
+                          )
+                        : Text(
+                            'Pilih Profil',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: 'FFFFFF'.toColor(),
+                            ),
+                          ),
                   ),
                 ),
                 SizedBox(height: 15),

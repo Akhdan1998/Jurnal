@@ -313,7 +313,10 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            //
+            Get.offAll(navigation(
+              'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+              index: 0,
+            ));
           },
           child: Container(
             alignment: Alignment.center,

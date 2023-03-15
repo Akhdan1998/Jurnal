@@ -17,6 +17,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
   final nomerbatchimunisasi = TextEditingController();
   late String _dropdownMerek;
   late Future<ApiReturnMerek<List<MerekImunisasi>>?> _Merim;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -114,11 +115,9 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -165,15 +164,18 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                       ),
                       child: DropdownButtonFormField<String>(
                         decoration: InputDecoration(border: InputBorder.none),
-                          hint: Text('Imunisasi', style: GoogleFonts.poppins().copyWith(
+                        hint: Text(
+                          'Imunisasi',
+                          style: GoogleFonts.poppins().copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
                             color: '989797'.toColor(),
-                          ),),
+                          ),
+                        ),
                         icon: Icon(
-                      Icons.expand_more_outlined,
-                      color: 'B8B8B8'.toColor(),
-                    ),
+                          Icons.expand_more_outlined,
+                          color: 'B8B8B8'.toColor(),
+                        ),
                         onChanged: (value) {
                           setState(() {
                             _dropdownMerek = value!.toString();
@@ -214,11 +216,9 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -244,11 +244,9 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -275,11 +273,9 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -302,9 +298,16 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-
             simpan(tanggalcek.text, _dropdownMerek, lokasiimunisasi.text,
                 namatenagakesehatan.text, nomerbatchimunisasi.text);
+            setState(() {
+              isLoading = true;
+            });
+            Future.delayed(const Duration(seconds: 3), () {
+              setState(() {
+                isLoading = false;
+              });
+            });
           },
           child: Container(
             alignment: Alignment.center,
@@ -314,14 +317,23 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
               color: 'FF6969'.toColor(),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Text(
-              'Simpan Data',
-              style: GoogleFonts.poppins().copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: 'FFFFFF'.toColor(),
-              ),
-            ),
+            child: isLoading
+                ? Container(
+                    width: 20,
+                    height: 20,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2),
+                    ),
+                  )
+                : Text(
+                    'Simpan Data',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: 'FFFFFF'.toColor(),
+                    ),
+                  ),
           ),
         ),
       ),

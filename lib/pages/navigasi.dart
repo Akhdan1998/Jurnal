@@ -2,8 +2,9 @@ part of 'pages.dart';
 
 class navigation extends StatefulWidget {
   String token;
+  final int index;
 
-  navigation(this.token);
+  navigation(this.token, {this.index = 0});
 
   @override
   State<navigation> createState() => _navigationState();
@@ -26,6 +27,8 @@ class _navigationState extends State<navigation> {
   void initState() {
     super.initState();
 
+    _selectedIndex = widget.index;
+
     controller = PageController(initialPage: _selectedIndex);
   }
 
@@ -33,12 +36,13 @@ class _navigationState extends State<navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:
-      Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: (Platform.isIOS) ? (MediaQuery.of(context).size.height - 92) : (MediaQuery.of(context).size.height - 57),
+            height: (Platform.isIOS)
+                ? (MediaQuery.of(context).size.height - 92)
+                : (MediaQuery.of(context).size.height - 57),
             width: MediaQuery.of(context).size.width,
             child: PageView(controller: controller, children: [
               Profil(),

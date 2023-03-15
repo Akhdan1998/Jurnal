@@ -233,12 +233,16 @@ class _imunisasiState extends State<imunisasi> {
                                               GestureDetector(
                                                 onTap: () {
                                                   showModalBottomSheet(
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15))),
+                                                    backgroundColor: Colors.white,
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.only(
+                                                                topRight: Radius.circular(15),
+                                                                topLeft: Radius.circular(15),
+                                                            ),
+                                                    ),
                                                     context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return bottomsheetImunisasi(
-                                                          snapshot.dataanak!);
+                                                    builder: (BuildContext context) {
+                                                      return bottomsheetImunisasi(snapshot.dataanak!);
                                                     },
                                                   );
                                                 },

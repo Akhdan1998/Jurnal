@@ -470,6 +470,7 @@ class _KehamilanState extends State<Kehamilan> {
         onPressed: () {
           showModalBottomSheet(
             isScrollControlled: true,
+            backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15),
@@ -495,51 +496,54 @@ class _KehamilanState extends State<Kehamilan> {
                         onTap: () {
                           Get.to(inputdatakehamilan());
                         },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/editdata.png', scale: 2),
-                            SizedBox(width: 10),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 85,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Edit Data Kehamilan',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '5C5C5C'.toColor(),
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/editdata.png', scale: 2),
+                              SizedBox(width: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 85,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Edit Data Kehamilan',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '5C5C5C'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 2),
-                                      Text(
-                                        '-',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '7A7A7A'.toColor(),
+                                        SizedBox(height: 2),
+                                        Text(
+                                          '-',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '7A7A7A'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    Icons.navigate_next_outlined,
-                                    color: 'A6A6A6'.toColor(),
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next_outlined,
+                                      color: 'A6A6A6'.toColor(),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Divider(color: 'E5E3E3'.toColor()),
@@ -547,51 +551,54 @@ class _KehamilanState extends State<Kehamilan> {
                         onTap: () {
                           Get.to(sukseskecillahir());
                         },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/tanda.png', scale: 2),
-                            SizedBox(width: 10),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 85,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Tandai Si Kecil sudah Lahir',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '5C5C5C'.toColor(),
+                        child: Container(
+                          color: Colors.white,
+                         child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/tanda.png', scale: 2),
+                              SizedBox(width: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 85,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Tandai Si Kecil sudah Lahir',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '5C5C5C'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 2),
-                                      Text(
-                                        '-',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '7A7A7A'.toColor(),
+                                        SizedBox(height: 2),
+                                        Text(
+                                          '-',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '7A7A7A'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    Icons.navigate_next_outlined,
-                                    color: 'A6A6A6'.toColor(),
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next_outlined,
+                                      color: 'A6A6A6'.toColor(),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Divider(color: 'E5E3E3'.toColor()),
@@ -599,101 +606,107 @@ class _KehamilanState extends State<Kehamilan> {
                         onTap: () {
                           Get.to(keguguran());
                         },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/laporan.png', scale: 2),
-                            SizedBox(width: 10),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 85,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Laporkan Keguguran',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '5C5C5C'.toColor(),
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/laporan.png', scale: 2),
+                              SizedBox(width: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 85,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Laporkan Keguguran',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '5C5C5C'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 2),
-                                      Text(
-                                        '-',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '7A7A7A'.toColor(),
+                                        SizedBox(height: 2),
+                                        Text(
+                                          '-',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '7A7A7A'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    Icons.navigate_next_outlined,
-                                    color: 'A6A6A6'.toColor(),
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next_outlined,
+                                      color: 'A6A6A6'.toColor(),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Divider(color: 'E5E3E3'.toColor()),
                       GestureDetector(
                         onTap: () {},
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/hapus.png', scale: 2),
-                            SizedBox(width: 10),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 85,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Hapus Data Kehamilan',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '5C5C5C'.toColor(),
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/hapus.png', scale: 2),
+                              SizedBox(width: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 85,
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Hapus Data Kehamilan',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '5C5C5C'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 2),
-                                      Text(
-                                        '-',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '7A7A7A'.toColor(),
+                                        SizedBox(height: 2),
+                                        Text(
+                                          '-',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '7A7A7A'.toColor(),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    Icons.navigate_next_outlined,
-                                    color: 'A6A6A6'.toColor(),
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next_outlined,
+                                      color: 'A6A6A6'.toColor(),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Divider(color: 'E5E3E3'.toColor()),

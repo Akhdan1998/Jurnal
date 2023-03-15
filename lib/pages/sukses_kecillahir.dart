@@ -73,7 +73,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: (Platform.isIOS) ? 135 : 114,
+        height: (Platform.isIOS) ? 150 : 114,
         padding: (Platform.isIOS)
             ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
@@ -81,12 +81,14 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
           children: [
             GestureDetector(
               onTap: () {
-                Get.offAll(navigation('Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK'));
+                Get.offAll(navigation(
+                    'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                    index: 3));
               },
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
-                height: 42,
+                height: 45,
                 decoration: BoxDecoration(
                   color: 'FF6969'.toColor(),
                   borderRadius: BorderRadius.circular(5),
@@ -104,12 +106,15 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
             SizedBox(height: 15),
             GestureDetector(
               onTap: () {
-                Get.offAll(navigation('Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK'));
+                Get.offAll(navigation(
+                  'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
+                  index: 3,
+                ));
               },
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
-                height: 42,
+                height: 45,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),

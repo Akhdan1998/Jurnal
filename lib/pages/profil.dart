@@ -10,8 +10,9 @@ class _ProfilState extends State<Profil> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<BuatdataanakCubit>().getBuatDataAnak(
-        '1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context
+        .read<BuatdataanakCubit>()
+        .getBuatDataAnak('1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -282,8 +283,16 @@ class _ProfilState extends State<Profil> {
                                         color: Colors.white,
                                       ),
                                       padding: (Platform.isIOS)
-                                          ? EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15)
-                                          : EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+                                          ? EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 15,
+                                              right: 15)
+                                          : EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 10,
+                                              right: 10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -331,9 +340,17 @@ class _ProfilState extends State<Profil> {
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
-                                      padding: (Platform.isIOS) ? EdgeInsets.only(
-                                          top: 5, bottom: 5, left: 15, right: 15) : EdgeInsets.only(
-                                          top: 5, bottom: 5, left: 10, right: 10),
+                                      padding: (Platform.isIOS)
+                                          ? EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 15,
+                                              right: 15)
+                                          : EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 10,
+                                              right: 10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -381,9 +398,17 @@ class _ProfilState extends State<Profil> {
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white,
                                       ),
-                                      padding: (Platform.isIOS) ? EdgeInsets.only(
-                                          top: 5, bottom: 5, left: 15, right: 15) : EdgeInsets.only(
-                                          top: 5, bottom: 5, left: 10, right: 10),
+                                      padding: (Platform.isIOS)
+                                          ? EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 15,
+                                              right: 15)
+                                          : EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 10,
+                                              right: 10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -779,6 +804,7 @@ class _ProfilState extends State<Profil> {
                         Get.to(ubahdataanak());
                       },
                       child: Container(
+                        color: Colors.white,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -804,6 +830,7 @@ class _ProfilState extends State<Profil> {
                         Get.to(ubahdatadetailanak());
                       },
                       child: Container(
+                        color: Colors.white,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -829,6 +856,7 @@ class _ProfilState extends State<Profil> {
                         Get.to(ubahdatakelahirananak());
                       },
                       child: Container(
+                        color: Colors.white,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

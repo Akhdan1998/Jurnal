@@ -98,10 +98,10 @@ class _ubahdataanakState extends State<ubahdataanak> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                            BorderSide(width: 1, color: 'FF6969'.toColor()),
                       ),
                       contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                          EdgeInsets.only(left: 10, top: 5, bottom: 5),
                       hintStyle: GoogleFonts.poppins().copyWith(
                         fontSize: 10,
                         fontWeight: FontWeight.w300,
@@ -140,10 +140,10 @@ class _ubahdataanakState extends State<ubahdataanak> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                            BorderSide(width: 1, color: 'FF6969'.toColor()),
                       ),
                       contentPadding:
-                      EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                          EdgeInsets.only(top: 5, left: 10, bottom: 10),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5)),
                     ),
@@ -237,7 +237,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
                                     ),
                                     padding: EdgeInsets.all(3),
                                     child:
-                                    Image.asset('assets/cwe.png', scale: 1),
+                                        Image.asset('assets/cwe.png', scale: 1),
                                   ),
                                   SizedBox(width: 8),
                                   Text(
@@ -269,14 +269,14 @@ class _ubahdataanakState extends State<ubahdataanak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.off(navigation('Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK'));
+            Get.offAll(navigation(
+              'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+              index: 0,
+            ));
           },
           child: Container(
             alignment: Alignment.center,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             height: 40,
             decoration: BoxDecoration(
               color: 'FF6969'.toColor(),

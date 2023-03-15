@@ -27,12 +27,16 @@ class _imunisasidetailState extends State<imunisasidetail> {
     if (res.statusCode == 200) {
       bool data = body["data"];
       Get.to(
-          navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'));
+          navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', index: 4));
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
-
+// @override
+// void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -399,7 +403,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
                             Navigator.of(context).pop();
                           },
                           child: Text(
-                            'No',
+                            'Tidak',
                             style: GoogleFonts.poppins().copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: 'FF6969'.toColor()),
@@ -410,7 +414,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
                             reset();
                           },
                           child: Text(
-                            'Yes',
+                            'Ya',
                             style: GoogleFonts.poppins().copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: 'FF6969'.toColor()),
@@ -434,7 +438,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
             child: Text(
               (widget.imunisasi.is_active == true)
                   ? 'Reset Data Imunisasi'
-                  : 'Tandai Sudah Imunisasi',
+                  : 'Lengkapi Data Imunisasi',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
