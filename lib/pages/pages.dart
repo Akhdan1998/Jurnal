@@ -26,66 +26,66 @@ import '../Models/model_merek.dart';
 import '../cubit/merekimunisasi_cubit.dart';
 import '../services/merek_services.dart';
 
-part 'dataimunisasi.dart';
+part 'imunisasi/dataimunisasi.dart';
 
-part 'ubahdatadetailanak.dart';
+part 'profil/ubahdatadetailanak.dart';
 
-part 'successimunisasi.dart';
+part 'imunisasi/successimunisasi.dart';
 
 part '../widget/kategori.dart';
 
-part 'riwayatpencatatan.dart';
+part 'tumbuh/riwayatpencatatan.dart';
 
-part 'ubahdatakelahirananak.dart';
+part 'profil/ubahdatakelahirananak.dart';
 
 part '../widget/pertanyaanTes.dart';
 
 part '../widget/bottomsheet.dart';
 
-part 'ubahprofilanak.dart';
+part 'profil/ubahprofilanak.dart';
 
-part 'detailperkembangan.dart';
+part 'kembang/detailperkembangan.dart';
 
-part 'belumimunisasi.dart';
+part 'imunisasi/belumimunisasi.dart';
 
-part 'imunisasi.dart';
+part 'imunisasi/imunisasi.dart';
 
-part 'beratbadan.dart';
+part 'tumbuh/beratbadan.dart';
 
-part 'Buat data anak.dart';
+part 'dataAnak/Buat data anak.dart';
 
-part 'imunisasidetail.dart';
+part 'imunisasi/imunisasidetail.dart';
 
-part 'inputdatakehamilan.dart';
+part 'kehamilan/inputdatakehamilan.dart';
 
-part 'kehamilan.dart';
+part 'kehamilan/kehamilan.dart';
 
-part 'sukses_keguguran.dart';
+part 'kehamilan/sukses_keguguran.dart';
 
-part 'kembang.dart';
+part 'kembang/kembang.dart';
 
-part 'sukses_kecillahir.dart';
+part 'kehamilan/sukses_kecillahir.dart';
 
-part 'lingkarkepala.dart';
+part 'tumbuh/lingkarkepala.dart';
 
-part 'listsudahimunisasi.dart';
+part 'imunisasi/listsudahimunisasi.dart';
 
-part 'listbelumimunisasi.dart';
+part 'imunisasi/listbelumimunisasi.dart';
 
-part 'listimunisasi.dart';
+part 'imunisasi/listimunisasi.dart';
 
-part 'listAnak.dart';
+part 'dataAnak/listAnak.dart';
 
-part 'main.dart';
+part 'dataAnak/main.dart';
 
-part 'navigasi.dart';
+part 'dataAnak/navigasi.dart';
 
-part 'profil.dart';
+part 'profil/profil.dart';
 
-part 'semua.dart';
+part 'imunisasi/semua.dart';
 
-part 'sudahimunisasi.dart';
+part 'imunisasi/sudahimunisasi.dart';
 
-part 'tinggibadan.dart';
+part 'tumbuh/tinggibadan.dart';
 
-part 'tumbuh.dart';
+part 'tumbuh/tumbuh.dart';

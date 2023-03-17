@@ -1,11 +1,11 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
-class keguguran extends StatefulWidget {
+class sukseskecillahir extends StatefulWidget {
   @override
-  State<keguguran> createState() => _keguguranState();
+  State<sukseskecillahir> createState() => _sukseskecillahirState();
 }
 
-class _keguguranState extends State<keguguran> {
+class _sukseskecillahirState extends State<sukseskecillahir> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _keguguranState extends State<keguguran> {
             ),
             SizedBox(width: 12),
             Text(
-              'Laporkan Keguguran',
+              'Tandai Si Kecil Sudah Lahir',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
@@ -44,12 +44,12 @@ class _keguguranState extends State<keguguran> {
           children: [
             SizedBox(height: 30),
             Image.asset(
-              'assets/keguguran.png',
+              'assets/successkecillahir.png',
               scale: 2,
             ),
             SizedBox(height: 25),
             Text(
-              'Tetap semangat yaa!!',
+              'Selamat Si Kecil Sudah Lahir',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class _keguguranState extends State<keguguran> {
             Container(
               width: MediaQuery.of(context).size.width - 80,
               child: Text(
-                'Jangan putus asa ya Moms! Akan selalu ada pelangi setelah hujan kok!',
+                'Untuk memantau pertumbuhan dan perkembangan bayi, isi jurnal parent ini yuk!',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins().copyWith(
                   fontSize: 12,
@@ -73,7 +73,7 @@ class _keguguranState extends State<keguguran> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: (Platform.isIOS) ? 150 : 108,
+        height: (Platform.isIOS) ? 150 : 114,
         padding: (Platform.isIOS)
             ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
@@ -82,7 +82,7 @@ class _keguguranState extends State<keguguran> {
             GestureDetector(
               onTap: () {
                 Get.offAll(navigation(
-                    'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
+                    'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
                     index: 3));
               },
               child: Container(
@@ -92,7 +92,6 @@ class _keguguranState extends State<keguguran> {
                 decoration: BoxDecoration(
                   color: 'FF6969'.toColor(),
                   borderRadius: BorderRadius.circular(5),
-                  // border: Border.all(width: 1, color: 'FF6969'.toColor()),
                 ),
                 child: Text(
                   'Kembali Ke Jurnal Parent',

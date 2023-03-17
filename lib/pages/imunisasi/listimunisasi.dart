@@ -1,15 +1,15 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
-class listsudahimunisasi extends StatefulWidget {
+class listimunisasi extends StatefulWidget {
   ImunisasiGroup imunisasi;
 
-  listsudahimunisasi(this.imunisasi);
+  listimunisasi(this.imunisasi);
 
   @override
-  State<listsudahimunisasi> createState() => _listsudahimunisasiState();
+  State<listimunisasi> createState() => _listimunisasiState();
 }
 
-class _listsudahimunisasiState extends State<listsudahimunisasi> {
+class _listimunisasiState extends State<listimunisasi> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +18,6 @@ class _listsudahimunisasiState extends State<listsudahimunisasi> {
       },
       child: Container(
         color: Colors.white,
-        // padding: EdgeInsets.only(top: 5, bottom: 5),
         child: Column(
           children: [
             Row(
@@ -27,6 +26,7 @@ class _listsudahimunisasiState extends State<listsudahimunisasi> {
                 Image.asset(widget.imunisasi.icon ?? '', scale: 1.5),
                 SizedBox(width: 14),
                 Container(
+                  // color: Colors.blue,
                   // height: 40,
                   width: MediaQuery.of(context).size.width - 93,
                   child: Row(
@@ -55,7 +55,7 @@ class _listsudahimunisasiState extends State<listsudahimunisasi> {
                                 decoration: BoxDecoration(
                                   color: (widget.imunisasi.is_active == true)
                                       ? '86C3BB'.toColor()
-                                      : Colors.grey,
+                                      : 'C6C6C6'.toColor(),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: Icon(
@@ -89,7 +89,8 @@ class _listsudahimunisasiState extends State<listsudahimunisasi> {
                 ),
               ],
             ),
-            Divider(color: 'ECECEC'.toColor()),
+            Divider(color: Colors.grey),
+            // Divider(color: 'ECECEC'.toColor()),
           ],
         ),
       ),

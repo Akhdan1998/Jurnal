@@ -1,11 +1,11 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
-class sukseskecillahir extends StatefulWidget {
+class keguguran extends StatefulWidget {
   @override
-  State<sukseskecillahir> createState() => _sukseskecillahirState();
+  State<keguguran> createState() => _keguguranState();
 }
 
-class _sukseskecillahirState extends State<sukseskecillahir> {
+class _keguguranState extends State<keguguran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
             ),
             SizedBox(width: 12),
             Text(
-              'Tandai Si Kecil Sudah Lahir',
+              'Laporkan Keguguran',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
@@ -44,12 +44,12 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
           children: [
             SizedBox(height: 30),
             Image.asset(
-              'assets/successkecillahir.png',
+              'assets/keguguran.png',
               scale: 2,
             ),
             SizedBox(height: 25),
             Text(
-              'Selamat Si Kecil Sudah Lahir',
+              'Tetap semangat yaa!!',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
             Container(
               width: MediaQuery.of(context).size.width - 80,
               child: Text(
-                'Untuk memantau pertumbuhan dan perkembangan bayi, isi jurnal parent ini yuk!',
+                'Jangan putus asa ya Moms! Akan selalu ada pelangi setelah hujan kok!',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins().copyWith(
                   fontSize: 12,
@@ -73,7 +73,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: (Platform.isIOS) ? 150 : 114,
+        height: (Platform.isIOS) ? 150 : 108,
         padding: (Platform.isIOS)
             ? EdgeInsets.only(left: 16, right: 16, bottom: 25, top: 10)
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
@@ -82,7 +82,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
             GestureDetector(
               onTap: () {
                 Get.offAll(navigation(
-                    'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                    'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
                     index: 3));
               },
               child: Container(
@@ -92,6 +92,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
                 decoration: BoxDecoration(
                   color: 'FF6969'.toColor(),
                   borderRadius: BorderRadius.circular(5),
+                  // border: Border.all(width: 1, color: 'FF6969'.toColor()),
                 ),
                 child: Text(
                   'Kembali Ke Jurnal Parent',
