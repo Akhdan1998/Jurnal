@@ -18,11 +18,8 @@ class _imunisasiState extends State<imunisasi> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context
-        .read<ImunisasiCubit>()
-        .getImunisasi('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
-    context.read<BuatdataanakCubit>().getBuatDataAnak(
-        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<ImunisasiCubit>().getImunisasi('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<BuatdataanakCubit>().getBuatDataAnak('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -37,8 +34,6 @@ class _imunisasiState extends State<imunisasi> {
                 clipBehavior: Clip.hardEdge,
                 scrollDirection: Axis.vertical,
                 child: Container(
-                  // height: MediaQuery.of(context).size.height,
-                  // width: MediaQuery.of(context).size.width,
                   color: Colors.white,
                   child: Column(
                     children: [

@@ -1,6 +1,10 @@
 part of 'pages.dart';
 
 class ubahdatakelahirananak extends StatefulWidget {
+  BuatDataAnak ubahData;
+
+  ubahdatakelahirananak(this.ubahData);
+
   @override
   State<ubahdatakelahirananak> createState() => _ubahdatakelahirananakState();
 }
@@ -9,6 +13,46 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
   final bb = TextEditingController();
   final tb = TextEditingController();
   final lk = TextEditingController();
+
+  void simpanData(String berat, String tinggi, String lingkar) async {
+    Uri url = Uri.parse(
+        "https://dashboard.parentoday.com/api/anak/pertumbuhan/update");
+    var res = await http.post(
+      url,
+      body: {
+        'id': widget.ubahData.id.toString(),
+        "berat_lahir": berat,
+        "tinggi_lahir": tinggi,
+        "lingkar_kepala_lahir": lingkar,
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    print(res.body.toString());
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
+      print(res.statusCode);
+      Get.off(
+        navigation(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          index: 0,
+        ),
+      );
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   bb.text = widget.ubahData.berat_lahir ?? '';
+  //   tb.text = widget.ubahData.tinggi_lahir ?? '';
+  //   lk.text = widget.ubahData.lingkar_kepala_lahir ?? '';
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +113,9 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -101,11 +143,9 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -133,11 +173,9 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                    BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 11,
                     fontWeight: FontWeight.w300,
@@ -161,10 +199,7 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.offAll(navigation(
-              'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-              index: 0,
-            ));
+            simpanData(bb.text, tb.text, lk.text);
           },
           child: Container(
             alignment: Alignment.center,

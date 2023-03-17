@@ -8,7 +8,7 @@ class BuatDataAnak {
   String? photo_url;
   int? is_active;
   String? darah;
-  String? hobby;
+  String? hobi;
   String? cita_cita;
   String? warna;
   int? berat_lahir;
@@ -28,7 +28,7 @@ class BuatDataAnak {
       this.photo_url,
       this.is_active,
       this.darah,
-      this.hobby,
+      this.hobi,
       this.cita_cita,
       this.warna,
       this.berat_lahir,
@@ -45,9 +45,10 @@ class BuatDataAnak {
     name = json['name'];
     gender = json['gender'];
     birthday = json['birthday'];
+    photo_url = json['photo_url'];
     is_active = json['is_active'];
     darah = json['darah'];
-    hobby = json['hobby'];
+    hobi = json['hobi'];
     cita_cita = json['cita_cita'];
     warna = json['warna'];
     berat_lahir = json['berat_lahir'];
@@ -66,9 +67,10 @@ class BuatDataAnak {
     data['name'] = name;
     data['gender'] = gender;
     data['birthday'] = birthday;
+    data['photo_url'] = photo_url;
     data['is_active'] = is_active;
     data['darah'] = darah;
-    data['hobby'] = hobby;
+    data['hobi'] = hobi;
     data['cita_cita'] = cita_cita;
     data['warna'] = warna;
     data['berat_lahir'] = berat_lahir;

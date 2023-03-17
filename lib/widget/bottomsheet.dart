@@ -21,7 +21,6 @@ class _bottomsheetImunisasiState extends State<bottomsheetImunisasi> {
         'id': selectedAnak!.id.toString(),
       },
       headers: {
-        // 'Content-Type': 'application/json',
         "Accept": "application/json",
         "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
       },

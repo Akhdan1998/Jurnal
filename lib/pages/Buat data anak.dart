@@ -31,9 +31,10 @@ class _dataanakState extends State<dataanak> {
     Map<String, dynamic> body = jsonDecode(response.body);
     if (response.statusCode == 200) {
       BuatDataAnak data = BuatDataAnak.fromJson(body['data']);
-      print(response.statusCode);
+      print(response.body.toString());
       Get.off(navigation(
-        "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4", index: 4,
+        "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+        index: 4,
       ));
     } else {
       throw 'Error ${response.statusCode} => ${body['meta']['message']}';
@@ -60,7 +61,7 @@ class _dataanakState extends State<dataanak> {
       request = http.MultipartRequest('POST', uri)
         ..headers["Content-Type"] = "application/json"
         ..headers["Authorization"] =
-            "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4n";
+            "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4";
     }
 
     var multiPartFile =
@@ -68,10 +69,13 @@ class _dataanakState extends State<dataanak> {
     request.files.add(multiPartFile);
 
     var response = await request.send();
+    String responseBody1 = await response.stream.bytesToString();
+    // print("WAWA" + responseBody1);
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
       var data = jsonDecode(responseBody);
+      print(responseBody.toString());
 
       String imagePath = data['data'];
 
@@ -217,7 +221,7 @@ class _dataanakState extends State<dataanak> {
                         fontWeight: FontWeight.w300,
                         color: '989797'.toColor(),
                       ),
-                      hintText: '24-03-1998',
+                      hintText: '1998-03-24',
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide:

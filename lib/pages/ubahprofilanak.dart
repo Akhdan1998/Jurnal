@@ -1,6 +1,10 @@
 part of 'pages.dart';
 
 class ubahdataanak extends StatefulWidget {
+  BuatDataAnak ubahData;
+
+  ubahdataanak(this.ubahData);
+
   @override
   State<ubahdataanak> createState() => _ubahdataanakState();
 }
@@ -9,6 +13,62 @@ class _ubahdataanakState extends State<ubahdataanak> {
   final namaAnak = TextEditingController();
   final tanggalLahir = TextEditingController();
   String selectedKelamin3 = '';
+
+  void updateData(String namaAnak, String tanggalLahir) async {
+    try {
+      Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/update');
+
+      String gender = (selectedKelamin3 == '1') ? "Laki-laki" : "Perempuan";
+
+      var response = await http.post(
+        url,
+        body: {
+          'name': namaAnak,
+          'gender': (selectedKelamin3 == '1') ? 'Laki-laki' : 'Perempuan',
+          'birthday': tanggalLahir,
+        },
+        headers: {
+          "Accept": "application/json",
+          "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+        },
+      );
+      print(response.body.toString());
+      Map<String, dynamic> body = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        BuatDataAnak data = BuatDataAnak.fromJson(body['data']);
+        print(response.body.toString());
+        Get.offAll(
+          navigation(
+            "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+            index: 0,
+          ),
+        );
+      } else {
+        throw 'Error ${response.statusCode} => ${body['meta']['message']}';
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$e")));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    namaAnak.text = widget.ubahData.name ?? "";
+    selectedKelamin3 = (widget.ubahData.gender == 'Laki-laki') ? '1' : '2';
+    tanggalLahir.text = widget.ubahData.birthday!.substring(0, 10) ?? '';
+  }
+
+  File? _image;
+
+  Future getImage() async {
+    final Image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (Image == null) return;
+    final imageTemporary = File(Image.path);
+    setState(() {
+      this._image = imageTemporary;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +91,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
             ),
             SizedBox(width: 12),
             Text(
-              'Buat Data Anak',
+              'Ubah Data Anak',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
@@ -48,34 +108,53 @@ class _ubahdataanakState extends State<ubahdataanak> {
         child: Column(
           children: [
             SizedBox(height: 40),
-            Container(
-              alignment: Alignment.topCenter,
-              child: Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: 130,
-                      height: 130,
-                      child: Image.asset('assets/foto.png'),
+            Stack(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    getImage();
+                  },
+                  child: _image != null
+                      ? Container(
+                          padding: EdgeInsets.all(10),
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover, image: FileImage(_image!)),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        )
+                      : (widget.ubahData.photo_url ==
+                              "https://dashboard.parentoday.com/storage/")
+                          ? Image.asset('assets/foto.png')
+                          : Container(
+                              width: 120,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                        widget.ubahData.photo_url ?? '')),
+                              ),
+                            ),
+                ),
+                Positioned(
+                  top: 85,
+                  left: 85,
+                  child: Container(
+                    width: 35,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: 'FF6969'.toColor(),
                     ),
+                    // padding: EdgeInsets.only(top: 55, left: 65),
+                    child: Icon(Icons.edit, color: Colors.white, size: 18),
                   ),
-                  Positioned(
-                    top: 90,
-                    left: 90,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: 'FF6969'.toColor(),
-                      ),
-                      // padding: EdgeInsets.only(top: 55, left: 65),
-                      child: Icon(Icons.edit, color: Colors.white, size: 18),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(height: 30),
             Container(
@@ -157,7 +236,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
                       if (pickeddate != null) {
                         setState(() {
                           tanggalLahir.text =
-                              DateFormat('yMMMMd').format(pickeddate);
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
                         });
                       }
                     },
@@ -269,10 +348,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.offAll(navigation(
-              'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-              index: 0,
-            ));
+            updateData(namaAnak.text, tanggalLahir.text);
           },
           child: Container(
             alignment: Alignment.center,

@@ -10,10 +10,14 @@ List<String> list3 = <String>[
   'Abu-Abu',
   'Hitam',
   'Pink',
-  'Ungu'
+  'Ungu',
 ];
 
 class ubahdatadetailanak extends StatefulWidget {
+  BuatDataAnak ubahData;
+
+  ubahdatadetailanak(this.ubahData);
+
   @override
   State<ubahdatadetailanak> createState() => _ubahdatadetailanakState();
 }
@@ -70,6 +74,51 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
       warna: 'A60077',
     ),
   ];
+
+  void dataSimpan(
+      String darah, String hobi, String citacita, String warna) async {
+    Uri url =
+        Uri.parse("https://dashboard.parentoday.com/api/anak/lengkap/update");
+    var res = await http.post(
+      url,
+      body: {
+        'id': widget.ubahData.id.toString(),
+        "hobi": hobi,
+        "darah": dropdownValue2,
+        "cita_cita": citacita,
+        "warna": dropdownValue3,
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    print(res.body.toString());
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
+      print(res.statusCode);
+      Get.off(
+        navigation(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          index: 0,
+        ),
+      );
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue2 = widget.ubahData.darah ?? '';
+    hobi.text = widget.ubahData.hobi ?? '';
+    citacita.text = widget.ubahData.cita_cita ?? '';
+    dropdownValue3 = widget.ubahData.warna ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +144,7 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
             ),
             SizedBox(width: 12),
             Text(
-              'Ubah Data Detail Anak',
+              'Lengkapi Data Anak',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
@@ -151,8 +200,7 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                   contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -170,9 +218,9 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                     child: Text(
                       value,
                       style: GoogleFonts.poppins().copyWith(
-                        fontSize: 12,
+                        // fontSize: 12,
                         fontWeight: FontWeight.w300,
-                        color: '989797'.toColor(),
+                        // color: '989797'.toColor(),
                       ),
                     ),
                   );
@@ -193,11 +241,9 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -224,17 +270,15 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
-                  contentPadding:
-                      EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                  contentPadding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   hintStyle: GoogleFonts.poppins().copyWith(
                     fontSize: 11,
                     fontWeight: FontWeight.w300,
                     color: '989797'.toColor(),
                   ),
-                  hintText: 'Presiden, Bisnismen, dll',
+                  hintText: 'Programmer, Bisnismen, dll',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -260,8 +304,7 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                   contentPadding: EdgeInsets.only(left: 10, top: 5, right: 5),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    borderSide:
-                        BorderSide(width: 1, color: 'FF6969'.toColor()),
+                    borderSide: BorderSide(width: 1, color: 'FF6969'.toColor()),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -282,7 +325,11 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                           width: 15,
                           height: 15,
                           decoration: BoxDecoration(
-                            color: kesukaan.firstWhere((element) => element.nama == value).warna!.toColor(),
+                            border: Border.all(width: 1, color: 'B8B8B8'.toColor()),
+                            color: kesukaan
+                                .firstWhere((e) => e.nama == value)
+                                .warna!
+                                .toColor(),
                             // border: Border.all(width: 1),
                             borderRadius: BorderRadius.circular(50),
                           ),
@@ -291,9 +338,9 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
                         Text(
                           value,
                           style: GoogleFonts.poppins().copyWith(
-                            fontSize: 12,
+                            // fontSize: 12,
                             fontWeight: FontWeight.w300,
-                            color: '989797'.toColor(),
+                            // color: '989797'.toColor(),
                           ),
                         ),
                       ],
@@ -313,10 +360,8 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.offAll(navigation(
-              'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-              index: 0,
-            ));
+            dataSimpan(
+                dropdownValue2, hobi.text, citacita.text, dropdownValue3);
           },
           child: Container(
             alignment: Alignment.center,
