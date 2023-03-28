@@ -47,7 +47,7 @@ class _navigationState extends State<navigation> {
             child: PageView(controller: controller, children: [
               Profil(''),
               Tumbuh(),
-              Kembang(),
+              Kembang(''),
               Kehamilan(),
               imunisasi(''),
             ]),

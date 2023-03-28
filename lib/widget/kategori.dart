@@ -1,24 +1,67 @@
 part of '../pages/pages.dart';
 
 class kategori extends StatefulWidget {
-  late final Tes? tes;
+  late final Milestones_category? kategorimilestone;
 
-  kategori(this.tes);
+  kategori(this.kategorimilestone);
 
   @override
   State<kategori> createState() => _kategoriState();
 }
 
 class _kategoriState extends State<kategori> {
+  List<List<Color>> listColor2 = [
+    ['86C3BB'.toColor(), '679E97'.toColor()], //background, button [0]
+    ['81B1DE'.toColor(), '3F719F'.toColor()], //background, button [1]
+    ['DE8ECD'.toColor(), 'B15C9F'.toColor()], //background, button [2]
+    ['E9A47D'.toColor(), 'BC7B57'.toColor()], //background, button [3]
+    //[0]                [1]
+  ];
+
+  Color? buttonColor, backgroundColor;
+
   @override
   Widget build(BuildContext context) {
+    //motorik_background
+    Color bcg_motorik = listColor2[0][0];
+    Color btn_motorik = listColor2[0][1];
+
+    //bahasa_background
+    Color bcg_bahasa = listColor2[1][0];
+    Color btn_bahasa = listColor2[1][1];
+
+    //sosial_background
+    Color bcg_sosial = listColor2[2][0];
+    Color btn_sosial = listColor2[2][1];
+
+    //kognitif_background
+    Color bcg_kogintif = listColor2[3][0];
+    Color btn_kognitif = listColor2[3][1];
+
+    if (widget.kategorimilestone!.title == "Motorik Kasar & Halus") {
+      backgroundColor = bcg_motorik;
+      buttonColor = btn_motorik;
+    }
+    if (widget.kategorimilestone!.title == "Bahasa") {
+      backgroundColor = bcg_bahasa;
+      buttonColor = btn_bahasa;
+    }
+    if (widget.kategorimilestone!.title == "Sosial & Emosional") {
+      backgroundColor = bcg_sosial;
+      buttonColor = btn_sosial;
+    }
+    if (widget.kategorimilestone!.title == "Kognitif") {
+      backgroundColor = bcg_kogintif;
+      buttonColor = btn_kognitif;
+    }
+
     return Stack(
       children: [
         Column(
           children: [
             Container(
               width: (Platform.isIOS)
-                  ? (MediaQuery.of(context).size.width - 211)
+                  ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
                   : (MediaQuery.of(context).size.width - 205),
               height: 130,
               decoration: BoxDecoration(
@@ -26,7 +69,7 @@ class _kategoriState extends State<kategori> {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
-                color: widget.tes!.color1!.toColor(),
+                color: backgroundColor,
               ),
               // padding: EdgeInsets.all(12),
               child: Column(
@@ -34,7 +77,9 @@ class _kategoriState extends State<kategori> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 12, top: 12),
-                    child: Image.asset(widget.tes!.image ?? '', scale: 1.5),
+                    child: Image.asset(
+                        widget.kategorimilestone!.icon_path ?? '',
+                        scale: 1.5),
                   ),
                   SizedBox(height: 6),
                   Container(
@@ -43,7 +88,7 @@ class _kategoriState extends State<kategori> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.tes!.judul ?? '',
+                          widget.kategorimilestone!.title ?? '',
                           style: GoogleFonts.poppins().copyWith(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
@@ -52,7 +97,8 @@ class _kategoriState extends State<kategori> {
                         Row(
                           children: [
                             Text(
-                              '0',
+                              widget.kategorimilestone!.pencapaian.toString() ??
+                                  '',
                               style: GoogleFonts.poppins().copyWith(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w300,
@@ -68,7 +114,9 @@ class _kategoriState extends State<kategori> {
                             ),
                             SizedBox(width: 3),
                             Text(
-                              '5',
+                              widget.kategorimilestone!.total_pencapaian
+                                      .toString() ??
+                                  '',
                               style: GoogleFonts.poppins().copyWith(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w300,
@@ -92,14 +140,15 @@ class _kategoriState extends State<kategori> {
                     padding: EdgeInsets.only(bottom: 11, right: 12),
                     child: LinearPercentIndicator(
                       width: (Platform.isIOS)
-                          ? (MediaQuery.of(context).size.width - 245)
+                          ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 -
+                              44)
                           : (MediaQuery.of(context).size.width - 239),
                       // animation: true,
                       // animationDuration: 1000,
                       lineHeight: 7,
                       percent: 0.75,
                       barRadius: Radius.circular(20),
-                      progressColor: widget.tes!.color2!.toColor(),
+                      progressColor: buttonColor,
                       backgroundColor: 'FFFFFF'.toColor(),
                       trailing: Text(
                         '75%',
@@ -114,9 +163,8 @@ class _kategoriState extends State<kategori> {
               ),
             ),
             Container(
-              // padding: EdgeInsets.only(bottom: 4, top: 4),
               width: (Platform.isIOS)
-                  ? (MediaQuery.of(context).size.width - 211)
+                  ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
                   : (MediaQuery.of(context).size.width - 205),
               height: 25,
               child: GestureDetector(
@@ -129,7 +177,7 @@ class _kategoriState extends State<kategori> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              widget.tes!.judul ?? '',
+                              widget.kategorimilestone!.title ?? '',
                               style: GoogleFonts.poppins().copyWith(
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
@@ -138,7 +186,9 @@ class _kategoriState extends State<kategori> {
                             Row(
                               children: [
                                 Text(
-                                  '0',
+                                  widget.kategorimilestone!.pencapaian
+                                          .toString() ??
+                                      '',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w300,
@@ -154,7 +204,9 @@ class _kategoriState extends State<kategori> {
                                 ),
                                 SizedBox(width: 3),
                                 Text(
-                                  '5',
+                                  widget.kategorimilestone!.total_pencapaian
+                                          .toString() ??
+                                      '',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w300,
@@ -173,21 +225,22 @@ class _kategoriState extends State<kategori> {
                           ],
                         ),
                         content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: widget.tes!.listTes!
-                              .map((e) => pertanyaanTes(e))
-                              .toList(),
-                        ),
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.kategorimilestone!.todolist
+                                .map((e) => pertanyaanTes(widget.kategorimilestone!.milestones_id!, e))
+                                .toList()),
                       );
                     },
                   );
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
+                  width: (Platform.isIOS)
+                      ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
+                      : (MediaQuery.of(context).size.width - 205),
                   height: 40,
                   decoration: BoxDecoration(
-                    color: widget.tes!.color2!.toColor(),
+                    color: buttonColor,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(10),
                       bottomRight: Radius.circular(10),
@@ -207,7 +260,7 @@ class _kategoriState extends State<kategori> {
           ],
         ),
         Positioned(
-          left: 74,
+          left: 100,
           child: Image.asset(
             'assets/efek.png',
             scale: 1.1,
