@@ -12,7 +12,6 @@ class pertanyaanTes extends StatefulWidget {
 
 class _pertanyaanTesState extends State<pertanyaanTes> {
   bool isChecked = false;
-  String SelectedData = '';
 
   @override
   void initState() {

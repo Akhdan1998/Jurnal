@@ -38,6 +38,10 @@ class _KembangState extends State<Kembang> {
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
+  double total_percent = 0;
+  double pencapaian_percent = 0;
+  double total_pencapaian_percent = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -357,20 +361,20 @@ class _KembangState extends State<Kembang> {
                                                       );
                                                     }).toList(),
                                                   ),
-                                                  BlocBuilder<MilestoneCubit,
-                                                      MilestoneState>(
+                                                  BlocBuilder<KategoriCubit,
+                                                      KategoriState>(
                                                     builder:
                                                         (context, snapshot) {
                                                       if (snapshot
-                                                          is MilestonesKatLoaded) {
+                                                          is KategoriLoaded) {
                                                         if (snapshot
-                                                                .milestoned !=
+                                                                .milestones !=
                                                             null) {
                                                           return Row(
                                                             children: [
                                                               Text(
                                                                 snapshot
-                                                                    .milestoned!
+                                                                    .milestones!
                                                                     .where((e) =>
                                                                         e.usia ==
                                                                         selectedUsia)
@@ -401,7 +405,7 @@ class _KembangState extends State<Kembang> {
                                                                   width: 5),
                                                               Text(
                                                                 snapshot
-                                                                    .milestoned!
+                                                                    .milestones!
                                                                     .where((e) =>
                                                                         e.usia ==
                                                                         selectedUsia)
@@ -424,13 +428,7 @@ class _KembangState extends State<Kembang> {
                                                           );
                                                         }
                                                       } else {
-                                                        return Center(
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            color: 'FF6969'
-                                                                .toColor(),
-                                                          ),
-                                                        );
+                                                        return SizedBox();
                                                       }
                                                     },
                                                   ),
@@ -443,22 +441,61 @@ class _KembangState extends State<Kembang> {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(bottom: 15),
-                                  child: LinearPercentIndicator(
-                                    width: (Platform.isIOS)
-                                        ? (MediaQuery.of(context).size.width -
-                                            34)
-                                        : (MediaQuery.of(context).size.width -
-                                            239),
-                                    // animation: true,
-                                    // animationDuration: 1000,
-                                    lineHeight: 13,
-                                    percent: 0.75,
-                                    barRadius: Radius.circular(20),
-                                    progressColor: 'FF6969'.toColor(),
-                                    backgroundColor: 'FFE7E7'.toColor(),
-                                  ),
+                                BlocBuilder<KategoriCubit, KategoriState>(
+                                  builder: (context, snapshot) {
+                                    if (snapshot is KategoriLoaded) {
+                                      if (snapshot.milestones != null) {
+                                        pencapaian_percent = snapshot
+                                            .milestones!
+                                            .where((element) =>
+                                                element.usia == selectedUsia)
+                                            .first
+                                            .pencapaian!
+                                            .toDouble();
+                                        total_pencapaian_percent = snapshot
+                                            .milestones!
+                                            .where((element) =>
+                                                element.usia == selectedUsia)
+                                            .first
+                                            .total_pencapaian!
+                                            .toDouble();
+
+                                        double item_satuan =
+                                            1.00 / total_pencapaian_percent;
+
+                                        total_percent =
+                                            pencapaian_percent * item_satuan;
+
+                                        return Container(
+                                          padding: EdgeInsets.only(bottom: 15),
+                                          child: LinearPercentIndicator(
+                                            width: (Platform.isIOS)
+                                                ? (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    34)
+                                                : (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    239),
+                                            // animation: true,
+                                            // animationDuration: 1000,
+                                            lineHeight: 13,
+                                            percent: total_percent,
+                                            barRadius: Radius.circular(20),
+                                            progressColor: 'FF6969'.toColor(),
+                                            backgroundColor: 'FFE7E7'.toColor(),
+                                          ),
+                                        );
+                                      } else {
+                                        return const Center(
+                                          child: SizedBox(),
+                                        );
+                                      }
+                                    } else {
+                                      return SizedBox();
+                                    }
+                                  },
                                 ),
                               ],
                             ),
@@ -609,8 +646,8 @@ class _KembangState extends State<Kembang> {
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.only(left: 16, right: 16),
                       child: Wrap(
-                          spacing: 15,
-                          runSpacing: 15,
+                          spacing: 18,
+                          runSpacing: 18,
                           children: snapshot.milestones!
                               .where((element) => element.usia == selectedUsia)
                               .first

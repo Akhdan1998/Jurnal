@@ -32,11 +32,6 @@ class _imunisasidetailState extends State<imunisasidetail> {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
-// @override
-// void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

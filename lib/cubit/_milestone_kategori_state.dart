@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 import '../Models/model_milestone.dart';
-import '../Models/model_milestones_category.dart';
 
 abstract class KategoriState extends Equatable {
   @override

@@ -19,9 +19,21 @@ class _kategoriState extends State<kategori> {
   ];
 
   Color? buttonColor, backgroundColor;
+  double total_percent = 0;
+  double pencapaian_percent = 0;
+  double total_pencapaian_percent = 0;
 
   @override
   Widget build(BuildContext context) {
+    pencapaian_percent = widget.kategorimilestone!.pencapaian!.toDouble(); //0
+    total_pencapaian_percent =
+        widget.kategorimilestone!.total_pencapaian!.toDouble(); //7
+
+    double item_satuan = 1.00 / total_pencapaian_percent;
+
+    total_percent = pencapaian_percent * item_satuan;
+    int percent = (total_percent * 100).toInt();
+
     //motorik_background
     Color bcg_motorik = listColor2[0][0];
     Color btn_motorik = listColor2[0][1];
@@ -71,7 +83,6 @@ class _kategoriState extends State<kategori> {
                 ),
                 color: backgroundColor,
               ),
-              // padding: EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -141,17 +152,15 @@ class _kategoriState extends State<kategori> {
                     child: LinearPercentIndicator(
                       width: (Platform.isIOS)
                           ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 -
-                              44)
+                              48)
                           : (MediaQuery.of(context).size.width - 239),
-                      // animation: true,
-                      // animationDuration: 1000,
                       lineHeight: 7,
-                      percent: 0.75,
+                      percent: total_percent,
                       barRadius: Radius.circular(20),
                       progressColor: buttonColor,
                       backgroundColor: 'FFFFFF'.toColor(),
                       trailing: Text(
-                        '75%',
+                        percent.toString() + '' + '%',
                         style: GoogleFonts.poppins().copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 11,
@@ -227,7 +236,9 @@ class _kategoriState extends State<kategori> {
                         content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: widget.kategorimilestone!.todolist
-                                .map((e) => pertanyaanTes(widget.kategorimilestone!.milestones_id!, e))
+                                .map((e) => pertanyaanTes(
+                                    widget.kategorimilestone!.milestones_id!,
+                                    e))
                                 .toList()),
                       );
                     },
