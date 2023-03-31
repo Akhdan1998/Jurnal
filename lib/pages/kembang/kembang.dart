@@ -165,12 +165,6 @@ class _KembangState extends State<Kembang> {
                                                         showModalBottomSheet(
                                                           backgroundColor:
                                                               Colors.white,
-                                                          // clipBehavior: Clip.none,
-                                                          // isScrollControlled: true,
-                                                          // isDismissible: true,
-                                                          // enableDrag: true,
-                                                          // useSafeArea: true,
-                                                          // useRootNavigator: true,
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius:
@@ -442,61 +436,52 @@ class _KembangState extends State<Kembang> {
                                   ),
                                 ),
                                 BlocBuilder<KategoriCubit, KategoriState>(
-                                  builder: (context, snapshot) {
-                                    if (snapshot is KategoriLoaded) {
-                                      if (snapshot.milestones != null) {
-                                        pencapaian_percent = snapshot
-                                            .milestones!
-                                            .where((element) =>
-                                                element.usia == selectedUsia)
-                                            .first
-                                            .pencapaian!
-                                            .toDouble();
-                                        total_pencapaian_percent = snapshot
-                                            .milestones!
-                                            .where((element) =>
-                                                element.usia == selectedUsia)
-                                            .first
-                                            .total_pencapaian!
-                                            .toDouble();
-
-                                        double item_satuan =
-                                            1.00 / total_pencapaian_percent;
-
-                                        total_percent =
-                                            pencapaian_percent * item_satuan;
-
-                                        return Container(
-                                          padding: EdgeInsets.only(bottom: 15),
-                                          child: LinearPercentIndicator(
-                                            width: (Platform.isIOS)
-                                                ? (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    34)
-                                                : (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    239),
-                                            // animation: true,
-                                            // animationDuration: 1000,
-                                            lineHeight: 13,
-                                            percent: total_percent,
-                                            barRadius: Radius.circular(20),
-                                            progressColor: 'FF6969'.toColor(),
-                                            backgroundColor: 'FFE7E7'.toColor(),
-                                          ),
-                                        );
-                                      } else {
-                                        return const Center(
-                                          child: SizedBox(),
-                                        );
-                                      }
+                                    builder: (context, snapshot) {
+                                  if (snapshot is KategoriLoaded) {
+                                    if (snapshot.milestones != null) {
+                                      pencapaian_percent = snapshot.milestones!
+                                          .where((element) =>
+                                              element.usia == selectedUsia)
+                                          .first
+                                          .pencapaian!
+                                          .toDouble();
+                                      total_pencapaian_percent = snapshot
+                                          .milestones!
+                                          .where((element) =>
+                                              element.usia == selectedUsia)
+                                          .first
+                                          .total_pencapaian!
+                                          .toDouble();
+                                      double point =
+                                          1.00 / total_pencapaian_percent;
+                                      total_percent =
+                                          pencapaian_percent * point;
+                                      return Container(
+                                        padding: EdgeInsets.only(bottom: 15),
+                                        child: LinearPercentIndicator(
+                                          width: (Platform.isIOS)
+                                              ? (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  34)
+                                              : (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  239),
+                                          lineHeight: 13,
+                                          percent: total_percent,
+                                          barRadius: Radius.circular(20),
+                                          progressColor: 'FF6969'.toColor(),
+                                          backgroundColor: 'FFE7E7'.toColor(),
+                                        ),
+                                      );
                                     } else {
                                       return SizedBox();
                                     }
-                                  },
-                                ),
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                }),
                               ],
                             ),
                           ),

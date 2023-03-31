@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:jurnal/Models/api_retrun_buatdataanak.dart';
+import 'package:jurnal/Models/api_return_buatdataanak.dart';
 import 'package:jurnal/Models/model_buatdataanak.dart';
 
 String baseUrl =

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../Models/model_cubit_imunisasi.dart';
+import '../Models/model_imunisasi.dart';
 import '../models/api_return_velue.dart';
 import '../services/imunisasi_services.dart';
 

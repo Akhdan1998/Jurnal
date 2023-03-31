@@ -25,6 +25,7 @@ class _kategoriState extends State<kategori> {
 
   @override
   Widget build(BuildContext context) {
+    //indikator
     pencapaian_percent = widget.kategorimilestone!.pencapaian!.toDouble(); //0
     total_pencapaian_percent =
         widget.kategorimilestone!.total_pencapaian!.toDouble(); //7

@@ -3,6 +3,10 @@ part of '../pages.dart';
 List<String> list = <String>['Semua Preferensi', 'Tema', 'Asal', 'Bulan Lahir'];
 
 class Kehamilan extends StatefulWidget {
+  String token;
+
+  Kehamilan(this.token);
+
   @override
   State<Kehamilan> createState() => _KehamilanState();
 }
@@ -12,6 +16,14 @@ class _KehamilanState extends State<Kehamilan> {
   String selectedKelamin2 = '';
 
   String dropdownValue = list.first;
+
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<KehamilanCubit>()
+        .getKehamilan('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,161 +36,299 @@ class _KehamilanState extends State<Kehamilan> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
-                  height: 260,
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  color: 'D9D9D9'.toColor(),
-                  width: MediaQuery.of(context).size.width,
-                  height: 187,
-                  padding: EdgeInsets.only(left: 16, top: 43),
-                  child: Row(
+            BlocBuilder<KehamilanCubit, KehamilanState>(
+                builder: (context, snapshot) {
+              if (snapshot is BuntingLoaded) {
+                if (snapshot.bunting != null &&
+                    snapshot.bunting!.isNotEmpty) {
+                  return Stack(
                     children: [
                       Container(
-                        width: 20,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(Icons.arrow_back),
+                        color: Colors.white,
+                        width: MediaQuery.of(context).size.width,
+                        height: 260,
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        color: 'D9D9D9'.toColor(),
+                        width: MediaQuery.of(context).size.width,
+                        height: 187,
+                        padding: EdgeInsets.only(left: 16, top: 43),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Icon(Icons.arrow_back),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Text(
+                              'Monitoring Kehamilan',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: '747474'.toColor(),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 12),
-                      Text(
-                        'Monitoring Kehamilan',
-                        style: GoogleFonts.poppins().copyWith(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: '747474'.toColor(),
+                      Positioned(
+                        left: 16,
+                        right: 16,
+                        top: 150,
+                        child: Container(
+                          // padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              width: 1,
+                              color: 'F0F0F0'.toColor(),
+                            ),
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          // height: 131,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.only(
+                                    top: 15, left: 15, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '-',
+                                      style: GoogleFonts.poppins().copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 11,
+                                          color: '323232'.toColor()),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '4 Minggu',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                              color: 'FF6969'.toColor()),
+                                        ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          '-',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                              color: 'FF6969'.toColor()),
+                                        ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          'Trimaster 1',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                              color: 'FF6969'.toColor()),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 14),
+                              Container(
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Minggu 4',
+                                      style: GoogleFonts.poppins().copyWith(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 11,
+                                          color: '323232'.toColor()),
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'HPL :',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 11,
+                                              color: '7A7A7A'.toColor()),
+                                        ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          '07 Oktober 2023',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 11,
+                                              color: '7A7A7A'.toColor()),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 15),
+                                child: LinearPercentIndicator(
+                                  width: MediaQuery.of(context).size.width - 34,
+                                  // animation: true,
+                                  // animationDuration: 1000,
+                                  lineHeight: 15,
+                                  percent: 0.75,
+                                  barRadius: Radius.circular(20),
+                                  progressColor: 'FF6969'.toColor(),
+                                  backgroundColor: 'FFE7E7'.toColor(),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Positioned(
-                  left: 16,
-                  right: 16,
-                  top: 150,
-                  child: Container(
-                    // padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        width: 1,
-                        color: 'F0F0F0'.toColor(),
+                  );
+                } else {
+                  return Stack(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        width: MediaQuery.of(context).size.width,
+                        height: 265,
                       ),
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    // height: 131,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
+                      Container(
+                        alignment: Alignment.topLeft,
+                        color: 'D9D9D9'.toColor(),
+                        width: MediaQuery.of(context).size.width,
+                        height: 187,
+                        padding: EdgeInsets.only(left: 16, top: 43),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Icon(Icons.arrow_back),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Text(
+                              'Imunisasi',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: '747474'.toColor(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 16,
+                        right: 16,
+                        top: 135,
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              width: 1,
+                              color: 'F0F0F0'.toColor(),
+                            ),
+                          ),
                           width: MediaQuery.of(context).size.width,
-                          padding:
-                              EdgeInsets.only(top: 15, left: 15, right: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '-',
+                                'Hi Bunda, Selamat Datang!!',
                                 style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 11,
-                                    color: '323232'.toColor()),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: '323232'.toColor(),
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    '4 Minggu',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: 'FF6969'.toColor()),
+                              SizedBox(height: 2),
+                              Text(
+                                'Untuk memantau pertumbuhan janin, lengkapi data ini terlebih dahulu yuk Moms.',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 11,
+                                  color: '7A7A7A'.toColor(),
+                                ),
+                              ),
+                              SizedBox(height: 11),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 32,
+                                child: Container(
+                                  height: 60,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(inputdatakehamilan());
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: 'FF6969'.toColor(),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Buat Data Kehamilan',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: 'FFFFFF'.toColor(),
+                                            ),
+                                          ),
+                                          SizedBox(width: 3),
+                                          Icon(
+                                            Icons.add_outlined,
+                                            color: 'FFFFFF'.toColor(),
+                                            size: 15,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '-',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: 'FF6969'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'Trimaster 1',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: 'FF6969'.toColor()),
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 14),
-                        Container(
-                          padding: EdgeInsets.only(left: 15, right: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Minggu 4',
-                                style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: '323232'.toColor()),
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'HPL :',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 11,
-                                        color: '7A7A7A'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '07 Oktober 2023',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 11,
-                                        color: '7A7A7A'.toColor()),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Container(
-                          padding: EdgeInsets.only(bottom: 15),
-                          child: LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 34,
-                            // animation: true,
-                            // animationDuration: 1000,
-                            lineHeight: 15,
-                            percent: 0.75,
-                            barRadius: Radius.circular(20),
-                            progressColor: 'FF6969'.toColor(),
-                            backgroundColor: 'FFE7E7'.toColor(),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  );
+                }
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: 'FF6969'.toColor(),
                   ),
-                ),
-              ],
-            ),
+                );
+              }
+            }),
             SizedBox(height: 10),
             Container(
               padding: EdgeInsets.only(left: 16, right: 16),
@@ -507,14 +657,14 @@ class _KehamilanState extends State<Kehamilan> {
                                 width: MediaQuery.of(context).size.width - 85,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           'Edit Data Kehamilan',
@@ -553,7 +703,7 @@ class _KehamilanState extends State<Kehamilan> {
                         },
                         child: Container(
                           color: Colors.white,
-                         child: Row(
+                          child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Image.asset('assets/tanda.png', scale: 2),
@@ -562,14 +712,14 @@ class _KehamilanState extends State<Kehamilan> {
                                 width: MediaQuery.of(context).size.width - 85,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           'Tandai Si Kecil sudah Lahir',
@@ -617,14 +767,14 @@ class _KehamilanState extends State<Kehamilan> {
                                 width: MediaQuery.of(context).size.width - 85,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           'Laporkan Keguguran',
@@ -670,14 +820,14 @@ class _KehamilanState extends State<Kehamilan> {
                                 width: MediaQuery.of(context).size.width - 85,
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           'Hapus Data Kehamilan',

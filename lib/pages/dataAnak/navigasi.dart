@@ -48,7 +48,7 @@ class _navigationState extends State<navigation> {
               Profil(''),
               Tumbuh(),
               Kembang(''),
-              Kehamilan(),
+              Kehamilan(''),
               imunisasi(''),
             ]),
           ),

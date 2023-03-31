@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:jurnal/Models/model_buatdataanak.dart';
 
-import '../Models/api_retrun_buatdataanak.dart';
+import '../Models/api_return_buatdataanak.dart';
 import '../services/buatdataanak_services.dart';
 
 part 'buatdataanak_state.dart';
