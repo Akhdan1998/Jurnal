@@ -1,4 +1,4 @@
-class Kehamilan_todolist {
+class AnakProgress {
   int? id;
   String? usia;
   String? judul;
@@ -7,7 +7,7 @@ class Kehamilan_todolist {
   String? jantung;
   String? deskripsi;
 
-  Kehamilan_todolist(
+  AnakProgress(
       {this.id,
       this.usia,
       this.judul,
@@ -16,7 +16,7 @@ class Kehamilan_todolist {
       this.jantung,
       this.deskripsi});
 
-  Kehamilan_todolist.fromJson(Map<String, dynamic> json) {
+  AnakProgress.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     usia = json['usia'];
     judul = json['judul'];
@@ -24,5 +24,17 @@ class Kehamilan_todolist {
     panjang = json['panjang'];
     jantung = json['jantung'];
     deskripsi = json['deskripsi'];
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['usia'] = usia;
+    data['judul'] = judul;
+    data['berat'] = berat;
+    data['panjang'] = panjang;
+    data['jantung'] = jantung;
+    data['deskripsi'] = deskripsi;
+    return data;
   }
 }

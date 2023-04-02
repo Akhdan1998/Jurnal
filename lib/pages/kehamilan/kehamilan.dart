@@ -20,9 +20,7 @@ class _KehamilanState extends State<Kehamilan> {
   @override
   void initState() {
     super.initState();
-    context
-        .read<KehamilanCubit>()
-        .getKehamilan('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<KehamilanCubit>().getKehamilan('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -40,7 +38,7 @@ class _KehamilanState extends State<Kehamilan> {
                 builder: (context, snapshot) {
               if (snapshot is BuntingLoaded) {
                 if (snapshot.bunting != null &&
-                    snapshot.bunting!.isNotEmpty) {
+                    snapshot.bunting!.isEmpty) {
                   return Stack(
                     children: [
                       Container(
@@ -105,7 +103,7 @@ class _KehamilanState extends State<Kehamilan> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '-',
+                                      snapshot.bunting!.first.nama_anak ?? '',
                                       style: GoogleFonts.poppins().copyWith(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 11,

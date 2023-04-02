@@ -10,7 +10,7 @@ abstract class KehamilanState extends Equatable {
 class KehamilanInitial extends KehamilanState {}
 
 class BuntingLoaded extends KehamilanState {
-  final List<Tekdung>? bunting;
+  final List<Kelahiran>? bunting;
 
   BuntingLoaded({this.bunting});
 

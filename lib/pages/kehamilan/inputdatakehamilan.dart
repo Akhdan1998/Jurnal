@@ -6,10 +6,37 @@ class inputdatakehamilan extends StatefulWidget {
 }
 
 class _inputdatakehamilanState extends State<inputdatakehamilan> {
-  final carinama = TextEditingController();
+  final nama = TextEditingController();
   bool value = true;
   final HPHT = TextEditingController();
   bool show = false;
+
+  void tersimpan(String _nama, String _hpht) async {
+    Uri url = Uri.parse('https://dashboard.parentoday.com/api/jurnal/kehamilan/create');
+    var response = await http.post(
+      url,
+      body: {
+        'nama_anak': _nama,
+        'hpht': _hpht,
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    print(response.body.toString());
+    Map<String, dynamic> body = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      Kelahiran data = Kelahiran.fromJson(body['data']);
+      print(response.body.toString());
+      Get.off(navigation(
+        "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+        index: 4,
+      ));
+    } else {
+      throw 'Error ${response.statusCode} => ${body['meta']['message']}';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +114,7 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
               (show == true)
                   ? SizedBox()
                   : TextField(
-                      controller: carinama,
+                      controller: nama,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -242,10 +269,7 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            Get.offAll(navigation(
-                'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                index: 3,
-            ));
+            tersimpan(nama.text, HPHT.text);
           },
           child: Container(
             alignment: Alignment.center,

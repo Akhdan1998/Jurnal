@@ -1,6 +1,6 @@
 import 'model_progresAnak.dart';
 
-class Tekdung {
+class Kelahiran {
   int? id;
   int? user_id;
   int? anak_id;
@@ -9,12 +9,12 @@ class Tekdung {
   String? hpl;
   String? usia;
   String? trimester;
+  late AnakProgress anakProgress;
   dynamic created_at;
   dynamic updated_at;
   dynamic deleted_at;
-  late List<Kehamilan_todolist> hamil;
 
-  Tekdung(
+  Kelahiran(
       {this.id,
       this.user_id,
       this.anak_id,
@@ -23,12 +23,12 @@ class Tekdung {
       this.hpl,
       this.usia,
       this.trimester,
+      required this.anakProgress,
       this.created_at,
       this.updated_at,
-      this.deleted_at,
-      required this.hamil});
+      this.deleted_at});
 
-  Tekdung.fromJson(Map<String, dynamic> json) {
+  Kelahiran.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user_id = json['user_id'];
     anak_id = json['anak_id'];
@@ -37,11 +37,26 @@ class Tekdung {
     hpl = json['hpl'];
     usia = json['usia'];
     trimester = json['trimester'];
+    anakProgress = json['anakProgress'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
-    hamil = (json['hamil'] as Iterable)
-        .map((e) => Kehamilan_todolist.fromJson(e))
-        .toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = user_id;
+    data['anak_id'] = anak_id;
+    data['nama_anak'] = nama_anak;
+    data['hpht'] = hpht;
+    data['hpl'] = hpl;
+    data['usia'] = usia;
+    data['trimester'] = trimester;
+    data['anakProgress'] = anakProgress;
+    data['created_at'] = created_at;
+    data['updated_at'] = updated_at;
+    data['deleted_at'] = deleted_at;
+    return data;
   }
 }
