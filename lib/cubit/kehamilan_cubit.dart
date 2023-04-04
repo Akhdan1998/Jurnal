@@ -8,12 +8,12 @@ class KehamilanCubit extends Cubit<KehamilanState> {
   KehamilanCubit() : super(KehamilanInitial());
 
   Future<void> getKehamilan(String token) async {
-    ApiReturnKehamilan<List<Kelahiran>>? result =
+    ApiReturnKehamilan<Kelahiran> result =
         await KehamilanServices.dataGet(token);
-    if (result?.value != null) {
-      emit(BuntingLoaded(bunting: result?.value));
+    if (result.value != null) {
+      emit(BuntingLoaded(bunting: result.value!));
     } else {
-      emit(BuntingLoadingFailed(result?.message));
+      emit(BuntingLoadingFailed(result.message));
     }
   }
 }

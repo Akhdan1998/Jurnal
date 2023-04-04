@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => MilestoneCubit()),
         BlocProvider(create: (_) => KategoriCubit()),
         BlocProvider(create: (_) => KehamilanCubit()),
+        BlocProvider(create: (_) => HplCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

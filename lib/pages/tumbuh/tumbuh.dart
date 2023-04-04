@@ -58,12 +58,12 @@ class _TumbuhState extends State<Tumbuh> {
                                     onTap: () {
                                       Get.back();
                                     },
-                                    child: Icon(Icons.arrow_back),
+                                    child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
                                   ),
                                 ),
                                 SizedBox(width: 12),
                                 Text(
-                                  'Imunisasi',
+                                  'Pertumbuhan Anak',
                                   style: GoogleFonts.poppins().copyWith(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
@@ -269,12 +269,12 @@ class _TumbuhState extends State<Tumbuh> {
                                     onTap: () {
                                       Get.back();
                                     },
-                                    child: Icon(Icons.arrow_back),
+                                    child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
                                   ),
                                 ),
                                 SizedBox(width: 12),
                                 Text(
-                                  'Imunisasi',
+                                  'Pertumbuhan Anak',
                                   style: GoogleFonts.poppins().copyWith(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,

@@ -12,7 +12,8 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
   bool show = false;
 
   void tersimpan(String _nama, String _hpht) async {
-    Uri url = Uri.parse('https://dashboard.parentoday.com/api/jurnal/kehamilan/create');
+    Uri url = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/kehamilan/create');
     var response = await http.post(
       url,
       body: {
@@ -36,6 +37,12 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
     } else {
       throw 'Error ${response.statusCode} => ${body['meta']['message']}';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<HplCubit>().getHpl('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -192,6 +199,8 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
                       lastDate: DateTime(2500));
 
                   if (pickeddate != null) {
+                    HplServices();
+                    //
                     setState(() {
                       HPHT.text = DateFormat('yMMMMd').format(pickeddate);
                     });
@@ -199,65 +208,80 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
                 },
               ),
               SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                  color: 'F2F2F2'.toColor(),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hasil Data :',
-                      style: GoogleFonts.poppins().copyWith(
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          color: '363636'.toColor()),
-                    ),
-                    SizedBox(height: 1),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Hari Perkiraan Lahir (HPL) :',
-                          style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w300,
-                              color: '373737'.toColor()),
+              BlocBuilder<HplCubit, HplState>(
+                  builder: (context, snapshot) {
+                    if (snapshot is HplLoaded) {
+                      if (snapshot.usia != null) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: 'F2F2F2'.toColor(),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hasil Data :',
+                                style: GoogleFonts.poppins().copyWith(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: '363636'.toColor()),
+                              ),
+                              SizedBox(height: 1),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Hari Perkiraan Lahir (HPL) :',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w300,
+                                        color: '373737'.toColor()),
+                                  ),
+                                  Text(
+                                    snapshot.usia.hpl ?? '',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        color: '393939'.toColor()),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 1),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Usia Kehamilan :',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w300,
+                                        color: '373737'.toColor()),
+                                  ),
+                                  Text(
+                                    snapshot.usia.usia ?? '',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        color: '393939'.toColor()),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        return SizedBox();
+                      }
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: 'FF6969'.toColor(),
                         ),
-                        Text(
-                          '-',
-                          style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: '393939'.toColor()),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 1),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Usia Kehamilan :',
-                          style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w300,
-                              color: '373737'.toColor()),
-                        ),
-                        Text(
-                          '-',
-                          style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: '393939'.toColor()),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                      );
+                    }
+                  }),
             ],
           ),
         ),

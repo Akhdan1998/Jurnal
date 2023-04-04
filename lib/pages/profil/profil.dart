@@ -58,7 +58,7 @@ class _ProfilState extends State<Profil> {
                                         onTap: () {
                                           Get.back();
                                         },
-                                        child: Icon(Icons.arrow_back),
+                                        child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
                                       ),
                                     ),
                                     SizedBox(width: 12),
@@ -509,12 +509,12 @@ class _ProfilState extends State<Profil> {
                                         onTap: () {
                                           Get.back();
                                         },
-                                        child: Icon(Icons.arrow_back),
+                                        child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
                                       ),
                                     ),
                                     SizedBox(width: 12),
                                     Text(
-                                      'Imunisasi',
+                                      'Jurnal Untuk Parent',
                                       style: GoogleFonts.poppins().copyWith(
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,

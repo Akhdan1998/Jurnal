@@ -2,13 +2,13 @@ import 'model_progresAnak.dart';
 
 class Kelahiran {
   int? id;
-  int? user_id;
+  String? user_id;
   int? anak_id;
   String? nama_anak;
   String? hpht;
   String? hpl;
-  String? usia;
-  String? trimester;
+  int? usia;
+  int? trimester;
   late AnakProgress anakProgress;
   dynamic created_at;
   dynamic updated_at;
@@ -37,26 +37,26 @@ class Kelahiran {
     hpl = json['hpl'];
     usia = json['usia'];
     trimester = json['trimester'];
-    anakProgress = json['anakProgress'];
+    anakProgress = AnakProgress.fromJson(json['anak_progress']);
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['user_id'] = user_id;
-    data['anak_id'] = anak_id;
-    data['nama_anak'] = nama_anak;
-    data['hpht'] = hpht;
-    data['hpl'] = hpl;
-    data['usia'] = usia;
-    data['trimester'] = trimester;
-    data['anakProgress'] = anakProgress;
-    data['created_at'] = created_at;
-    data['updated_at'] = updated_at;
-    data['deleted_at'] = deleted_at;
-    return data;
-  }
+  // Map<String, dynamic> toJson() {
+  //   Map<String, dynamic> data = <String, dynamic>{};
+  //   data['id'] = id;
+  //   data['user_id'] = user_id;
+  //   data['anak_id'] = anak_id;
+  //   data['nama_anak'] = nama_anak;
+  //   data['hpht'] = hpht;
+  //   data['hpl'] = hpl;
+  //   data['usia'] = usia;
+  //   data['trimester'] = trimester;
+  //   data['anakProgress'] = anakProgress;
+  //   data['created_at'] = created_at;
+  //   data['updated_at'] = updated_at;
+  //   data['deleted_at'] = deleted_at;
+  //   return data;
+  // }
 }

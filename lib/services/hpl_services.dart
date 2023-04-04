@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import '../Models/api_return_kehamilan.dart';
-import '../Models/model_kehamilan.dart';
+import 'package:jurnal/Models/model_hpl.dart';
+import '../Models/api_return_hpl.dart';
 
-String baseUrl = 'https://dashboard.parentoday.com/api/jurnal/kehamilan';
+String baseUrl =
+    'https://dashboard.parentoday.com/api/jurnal/kehamilan/hpl?hpht=2023-02-23';
 
-class KehamilanServices {
-  static Future<ApiReturnKehamilan<Kelahiran>> dataGet(String token,
+class HplServices {
+  static Future<ApiReturnHpl<Hpl>> getHpl(String token,
       {http.Client? client}) async {
     if (client == null) {
       client = http.Client();
@@ -19,7 +20,7 @@ class KehamilanServices {
       'Authorization': '${token}'
     });
     if (response.statusCode != 200) {
-      return ApiReturnKehamilan(message: 'Please try Again');
+      return ApiReturnHpl(message: 'Please try Again');
     }
     print(response);
     print(response.statusCode);
@@ -29,7 +30,7 @@ class KehamilanServices {
 //     List<Kelahiran> value =
 //         (data['data'] as Iterable).map((e) => Kelahiran.fromJson(e)).toList();
 //jika backand tidak berbentuk list
-    Kelahiran value = Kelahiran.fromJson(data['data']);
-    return ApiReturnKehamilan(value: value);
+    Hpl value = Hpl.fromJson(data['data']);
+    return ApiReturnHpl(value: value);
   }
 }

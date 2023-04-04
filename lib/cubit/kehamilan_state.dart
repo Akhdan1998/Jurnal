@@ -10,12 +10,12 @@ abstract class KehamilanState extends Equatable {
 class KehamilanInitial extends KehamilanState {}
 
 class BuntingLoaded extends KehamilanState {
-  final List<Kelahiran>? bunting;
+  final Kelahiran bunting;
 
-  BuntingLoaded({this.bunting});
+  BuntingLoaded({required this.bunting});
 
   @override
-  List<Object> get props => [bunting!];
+  List<Object> get props => [bunting];
 }
 
 class BuntingLoadingFailed extends KehamilanState {

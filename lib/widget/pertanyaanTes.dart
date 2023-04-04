@@ -30,7 +30,7 @@ class _pertanyaanTesState extends State<pertanyaanTes> {
       var res = await http.post(
         url_,
         body: {
-          'milestones_id': widget.milestones_id!.toString(),
+          'milestones_id': widget.milestones_id.toString(),
           'kategori_id': widget.tesList!.kategori_id.toString(),
           'todolist_id': widget.tesList!.id.toString(),
         },
@@ -57,7 +57,7 @@ class _pertanyaanTesState extends State<pertanyaanTes> {
     var res = await http.post(
       url_,
       body: {
-        'milestones_id': widget.milestones_id!.toString(),
+        'milestones_id': widget.milestones_id.toString(),
         'kategori_id': widget.tesList!.kategori_id.toString(),
         'todolist_id': widget.tesList!.id.toString(),
       },
