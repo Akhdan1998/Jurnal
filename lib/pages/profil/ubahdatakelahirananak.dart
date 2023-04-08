@@ -13,6 +13,7 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
   final bb = TextEditingController();
   final tb = TextEditingController();
   final lk = TextEditingController();
+  bool isLoading = false;
 
   void simpanData(String berat, String tinggi, String lingkar) async {
     Uri url = Uri.parse(
@@ -33,6 +34,15 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
     print(res.body.toString());
     Map<String, dynamic> body = jsonDecode(res.body);
     if (res.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: "Kamu berhasil memperbaharui data anak!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: 'FF6969'.toColor(),
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
       Get.off(
@@ -209,14 +219,23 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
               color: 'FF6969'.toColor(),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Text(
-              'Simpan Data Anak',
-              style: GoogleFonts.poppins().copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: 'FFFFFF'.toColor(),
-              ),
-            ),
+            child: isLoading
+                ? Container(
+                    width: 20,
+                    height: 20,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2),
+                    ),
+                  )
+                : Text(
+                    'Simpan Data Anak',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: 'FFFFFF'.toColor(),
+                    ),
+                  ),
           ),
         ),
       ),

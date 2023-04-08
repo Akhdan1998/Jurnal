@@ -10,10 +10,11 @@ class HplCubit extends Cubit<HplState> {
   Future<void> getHpl(String token) async {
     ApiReturnHpl<Hpl> result =
     await HplServices.getHpl(token);
-    if (result.value != null) {
-      emit(HplLoaded(usia: result.value!));
-    } else {
-      emit(HplLoadingFailed(result.message));
-    }
+    emit(HplLoaded(usia: result.value!));
+    // if (result.value != null) {
+    //   emit(HplLoaded(usia: result.value!));
+    // } else {
+    //   emit(HplLoadingFailed(result.message));
+    // }
   }
 }

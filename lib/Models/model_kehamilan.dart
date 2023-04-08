@@ -7,6 +7,7 @@ class Kelahiran {
   String? nama_anak;
   String? hpht;
   String? hpl;
+  double? progress;
   int? usia;
   int? trimester;
   late AnakProgress anakProgress;
@@ -14,19 +15,7 @@ class Kelahiran {
   dynamic updated_at;
   dynamic deleted_at;
 
-  Kelahiran(
-      {this.id,
-      this.user_id,
-      this.anak_id,
-      this.nama_anak,
-      this.hpht,
-      this.hpl,
-      this.usia,
-      this.trimester,
-      required this.anakProgress,
-      this.created_at,
-      this.updated_at,
-      this.deleted_at});
+  Kelahiran({this.id, this.user_id, this.anak_id, this.nama_anak, this.hpht, this.hpl, this.progress, this.usia, this.trimester, required this.anakProgress, this.created_at, this.updated_at, this.deleted_at});
 
   Kelahiran.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -35,6 +24,7 @@ class Kelahiran {
     nama_anak = json['nama_anak'];
     hpht = json['hpht'];
     hpl = json['hpl'];
+    progress = json['progress'].toDouble();
     usia = json['usia'];
     trimester = json['trimester'];
     anakProgress = AnakProgress.fromJson(json['anak_progress']);

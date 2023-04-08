@@ -6,6 +6,36 @@ class keguguran extends StatefulWidget {
 }
 
 class _keguguranState extends State<keguguran> {
+  void gugur() async {
+    Uri url_ = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/kehamilan/delete');
+    var res = await http.post(
+      url_,
+      body: {
+        //
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      bool data = body["data"];
+      Get.offAll(navigation(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+        index: 3,
+      ));
+      // context
+      //     .read<KehamilanCubit>()
+      //     .getKehamilan('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+      // Navigator.of(context).pop(); //showmodel
+      // Navigator.of(context).pop(); //sheetbutton
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,9 +111,7 @@ class _keguguranState extends State<keguguran> {
           children: [
             GestureDetector(
               onTap: () {
-                Get.offAll(navigation(
-                    'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
-                    index: 3));
+                gugur();
               },
               child: Container(
                 alignment: Alignment.center,
@@ -108,7 +136,7 @@ class _keguguranState extends State<keguguran> {
             GestureDetector(
               onTap: () {
                 Get.offAll(navigation(
-                  'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
+                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
                   index: 3,
                 ));
               },

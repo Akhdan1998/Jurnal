@@ -4,18 +4,18 @@ import '../Models/model_kehamilan.dart';
 
 abstract class KehamilanState extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class KehamilanInitial extends KehamilanState {}
 
 class BuntingLoaded extends KehamilanState {
-  final Kelahiran bunting;
+  final Kelahiran? bunting;
 
-  BuntingLoaded({required this.bunting});
+  BuntingLoaded({this.bunting});
 
   @override
-  List<Object> get props => [bunting];
+  List<Object?> get props => [bunting];
 }
 
 class BuntingLoadingFailed extends KehamilanState {
@@ -24,5 +24,5 @@ class BuntingLoadingFailed extends KehamilanState {
   BuntingLoadingFailed(this.message);
 
   @override
-  List<Object> get props => [message!];
+  List<Object?> get props => [message];
 }

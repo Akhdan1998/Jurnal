@@ -384,7 +384,7 @@ class _imunisasidetailState extends State<imunisasidetail> {
                             color: Colors.black),
                       ),
                       content: Text(
-                        'Moms yakin akan menghapus data' + ' ' +
+                        'Kamu yakin akan menghapus data' + ' ' +
                             widget.imunisasi.title.toString() + ' ' +
                             'si Kecil?',
                         style: GoogleFonts.poppins().copyWith(

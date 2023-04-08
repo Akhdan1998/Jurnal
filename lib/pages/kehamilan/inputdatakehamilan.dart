@@ -30,9 +30,10 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
     if (response.statusCode == 200) {
       Kelahiran data = Kelahiran.fromJson(body['data']);
       print(response.body.toString());
+      print(response);
       Get.off(navigation(
         "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
-        index: 4,
+        index: 3,
       ));
     } else {
       throw 'Error ${response.statusCode} => ${body['meta']['message']}';
@@ -202,7 +203,7 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
                     HplServices();
                     //
                     setState(() {
-                      HPHT.text = DateFormat('yMMMMd').format(pickeddate);
+                      HPHT.text = DateFormat('yyyy-MM-dd').format(pickeddate);
                     });
                   }
                 },

@@ -13,7 +13,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
   final namaAnak = TextEditingController();
   final tanggalLahir = TextEditingController();
   String selectedKelamin3 = '';
-
+  bool isLoading = false;
   void updateData(String namaAnak, String tanggalLahir) async {
     try {
       Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/update');
@@ -35,6 +35,15 @@ class _ubahdataanakState extends State<ubahdataanak> {
       print(response.body.toString());
       Map<String, dynamic> body = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        Fluttertoast.showToast(
+            msg: "Kamu berhasil memperbaharui data anak!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 3,
+            backgroundColor: 'FF6969'.toColor(),
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         BuatDataAnak data = BuatDataAnak.fromJson(body['data']);
         print(response.body.toString());
         Get.offAll(
@@ -358,7 +367,16 @@ class _ubahdataanakState extends State<ubahdataanak> {
               color: 'FF6969'.toColor(),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Text(
+            child: isLoading
+                ? Container(
+              width: 20,
+              height: 20,
+              child: Center(
+                child: CircularProgressIndicator(
+                    color: Colors.white, strokeWidth: 2),
+              ),
+            )
+                : Text(
               'Simpan Data Anak',
               style: GoogleFonts.poppins().copyWith(
                 fontSize: 12,

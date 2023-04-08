@@ -4,13 +4,13 @@ List<String> listed = <String>[
   '0-3 Bulan',
   '3-6 Bulan',
   '6-9 Bulan',
-  '9 - 12 Bulan',
-  '12 - 18 Bulan',
-  '18 - 24 Bulan',
-  '24 - 36 Bulan',
-  '36 - 48 Bulan',
-  '48 - 60 Bulan',
-  '60 - 72 Bulan',
+  '9-12 Bulan',
+  '12-18 Bulan',
+  '18-24 Bulan',
+  '24-36 Bulan',
+  '36-48 Bulan',
+  '48-60 Bulan',
+  '60-72 Bulan',
 ];
 
 class Kembang extends StatefulWidget {
@@ -76,7 +76,10 @@ class _KembangState extends State<Kembang> {
                                   onTap: () {
                                     Get.back();
                                   },
-                                  child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: '888888'.toColor(),
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 12),
@@ -510,7 +513,10 @@ class _KembangState extends State<Kembang> {
                                   onTap: () {
                                     Get.back();
                                   },
-                                  child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: '888888'.toColor(),
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 12),

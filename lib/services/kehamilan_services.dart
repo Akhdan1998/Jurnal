@@ -24,12 +24,14 @@ class KehamilanServices {
     print(response);
     print(response.statusCode);
     print(response.body);
+
     var data = jsonDecode(response.body);
 //jika backand berbentuk list
 //     List<Kelahiran> value =
 //         (data['data'] as Iterable).map((e) => Kelahiran.fromJson(e)).toList();
 //jika backand tidak berbentuk list
-    Kelahiran value = Kelahiran.fromJson(data['data']);
+    Kelahiran? value =
+        (data['data'] != null) ? Kelahiran.fromJson(data['data']) : null;
     return ApiReturnKehamilan(value: value);
   }
 }
