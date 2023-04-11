@@ -14,7 +14,10 @@ class Kehamilan extends StatefulWidget {
 class _KehamilanState extends State<Kehamilan> {
   final hurufawalan = TextEditingController();
   String selectedKelamin2 = '';
+  String selectedKelamin3 = '';
   String dropdownValue = list.first;
+  bool show1 = false;
+  bool show2 = false;
 
   void hapus() async {
     Uri url_ = Uri.parse(
@@ -739,6 +742,37 @@ class _KehamilanState extends State<Kehamilan> {
                                 ],
                               ),
                             ),
+                            SizedBox(width: 20),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedKelamin2 = '3';
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: (selectedKelamin2 == '3')
+                                          ? 'FF6969'.toColor()
+                                          : 'E2E2E2'.toColor(),
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    'Unisex',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                      color: '6D6767'.toColor(),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(height: 15),
@@ -770,6 +804,180 @@ class _KehamilanState extends State<Kehamilan> {
                     ),
                   ),
                   // SizedBox(height: 200),
+                ],
+              ),
+            ),
+            SizedBox(height: 15),
+            Container(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5)),
+                      color: 'FF6969'.toColor(),
+                      border: Border.all(
+                        width: 1,
+                        color: 'F0F0F0'.toColor(),
+                      ),
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.only(
+                          left: 15, right: 15, top: 11, bottom: 11),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Hasil Pencarian',
+                            style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            'Semua Preferensi - Awalan A - Unisex',
+                            style: GoogleFonts.poppins().copyWith(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top: 11, bottom: 11),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5)),
+                      color: Colors.white,
+                      border: Border.all(
+                        width: 1,
+                        color: 'F0F0F0'.toColor(),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  '1.',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.black),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Anya',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  show1 = !show1;
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Detail',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                        color: 'FF6969'.toColor()),
+                                  ),
+                                  SizedBox(width: 5),
+                                  (show1 == true)
+                                      ? Icon(Icons.expand_less_outlined,
+                                          color: 'FF6969'.toColor())
+                                      : Icon(Icons.expand_more_outlined,
+                                          color: 'FF6969'.toColor()),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        (show1 == true)
+                            ? Text(
+                                'Merupakan nama seorang anak laki-laki yang ganteng tampan dan keren di kalangan gadis remaja hehe.',
+                                style: GoogleFonts.poppins().copyWith(
+                                    fontSize: 11, color: '414141'.toColor()),
+                              )
+                            : SizedBox(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  '2.',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.black),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Putri',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  show2 = !show2;
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Detail',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                        color: 'FF6969'.toColor()),
+                                  ),
+                                  SizedBox(width: 5),
+                                  (show2 == true)
+                                      ? Icon(Icons.expand_less_outlined,
+                                      color: 'FF6969'.toColor())
+                                      : Icon(Icons.expand_more_outlined,
+                                      color: 'FF6969'.toColor()),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        (show2 == true)
+                            ? Text(
+                          'Merupakan nama seorang anak laki-laki yang ganteng tampan dan keren di kalangan gadis remaja hehe.',
+                          style: GoogleFonts.poppins().copyWith(
+                              fontSize: 11, color: '414141'.toColor()),
+                        )
+                            : SizedBox(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -869,7 +1077,7 @@ class _KehamilanState extends State<Kehamilan> {
                             Divider(color: 'E5E3E3'.toColor()),
                             GestureDetector(
                               onTap: () {
-                                Get.to(sukseskecillahir());
+                                Get.to(sukseskecillahir(snapshot.bunting));
                               },
                               child: Container(
                                 color: Colors.white,

@@ -1,16 +1,45 @@
 part of '../pages.dart';
 
 class sukseskecillahir extends StatefulWidget {
+  Kelahiran? tekdung;
+
+  sukseskecillahir(this.tekdung);
+
   @override
   State<sukseskecillahir> createState() => _sukseskecillahirState();
 }
 
 class _sukseskecillahirState extends State<sukseskecillahir> {
+  void tandai() async {
+    Uri url_ = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/kehamilan/born');
+    var res = await http.post(
+      url_,
+      body: {
+        //
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      bool data = body["data"];
+      widget.tekdung;
+      Get.off(dataanakKehamilan(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.tekdung
+      ));
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-        appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -81,9 +110,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
           children: [
             GestureDetector(
               onTap: () {
-                Get.offAll(navigation(
-                    'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                    index: 3));
+                tandai();
               },
               child: Container(
                 alignment: Alignment.center,
@@ -94,7 +121,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Text(
-                  'Kembali Ke Jurnal Parent',
+                  'Tandai & Buat Data Anak',
                   style: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -107,7 +134,7 @@ class _sukseskecillahirState extends State<sukseskecillahir> {
             GestureDetector(
               onTap: () {
                 Get.offAll(navigation(
-                  'Bearer 1084|DFXS2Y1Xwbx1eylixrVZMPLUuJS8062KydUDrqsK',
+                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
                   index: 3,
                 ));
               },

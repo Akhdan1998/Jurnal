@@ -1,23 +1,29 @@
 part of '../pages.dart';
 
-class dataanak extends StatefulWidget {
+class dataanakKehamilan extends StatefulWidget {
+  String token;
+  Kelahiran? tekdung;
+
+  dataanakKehamilan(this.token, this.tekdung);
+
   @override
-  State<dataanak> createState() => _dataanakState();
+  State<dataanakKehamilan> createState() => _dataanakKehamilanState();
 }
 
-class _dataanakState extends State<dataanak> {
+class _dataanakKehamilanState extends State<dataanakKehamilan> {
   final namaAnakEditingController = TextEditingController();
   final tanggalLahirEditingController = TextEditingController();
   String selectedKelamin = '';
 
-  void saveData(String namaAnak, String tanggalLahir) async {
-    Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/create');
+  void saveKehamilan(String namaAnak, String tanggalLahir) async {
+    Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/create/kehamilan');
 
     String gender = (selectedKelamin == '1') ? "Laki-laki" : "Perempuan";
 
     var response = await http.post(
       url,
       body: {
+        'kehamilan_id': widget.tekdung!.id.toString(),
         'name': namaAnak,
         'gender': gender,
         'birthday': tanggalLahir + ' ' + '07:00:00',
@@ -34,7 +40,7 @@ class _dataanakState extends State<dataanak> {
       print(response.body.toString());
       Get.off(navigation(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-        index: 4,
+        index: 3,
       ));
     } else {
       throw 'Error ${response.statusCode} => ${body['meta']['message']}';
@@ -70,6 +76,8 @@ class _dataanakState extends State<dataanak> {
 
     var response = await request.send();
     String responseBody1 = await response.stream.bytesToString();
+    // print("WAWA" + responseBody1);
+
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
       var data = jsonDecode(responseBody);
@@ -352,7 +360,7 @@ class _dataanakState extends State<dataanak> {
             : EdgeInsets.only(left: 16, right: 16, bottom: 10, top: 10),
         child: GestureDetector(
           onTap: () {
-            saveData(namaAnakEditingController.text,
+            saveKehamilan(namaAnakEditingController.text,
                 tanggalLahirEditingController.text);
             uploadPhoto(_image!);
           },

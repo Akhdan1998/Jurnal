@@ -35,7 +35,7 @@ import '../services/hpl_services.dart';
 import '../services/merek_services.dart';
 
 part 'imunisasi/dataimunisasi.dart';
-
+part 'kehamilan/buatdatakehamilan.dart';
 part 'kehamilan/editdatakehamilan.dart';
 
 part 'profil/ubahdatadetailanak.dart';

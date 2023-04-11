@@ -123,7 +123,7 @@ class _keguguranState extends State<keguguran> {
                   // border: Border.all(width: 1, color: 'FF6969'.toColor()),
                 ),
                 child: Text(
-                  'Kembali Ke Jurnal Parent',
+                  'Laporkan Keguguran',
                   style: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -135,8 +135,7 @@ class _keguguranState extends State<keguguran> {
             SizedBox(height: 15),
             GestureDetector(
               onTap: () {
-                Get.offAll(navigation(
-                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                Get.offAll(navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
                   index: 3,
                 ));
               },
