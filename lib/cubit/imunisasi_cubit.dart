@@ -10,8 +10,7 @@ class ImunisasiCubit extends Cubit<ImunisasiState> {
   ImunisasiCubit() : super(ImunisasiInitial());
 
   Future<void> getImunisasi(String token) async {
-    ApiReturnValue<List<ImunisasiGroup>>? result =
-        await ImunisasiServices.getImunisasi(token);
+    ApiReturnValue<List<ImunisasiGroup>>? result = await ImunisasiServices.getImunisasi(token);
     if (result?.value != null) {
       emit(ImunisasiLoaded(imunisasi: result?.value));
     } else {
