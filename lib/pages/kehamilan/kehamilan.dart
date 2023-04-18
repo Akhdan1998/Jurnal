@@ -894,7 +894,7 @@ class _KehamilanState extends State<Kehamilan> {
                                         .mapIndexed(
                                           (int index, e) => Container(
                                             padding: EdgeInsets.only(
-                                                left: 8, right: 5),
+                                                left: 10, right: 10, top: 5, bottom: 5),
                                             color: (index.isEven)
                                                 ? Colors.white
                                                 : 'FFF9F9'.toColor(),

@@ -400,76 +400,78 @@ class _finderState extends State<finder> {
                             children: snapshot.abjad!
                                 .mapIndexed(
                                   (int index, e) => Container(
-                                    padding: EdgeInsets.only(left: 8, right: 5),
                                     color: (index.isEven)
                                         ? Colors.white
                                         : 'FFF9F9'.toColor(),
                                     child: Column(children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(children: [
-                                            Text(
-                                              '${index + 1}' + '.',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 12,
-                                                      color: Colors.black),
+                                      Container(
+                                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(children: [
+                                              Text(
+                                                '${index + 1}' '.',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 12,
+                                                        color: Colors.black),
+                                              ),
+                                              SizedBox(width: 5),
+                                              Text(
+                                                e.nama ?? '',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 12,
+                                                        color: Colors.black),
+                                              ),
+                                            ]),
+                                            GestureDetector(
+                                              onTap: () {
+                                                if (show1 == e.id) {
+                                                  setState(() {
+                                                    show1 = null;
+                                                  });
+                                                } else {
+                                                  setState(() {
+                                                    show1 = e.id;
+                                                  });
+                                                }
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Detail',
+                                                    style: GoogleFonts.poppins()
+                                                        .copyWith(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                            color: 'FF6969'
+                                                                .toColor()),
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  (show1 == e.id)
+                                                      ? Icon(
+                                                          Icons
+                                                              .expand_less_outlined,
+                                                          color:
+                                                              'FF6969'.toColor())
+                                                      : Icon(
+                                                          Icons
+                                                              .expand_more_outlined,
+                                                          color:
+                                                              'FF6969'.toColor()),
+                                                ],
+                                              ),
                                             ),
-                                            SizedBox(width: 5),
-                                            Text(
-                                              e.nama ?? '',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 12,
-                                                      color: Colors.black),
-                                            ),
-                                          ]),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (show1 == e.id) {
-                                                setState(() {
-                                                  show1 = null;
-                                                });
-                                              } else {
-                                                setState(() {
-                                                  show1 = e.id;
-                                                });
-                                              }
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  'Detail',
-                                                  style: GoogleFonts.poppins()
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 12,
-                                                          color: 'FF6969'
-                                                              .toColor()),
-                                                ),
-                                                SizedBox(width: 5),
-                                                (show1 == e.id)
-                                                    ? Icon(
-                                                        Icons
-                                                            .expand_less_outlined,
-                                                        color:
-                                                            'FF6969'.toColor())
-                                                    : Icon(
-                                                        Icons
-                                                            .expand_more_outlined,
-                                                        color:
-                                                            'FF6969'.toColor()),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                       (show1 == e.id)
                                           ? Text(
