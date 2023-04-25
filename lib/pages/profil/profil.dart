@@ -331,7 +331,7 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      '-',
+                                                      snapshot.dataanak!.first.berat_lahir.toString() ?? '' + 'kg',
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -342,14 +342,6 @@ class _ProfilState extends State<Profil> {
                                                             'FF6969'.toColor(),
                                                       ),
                                                     ),
-                                                    // Text(
-                                                    //   'kg',
-                                                    //   style: GoogleFonts.poppins().copyWith(
-                                                    //     fontWeight: FontWeight.bold,
-                                                    //     fontSize: 18,
-                                                    //     color: 'FF6969'.toColor(),
-                                                    //   ),
-                                                    // ),
                                                   ],
                                                 ),
                                               ],
@@ -393,7 +385,7 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      '-',
+                                                      snapshot.dataanak!.first.tinggi_lahir.toString() ?? '' + 'cm',
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -455,7 +447,7 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      '-',
+                                                      snapshot.dataanak!.first.lingkar_kepala_lahir.toString() ?? '',
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -683,7 +675,7 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          '-',
+                                          snapshot.dataanak!.first.berat_lahir.toString() ?? '' + 'kg',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
@@ -732,7 +724,7 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          '-',
+                                          snapshot.dataanak!.first.tinggi_lahir.toString() ?? '' + 'cm',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
@@ -781,7 +773,7 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          '-',
+                                          snapshot.dataanak!.first.lingkar_kepala_lahir.toString() ?? '',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
