@@ -38,9 +38,13 @@ import '../cubit/temanama_state.dart';
 import '../services/hpl_services.dart';
 import 'package:collection/collection.dart';
 import '../services/merek_services.dart';
+
 part 'findername/finder.dart';
+
 part 'imunisasi/dataimunisasi.dart';
+
 part 'kehamilan/buatdatakehamilan.dart';
+
 part 'kehamilan/editdatakehamilan.dart';
 
 part 'profil/ubahdatadetailanak.dart';

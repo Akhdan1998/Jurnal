@@ -58,7 +58,10 @@ class _ProfilState extends State<Profil> {
                                         onTap: () {
                                           Get.back();
                                         },
-                                        child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          color: '888888'.toColor(),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 12),
@@ -331,7 +334,38 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      snapshot.dataanak!.first.berat_lahir.toString() ?? '' + 'kg',
+                                                      snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .isNotEmpty
+                                                          ? (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .pertumbuhan!
+                                                                  .first
+                                                                  .berat
+                                                                  .toString() ??
+                                                              '')
+                                                          : (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .berat_lahir
+                                                                  .toString() ??
+                                                              ''),
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                        color:
+                                                            'FF6969'.toColor(),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      'kg',
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -385,7 +419,25 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      snapshot.dataanak!.first.tinggi_lahir.toString() ?? '' + 'cm',
+                                                      (snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .isNotEmpty)
+                                                          ? (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .pertumbuhan!
+                                                                  .first
+                                                                  .tinggi
+                                                                  .toString() ??
+                                                              '')
+                                                          : (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .tinggi_lahir
+                                                                  .toString() ??
+                                                              ''),
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -396,14 +448,19 @@ class _ProfilState extends State<Profil> {
                                                             '86C3BB'.toColor(),
                                                       ),
                                                     ),
-                                                    // Text(
-                                                    //   'cm',
-                                                    //   style: GoogleFonts.poppins().copyWith(
-                                                    //     fontWeight: FontWeight.bold,
-                                                    //     fontSize: 18,
-                                                    //     color: '86C3BB'.toColor(),
-                                                    //   ),
-                                                    // ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      'cm',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                        color:
+                                                            '86C3BB'.toColor(),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ],
@@ -447,7 +504,25 @@ class _ProfilState extends State<Profil> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      snapshot.dataanak!.first.lingkar_kepala_lahir.toString() ?? '',
+                                                      (snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .isNotEmpty)
+                                                          ? (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .pertumbuhan!
+                                                                  .first
+                                                                  .lingkar_kepala
+                                                                  .toString() ??
+                                                              '')
+                                                          : (snapshot
+                                                                  .dataanak!
+                                                                  .first
+                                                                  .lingkar_kepala_lahir
+                                                                  .toString() ??
+                                                              ''),
                                                       style:
                                                           GoogleFonts.poppins()
                                                               .copyWith(
@@ -458,14 +533,19 @@ class _ProfilState extends State<Profil> {
                                                             'D1B654'.toColor(),
                                                       ),
                                                     ),
-                                                    // Text(
-                                                    //   'cm',
-                                                    //   style: GoogleFonts.poppins().copyWith(
-                                                    //     fontWeight: FontWeight.bold,
-                                                    //     fontSize: 18,
-                                                    //     color: 'D1B654'.toColor(),
-                                                    //   ),
-                                                    // ),
+                                                    SizedBox(width: 3),
+                                                    Text(
+                                                      'cm',
+                                                      style:
+                                                          GoogleFonts.poppins()
+                                                              .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18,
+                                                        color:
+                                                            'D1B654'.toColor(),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ],
@@ -501,7 +581,10 @@ class _ProfilState extends State<Profil> {
                                         onTap: () {
                                           Get.back();
                                         },
-                                        child: Icon(Icons.arrow_back, color: '888888'.toColor(),),
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          color: '888888'.toColor(),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 12),
@@ -675,21 +758,24 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          snapshot.dataanak!.first.berat_lahir.toString() ?? '' + 'kg',
+                                          snapshot.dataanak!.first.berat_lahir
+                                                  .toString() ??
+                                              '',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
                                             color: 'FF6969'.toColor(),
                                           ),
                                         ),
-                                        // Text(
-                                        //   'kg',
-                                        //   style: GoogleFonts.poppins().copyWith(
-                                        //     fontWeight: FontWeight.bold,
-                                        //     fontSize: 18,
-                                        //     color: 'FF6969'.toColor(),
-                                        //   ),
-                                        // ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          'kg',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: 'FF6969'.toColor(),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -724,21 +810,24 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          snapshot.dataanak!.first.tinggi_lahir.toString() ?? '' + 'cm',
+                                          snapshot.dataanak!.first.tinggi_lahir
+                                                  .toString() ??
+                                              '' + 'cm',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
                                             color: '86C3BB'.toColor(),
                                           ),
                                         ),
-                                        // Text(
-                                        //   'cm',
-                                        //   style: GoogleFonts.poppins().copyWith(
-                                        //     fontWeight: FontWeight.bold,
-                                        //     fontSize: 18,
-                                        //     color: '86C3BB'.toColor(),
-                                        //   ),
-                                        // ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          'cm',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: '86C3BB'.toColor(),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -773,21 +862,25 @@ class _ProfilState extends State<Profil> {
                                     Row(
                                       children: [
                                         Text(
-                                          snapshot.dataanak!.first.lingkar_kepala_lahir.toString() ?? '',
+                                          snapshot.dataanak!.first
+                                                  .lingkar_kepala_lahir
+                                                  .toString() ??
+                                              '',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
                                             color: 'D1B654'.toColor(),
                                           ),
                                         ),
-                                        // Text(
-                                        //   'cm',
-                                        //   style: GoogleFonts.poppins().copyWith(
-                                        //     fontWeight: FontWeight.bold,
-                                        //     fontSize: 18,
-                                        //     color: 'D1B654'.toColor(),
-                                        //   ),
-                                        // ),
+                                        SizedBox(width: 3),
+                                        Text(
+                                          'cm',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: 'D1B654'.toColor(),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -800,118 +893,141 @@ class _ProfilState extends State<Profil> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.only(left: 16, right: 16),
-                    child: Container(
-                      padding: EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          width: 1,
-                          color: 'F0F0F0'.toColor(),
-                        ),
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      // height: 131,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Pengaturan:',
-                            style: GoogleFonts.poppins().copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: '323232'.toColor(),
-                            ),
-                          ),
-                          SizedBox(height: 7),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(ubahdataanak(snapshot.dataanak!
-                                  .firstWhere((e) => e.is_active == 1)));
-                            },
+                  BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
+                    builder: (context, snapshot) {
+                      if (snapshot is BuatdataanakLoaded) {
+                        if (snapshot.dataanak != null &&
+                            snapshot.dataanak!.isNotEmpty) {
+                          return Container(
+                            padding: EdgeInsets.only(left: 16, right: 16),
                             child: Container(
-                              color: Colors.white,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  width: 1,
+                                  color: 'F0F0F0'.toColor(),
+                                ),
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              // height: 131,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Ubah Profil Anak',
+                                    'Pengaturan:',
                                     style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 12,
-                                      color: '424242'.toColor(),
+                                      color: '323232'.toColor(),
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.chevron_right_outlined,
-                                    color: '424242'.toColor(),
+                                  SizedBox(height: 7),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(ubahdataanak(snapshot.dataanak!
+                                          .firstWhere(
+                                              (e) => e.is_active == 1)));
+                                    },
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Ubah Profil Anak',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 12,
+                                              color: '424242'.toColor(),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.chevron_right_outlined,
+                                            color: '424242'.toColor(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(color: 'E5E3E3'.toColor()),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(ubahdatadetailanak(
+                                          snapshot.dataanak!.firstWhere(
+                                              (e) => e.is_active == 1)));
+                                    },
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Lengkapi Data Anak',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 12,
+                                              color: '424242'.toColor(),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.chevron_right_outlined,
+                                            color: '424242'.toColor(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(color: 'E5E3E3'.toColor()),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(ubahdatakelahirananak(
+                                          snapshot.dataanak!.firstWhere(
+                                              (e) => e.is_active == 1)));
+                                    },
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Lengkapi Data Kelahiran Anak',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 12,
+                                              color: '424242'.toColor(),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.chevron_right_outlined,
+                                            color: '424242'.toColor(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: 'FF6969'.toColor(),
                           ),
-                          Divider(color: 'E5E3E3'.toColor()),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(ubahdatadetailanak(snapshot.dataanak!
-                                  .firstWhere((e) => e.is_active == 1)));
-                            },
-                            child: Container(
-                              color: Colors.white,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Lengkapi Data Anak',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      color: '424242'.toColor(),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right_outlined,
-                                    color: '424242'.toColor(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Divider(color: 'E5E3E3'.toColor()),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(ubahdatakelahirananak(snapshot.dataanak!
-                                  .firstWhere((e) => e.is_active == 1)));
-                            },
-                            child: Container(
-                              color: Colors.white,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Lengkapi Data Kelahiran Anak',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      color: '424242'.toColor(),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right_outlined,
-                                    color: '424242'.toColor(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 10),
                 ],

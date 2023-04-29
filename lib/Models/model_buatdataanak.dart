@@ -1,3 +1,5 @@
+import 'model_pertumbuhan.dart';
+
 class BuatDataAnak {
   int? id;
   String? user_id;
@@ -14,6 +16,7 @@ class BuatDataAnak {
   int? berat_lahir;
   int? tinggi_lahir;
   int? lingkar_kepala_lahir;
+  List<Pertumbuhan>? pertumbuhan;
   dynamic created_at;
   dynamic updated_at;
   dynamic deleted_at;
@@ -34,6 +37,7 @@ class BuatDataAnak {
       this.berat_lahir,
       this.tinggi_lahir,
       this.lingkar_kepala_lahir,
+      this.pertumbuhan,
       this.created_at,
       this.updated_at,
       this.deleted_at});
@@ -54,6 +58,9 @@ class BuatDataAnak {
     berat_lahir = json['berat_lahir'];
     tinggi_lahir = json['tinggi_lahir'];
     lingkar_kepala_lahir = json['lingkar_kepala_lahir'];
+    pertumbuhan = (json['pertumbuhan'] != null) ? (json['pertumbuhan'] as Iterable)
+        .map((e) => Pertumbuhan.fromJson(e))
+        .toList() : [];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];

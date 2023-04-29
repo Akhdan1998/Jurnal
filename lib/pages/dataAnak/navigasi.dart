@@ -46,7 +46,7 @@ class _navigationState extends State<navigation> {
             width: MediaQuery.of(context).size.width,
             child: PageView(controller: controller, children: [
               Profil(''),
-              Tumbuh(),
+              Tumbuh(''),
               Kembang(''),
               Kehamilan(''),
               imunisasi(''),
