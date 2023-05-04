@@ -33,14 +33,18 @@ import '../cubit/kehamilan_cubit.dart';
 import '../cubit/kehamilan_state.dart';
 import '../cubit/merekimunisasi_cubit.dart';
 import '../cubit/milestone_cubit.dart';
+import '../cubit/pertumbuhan_cubit.dart';
+import '../cubit/pertumbuhan_state.dart';
 import '../cubit/temanama_cubit.dart';
 import '../cubit/temanama_state.dart';
+import '../cubit/tinggi_cubit.dart';
+import '../cubit/tinggi_state.dart';
 import '../services/hpl_services.dart';
 import 'package:collection/collection.dart';
 import '../services/merek_services.dart';
-
+part 'tumbuh/riwayatpencatatan_berat.dart';
 part 'findername/finder.dart';
-
+part 'tumbuh/riwayatpencatatan_lk.dart';
 part 'imunisasi/dataimunisasi.dart';
 
 part 'kehamilan/buatdatakehamilan.dart';
@@ -53,7 +57,7 @@ part 'imunisasi/successimunisasi.dart';
 
 part '../widget/kategori.dart';
 
-part 'tumbuh/riwayatpencatatan.dart';
+part 'tumbuh/riwayatpencatatan_tinggi.dart';
 
 part 'profil/ubahdatakelahirananak.dart';
 

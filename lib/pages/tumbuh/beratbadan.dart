@@ -502,156 +502,172 @@ class _beratbadanState extends State<beratbadan> {
               ),
             ),
             SizedBox(height: 15),
-            Container(
-              // height: MediaQuery.of(context).size.height,
-              // width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
-              ),
-              padding: EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Riwayat Pencatatan:',
-                        style: GoogleFonts.poppins().copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11,
-                          color: '323232'.toColor(),
-                        ),
+            BlocBuilder<TumbuhCubit, TumbuhState>(
+              builder: (context, snapshot) {
+                if (snapshot is TumbuhLoaded) {
+                  if (snapshot.tumbuh != null) {
+                    return Container(
+                      // height: MediaQuery.of(context).size.height,
+                      // width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(riwayatpencatatan());
-                        },
-                        child: Text(
-                          'Lihat Semua',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10,
-                            color: 'FF6969'.toColor(),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 9),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
+                      padding: EdgeInsets.all(12),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Tanggal',
-                            style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              color: '414141'.toColor(),
-                            ),
-                          ),
-                          SizedBox(height: 12),
-                          Text(
-                            '13 Januari 2023',
-                            style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: '414141'.toColor(),
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            '12 Januari 2023',
-                            style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: '414141'.toColor(),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Berat Badan (Gram)',
-                            style: GoogleFonts.poppins().copyWith(
-                              fontSize: 11,
-                              color: '414141'.toColor(),
-                            ),
-                          ),
-                          SizedBox(height: 12),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '61',
+                                'Riwayat Pencatatan:',
                                 style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 11,
                                   fontWeight: FontWeight.bold,
-                                  color: '414141'.toColor(),
+                                  fontSize: 11,
+                                  color: '323232'.toColor(),
                                 ),
                               ),
-                              SizedBox(width: 3),
-                              Text(
-                                'cm',
-                                style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: '414141'.toColor(),
-                                ),
-                              ),
-                              SizedBox(width: 6),
                               GestureDetector(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.delete,
-                                  color: 'FF6969'.toColor(),
-                                  size: 18,
+                                onTap: () {
+                                  Get.to(riwayatpencatatanberat());
+                                },
+                                child: Text(
+                                  'Lihat Semua',
+                                  style: GoogleFonts.poppins().copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
+                                    color: 'FF6969'.toColor(),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 9),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '51',
-                                style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: '414141'.toColor(),
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Tanggal',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 11,
+                                      color: '414141'.toColor(),
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Text(
+                                    snapshot.tumbuh!.first.checked_at.toString() ?? '',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      color: '414141'.toColor(),
+                                    ),
+                                  ),
+                                  // SizedBox(height: 10),
+                                  // Text(
+                                  //   '12 Januari 2023',
+                                  //   style: GoogleFonts.poppins().copyWith(
+                                  //     fontSize: 11,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: '414141'.toColor(),
+                                  //   ),
+                                  // ),
+                                ],
                               ),
-                              SizedBox(width: 3),
-                              Text(
-                                'cm',
-                                style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: '414141'.toColor(),
-                                ),
-                              ),
-                              SizedBox(width: 6),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.delete,
-                                  color: 'FF6969'.toColor(),
-                                  size: 18,
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Berat Badan (Gram)',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 11,
+                                      color: '414141'.toColor(),
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        snapshot.tumbuh!.first.berat.toString() ?? '',
+                                        style: GoogleFonts.poppins().copyWith(
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                          color: '414141'.toColor(),
+                                        ),
+                                      ),
+                                      SizedBox(width: 3),
+                                      Text(
+                                        'gram',
+                                        style: GoogleFonts.poppins().copyWith(
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                          color: '414141'.toColor(),
+                                        ),
+                                      ),
+                                      SizedBox(width: 6),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: 'FF6969'.toColor(),
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  // SizedBox(height: 10),
+                                  // Row(
+                                  //   children: [
+                                  //     Text(
+                                  //       '51',
+                                  //       style: GoogleFonts.poppins().copyWith(
+                                  //         fontSize: 11,
+                                  //         fontWeight: FontWeight.bold,
+                                  //         color: '414141'.toColor(),
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(width: 3),
+                                  //     Text(
+                                  //       'cm',
+                                  //       style: GoogleFonts.poppins().copyWith(
+                                  //         fontSize: 11,
+                                  //         fontWeight: FontWeight.bold,
+                                  //         color: '414141'.toColor(),
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(width: 6),
+                                  //     GestureDetector(
+                                  //       onTap: () {},
+                                  //       child: Icon(
+                                  //         Icons.delete,
+                                  //         color: 'FF6969'.toColor(),
+                                  //         size: 18,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                ],
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: 'FF6969'.toColor(),
+                    ),
+                  );
+                }
+              },
             ),
             SizedBox(height: 15),
           ],
