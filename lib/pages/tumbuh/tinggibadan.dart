@@ -13,7 +13,8 @@ class _tinggibadanState extends State<tinggibadan> {
   @override
   void initState() {
     super.initState();
-    context.read<TumbuhCubit>().getTumbuh('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -508,10 +509,10 @@ class _tinggibadanState extends State<tinggibadan> {
               ),
             ),
             SizedBox(height: 15),
-            BlocBuilder<TumbuhCubit, TumbuhState>(
+            BlocBuilder<TumbuhTinggiCubit, TumbuhTinggiState>(
               builder: (context, snapshot) {
-                if (snapshot is TumbuhLoaded) {
-                  if (snapshot.tumbuh != null) {
+                if (snapshot is TumbuhTinggiLoaded) {
+                  if (snapshot.tumbuhtinggi != null) {
                     return Container(
                       // height: MediaQuery.of(context).size.height,
                       // width: MediaQuery.of(context).size.width,
@@ -566,7 +567,9 @@ class _tinggibadanState extends State<tinggibadan> {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    snapshot.tumbuh!.first.checked_at.toString() ?? '',
+                                    snapshot.tumbuhtinggi!.first.checked_at
+                                            .toString() ??
+                                        '',
                                     style: GoogleFonts.poppins().copyWith(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
@@ -590,7 +593,9 @@ class _tinggibadanState extends State<tinggibadan> {
                                   Row(
                                     children: [
                                       Text(
-                                        snapshot.tumbuh!.first.tinggi.toString() ?? '',
+                                        snapshot.tumbuhtinggi!.first.tinggi
+                                                .toString() ??
+                                            '',
                                         style: GoogleFonts.poppins().copyWith(
                                           fontSize: 11,
                                           fontWeight: FontWeight.bold,
@@ -625,7 +630,7 @@ class _tinggibadanState extends State<tinggibadan> {
                         ],
                       ),
                     );
-                } else {
+                  } else {
                     return SizedBox();
                   }
                 } else {

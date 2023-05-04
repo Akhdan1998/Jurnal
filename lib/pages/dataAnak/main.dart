@@ -18,12 +18,17 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => HplCubit()),
         BlocProvider(create: (_) => TemaCubit()),
         BlocProvider(create: (_) => HurufCubit()),
-        BlocProvider(create: (_) => TumbuhCubit()),
+        BlocProvider(create: (_) => TumbuhTinggiCubit()),
+        BlocProvider(create: (_) => TumbuhBeratCubit()),
+        BlocProvider(create: (_) => TumbuhLkCubit()),
         BlocProvider(create: (_) => TinggiCubit()),
+        BlocProvider(create: (_) => BeratCubit()),
+        BlocProvider(create: (_) => LkCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'),
+        home:
+            navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'),
       ),
     );
   }

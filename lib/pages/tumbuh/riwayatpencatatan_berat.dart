@@ -41,9 +41,9 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
           ],
         ),
       ),
-      body: BlocBuilder<TinggiCubit, TinggiState>(builder: (context, snapshot) {
-        if (snapshot is TinggiLoaded) {
-          if (snapshot.tinggi != null) {
+      body: BlocBuilder<BeratCubit, BeratState>(builder: (context, snapshot) {
+        if (snapshot is BeratLoaded) {
+          if (snapshot.berat != null) {
             return Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 15),
               child: Column(
@@ -106,7 +106,7 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
                         children: [
                           Container(
                             width: 90,
-                            child: Text(snapshot.tinggi!.first.checked_at.toString() ?? '',
+                            child: Text(snapshot.berat!.first.checked_at.toString() ?? '',
                               style: GoogleFonts.poppins().copyWith(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -132,7 +132,7 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
                         children: [
                           Container(
                             width: 70,
-                            child: Text(snapshot.tinggi!.first.tinggi.toString() ?? '',
+                            child: Text(snapshot.berat!.first.tinggi.toString() ?? '',
                               style: GoogleFonts.poppins().copyWith(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
                         children: [
                           Container(
                             width: 60,
-                            child: Text(snapshot.tinggi!.first.berat.toString() ?? '',
+                            child: Text(snapshot.berat!.first.berat.toString() ?? '',
                               style: GoogleFonts.poppins().copyWith(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -187,7 +187,7 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(snapshot.tinggi!.first.lingkar_kepala.toString() ?? '',
+                                Text(snapshot.berat!.first.lingkar_kepala.toString() ?? '',
                                   style: GoogleFonts.poppins().copyWith(
                                     fontSize: 11,
                                     fontWeight: FontWeight.bold,
@@ -245,6 +245,6 @@ class _riwayatpencatatanberatState extends State<riwayatpencatatanberat> {
   @override
   void initState() {
     super.initState();
-    context.read<TinggiCubit>().getTinggi('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<BeratCubit>().getBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 }

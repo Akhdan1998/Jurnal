@@ -6,6 +6,7 @@ class beratbadan extends StatefulWidget {
 }
 
 class _beratbadanState extends State<beratbadan> {
+
   final tanggalcek = TextEditingController();
   final berat = TextEditingController();
   String selectedGrafik = '1';
@@ -502,10 +503,10 @@ class _beratbadanState extends State<beratbadan> {
               ),
             ),
             SizedBox(height: 15),
-            BlocBuilder<TumbuhCubit, TumbuhState>(
+            BlocBuilder<TumbuhBeratCubit, TumbuhBeratState>(
               builder: (context, snapshot) {
-                if (snapshot is TumbuhLoaded) {
-                  if (snapshot.tumbuh != null) {
+                if (snapshot is TumbuhBeratLoaded) {
+                  if (snapshot.tumbuhBerat != null) {
                     return Container(
                       // height: MediaQuery.of(context).size.height,
                       // width: MediaQuery.of(context).size.width,
@@ -560,7 +561,7 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    snapshot.tumbuh!.first.checked_at.toString() ?? '',
+                                    snapshot.tumbuhBerat!.first.checked_at.toString() ?? '',
                                     style: GoogleFonts.poppins().copyWith(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
@@ -592,7 +593,7 @@ class _beratbadanState extends State<beratbadan> {
                                   Row(
                                     children: [
                                       Text(
-                                        snapshot.tumbuh!.first.berat.toString() ?? '',
+                                        snapshot.tumbuhBerat!.first.berat.toString() ?? '',
                                         style: GoogleFonts.poppins().copyWith(
                                           fontSize: 11,
                                           fontWeight: FontWeight.bold,
@@ -674,5 +675,11 @@ class _beratbadanState extends State<beratbadan> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<TumbuhBeratCubit>().gettumbuhBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 }

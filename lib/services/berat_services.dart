@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../Models/api_return_tinggi.dart';
-import '../Models/model_tinggi.dart';
+import '../Models/api_return_berat.dart';
+import '../Models/model_berat.dart';
 
-class TinggiServices {
-  static Future<ApiReturnTinggi<List<Tinggi>>?> getTinggi(String token,
+class BeratServices {
+  static Future<ApiReturnBerat<List<Berat>>?> getBerat(String token,
       {http.Client? client}) async {
     String baseUrl =
         'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=7248038741';
@@ -19,14 +19,14 @@ class TinggiServices {
       'Authorization': '${token}'
     });
     if (response.statusCode != 200) {
-      return ApiReturnTinggi(message: 'Please try Again');
+      return ApiReturnBerat(message: 'Please try Again');
     }
     var data = jsonDecode(response.body);
 //jika backand berbentuk list
-    List<Tinggi> value =
-        (data['data'] as Iterable).map((e) => Tinggi.fromJson(e)).toList();
+    List<Berat> value =
+        (data['data'] as Iterable).map((e) => Berat.fromJson(e)).toList();
 //jika backand tidak berbentuk list
     //CommunityGroup value1 = CommunityGroup.fromJson(data['data']);
-    return ApiReturnTinggi(value: value);
+    return ApiReturnBerat(value: value);
   }
 }

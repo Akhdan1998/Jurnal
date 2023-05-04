@@ -11,6 +11,12 @@ class _lingkarkepalaState extends State<lingkarkepala> {
   String selectedGrafik = '1';
 
   @override
+  void initState() {
+    super.initState();
+    context.read<TumbuhLkCubit>().gettumbuhLk('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -503,10 +509,10 @@ class _lingkarkepalaState extends State<lingkarkepala> {
               ),
             ),
             SizedBox(height: 15),
-            BlocBuilder<TumbuhCubit, TumbuhState>(
+            BlocBuilder<TumbuhLkCubit, TumbuhLkState>(
               builder: (context, snapshot) {
-                if (snapshot is TumbuhLoaded) {
-                  if (snapshot.tumbuh != null) {
+                if (snapshot is TumbuhLkLoaded) {
+                  if (snapshot.tumbuhLk != null) {
                     return Container(
                       // height: MediaQuery.of(context).size.height,
                       // width: MediaQuery.of(context).size.width,
@@ -561,7 +567,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    snapshot.tumbuh!.first.checked_at.toString() ?? '',
+                                    snapshot.tumbuhLk!.first.checked_at.toString() ?? '',
                                     style: GoogleFonts.poppins().copyWith(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
@@ -593,7 +599,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   Row(
                                     children: [
                                       Text(
-                                        snapshot.tumbuh!.first.lingkar_kepala.toString() ?? '',
+                                        snapshot.tumbuhLk!.first.lingkar_kepala.toString() ?? '',
                                         style: GoogleFonts.poppins().copyWith(
                                           fontSize: 11,
                                           fontWeight: FontWeight.bold,
