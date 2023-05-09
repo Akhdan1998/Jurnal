@@ -15,6 +15,8 @@ class _tinggibadanState extends State<tinggibadan> {
     super.initState();
     context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<GrafikTinggiCubit>().getGrafikTinggi(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
   @override
@@ -68,74 +70,162 @@ class _tinggibadanState extends State<tinggibadan> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(right: 16),
-                    child: AspectRatio(
-                      aspectRatio: 15 / 10,
-                      child: LineChart(
-                        LineChartData(
-                          maxX: 30,
-                          minX: 0,
-                          maxY: 100,
-                          minY: 0,
-                          titlesData: FlTitlesData(
-                            show: true,
-                            topTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: false,
+                  BlocBuilder<GrafikTinggiCubit, GrafikTinggiState>(
+                    builder: (context, snapshot) {
+                      if (snapshot is GrafikTinggiLoaded) {
+                        if (snapshot.grafiktinggi != null) {
+                          return Container(
+                            padding: EdgeInsets.only(right: 16),
+                            child: AspectRatio(
+                              aspectRatio: 15 / 10,
+                              child: LineChart(
+                                LineChartData(
+                                  maxX: 60,
+                                  minX: 0,
+                                  maxY: 120,
+                                  minY: 0,
+                                  clipData: FlClipData(
+                                      top: true,
+                                      bottom: false,
+                                      left: false,
+                                      right: false),
+                                  titlesData: FlTitlesData(
+                                    show: true,
+                                    topTitles: AxisTitles(
+                                      sideTitles: SideTitles(
+                                        showTitles: false,
+                                      ),
+                                    ),
+                                    rightTitles: AxisTitles(
+                                      sideTitles: SideTitles(
+                                        showTitles: false,
+                                      ),
+                                    ),
+                                  ),
+                                  gridData: FlGridData(
+                                    show: true,
+                                    drawVerticalLine: false,
+                                    drawHorizontalLine: true,
+                                  ),
+                                  borderData: FlBorderData(
+                                    show: true,
+                                    border: Border(
+                                      top: BorderSide(
+                                        style: BorderStyle.solid,
+                                        color: 'CFCFCF'.toColor(),
+                                      ),
+                                    ),
+                                  ),
+                                  lineBarsData: [
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.tigasd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: Colors.blue,
+                                      // color: '9E401E'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // 1
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.duasd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: 'FD7948'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // 2
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.satusd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '9E401E'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // 3
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.median!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '529166'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // median
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.mintigasd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '9E401E'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // -3
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.minduasd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: 'FC7847'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // -2
+                                    LineChartBarData(
+                                      spots: snapshot.grafiktinggi!.minsatusd!
+                                          .where((element) =>
+                                              element.gender == "Laki-laki")
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.tinggi!.toDouble() ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: Colors.purpleAccent,
+                                      // color: '529166'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ), // -1
+                                  ],
+                                ),
                               ),
                             ),
-                            rightTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: false,
-                              ),
-                            ),
-                            // leftTitles: AxisTitles(
-                            //   sideTitles: SideTitles(
-                            //     showTitles: false,
-                            //     reservedSize: 23,
-                            //   ),
-                            // ),
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: 'FF6969'.toColor(),
                           ),
-                          gridData: FlGridData(
-                            show: true,
-                            drawVerticalLine: false,
-                            drawHorizontalLine: true,
-                            // getDrawingHorizontalLine: (value) {
-                            //   return FlLine(
-                            //     color: 'ECECEC'.toColor(),
-                            //     strokeWidth: 1,
-                            //   );
-                            // }
-                          ),
-                          borderData: FlBorderData(
-                            show: true,
-                            border: Border(
-                              top: BorderSide(
-                                style: BorderStyle.solid,
-                                color: 'CFCFCF'.toColor(),
-                              ),
-                            ),
-                          ),
-                          lineBarsData: [
-                            LineChartBarData(
-                              spots: [
-                                FlSpot(0, 0),
-                                FlSpot(5, 50),
-                                FlSpot(10, 20),
-                                FlSpot(20, 100),
-                                FlSpot(25, 60),
-                                FlSpot(30, 80),
-                              ],
-                              isCurved: true,
-                              color: 'FF6969'.toColor(),
-                              barWidth: 1,
-                              dotData: FlDotData(show: true),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 11),
                   Container(
@@ -157,25 +247,9 @@ class _tinggibadanState extends State<tinggibadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '3',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -193,25 +267,30 @@ class _tinggibadanState extends State<tinggibadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '2',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Colors.purpleAccent,
+                                      // color: 'FC7847'.toColor(),
+                                    ),
                                   ),
-                                  SizedBox(width: 3),
+                                  SizedBox(width: 5),
                                   Text(
-                                    'SD',
+                                    '- 1 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -231,7 +310,28 @@ class _tinggibadanState extends State<tinggibadan> {
                                   Text(
                                     'Median',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: '434343'.toColor()),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      // color: 'FD7948'.toColor(),
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    '1 SD',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -249,17 +349,9 @@ class _tinggibadanState extends State<tinggibadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '2',
+                                    '2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -277,17 +369,9 @@ class _tinggibadanState extends State<tinggibadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '3',
+                                    '3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),

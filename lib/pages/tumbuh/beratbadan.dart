@@ -6,10 +6,10 @@ class beratbadan extends StatefulWidget {
 }
 
 class _beratbadanState extends State<beratbadan> {
-
   final tanggalcek = TextEditingController();
   final berat = TextEditingController();
   String selectedGrafik = '1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,79 +61,164 @@ class _beratbadanState extends State<beratbadan> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(right: 16),
-                    child: AspectRatio(
-                      aspectRatio: 15 / 10,
-                      child: LineChart(
-                        LineChartData(
-                          maxX: 30,
-                          minX: 0,
-                          maxY: 100,
-                          minY: 0,
-                          titlesData: FlTitlesData(
-                            show: true,
-                            topTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: false,
+                  BlocBuilder<GrafikBeratCubit, GrafikBeratState>(
+                    builder: (context, snapshot) {
+                      if (snapshot is GrafikBeratLoaded) {
+                        if (snapshot.grafikberat != null) {
+                          return Container(
+                            padding: EdgeInsets.only(right: 16),
+                            child: AspectRatio(
+                              aspectRatio: 15 / 10,
+                              child: LineChart(
+                                LineChartData(
+                                  maxX: 60,
+                                  minX: 0,
+                                  maxY: 120,
+                                  minY: 0,
+                                  clipData: FlClipData(
+                                      top: true,
+                                      bottom: false,
+                                      left: false,
+                                      right: false),
+                                  titlesData: FlTitlesData(
+                                    show: true,
+                                    topTitles: AxisTitles(
+                                      sideTitles: SideTitles(
+                                        showTitles: false,
+                                      ),
+                                    ),
+                                    rightTitles: AxisTitles(
+                                      sideTitles: SideTitles(
+                                        showTitles: false,
+                                      ),
+                                    ),
+                                  ),
+                                  gridData: FlGridData(
+                                    show: true,
+                                    drawVerticalLine: false,
+                                    drawHorizontalLine: true,
+                                  ),
+                                  borderData: FlBorderData(
+                                    show: true,
+                                    border: Border(
+                                      top: BorderSide(
+                                        style: BorderStyle.solid,
+                                        color: 'CFCFCF'.toColor(),
+                                      ),
+                                    ),
+                                  ),
+                                  lineBarsData: [
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.tigasd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: Colors.blue,
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.duasd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: 'FD7948'.toColor(),
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.satusd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '9E401E'.toColor(),
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.median!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '529166'.toColor(),
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.mintigasd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: '9E401E'.toColor(),
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.minduasd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                    LineChartBarData(
+                                      spots: snapshot.grafikberat!.minsatusd!
+                                          .where((e) => e.gender == 'Laki-laki')
+                                          .map((e) => FlSpot(
+                                          e.bulan!.toDouble(),
+                                          e.berat ?? 0.0))
+                                          .toList(),
+                                      isCurved: true,
+                                      color: Colors.purpleAccent,
+                                      // color: 'FC7847'.toColor(),
+                                      // color: 'FF6969'.toColor(),
+                                      barWidth: 1,
+                                      dotData: FlDotData(show: false),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            rightTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: false,
-                              ),
-                            ),
-                            // leftTitles: AxisTitles(
-                            //   sideTitles: SideTitles(
-                            //     showTitles: false,
-                            //     reservedSize: 23,
-                            //   ),
-                            // ),
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: 'FF6969'.toColor(),
                           ),
-                          gridData: FlGridData(
-                            show: true,
-                            drawVerticalLine: false,
-                            drawHorizontalLine: true,
-                            // getDrawingHorizontalLine: (value) {
-                            //   return FlLine(
-                            //     color: 'ECECEC'.toColor(),
-                            //     strokeWidth: 1,
-                            //   );
-                            // }
-                          ),
-                          borderData: FlBorderData(
-                            show: true,
-                            border: Border(
-                              top: BorderSide(
-                                style: BorderStyle.solid,
-                                color: 'CFCFCF'.toColor(),
-                              ),
-                            ),
-                          ),
-                          lineBarsData: [
-                            LineChartBarData(
-                              spots: [
-                                FlSpot(0, 0),
-                                FlSpot(5, 50),
-                                FlSpot(10, 20),
-                                FlSpot(20, 100),
-                                FlSpot(25, 60),
-                                FlSpot(30, 80),
-                              ],
-                              isCurved: true,
-                              color: 'FF6969'.toColor(),
-                              barWidth: 1,
-                              dotData: FlDotData(show: true),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 11),
                   Container(
-                      padding:
-                      EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                      padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
                       child: Column(
                         children: [
                           Row(
@@ -151,25 +236,9 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '3',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -187,25 +256,30 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '2',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Colors.purpleAccent,
+                                      // color: 'FC7847'.toColor(),
+                                    ),
                                   ),
-                                  SizedBox(width: 3),
+                                  SizedBox(width: 5),
                                   Text(
-                                    'SD',
+                                    '- 1 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -225,7 +299,28 @@ class _beratbadanState extends State<beratbadan> {
                                   Text(
                                     'Median',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: '434343'.toColor()),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      // color: 'FD7948'.toColor(),
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    '1 SD',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -243,17 +338,9 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '2',
+                                    '2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -271,17 +358,9 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '3',
+                                    '3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -324,8 +403,7 @@ class _beratbadanState extends State<beratbadan> {
                                         'Per Bulan',
                                         style: GoogleFonts.poppins().copyWith(
                                             fontSize: 11,
-                                            fontWeight:
-                                            (selectedGrafik == '1')
+                                            fontWeight: (selectedGrafik == '1')
                                                 ? FontWeight.bold
                                                 : FontWeight.w300,
                                             color: (selectedGrafik == '1')
@@ -363,8 +441,7 @@ class _beratbadanState extends State<beratbadan> {
                                         'Per Minggu',
                                         style: GoogleFonts.poppins().copyWith(
                                             fontSize: 11,
-                                            fontWeight:
-                                            (selectedGrafik == '2')
+                                            fontWeight: (selectedGrafik == '2')
                                                 ? FontWeight.bold
                                                 : FontWeight.w300,
                                             color: (selectedGrafik == '2')
@@ -561,7 +638,9 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   SizedBox(height: 12),
                                   Text(
-                                    snapshot.tumbuhBerat!.first.checked_at.toString() ?? '',
+                                    snapshot.tumbuhBerat!.first.checked_at
+                                            .toString() ??
+                                        '',
                                     style: GoogleFonts.poppins().copyWith(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
@@ -593,7 +672,9 @@ class _beratbadanState extends State<beratbadan> {
                                   Row(
                                     children: [
                                       Text(
-                                        snapshot.tumbuhBerat!.first.berat.toString() ?? '',
+                                        snapshot.tumbuhBerat!.first.berat
+                                                .toString() ??
+                                            '',
                                         style: GoogleFonts.poppins().copyWith(
                                           fontSize: 11,
                                           fontWeight: FontWeight.bold,
@@ -680,6 +761,11 @@ class _beratbadanState extends State<beratbadan> {
   @override
   void initState() {
     super.initState();
-    context.read<TumbuhBeratCubit>().gettumbuhBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context
+        .read<TumbuhBeratCubit>()
+        .gettumbuhBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context
+        .read<GrafikBeratCubit>()
+        .getGrafikBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 }
