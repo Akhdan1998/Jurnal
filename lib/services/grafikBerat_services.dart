@@ -6,10 +6,10 @@ import '../Models/model_grafikBerat.dart';
 
 class GrafikBeratServices {
   static Future<ApiReturnGrafikBerat<GrafikBeratResponse>?> getGrafikBerat(
-      String token,
+      String token, String gender,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/berat?gender=Laki-laki';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/berat?gender=${gender}';
     if (client == null) {
       client = http.Client();
     }

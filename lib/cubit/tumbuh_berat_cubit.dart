@@ -7,9 +7,9 @@ import '../services/tumbuhBerat_services.dart';
 class TumbuhBeratCubit extends Cubit<TumbuhBeratState> {
   TumbuhBeratCubit() : super(TumbuhBeratInitial());
 
-  Future<void> gettumbuhBerat(String token) async {
+  Future<void> gettumbuhBerat(String token, String anak_id) async {
     ApiReturntumbuhBerat<List<TumbuhBerat>>? result =
-        await tumbuhBeratServices.gettumbuhBerat(token);
+        await tumbuhBeratServices.gettumbuhBerat(token, anak_id);
     if (result?.value != null) {
       emit(TumbuhBeratLoaded(tumbuhBerat: result?.value));
     } else {

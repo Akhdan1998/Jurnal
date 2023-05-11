@@ -8,9 +8,9 @@ import 'grafik_tinggi_state.dart';
 class GrafikTinggiCubit extends Cubit<GrafikTinggiState> {
   GrafikTinggiCubit() : super(GrafikTinggiInitial());
 
-  Future<void> getGrafikTinggi(String token) async {
+  Future<void> getGrafikTinggi(String token, String gender) async {
     ApiReturnGrafikTinggi<GrafikTinggiResponse>? result =
-        await GrafikTinggiServices.getGrafikTinggi(token);
+        await GrafikTinggiServices.getGrafikTinggi(token, gender);
     if (result?.value != null) {
       emit(GrafikTinggiLoaded(grafiktinggi: result?.value));
     } else {

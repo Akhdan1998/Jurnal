@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => LkCubit()),
         BlocProvider(create: (_) => GrafikTinggiCubit()),
         BlocProvider(create: (_) => GrafikBeratCubit()),
+        BlocProvider(create: (_) => GrafikLKCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

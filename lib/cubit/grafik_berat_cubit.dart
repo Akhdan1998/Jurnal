@@ -8,9 +8,9 @@ import 'grafik_berat_state.dart';
 class GrafikBeratCubit extends Cubit<GrafikBeratState> {
   GrafikBeratCubit() : super(GrafikBeratInitial());
 
-  Future<void> getGrafikBerat(String token) async {
+  Future<void> getGrafikBerat(String token, String gender) async {
     ApiReturnGrafikBerat<GrafikBeratResponse>? result =
-        await GrafikBeratServices.getGrafikBerat(token);
+        await GrafikBeratServices.getGrafikBerat(token, gender);
     if (result?.value != null) {
       emit(GrafikBeratLoaded(grafikberat: result?.value));
     } else {

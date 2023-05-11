@@ -7,9 +7,9 @@ import '../Models/model_tumbuhLk.dart';
 class TumbuhLkCubit extends Cubit<TumbuhLkState> {
   TumbuhLkCubit() : super(TumbuhLkInitial());
 
-  Future<void> gettumbuhLk(String token) async {
+  Future<void> gettumbuhLk(String token, String anak_id) async {
     ApiReturntumbuhLk<List<TumbuhLk>>? result =
-        await tumbuhLkServices.gettumbuhLk(token);
+        await tumbuhLkServices.gettumbuhLk(token, anak_id);
     if (result?.value != null) {
       emit(TumbuhLkLoaded(tumbuhLk: result?.value));
     } else {

@@ -1,16 +1,15 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
-import '../Models/api_return_tumbuhLk.dart';
-import '../Models/model_tumbuhLk.dart';
+import '../Models/api_return_grafikLK.dart';
+import '../Models/model_grafikLK.dart';
 
-class tumbuhLkServices {
-  static Future<ApiReturntumbuhLk<List<TumbuhLk>>?> gettumbuhLk(
-      String token, String anak_id,
+class GrafikLKServices {
+  static Future<ApiReturnGrafikLK<GrafikLKResponse>?> getGrafikLK(
+      String token, String gender,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/lingkar?anak_id=${anak_id}';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/lingkar?gender=${gender}';
     if (client == null) {
       client = http.Client();
     }
@@ -19,15 +18,15 @@ class tumbuhLkServices {
       'Content-Type': 'application/json',
       'Authorization': '${token}'
     });
+    print(response.body.toString());
     if (response.statusCode != 200) {
-      return ApiReturntumbuhLk(message: 'Please try Again');
+      return ApiReturnGrafikLK(message: 'Please try Again');
     }
     var data = jsonDecode(response.body);
 //jika backand berbentuk list
-    List<TumbuhLk> value =
-        (data['data'] as Iterable).map((e) => TumbuhLk.fromJson(e)).toList();
+    GrafikLKResponse value = GrafikLKResponse.fromJson(data['data']);
 //jika backand tidak berbentuk list
     //CommunityGroup value1 = CommunityGroup.fromJson(data['data']);
-    return ApiReturntumbuhLk(value: value);
+    return ApiReturnGrafikLK(value: value);
   }
 }

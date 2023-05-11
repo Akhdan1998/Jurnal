@@ -17,6 +17,8 @@ class _TumbuhState extends State<Tumbuh> {
   final lk = TextEditingController();
   final berat = TextEditingController();
 
+  BuatDataAnak? anak;
+
   PageController pageController = PageController(initialPage: 0);
   String selectedButton = '1';
   int pageChanged = 0;
@@ -44,7 +46,6 @@ class _TumbuhState extends State<Tumbuh> {
         "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
       },
     );
-    print(res.body.toString());
     Map<String, dynamic> body = jsonDecode(res.body);
     if (res.statusCode == 200) {
       Fluttertoast.showToast(
@@ -58,12 +59,6 @@ class _TumbuhState extends State<Tumbuh> {
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
       Navigator.of(context).pop();
-      // Get.off(
-      //   navigation(
-      //     'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-      //     index: 1,
-      //   ),
-      // );
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -98,12 +93,6 @@ class _TumbuhState extends State<Tumbuh> {
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
       Navigator.of(context).pop();
-      // Get.off(
-      //   navigation(
-      //     'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-      //     index: 1,
-      //   ),
-      // );
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -138,12 +127,6 @@ class _TumbuhState extends State<Tumbuh> {
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
       Navigator.of(context).pop();
-      // Get.off(
-      //   navigation(
-      //     'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-      //     index: 1,
-      //   ),
-      // );
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -643,26 +626,43 @@ class _TumbuhState extends State<Tumbuh> {
                 ),
               ),
               SizedBox(width: 15),
-              Container(
-                padding: EdgeInsets.only(left: 16, right: 16),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                // height: 360 * grafik!.length.toDouble(),
-                child: PageView(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: pageController,
-                  onPageChanged: (index) {
-                    setState(() {
-                      pageChanged = index;
-                    });
-                    print(pageChanged);
-                  },
-                  children: [
-                    tinggibadan(),
-                    beratbadan(),
-                    lingkarkepala(),
-                  ],
-                ),
+              BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
+                builder: (context, snapshot) {
+                  if (snapshot is BuatdataanakLoaded) {
+                    if (snapshot.dataanak != null &&
+                        snapshot.dataanak!.isNotEmpty) {
+                      return Container(
+                        padding: EdgeInsets.only(left: 16, right: 16),
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        // height: 360 * grafik!.length.toDouble(),
+                        child: PageView(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: pageController,
+                          onPageChanged: (index) {
+                            setState(() {
+                              pageChanged = index;
+                            });
+                            print(pageChanged);
+                          },
+                          children: [
+                            tinggibadan(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
+                            beratbadan(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
+                            lingkarkepala(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: 'FF6969'.toColor(),
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -918,7 +918,7 @@ class _TumbuhState extends State<Tumbuh> {
                     if (pickeddate != null) {
                       setState(() {
                         tanggalcek2.text =
-                            DateFormat('yMMMMd').format(pickeddate);
+                            DateFormat('yyyy-MM-dd').format(pickeddate);
                       });
                     }
                   },
@@ -1076,7 +1076,7 @@ class _TumbuhState extends State<Tumbuh> {
                     if (pickeddate != null) {
                       setState(() {
                         tanggalcek3.text =
-                            DateFormat('yMMMMd').format(pickeddate);
+                            DateFormat('yyyy-MM-dd').format(pickeddate);
                       });
                     }
                   },
@@ -1092,7 +1092,7 @@ class _TumbuhState extends State<Tumbuh> {
                 SizedBox(height: 3),
                 TextField(
                   keyboardType: TextInputType.number,
-                  controller: tinggi,
+                  controller: lk,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(5)),

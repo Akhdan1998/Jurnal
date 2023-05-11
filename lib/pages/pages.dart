@@ -29,6 +29,8 @@ import '../cubit/berat_cubit.dart';
 import '../cubit/berat_state.dart';
 import '../cubit/grafik_berat_cubit.dart';
 import '../cubit/grafik_berat_state.dart';
+import '../cubit/grafik_lingkarkepala_cubit.dart';
+import '../cubit/grafik_lingkarkepala_state.dart';
 import '../cubit/grafik_tinggi_cubit.dart';
 import '../cubit/grafik_tinggi_state.dart';
 import '../cubit/hpl_cubit.dart';
@@ -56,9 +58,11 @@ import '../cubit/tumbuh_tinggi_state.dart';
 import '../services/hpl_services.dart';
 import 'package:collection/collection.dart';
 import '../services/merek_services.dart';
-part 'tumbuh/riwayatpencatatan_berat.dart';
+
+// part 'tumbuh/riwayatpencatatan_berat.dart';
 part 'findername/finder.dart';
-part 'tumbuh/riwayatpencatatan_lk.dart';
+
+// part 'tumbuh/riwayatpencatatan_lk.dart';
 part 'imunisasi/dataimunisasi.dart';
 
 part 'kehamilan/buatdatakehamilan.dart';
@@ -71,7 +75,9 @@ part 'imunisasi/successimunisasi.dart';
 
 part '../widget/kategori.dart';
 
-part 'tumbuh/riwayatpencatatan_tinggi.dart';
+part 'tumbuh/riwayatpencatatan.dart';
+
+// part 'tumbuh/riwayatpencatatan_tinggi.dart';
 
 part 'profil/ubahdatakelahirananak.dart';
 

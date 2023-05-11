@@ -20,10 +20,14 @@ class BuatDataServices {
       'Content-Type': 'application/json',
       'Authorization': '${token}'
     });
+
+    print("JANCUK" + response.body.toString());
+
     if (response.statusCode != 200) {
       return ApiReturnBuatAnak(message: 'Please try Again');
     }
     var data = jsonDecode(response.body);
+
 //jika backand berbentuk list
     List<BuatDataAnak> value = (data['data'] as Iterable)
         .map((e) => BuatDataAnak.fromJson(e))

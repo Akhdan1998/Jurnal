@@ -23,6 +23,7 @@ class TumbuhTinggi {
       this.deleted_at});
 
   TumbuhTinggi.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     user_id = json['user_id'];
     anak_id = json['anak_id'];
     tinggi = json['tinggi'];
@@ -36,6 +37,7 @@ class TumbuhTinggi {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['user_id'] = user_id;
     data['anak_id'] = anak_id;
     data['tinggi'] = tinggi;

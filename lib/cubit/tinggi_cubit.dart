@@ -7,9 +7,9 @@ import '../services/tinggi_services.dart';
 class TinggiCubit extends Cubit<TinggiState> {
   TinggiCubit() : super(TinggiInitial());
 
-  Future<void> getTinggi(String token) async {
+  Future<void> getTinggi(String token, String anak_id) async {
     ApiReturnTinggi<List<Tinggi>>? result =
-        await TinggiServices.getTinggi(token);
+        await TinggiServices.getTinggi(token, anak_id);
     if (result?.value != null) {
       emit(TinggiLoaded(tinggi: result?.value));
     } else {

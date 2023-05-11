@@ -1,6 +1,11 @@
 part of '../pages.dart';
 
 class tinggibadan extends StatefulWidget {
+  final String anak_id;
+  final String gender;
+
+  tinggibadan(this.anak_id, this.gender);
+
   @override
   State<tinggibadan> createState() => _tinggibadanState();
 }
@@ -14,9 +19,42 @@ class _tinggibadanState extends State<tinggibadan> {
   void initState() {
     super.initState();
     context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
-        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
     context.read<GrafikTinggiCubit>().getGrafikTinggi(
-        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.gender);
+  }
+
+  void deleted(String id) async {
+    Uri url_ = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+    var res = await http.post(
+      url_,
+      body: {
+        'id': id,
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    Map<String, dynamic> body = jsonDecode(res.body);
+
+    if (res.statusCode == 200) {
+      bool data = body["data"];
+      Navigator.pop(context);
+      Fluttertoast.showToast(
+          msg: "Kamu berhasil menghapus data Tinggi Badan anak!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: 'FF6969'.toColor(),
+          textColor: Colors.white,
+          fontSize: 16.0);
+      context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
   }
 
   @override
@@ -119,8 +157,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                   lineBarsData: [
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.tigasd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -133,8 +169,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // 1
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.duasd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -146,8 +180,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // 2
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.satusd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -159,8 +191,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // 3
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.median!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -172,8 +202,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // median
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.mintigasd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -185,8 +213,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // -3
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.minduasd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -198,8 +224,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                     ), // -2
                                     LineChartBarData(
                                       spots: snapshot.grafiktinggi!.minsatusd!
-                                          .where((element) =>
-                                              element.gender == "Laki-laki")
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.tinggi!.toDouble() ?? 0.0))
@@ -493,8 +517,6 @@ class _tinggibadanState extends State<tinggibadan> {
             ),
             SizedBox(height: 15),
             Container(
-              // height: MediaQuery.of(context).size.height,
-              // width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
@@ -598,8 +620,6 @@ class _tinggibadanState extends State<tinggibadan> {
                 if (snapshot is TumbuhTinggiLoaded) {
                   if (snapshot.tumbuhtinggi != null) {
                     return Container(
-                      // height: MediaQuery.of(context).size.height,
-                      // width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -622,7 +642,7 @@ class _tinggibadanState extends State<tinggibadan> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(riwayatpencatatantinggi());
+                                  Get.to(riwayatpencatatan(widget.anak_id));
                                 },
                                 child: Text(
                                   'Lihat Semua',
@@ -639,77 +659,149 @@ class _tinggibadanState extends State<tinggibadan> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Tanggal',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 12),
-                                  Text(
-                                    snapshot.tumbuhtinggi!.first.checked_at
-                                            .toString() ??
-                                        '',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  // SizedBox(height: 10),
-                                ],
+                              Text(
+                                'Tanggal',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  color: '414141'.toColor(),
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Tinggi Badan (cm)',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 12),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        snapshot.tumbuhtinggi!.first.tinggi
-                                                .toString() ??
-                                            '',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '414141'.toColor(),
-                                        ),
-                                      ),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        'cm',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '414141'.toColor(),
-                                        ),
-                                      ),
-                                      SizedBox(width: 6),
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: Icon(
-                                          Icons.delete,
-                                          color: 'FF6969'.toColor(),
-                                          size: 18,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  // SizedBox(height: 10),
-                                ],
+                              Text(
+                                'Tinggi Badan (cm)',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  color: '414141'.toColor(),
+                                ),
                               ),
                             ],
+                          ),
+                          SizedBox(height: 10),
+                          Column(
+                            children: snapshot.tumbuhtinggi!
+                                .map(
+                                  (e) => Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            e.checked_at.toString() ?? '',
+                                            style: GoogleFonts.poppins().copyWith(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                              color: '414141'.toColor(),
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                e.tinggi.toString() ?? '',
+                                                style:
+                                                GoogleFonts.poppins().copyWith(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: '414141'.toColor(),
+                                                ),
+                                              ),
+                                              SizedBox(width: 3),
+                                              Text(
+                                                'cm',
+                                                style:
+                                                GoogleFonts.poppins().copyWith(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: '414141'.toColor(),
+                                                ),
+                                              ),
+                                              SizedBox(width: 6),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (BuildContext context) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                            'Hapus data tinggi anak',
+                                                            style: GoogleFonts
+                                                                .poppins()
+                                                                .copyWith(
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                          content: Text(
+                                                            'Kamu yakin akan menghapus data tinggi badan anak?',
+                                                            style: GoogleFonts
+                                                                .poppins()
+                                                                .copyWith(
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w300,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                    context)
+                                                                    .pop();
+                                                              },
+                                                              child: Text(
+                                                                'Tidak',
+                                                                style: GoogleFonts
+                                                                    .poppins()
+                                                                    .copyWith(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                              ),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                deleted(e
+                                                                    .id
+                                                                    .toString());
+                                                              },
+                                                              child: Text(
+                                                                'Ya',
+                                                                style: GoogleFonts
+                                                                    .poppins()
+                                                                    .copyWith(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      });
+                                                },
+                                                child: Icon(
+                                                  Icons.delete,
+                                                  color: 'FF6969'.toColor(),
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ],
                       ),

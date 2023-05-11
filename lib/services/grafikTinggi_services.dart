@@ -6,10 +6,10 @@ import '../Models/model_grafikTinggi.dart';
 
 class GrafikTinggiServices {
   static Future<ApiReturnGrafikTinggi<GrafikTinggiResponse>?> getGrafikTinggi(
-      String token,
+      String token, String gender,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/tinggi?gender=Laki-laki';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/tinggi?gender=${gender}';
     if (client == null) {
       client = http.Client();
     }

@@ -8,9 +8,9 @@ import '../Models/model_tumbuhTinggi.dart';
 class TumbuhTinggiCubit extends Cubit<TumbuhTinggiState> {
   TumbuhTinggiCubit() : super(TumbuhTinggiInitial());
 
-  Future<void> gettumbuhTinggi(String token) async {
+  Future<void> gettumbuhTinggi(String token, String anak_id) async {
     ApiReturntumbuhTinggi<List<TumbuhTinggi>>? result =
-        await tumbuhTinggiServices.gettumbuhTinggi(token);
+        await tumbuhTinggiServices.gettumbuhTinggi(token, anak_id);
     if (result?.value != null) {
       emit(TumbuhTinggiLoaded(tumbuhtinggi: result?.value));
     } else {

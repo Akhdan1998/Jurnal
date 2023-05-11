@@ -7,10 +7,10 @@ import '../Models/model_tumbuhTinggi.dart';
 
 class tumbuhTinggiServices {
   static Future<ApiReturntumbuhTinggi<List<TumbuhTinggi>>?> gettumbuhTinggi(
-      String token,
+      String token, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/tinggi?anak_id=7248038741';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/tinggi?anak_id=${anak_id}';
     if (client == null) {
       client = http.Client();
     }

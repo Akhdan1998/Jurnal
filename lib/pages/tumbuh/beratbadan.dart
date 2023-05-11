@@ -1,6 +1,11 @@
 part of '../pages.dart';
 
 class beratbadan extends StatefulWidget {
+  final String anak_id;
+  final String gender;
+
+  beratbadan(this.anak_id, this.gender);
+
   @override
   State<beratbadan> createState() => _beratbadanState();
 }
@@ -9,6 +14,40 @@ class _beratbadanState extends State<beratbadan> {
   final tanggalcek = TextEditingController();
   final berat = TextEditingController();
   String selectedGrafik = '1';
+
+  void deleted(String id) async {
+    Uri url_ = Uri.parse(
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+    var res = await http.post(
+      url_,
+      body: {
+        'id': id,
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    Map<String, dynamic> body = jsonDecode(res.body);
+
+    if (res.statusCode == 200) {
+      bool data = body["data"];
+      Navigator.pop(context);
+      Fluttertoast.showToast(
+          msg: "Kamu berhasil menghapus data Berat Badan anak!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: 'FF6969'.toColor(),
+          textColor: Colors.white,
+          fontSize: 16.0);
+      context.read<TumbuhBeratCubit>().gettumbuhBerat(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          widget.anak_id);
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +149,6 @@ class _beratbadanState extends State<beratbadan> {
                                   lineBarsData: [
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.tigasd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
                                               e.bulan!.toDouble(),
                                               e.berat ?? 0.0))
@@ -123,10 +161,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.duasd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: 'FD7948'.toColor(),
@@ -136,10 +173,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.satusd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: '9E401E'.toColor(),
@@ -149,10 +185,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.median!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: '529166'.toColor(),
@@ -162,10 +197,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.mintigasd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: '9E401E'.toColor(),
@@ -175,10 +209,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.minduasd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: 'FF6969'.toColor(),
@@ -187,10 +220,9 @@ class _beratbadanState extends State<beratbadan> {
                                     ),
                                     LineChartBarData(
                                       spots: snapshot.grafikberat!.minsatusd!
-                                          .where((e) => e.gender == 'Laki-laki')
                                           .map((e) => FlSpot(
-                                          e.bulan!.toDouble(),
-                                          e.berat ?? 0.0))
+                                              e.bulan!.toDouble(),
+                                              e.berat ?? 0.0))
                                           .toList(),
                                       isCurved: true,
                                       color: Colors.purpleAccent,
@@ -585,8 +617,6 @@ class _beratbadanState extends State<beratbadan> {
                 if (snapshot is TumbuhBeratLoaded) {
                   if (snapshot.tumbuhBerat != null) {
                     return Container(
-                      // height: MediaQuery.of(context).size.height,
-                      // width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -609,7 +639,7 @@ class _beratbadanState extends State<beratbadan> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(riwayatpencatatanberat());
+                                  Get.to(riwayatpencatatan(widget.anak_id));
                                 },
                                 child: Text(
                                   'Lihat Semua',
@@ -626,115 +656,150 @@ class _beratbadanState extends State<beratbadan> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Tanggal',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 12),
-                                  Text(
-                                    snapshot.tumbuhBerat!.first.checked_at
-                                            .toString() ??
-                                        '',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  // SizedBox(height: 10),
-                                  // Text(
-                                  //   '12 Januari 2023',
-                                  //   style: GoogleFonts.poppins().copyWith(
-                                  //     fontSize: 11,
-                                  //     fontWeight: FontWeight.bold,
-                                  //     color: '414141'.toColor(),
-                                  //   ),
-                                  // ),
-                                ],
+                              Text(
+                                'Tanggal',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  color: '414141'.toColor(),
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Berat Badan (Gram)',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      color: '414141'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(height: 12),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        snapshot.tumbuhBerat!.first.berat
-                                                .toString() ??
-                                            '',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '414141'.toColor(),
-                                        ),
-                                      ),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        'gram',
-                                        style: GoogleFonts.poppins().copyWith(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: '414141'.toColor(),
-                                        ),
-                                      ),
-                                      SizedBox(width: 6),
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: Icon(
-                                          Icons.delete,
-                                          color: 'FF6969'.toColor(),
-                                          size: 18,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  // SizedBox(height: 10),
-                                  // Row(
-                                  //   children: [
-                                  //     Text(
-                                  //       '51',
-                                  //       style: GoogleFonts.poppins().copyWith(
-                                  //         fontSize: 11,
-                                  //         fontWeight: FontWeight.bold,
-                                  //         color: '414141'.toColor(),
-                                  //       ),
-                                  //     ),
-                                  //     SizedBox(width: 3),
-                                  //     Text(
-                                  //       'cm',
-                                  //       style: GoogleFonts.poppins().copyWith(
-                                  //         fontSize: 11,
-                                  //         fontWeight: FontWeight.bold,
-                                  //         color: '414141'.toColor(),
-                                  //       ),
-                                  //     ),
-                                  //     SizedBox(width: 6),
-                                  //     GestureDetector(
-                                  //       onTap: () {},
-                                  //       child: Icon(
-                                  //         Icons.delete,
-                                  //         color: 'FF6969'.toColor(),
-                                  //         size: 18,
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // ),
-                                ],
+                              Text(
+                                'Berat Badan (Gram)',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  color: '414141'.toColor(),
+                                ),
                               ),
                             ],
+                          ),
+                          SizedBox(height: 10),
+                          Column(
+                            children: snapshot.tumbuhBerat!
+                                .map(
+                                  (e) => Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            e.checked_at.toString() ?? '',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                              color: '414141'.toColor(),
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                e.berat.toString() ?? '',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: '414141'.toColor(),
+                                                ),
+                                              ),
+                                              SizedBox(width: 3),
+                                              Text(
+                                                'gram',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: '414141'.toColor(),
+                                                ),
+                                              ),
+                                              SizedBox(width: 6),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (BuildContext context) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                            'Hapus data berat anak',
+                                                            style: GoogleFonts
+                                                                .poppins()
+                                                                .copyWith(
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                          content: Text(
+                                                            'Kamu yakin akan menghapus data berat badan anak?',
+                                                            style: GoogleFonts
+                                                                .poppins()
+                                                                .copyWith(
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w300,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                    context)
+                                                                    .pop();
+                                                              },
+                                                              child: Text(
+                                                                'Tidak',
+                                                                style: GoogleFonts
+                                                                    .poppins()
+                                                                    .copyWith(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                              ),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () {
+                                                                deleted(e
+                                                                    .id
+                                                                    .toString());
+                                                              },
+                                                              child: Text(
+                                                                'Ya',
+                                                                style: GoogleFonts
+                                                                    .poppins()
+                                                                    .copyWith(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      });
+                                                },
+                                                child: Icon(
+                                                  Icons.delete,
+                                                  color: 'FF6969'.toColor(),
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ],
                       ),
@@ -761,11 +826,10 @@ class _beratbadanState extends State<beratbadan> {
   @override
   void initState() {
     super.initState();
-    context
-        .read<TumbuhBeratCubit>()
-        .gettumbuhBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+    context.read<TumbuhBeratCubit>().gettumbuhBerat(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
     context
         .read<GrafikBeratCubit>()
-        .getGrafikBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
+        .getGrafikBerat('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.gender);
   }
 }
