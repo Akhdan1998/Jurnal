@@ -65,7 +65,7 @@ class GrafikLK {
 
   GrafikLK.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    lk = json['tinggi'].toDouble();
+    lk = json['lingkar'].toDouble();
     bulan = json['bulan'];
     jenis = json['jenis'];
     gender = json['gender'];
@@ -77,8 +77,8 @@ class GrafikLK {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
-    data['user_id'] = id;
-    data['tinggi'] = lk;
+    data['id'] = id;
+    data['lk'] = lk;
     data['bulan'] = bulan;
     data['jenis'] = jenis;
     data['gender'] = gender;

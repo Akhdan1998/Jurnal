@@ -74,8 +74,8 @@ class GrafikBerat {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
-    data['user_id'] = id;
-    data['tinggi'] = berat;
+    data['id'] = id;
+    data['berat'] = berat;
     data['bulan'] = bulan;
     data['jenis'] = jenis;
     data['gender'] = gender;

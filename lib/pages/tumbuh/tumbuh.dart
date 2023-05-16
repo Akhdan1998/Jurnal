@@ -18,6 +18,9 @@ class _TumbuhState extends State<Tumbuh> {
   final berat = TextEditingController();
 
   BuatDataAnak? anak;
+  List<TumbuhTinggi> tumbuhTinggi = [];
+  List<TumbuhBerat> tumbuhBerat = [];
+  List<TumbuhLk> tumbuhLk = [];
 
   PageController pageController = PageController(initialPage: 0);
   String selectedButton = '1';
@@ -31,7 +34,8 @@ class _TumbuhState extends State<Tumbuh> {
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
   }
 
-  void dataTinggi(String anak_id, String tinggi, String checked_at) async {
+  Future<void> dataTinggi(
+      String anak_id, String tinggi, String checked_at) async {
     Uri url = Uri.parse(
         "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/tinggi/create");
     var res = await http.post(
@@ -58,13 +62,13 @@ class _TumbuhState extends State<Tumbuh> {
           fontSize: 16.0);
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
-      Navigator.of(context).pop();
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
 
-  void dataBerat(String anak_id, String berat, String checked_at) async {
+  Future<void> dataBerat(
+      String anak_id, String berat, String checked_at) async {
     Uri url = Uri.parse(
         "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/berat/create");
     var res = await http.post(
@@ -72,7 +76,7 @@ class _TumbuhState extends State<Tumbuh> {
       body: {
         "anak_id": anak_id,
         "berat": berat,
-        "checked_at": checked_at,
+        "checked_at": checked_at + ' ' + '07:00:00',
       },
       headers: {
         "Accept": "application/json",
@@ -92,13 +96,13 @@ class _TumbuhState extends State<Tumbuh> {
           fontSize: 16.0);
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
-      Navigator.of(context).pop();
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
 
-  void dataLK(String anak_id, String lingkarkepala, String checked_at) async {
+  Future<void> dataLK(
+      String anak_id, String lingkarkepala, String checked_at) async {
     Uri url = Uri.parse(
         "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/lingkar/create");
     var res = await http.post(
@@ -106,7 +110,7 @@ class _TumbuhState extends State<Tumbuh> {
       body: {
         "anak_id": anak_id,
         "lingkar_kepala": lingkarkepala,
-        "checked_at": checked_at,
+        "checked_at": checked_at + ' ' + '07:00:00',
       },
       headers: {
         "Accept": "application/json",
@@ -126,7 +130,6 @@ class _TumbuhState extends State<Tumbuh> {
           fontSize: 16.0);
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
-      Navigator.of(context).pop();
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -141,6 +144,7 @@ class _TumbuhState extends State<Tumbuh> {
         // physics: BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Container(
+
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
@@ -634,8 +638,16 @@ class _TumbuhState extends State<Tumbuh> {
                       return Container(
                         padding: EdgeInsets.only(left: 16, right: 16),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        // height: 360 * grafik!.length.toDouble(),
+                        height: (pageChanged == 0)
+                            ? (MediaQuery.of(context).size.height +
+                                (12 * tumbuhTinggi.length.toDouble()))
+                            : (pageChanged == 1)
+                                ? (MediaQuery.of(context).size.height +
+                                    (12 * tumbuhBerat.length.toDouble()))
+                                : (pageChanged == 2)
+                                    ? (MediaQuery.of(context).size.height +
+                                        (12 * tumbuhLk.length.toDouble()))
+                                    : MediaQuery.of(context).size.height,
                         child: PageView(
                           physics: NeverScrollableScrollPhysics(),
                           controller: pageController,
@@ -646,9 +658,23 @@ class _TumbuhState extends State<Tumbuh> {
                             print(pageChanged);
                           },
                           children: [
-                            tinggibadan(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
-                            beratbadan(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
-                            lingkarkepala(snapshot.dataanak!.first.anak_id!, snapshot.dataanak!.first.gender!),
+                            tinggibadan(
+                              snapshot.dataanak!.first.anak_id!,
+                              snapshot.dataanak!.first.gender!,
+                              listTinggi: (value) {
+                                tumbuhTinggi = value;
+                              },
+                            ),
+                            beratbadan(snapshot.dataanak!.first.anak_id!,
+                                snapshot.dataanak!.first.gender!,
+                                listBerat: (value) {
+                              tumbuhBerat = value;
+                            }),
+                            lingkarkepala(snapshot.dataanak!.first.anak_id!,
+                                snapshot.dataanak!.first.gender!,
+                                listLk: (value) {
+                              tumbuhLk = value;
+                            }),
                           ],
                         ),
                       );
@@ -691,7 +717,6 @@ class _TumbuhState extends State<Tumbuh> {
 
   void modelTinggi(BuildContext context) {
     showModalBottomSheet(
-      // clipBehavior: Clip.none,
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -802,11 +827,18 @@ class _TumbuhState extends State<Tumbuh> {
                     if (snapshot is BuatdataanakLoaded) {
                       if (snapshot.dataanak != null) {
                         return GestureDetector(
-                          onTap: () {
-                            dataTinggi(
-                                snapshot.dataanak!.first.anak_id.toString(),
-                                tinggi.text,
-                                tanggalcek1.text);
+                          onTap: () async {
+                            await dataTinggi(
+                                    snapshot.dataanak!.first.anak_id.toString(),
+                                    tinggi.text,
+                                    tanggalcek1.text)
+                                .whenComplete(() {
+                              context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
+                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                  snapshot.dataanak!.first.anak_id.toString());
+
+                              Navigator.of(context).pop();
+                            });
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -960,11 +992,17 @@ class _TumbuhState extends State<Tumbuh> {
                     if (snapshot is BuatdataanakLoaded) {
                       if (snapshot.dataanak != null) {
                         return GestureDetector(
-                          onTap: () {
-                            dataBerat(
-                                snapshot.dataanak!.first.anak_id.toString(),
-                                berat.text,
-                                tanggalcek2.text);
+                          onTap: () async {
+                            await dataBerat(
+                                    snapshot.dataanak!.first.anak_id.toString(),
+                                    berat.text,
+                                    tanggalcek2.text)
+                                .whenComplete(() {
+                              context.read<TumbuhBeratCubit>().gettumbuhBerat(
+                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                  snapshot.dataanak!.first.anak_id.toString());
+                              Navigator.of(context).pop();
+                            });
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -1120,7 +1158,13 @@ class _TumbuhState extends State<Tumbuh> {
                         return GestureDetector(
                           onTap: () {
                             dataLK(snapshot.dataanak!.first.anak_id.toString(),
-                                lk.text, tanggalcek3.text);
+                                    lk.text, tanggalcek3.text)
+                                .whenComplete(() {
+                              context.read<TumbuhLkCubit>().gettumbuhLk(
+                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                  snapshot.dataanak!.first.anak_id.toString());
+                              Navigator.of(context).pop();
+                            });
                           },
                           child: Container(
                             alignment: Alignment.center,

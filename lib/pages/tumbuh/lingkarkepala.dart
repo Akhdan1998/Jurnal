@@ -3,8 +3,9 @@ part of '../pages.dart';
 class lingkarkepala extends StatefulWidget {
   final String anak_id;
   final String gender;
+  final ValueChanged<List<TumbuhLk>>? listLk;
 
-  lingkarkepala(this.anak_id, this.gender);
+  lingkarkepala(this.anak_id, this.gender, {this.listLk});
 
   @override
   State<lingkarkepala> createState() => _lingkarkepalaState();
@@ -41,7 +42,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
           backgroundColor: 'FF6969'.toColor(),
           textColor: Colors.white,
           fontSize: 16.0);
-      context.read<TumbuhBeratCubit>().gettumbuhBerat(
+      context.read<TumbuhLkCubit>().gettumbuhLk(
           'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
           widget.anak_id);
     } else {
@@ -121,8 +122,8 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                               LineChartData(
                                 maxX: 60,
                                 minX: 0,
-                                maxY: 120,
-                                minY: 0,
+                                maxY: 60,
+                                minY: 30,
                                 clipData: FlClipData(
                                     top: true,
                                     bottom: false,
@@ -269,25 +270,9 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '3',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -305,25 +290,30 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '-',
+                                    '- 2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    '2',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Colors.purpleAccent,
+                                      // color: 'FC7847'.toColor(),
+                                    ),
                                   ),
-                                  SizedBox(width: 3),
+                                  SizedBox(width: 5),
                                   Text(
-                                    'SD',
+                                    '- 1 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -343,7 +333,28 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   Text(
                                     'Median',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: '434343'.toColor()),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 15,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      // color: 'FD7948'.toColor(),
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    '1 SD',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -361,17 +372,9 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '2',
+                                    '2 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),
@@ -389,17 +392,9 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    '3',
+                                    '3 SD',
                                     style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                    'SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 12,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: '434343'.toColor()),
                                   ),

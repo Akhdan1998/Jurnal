@@ -1,10 +1,16 @@
 part of '../pages.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -27,6 +33,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => GrafikTinggiCubit()),
         BlocProvider(create: (_) => GrafikBeratCubit()),
         BlocProvider(create: (_) => GrafikLKCubit()),
+        BlocProvider(create: (_) => HasilTinggiCubit()),
+        BlocProvider(create: (_) => HasilBeratCubit()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

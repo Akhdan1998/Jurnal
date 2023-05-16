@@ -75,7 +75,9 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
     ),
   ];
   bool isLoading = false;
-  void dataSimpan(String darah, String hobi, String citacita, String warna) async {
+
+  void dataSimpan(
+      String darah, String hobi, String citacita, String warna) async {
     Uri url =
         Uri.parse("https://dashboard.parentoday.com/api/anak/lengkap/update");
     var res = await http.post(
@@ -102,8 +104,7 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
           timeInSecForIosWeb: 3,
           backgroundColor: 'FF6969'.toColor(),
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
       print(res.statusCode);
       Get.off(
@@ -390,22 +391,23 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
               color: 'FF6969'.toColor(),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: isLoading ? Container(
-              width: 20,
-              height: 20,
-              child: Center(
-                child: CircularProgressIndicator(
-                    color: Colors.white, strokeWidth: 2),
-              ),
-            )
+            child: isLoading
+                ? Container(
+                    width: 20,
+                    height: 20,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2),
+                    ),
+                  )
                 : Text(
-              'Simpan Data Anak',
-              style: GoogleFonts.poppins().copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: 'FFFFFF'.toColor(),
-              ),
-            ),
+                    'Simpan Data Anak',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: 'FFFFFF'.toColor(),
+                    ),
+                  ),
           ),
         ),
       ),

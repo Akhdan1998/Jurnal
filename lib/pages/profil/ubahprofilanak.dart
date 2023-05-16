@@ -14,6 +14,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
   final tanggalLahir = TextEditingController();
   String selectedKelamin3 = '';
   bool isLoading = false;
+
   void updateData(String namaAnak, String tanggalLahir) async {
     try {
       Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/update');
@@ -29,7 +30,8 @@ class _ubahdataanakState extends State<ubahdataanak> {
         },
         headers: {
           "Accept": "application/json",
-          "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+          "Authorization":
+              "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
         },
       );
       print(response.body.toString());
@@ -42,8 +44,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
             timeInSecForIosWeb: 3,
             backgroundColor: 'FF6969'.toColor(),
             textColor: Colors.white,
-            fontSize: 16.0
-        );
+            fontSize: 16.0);
         BuatDataAnak data = BuatDataAnak.fromJson(body['data']);
         print(response.body.toString());
         Get.offAll(
@@ -369,21 +370,21 @@ class _ubahdataanakState extends State<ubahdataanak> {
             ),
             child: isLoading
                 ? Container(
-              width: 20,
-              height: 20,
-              child: Center(
-                child: CircularProgressIndicator(
-                    color: Colors.white, strokeWidth: 2),
-              ),
-            )
+                    width: 20,
+                    height: 20,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2),
+                    ),
+                  )
                 : Text(
-              'Simpan Data Anak',
-              style: GoogleFonts.poppins().copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: 'FFFFFF'.toColor(),
-              ),
-            ),
+                    'Simpan Data Anak',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: 'FFFFFF'.toColor(),
+                    ),
+                  ),
           ),
         ),
       ),

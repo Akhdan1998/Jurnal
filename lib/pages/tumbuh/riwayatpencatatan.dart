@@ -31,14 +31,13 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
       Fluttertoast.showToast(
           msg: "Kamu berhasil menghapus data Berat Badan anak!",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 3,
           backgroundColor: 'FF6969'.toColor(),
           textColor: Colors.white,
           fontSize: 16.0);
-      context.read<TumbuhBeratCubit>().gettumbuhBerat(
-          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-          widget.anak_id);
+      context.read<TinggiCubit>().getTinggi(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -271,9 +270,8 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
-                                                          deleted(e
-                                                              .id
-                                                              .toString());
+                                                          deleted(
+                                                              e.id.toString());
                                                         },
                                                         child: Text(
                                                           'Ya',
