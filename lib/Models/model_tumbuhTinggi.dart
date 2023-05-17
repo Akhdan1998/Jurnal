@@ -2,7 +2,7 @@ class TumbuhTinggi {
   int? id;
   String? user_id;
   String? anak_id;
-  int? tinggi;
+  double? tinggi;
   int? berat;
   int? lingkar_kepala;
   dynamic checked_at;
@@ -26,7 +26,7 @@ class TumbuhTinggi {
     id = json['id'];
     user_id = json['user_id'];
     anak_id = json['anak_id'];
-    tinggi = json['tinggi'];
+    tinggi = (json['tinggi'] != null) ? json['tinggi'].toDouble() : 0.0;
     berat = json['berat'];
     lingkar_kepala = json['lingkar_kepala'];
     checked_at = json['checked_at'];

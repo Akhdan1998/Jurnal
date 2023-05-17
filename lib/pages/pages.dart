@@ -40,6 +40,8 @@ import '../cubit/grafik_tinggi_cubit.dart';
 import '../cubit/grafik_tinggi_state.dart';
 import '../cubit/hasil_berat_cubit.dart';
 import '../cubit/hasil_berat_state.dart';
+import '../cubit/hasil_lingkar_cubit.dart';
+import '../cubit/hasil_lingkar_state.dart';
 import '../cubit/hasil_tinggi_cubit.dart';
 import '../cubit/hasil_tinggi_state.dart';
 import '../cubit/hpl_cubit.dart';

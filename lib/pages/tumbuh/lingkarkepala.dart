@@ -57,6 +57,10 @@ class _lingkarkepalaState extends State<lingkarkepala> {
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
     context.read<GrafikLKCubit>().getGrafikLK(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.gender);
+    context.read<HasilLingkarCubit>().gethasilLingkar(
+        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+        widget.gender,
+        widget.anak_id);
   }
 
   @override
@@ -110,135 +114,170 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  BlocBuilder<GrafikLKCubit, GrafikLKState>(
-                      builder: (context, snapshot) {
-                    if (snapshot is GrafikLKLoaded) {
-                      if (snapshot.grafiklk != null) {
-                        return Container(
-                          padding: EdgeInsets.only(right: 16),
-                          child: AspectRatio(
-                            aspectRatio: 15 / 10,
-                            child: LineChart(
-                              LineChartData(
-                                maxX: 60,
-                                minX: 0,
-                                maxY: 60,
-                                minY: 30,
-                                clipData: FlClipData(
-                                    top: true,
-                                    bottom: false,
-                                    left: false,
-                                    right: false),
-                                titlesData: FlTitlesData(
-                                  show: true,
-                                  topTitles: AxisTitles(
-                                    sideTitles: SideTitles(
-                                      showTitles: false,
-                                    ),
-                                  ),
-                                  rightTitles: AxisTitles(
-                                    sideTitles: SideTitles(
-                                      showTitles: false,
+                  BlocBuilder<HasilLingkarCubit, HasilLingkarState>(
+                      builder: (context, state) {
+                    if (state is HasilLingkarLoaded) {
+                      if (state.hasillingkar != null) {
+                        return BlocBuilder<GrafikLKCubit, GrafikLKState>(
+                            builder: (context, snapshot) {
+                          if (snapshot is GrafikLKLoaded) {
+                            if (snapshot.grafiklk != null) {
+                              return Container(
+                                padding: EdgeInsets.only(right: 16),
+                                child: AspectRatio(
+                                  aspectRatio: 15 / 10,
+                                  child: LineChart(
+                                    LineChartData(
+                                      maxX: 60,
+                                      minX: 0,
+                                      maxY: 60,
+                                      minY: 30,
+                                      clipData: FlClipData(
+                                          top: true,
+                                          bottom: false,
+                                          left: false,
+                                          right: false),
+                                      titlesData: FlTitlesData(
+                                        show: true,
+                                        topTitles: AxisTitles(
+                                          sideTitles: SideTitles(
+                                            showTitles: false,
+                                          ),
+                                        ),
+                                        rightTitles: AxisTitles(
+                                          sideTitles: SideTitles(
+                                            showTitles: false,
+                                          ),
+                                        ),
+                                      ),
+                                      gridData: FlGridData(
+                                        show: true,
+                                        drawVerticalLine: false,
+                                        drawHorizontalLine: true,
+                                      ),
+                                      borderData: FlBorderData(
+                                        show: true,
+                                        border: Border(
+                                          top: BorderSide(
+                                            style: BorderStyle.solid,
+                                            color: 'CFCFCF'.toColor(),
+                                          ),
+                                        ),
+                                      ),
+                                      lineBarsData: [
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.tigasd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: Colors.blue,
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.duasd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: 'FD7948'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.satusd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: '9E401E'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.median!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: '529166'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.mintigasd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: '9E401E'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.minduasd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: snapshot.grafiklk!.minsatusd!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lk ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: Colors.purpleAccent,
+                                          // color: 'FC7847'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                        LineChartBarData(
+                                          spots: state.hasillingkar!.grafik!
+                                              .map((e) => FlSpot(
+                                                  e.bulan!.toDouble(),
+                                                  e.lingkar ?? 0.0))
+                                              .toList(),
+                                          isCurved: true,
+                                          color: Colors.purpleAccent,
+                                          // color: 'FC7847'.toColor(),
+                                          // color: 'FF6969'.toColor(),
+                                          barWidth: 1,
+                                          dotData: FlDotData(show: false),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                gridData: FlGridData(
-                                  show: true,
-                                  drawVerticalLine: false,
-                                  drawHorizontalLine: true,
-                                ),
-                                borderData: FlBorderData(
-                                  show: true,
-                                  border: Border(
-                                    top: BorderSide(
-                                      style: BorderStyle.solid,
-                                      color: 'CFCFCF'.toColor(),
-                                    ),
-                                  ),
-                                ),
-                                lineBarsData: [
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.tigasd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: Colors.blue,
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.duasd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: 'FD7948'.toColor(),
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.satusd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: '9E401E'.toColor(),
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.median!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: '529166'.toColor(),
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.mintigasd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: '9E401E'.toColor(),
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.minduasd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                  LineChartBarData(
-                                    spots: snapshot.grafiklk!.minsatusd!
-                                        .map((e) => FlSpot(
-                                            e.bulan!.toDouble(), e.lk ?? 0.0))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: Colors.purpleAccent,
-                                    // color: 'FC7847'.toColor(),
-                                    // color: 'FF6969'.toColor(),
-                                    barWidth: 1,
-                                    dotData: FlDotData(show: false),
-                                  ),
-                                ],
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: 'FF6969'.toColor(),
                               ),
-                            ),
-                          ),
-                        );
+                            );
+                          }
+                        });
                       } else {
                         return SizedBox();
                       }
@@ -252,360 +291,279 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                   }),
                   SizedBox(height: 11),
                   Container(
-                      padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: '9E401E'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '- 3 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: 'FC7847'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '- 2 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: Colors.purpleAccent,
-                                      // color: 'FC7847'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '- 1 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: '529166'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    'Median',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      // color: 'FD7948'.toColor(),
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '1 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: 'FD7948'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '2 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: '9E401E'.toColor(),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    '3 SD',
-                                    style: GoogleFonts.poppins().copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: '434343'.toColor()),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 11),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedGrafik = '1';
-                                      });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          topLeft: Radius.circular(5),
-                                        ),
-                                        border: Border.all(
-                                          width: 1,
-                                          color: 'FF6969'.toColor(),
-                                        ),
-                                        color: (selectedGrafik == '1')
-                                            ? 'FF6969'.toColor()
-                                            : Colors.white,
-                                      ),
-                                      padding: EdgeInsets.only(
-                                          top: 3,
-                                          bottom: 3,
-                                          left: 23,
-                                          right: 23),
-                                      child: Text(
-                                        'Per Bulan',
-                                        style: GoogleFonts.poppins().copyWith(
-                                            fontSize: 11,
-                                            fontWeight: (selectedGrafik == '1')
-                                                ? FontWeight.bold
-                                                : FontWeight.w300,
-                                            color: (selectedGrafik == '1')
-                                                ? Colors.white
-                                                : 'FF6969'.toColor()),
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedGrafik = '2';
-                                      });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(5),
-                                          topRight: Radius.circular(5),
-                                        ),
-                                        border: Border.all(
-                                          width: 1,
-                                          color: 'FF6969'.toColor(),
-                                        ),
-                                        color: (selectedGrafik == '2')
-                                            ? 'FF6969'.toColor()
-                                            : Colors.white,
-                                      ),
-                                      padding: EdgeInsets.only(
-                                          top: 3,
-                                          bottom: 3,
-                                          left: 23,
-                                          right: 23),
-                                      child: Text(
-                                        'Per Minggu',
-                                        style: GoogleFonts.poppins().copyWith(
-                                            fontSize: 11,
-                                            fontWeight: (selectedGrafik == '2')
-                                                ? FontWeight.bold
-                                                : FontWeight.w300,
-                                            color: (selectedGrafik == '2')
-                                                ? Colors.white
-                                                : 'FF6969'.toColor()),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Tanggal',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10,
-                                      color: '7A7A7A'.toColor(),
-                                    ),
-                                  ),
-                                  Text(
-                                    '24 Januari 2023',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                      color: '343434'.toColor(),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
-              ),
-              padding: EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hasil Pertumbuhan:',
-                    style: GoogleFonts.poppins().copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
-                      color: '323232'.toColor(),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Text(
-                        'Lingkar Kepala:',
-                        style: GoogleFonts.poppins().copyWith(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 11,
-                          color: '414141'.toColor(),
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        '-',
-                        style: GoogleFonts.poppins().copyWith(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 11,
-                          color: '414141'.toColor(),
-                        ),
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        'cm',
-                        style: GoogleFonts.poppins().copyWith(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 11,
-                          color: '414141'.toColor(),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: 'FF6969'.toColor(),
-                        ),
-                        padding: EdgeInsets.only(
-                            top: 3, bottom: 3, left: 11, right: 11),
-                        child: Text(
-                          'Lonjong',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 9,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: 'FFD6D6'.toColor(),
-                    ),
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Catatan:',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: '6C1F1F'.toColor(),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: '9E401E'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '- 3 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: 'FC7847'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '- 2 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.purpleAccent,
+                                    // color: 'FC7847'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '- 1 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: '529166'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Median',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    // color: 'FD7948'.toColor(),
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '1 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: 'FD7948'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '2 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: '9E401E'.toColor(),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  '3 SD',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: '434343'.toColor()),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        Text(
-                          'Si kecil akan bertumbuh dengan cepat loh Moms, pertumbuhan si kecil bersifat kuantitatif, dapat diukur dan terjadi secara fisik. Pantau pertumbuhan si kecil yuk!',
-                          style: GoogleFonts.poppins().copyWith(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w300,
-                            color: '6C1F1F'.toColor(),
-                          ),
+                        SizedBox(height: 11),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedGrafik = '1';
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(5),
+                                        topLeft: Radius.circular(5),
+                                      ),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                      color: (selectedGrafik == '1')
+                                          ? 'FF6969'.toColor()
+                                          : Colors.white,
+                                    ),
+                                    padding: EdgeInsets.only(
+                                        top: 3, bottom: 3, left: 23, right: 23),
+                                    child: Text(
+                                      'Per Bulan',
+                                      style: GoogleFonts.poppins().copyWith(
+                                          fontSize: 11,
+                                          fontWeight: (selectedGrafik == '1')
+                                              ? FontWeight.bold
+                                              : FontWeight.w300,
+                                          color: (selectedGrafik == '1')
+                                              ? Colors.white
+                                              : 'FF6969'.toColor()),
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedGrafik = '2';
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(5),
+                                        topRight: Radius.circular(5),
+                                      ),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                      color: (selectedGrafik == '2')
+                                          ? 'FF6969'.toColor()
+                                          : Colors.white,
+                                    ),
+                                    padding: EdgeInsets.only(
+                                        top: 3, bottom: 3, left: 23, right: 23),
+                                    child: Text(
+                                      'Per Minggu',
+                                      style: GoogleFonts.poppins().copyWith(
+                                          fontSize: 11,
+                                          fontWeight: (selectedGrafik == '2')
+                                              ? FontWeight.bold
+                                              : FontWeight.w300,
+                                          color: (selectedGrafik == '2')
+                                              ? Colors.white
+                                              : 'FF6969'.toColor()),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Tanggal',
+                                  style: GoogleFonts.poppins().copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 10,
+                                    color: '7A7A7A'.toColor(),
+                                  ),
+                                ),
+                                BlocBuilder<HasilLingkarCubit,
+                                        HasilLingkarState>(
+                                    builder: (context, state) {
+                                  if (state is HasilLingkarLoaded) {
+                                    if (state.hasillingkar != null) {
+                                      var date =
+                                          DateTime.fromMillisecondsSinceEpoch(
+                                              state.hasillingkar!.checked_at! *
+                                                  1000);
+                                      String tanggal =
+                                          DateFormat('dd MMMM yyyy')
+                                              .format(date);
+                                      return Text(
+                                        tanggal,
+                                        style: GoogleFonts.poppins().copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: '343434'.toColor(),
+                                        ),
+                                      );
+                                    } else {
+                                      return SizedBox();
+                                    }
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                    );
+                                  }
+                                }),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -613,6 +571,128 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                 ],
               ),
             ),
+            SizedBox(height: 15),
+            BlocBuilder<HasilLingkarCubit, HasilLingkarState>(
+                builder: (context, snapshot) {
+              if (snapshot is HasilLingkarLoaded) {
+                if (snapshot.hasillingkar != null) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
+                    ),
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hasil Pertumbuhan:',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: '323232'.toColor(),
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Text(
+                              'Lingkar Kepala:',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 11,
+                                color: '414141'.toColor(),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              snapshot.hasillingkar!.hasil!.lingkar
+                                      .toString() ??
+                                  '',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 11,
+                                color: '414141'.toColor(),
+                              ),
+                            ),
+                            SizedBox(width: 3),
+                            Text(
+                              'cm',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 11,
+                                color: '414141'.toColor(),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: snapshot.hasillingkar!.hasil!.color!
+                                    .toColor(),
+                              ),
+                              padding: EdgeInsets.only(
+                                  top: 3, bottom: 3, left: 11, right: 11),
+                              child: Text(
+                                snapshot.hasillingkar!.hasil!.status
+                                        .toString() ??
+                                    '',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 9,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: snapshot.hasillingkar!.hasil!.color_catatan!
+                                .toColor(),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Catatan:',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: '6C1F1F'.toColor(),
+                                ),
+                              ),
+                              Text(
+                                snapshot.hasillingkar!.hasil!.catatan
+                                        .toString() ??
+                                    '',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w300,
+                                  color: '6C1F1F'.toColor(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return SizedBox();
+                }
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: 'FF6969'.toColor(),
+                  ),
+                );
+              }
+            }),
             SizedBox(height: 15),
             BlocBuilder<TumbuhLkCubit, TumbuhLkState>(
               builder: (context, snapshot) {

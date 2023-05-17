@@ -168,7 +168,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                               ),
                                               lineBarsData: [
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.tigasd!
+                                                  spots: snapshot.grafiktinggi!.tigasd
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
@@ -180,7 +180,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   dotData: FlDotData(show: false),
                                                 ), // 1
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.duasd!
+                                                  spots: snapshot.grafiktinggi!.duasd
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
@@ -191,7 +191,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   dotData: FlDotData(show: false),
                                                 ), // 2
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.satusd!
+                                                  spots: snapshot.grafiktinggi!.satusd
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
@@ -202,7 +202,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   dotData: FlDotData(show: false),
                                                 ), // 3
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.median!
+                                                  spots: snapshot.grafiktinggi!.median
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
@@ -224,7 +224,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   dotData: FlDotData(show: false),
                                                 ), // -3
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.minduasd!
+                                                  spots: snapshot.grafiktinggi!.minduasd
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
@@ -235,7 +235,7 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   dotData: FlDotData(show: false),
                                                 ), // -2
                                                 LineChartBarData(
-                                                  spots: snapshot.grafiktinggi!.minsatusd!
+                                                  spots: snapshot.grafiktinggi!.minsatusd
                                                       .map((e) => FlSpot(
                                                       e.bulan!.toDouble(),
                                                       e.tinggi!.toDouble() ?? 0.0))
