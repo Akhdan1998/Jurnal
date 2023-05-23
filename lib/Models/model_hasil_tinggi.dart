@@ -9,7 +9,7 @@ class SemuaHasilTinggi {
     grafik = (json['grafik'] as Iterable)
         .map((e) => GrafikHasilTinggi.fromJson(e))
         .toList();
-    checked_at = json['checked_at'] ?? 0;
+      checked_at = json['checked_at'] ?? 0;
     hasil = HasilTinggi.fromJson(json['hasil']);
   }
 }

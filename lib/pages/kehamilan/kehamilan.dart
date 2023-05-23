@@ -4,9 +4,10 @@ List<String> list = <String>[
   'Semua',
   'Bunga',
   'Islami',
-  'Negara',
-  'Bulan',
-  'Gen Z'
+  'Sansekerta',
+  'Galaxy',
+  'Wastern',
+  'Zodiak'
 ];
 
 class Kehamilan extends StatefulWidget {
@@ -23,8 +24,7 @@ class _KehamilanState extends State<Kehamilan> {
   String selectedKelamin = 'Laki-laki';
   String dropdownValue = list.first;
   int? show1;
-  bool show2 = false;
-
+  bool closeName = false;
   void hapus() async {
     Uri url_ = Uri.parse(
         'https://dashboard.parentoday.com/api/jurnal/kehamilan/delete');
@@ -328,7 +328,7 @@ class _KehamilanState extends State<Kehamilan> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Progress Baby',
+                                      'Perkembangan Bayi',
                                       style: GoogleFonts.poppins().copyWith(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 11,
@@ -532,7 +532,7 @@ class _KehamilanState extends State<Kehamilan> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Progress Baby',
+                                      'Perkembangan Bayi',
                                       style: GoogleFonts.poppins().copyWith(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 11,
@@ -600,24 +600,32 @@ class _KehamilanState extends State<Kehamilan> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(finder());
+                              setState(() {
+                                hurufawalan.text = '';
+                                selectedKelamin = 'Laki-laki';
+                                dropdownValue = "Semua";
+                                closeName = false;
+                              });
                             },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Reset',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                      color: 'FF6969'.toColor()),
-                                ),
-                                SizedBox(width: 3),
-                                Icon(
-                                  Icons.refresh_outlined,
-                                  color: 'FF6969'.toColor(),
-                                  size: 18,
-                                ),
-                              ],
+                            child: Container(
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Reset',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.5,
+                                        color: 'FF6969'.toColor()),
+                                  ),
+                                  SizedBox(width: 3),
+                                  Icon(
+                                    Icons.refresh_outlined,
+                                    color: 'FF6969'.toColor(),
+                                    size: 17,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -810,8 +818,11 @@ class _KehamilanState extends State<Kehamilan> {
                         context.read<HurufCubit>().getHuruf(
                             'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
                             hurufawalan.text,
-                            selectedKelamin,
-                            dropdownValue);
+                            selectedKelamin ?? "",
+                            dropdownValue ?? "");
+                        setState(() {
+                          closeName = true;
+                        });
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -835,175 +846,191 @@ class _KehamilanState extends State<Kehamilan> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
-                    Container(
-                      color: Colors.white,
-                      // padding: EdgeInsets.only(left: 16, right: 16),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: 15, right: 15, top: 10, bottom: 10),
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(5),
-                                topLeft: Radius.circular(5),
-                              ),
-                              border: Border.all(
-                                  color: 'F0F0F0'.toColor(), width: 1),
-                              color: 'FF6969'.toColor(),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Hasil Pencarian',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Semua Preferensi - Awalan A - Unisex',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(5),
-                                bottomLeft: Radius.circular(5),
-                              ),
-                              border: Border.all(
-                                  color: 'F0F0F0'.toColor(), width: 1),
-                            ),
-                            padding: EdgeInsets.only(
-                                left: 10, right: 10, top: 5, bottom: 5),
-                            child: BlocBuilder<HurufCubit, HurufState>(
-                                builder: (context, snapshot) {
-                              if (snapshot is HurufLoaded) {
-                                if (snapshot.abjad != null) {
-                                  return Column(
-                                    children: snapshot.abjad!
-                                        .mapIndexed(
-                                          (int index, e) => Container(
-                                            padding: EdgeInsets.only(
-                                                left: 10, right: 10, top: 5, bottom: 5),
-                                            color: (index.isEven)
-                                                ? Colors.white
-                                                : 'FFF9F9'.toColor(),
-                                            child: Column(children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(children: [
-                                                    Text(
-                                                      '${index + 1}' + '.',
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w300,
-                                                                  fontSize: 12,
-                                                                  color: Colors
-                                                                      .black),
-                                                    ),
-                                                    SizedBox(width: 5),
-                                                    Text(
-                                                      e.nama ?? '',
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w300,
-                                                                  fontSize: 12,
-                                                                  color: Colors
-                                                                      .black),
-                                                    ),
-                                                  ]),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      if (show1 == e.id) {
-                                                        setState(() {
-                                                          show1 = null;
-                                                        });
-                                                      } else {
-                                                        setState(() {
-                                                          show1 = e.id;
-                                                        });
-                                                      }
-                                                    },
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          'Detail',
-                                                          style: GoogleFonts
-                                                                  .poppins()
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 12,
-                                                                  color: 'FF6969'
-                                                                      .toColor()),
-                                                        ),
-                                                        SizedBox(width: 5),
-                                                        (show1 == e.id)
-                                                            ? Icon(
-                                                                Icons
-                                                                    .expand_less_outlined,
-                                                                color: 'FF6969'
-                                                                    .toColor())
-                                                            : Icon(
-                                                                Icons
-                                                                    .expand_more_outlined,
-                                                                color: 'FF6969'
-                                                                    .toColor()),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              (show1 == e.id)
-                                                  ? Text(
-                                                      e.deskripsi ?? '',
-                                                      style: GoogleFonts
-                                                              .poppins()
-                                                          .copyWith(
-                                                              fontSize: 11,
-                                                              color: '414141'
-                                                                  .toColor()),
-                                                    )
-                                                  : SizedBox(),
-                                            ]),
-                                          ),
-                                        )
-                                        .toList(),
-                                  );
-                                } else {
-                                  return SizedBox();
-                                }
-                              } else {
-                                return SizedBox();
-                              }
-                            }),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20),
                   ],
                 ),
+              ),
+            ),
+            SizedBox(height: 15),
+            (closeName == false) ? SizedBox() :
+            Container(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: BlocBuilder<HurufCubit, HurufState>(
+                builder: (context, snapshot) {
+                  if (snapshot is HurufLoaded) {
+                    if (snapshot.abjad != null) {
+                      return Container(
+                        color: Colors.white,
+                        // padding: EdgeInsets.only(left: 16, right: 16),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                  left: 15,
+                                  right: 15,
+                                  top: 10,
+                                  bottom: 10),
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(5),
+                                  topLeft: Radius.circular(5),
+                                ),
+                                border: Border.all(
+                                    color: 'F0F0F0'.toColor(), width: 1),
+                                color: 'FF6969'.toColor(),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Hasil Pencarian',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Semua Preferensi - Awalan A - Unisex',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(5),
+                                  bottomLeft: Radius.circular(5),
+                                ),
+                                border: Border.all(
+                                    color: 'F0F0F0'.toColor(), width: 1),
+                              ),
+                              padding: EdgeInsets.only(top: 5, bottom: 5),
+                              child: Column(
+                                children: snapshot.abjad!
+                                    .mapIndexed(
+                                      (int index, e) => Container(
+                                    padding: EdgeInsets.only(
+                                        left: 10,
+                                        right: 10,
+                                        top: 5,
+                                        bottom: 5),
+                                    color: (index.isEven)
+                                        ? Colors.white
+                                        : 'FFF9F9'.toColor(),
+                                    child: Column(children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment
+                                            .spaceBetween,
+                                        children: [
+                                          Row(children: [
+                                            Text(
+                                              '${index + 1}' + '.',
+                                              style: GoogleFonts
+                                                  .poppins()
+                                                  .copyWith(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .w300,
+                                                  fontSize: 12,
+                                                  color: Colors
+                                                      .black),
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text(
+                                              e.nama ?? '',
+                                              style: GoogleFonts
+                                                  .poppins()
+                                                  .copyWith(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .w300,
+                                                  fontSize: 12,
+                                                  color: Colors
+                                                      .black),
+                                            ),
+                                          ]),
+                                          GestureDetector(
+                                            onTap: () {
+                                              if (show1 == e.id) {
+                                                setState(() {
+                                                  show1 = null;
+                                                });
+                                              } else {
+                                                setState(() {
+                                                  show1 = e.id;
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              color:
+                                              Colors.transparent,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Detail',
+                                                    style: GoogleFonts
+                                                        .poppins()
+                                                        .copyWith(
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .bold,
+                                                        fontSize:
+                                                        12,
+                                                        color: 'FF6969'
+                                                            .toColor()),
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  (show1 == e.id)
+                                                      ? Icon(
+                                                      Icons
+                                                          .expand_less_outlined,
+                                                      color: 'FF6969'
+                                                          .toColor())
+                                                      : Icon(
+                                                      Icons
+                                                          .expand_more_outlined,
+                                                      color: 'FF6969'
+                                                          .toColor()),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      (show1 == e.id)
+                                          ? Text(
+                                        e.deskripsi ?? '',
+                                        style: GoogleFonts
+                                            .poppins()
+                                            .copyWith(
+                                            fontSize: 11,
+                                            color: '414141'
+                                                .toColor()),
+                                      )
+                                          : SizedBox(),
+                                    ]),
+                                  ),
+                                )
+                                    .toList(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  } else {
+                    return SizedBox();
+                  }
+                },
               ),
             ),
           ],

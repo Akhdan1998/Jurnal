@@ -71,18 +71,4 @@ class GrafikBerat {
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
   }
-
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['berat'] = berat;
-    data['bulan'] = bulan;
-    data['jenis'] = jenis;
-    data['gender'] = gender;
-    data['checked_at'] = checked_at;
-    data['created_at'] = created_at;
-    data['updated_at'] = updated_at;
-    data['deleted_at'] = deleted_at;
-    return data;
-  }
 }

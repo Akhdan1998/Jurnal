@@ -37,12 +37,16 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
           textColor: Colors.white,
           fontSize: 16.0);
       context.read<TinggiCubit>().getTinggi(
-          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id);
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          widget.anak_id);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
 
+  bool isData = false;
+
+  // String formattedDate = DateFormat('dd MMM yyy').format();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,29 +135,68 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: snapshot.tinggi!
-                            .map(
-                              (e) => Column(
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 32,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          e.checked_at.toString() ?? '',
+                        children: snapshot.tinggi!.map(
+                          (e) {
+                            DateTime haha = DateFormat('yyyy-MM-dd hh:mm:ss')
+                                .parse(e.checked_at!);
+
+                            String date =
+                                DateFormat('dd MMMM yyy').format(haha);
+
+                            return Column(
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width - 32,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 86,
+                                        child: Text(
+                                          date,
                                           style: GoogleFonts.poppins().copyWith(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
                                             color: '414141'.toColor(),
                                           ),
                                         ),
-                                        Row(
+                                      ),
+                                      Container(
+                                        width: 104,
+                                        child: Text(
+                                          e.tinggi.toString() + ' ' + 'cm' ??
+                                              '',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '414141'.toColor(),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 97,
+                                        child: Text(
+                                          e.berat.toString() + ' ' + 'kg' ?? '',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            color: '414141'.toColor(),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                319,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              e.tinggi.toString() ?? '',
+                                              e.lingkar_kepala.toString() +
+                                                      ' ' +
+                                                      'cm' ??
+                                                  '',
                                               style: GoogleFonts.poppins()
                                                   .copyWith(
                                                 fontSize: 11,
@@ -161,75 +204,17 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                                 color: '414141'.toColor(),
                                               ),
                                             ),
-                                            SizedBox(width: 3),
-                                            Text(
-                                              'cm',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                                color: '414141'.toColor(),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              e.berat.toString() ?? '',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                                color: '414141'.toColor(),
-                                              ),
-                                            ),
-                                            SizedBox(width: 3),
-                                            Text(
-                                              'kg',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                                color: '414141'.toColor(),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              e.lingkar_kepala.toString() ?? '',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                                color: '414141'.toColor(),
-                                              ),
-                                            ),
-                                            SizedBox(width: 3),
-                                            Text(
-                                              'cm',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                                color: '414141'.toColor(),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                      'Hapus data anak',
-                                                      style:
-                                                          GoogleFonts.poppins()
+                                            GestureDetector(
+                                              onTap: () {
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                          'Hapus data anak',
+                                                          style: GoogleFonts
+                                                                  .poppins()
                                                               .copyWith(
                                                                   fontSize: 13,
                                                                   fontWeight:
@@ -237,11 +222,11 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                                                           .bold,
                                                                   color: Colors
                                                                       .black),
-                                                    ),
-                                                    content: Text(
-                                                      'Kamu yakin akan menghapus data badan anak?',
-                                                      style:
-                                                          GoogleFonts.poppins()
+                                                        ),
+                                                        content: Text(
+                                                          'Kamu yakin akan menghapus data badan anak?',
+                                                          style: GoogleFonts
+                                                                  .poppins()
                                                               .copyWith(
                                                                   fontSize: 13,
                                                                   fontWeight:
@@ -249,60 +234,64 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                                                           .w300,
                                                                   color: Colors
                                                                       .black),
-                                                    ),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Text(
-                                                          'Tidak',
-                                                          style: GoogleFonts
-                                                                  .poppins()
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: 'FF6969'
-                                                                      .toColor()),
                                                         ),
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          deleted(
-                                                              e.id.toString());
-                                                        },
-                                                        child: Text(
-                                                          'Ya',
-                                                          style: GoogleFonts
-                                                                  .poppins()
-                                                              .copyWith(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: 'FF6969'
-                                                                      .toColor()),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  );
-                                                });
-                                          },
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: 'FF6969'.toColor(),
-                                            size: 18,
-                                          ),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: Text(
+                                                              'Tidak',
+                                                              style: GoogleFonts
+                                                                      .poppins()
+                                                                  .copyWith(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: 'FF6969'
+                                                                          .toColor()),
+                                                            ),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              deleted(e.id
+                                                                  .toString());
+                                                            },
+                                                            child: Text(
+                                                              'Ya',
+                                                              style: GoogleFonts
+                                                                      .poppins()
+                                                                  .copyWith(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: 'FF6969'
+                                                                          .toColor()),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    });
+                                              },
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: 'FF6969'.toColor(),
+                                                size: 18,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(height: 5),
-                                ],
-                              ),
-                            )
-                            .toList(),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            );
+                          },
+                        ).toList(),
                       ),
                     ],
                   ),

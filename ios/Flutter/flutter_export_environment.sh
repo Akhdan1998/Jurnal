@@ -3,7 +3,7 @@
 export "FLUTTER_ROOT=/Users/akhdanhabibie/Development/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/akhdanhabibie/StudioProjects/Jurnall-main"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=/Users/akhdanhabibie/StudioProjects/Jurnall-main/lib/pages/dataAnak/main.dart"
+export "FLUTTER_TARGET=/Users/akhdanhabibie/StudioProjects/Jurnall-main/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"

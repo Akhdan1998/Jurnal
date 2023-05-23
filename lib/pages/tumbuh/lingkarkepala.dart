@@ -12,6 +12,8 @@ class lingkarkepala extends StatefulWidget {
 }
 
 class _lingkarkepalaState extends State<lingkarkepala> {
+  final lk = TextEditingController();
+  final tanggalcek3 = TextEditingController();
   final tanggalcek = TextEditingController();
   final kepala = TextEditingController();
   String selectedGrafik = '1';
@@ -45,11 +47,47 @@ class _lingkarkepalaState extends State<lingkarkepala> {
       context.read<TumbuhLkCubit>().gettumbuhLk(
           'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
           widget.anak_id);
+      context.read<HasilLingkarCubit>().gethasilLingkar(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          widget.gender,
+          widget.anak_id);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
-
+  Future<void> dataLK(
+      String anak_id, String lingkarkepala, String checked_at) async {
+    Uri url = Uri.parse(
+        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/lingkar/create");
+    var res = await http.post(
+      url,
+      body: {
+        "anak_id": anak_id,
+        "lingkar_kepala": lingkarkepala,
+        "checked_at": checked_at + ' ' + '07:00:00',
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    print(res.body.toString());
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: "Kamu berhasil memperbaharui data Lingkar Kepala anak!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: 'FF6969'.toColor(),
+          textColor: Colors.white,
+          fontSize: 16.0);
+      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
+      print(res.statusCode);
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -94,21 +132,197 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                               fontSize: 11,
                               color: '323232'.toColor()),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Catat Lingkar Kepala',
-                              style: GoogleFonts.poppins().copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                  color: 'FF6969'.toColor()),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              // clipBehavior: Clip.none,
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(15), topLeft: Radius.circular(15))),
+                              context: context,
+                              builder: (context) {
+                                return SingleChildScrollView(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+                                      color: Colors.white,
+                                    ),
+                                    // height: MediaQuery.of(context).size.height,
+                                    padding: EdgeInsets.only(
+                                        top: 16,
+                                        right: 16,
+                                        left: 16,
+                                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Isi Data Lingkar Kepala',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: '323232'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 14),
+                                        Text(
+                                          'Tanggal Cek',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            color: '5A5A5A'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        TextField(
+                                          controller: tanggalcek3,
+                                          decoration: InputDecoration(
+                                            suffixIcon: Icon(
+                                              Icons.date_range,
+                                              size: 20,
+                                              color: '8F8F8F'.toColor(),
+                                            ),
+                                            hintStyle: GoogleFonts.poppins().copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: '989797'.toColor(),
+                                            ),
+                                            hintText: '24 Maret 2023',
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                              borderSide:
+                                              BorderSide(width: 1, color: 'FF6969'.toColor()),
+                                            ),
+                                            contentPadding:
+                                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                                            border: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(5)),
+                                          ),
+                                          onTap: () async {
+                                            DateTime? pickeddate = await showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(1945),
+                                                lastDate: DateTime(2500));
+
+                                            if (pickeddate != null) {
+                                              setState(() {
+                                                tanggalcek3.text =
+                                                    DateFormat('yyyy-MM-dd').format(pickeddate);
+                                              });
+                                            }
+                                          },
+                                        ),
+                                        SizedBox(height: 14),
+                                        Text(
+                                          'Lingkar Kepala (cm)',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            color: '5A5A5A'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        TextField(
+                                          keyboardType: TextInputType.number,
+                                          controller: lk,
+                                          decoration: InputDecoration(
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                              borderSide:
+                                              BorderSide(width: 1, color: 'FF6969'.toColor()),
+                                            ),
+                                            contentPadding:
+                                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                                            hintStyle: GoogleFonts.poppins().copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: '989797'.toColor(),
+                                            ),
+                                            hintText: '10',
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(5),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 14),
+                                        BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
+                                          builder: (context, snapshot) {
+                                            if (snapshot is BuatdataanakLoaded) {
+                                              if (snapshot.dataanak != null) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    dataLK(snapshot.dataanak!.first.anak_id.toString(),
+                                                        lk.text, tanggalcek3.text)
+                                                        .whenComplete(() {
+                                                      context.read<TumbuhLkCubit>().gettumbuhLk(
+                                                          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                                          snapshot.dataanak!.first.anak_id.toString());
+                                                      context.read<HasilLingkarCubit>().gethasilLingkar(
+                                                        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                                        snapshot.dataanak!.first.gender.toString(),
+                                                        snapshot.dataanak!.first.anak_id.toString(),
+                                                      );
+                                                      Navigator.of(context).pop();
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: MediaQuery.of(context).size.width,
+                                                    height: 40,
+                                                    decoration: BoxDecoration(
+                                                      color: 'FF6969'.toColor(),
+                                                      borderRadius: BorderRadius.circular(5),
+                                                    ),
+                                                    child: Text(
+                                                      'Simpan Data',
+                                                      style: GoogleFonts.poppins().copyWith(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: 'FFFFFF'.toColor(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return SizedBox();
+                                              }
+                                            } else {
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  color: 'FF6969'.toColor(),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                        SizedBox(height: 40),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            color: Colors.white,
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Catat Lingkar Kepala',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                      color: 'FF6969'.toColor()),
+                                ),
+                                Icon(
+                                  Icons.add_outlined,
+                                  color: 'FF6969'.toColor(),
+                                  size: 16,
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.add_outlined,
-                              color: 'FF6969'.toColor(),
-                              size: 16,
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -128,10 +342,10 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                   aspectRatio: 15 / 10,
                                   child: LineChart(
                                     LineChartData(
-                                      maxX: 60,
+                                      maxX: 6,
                                       minX: 0,
-                                      maxY: 60,
-                                      minY: 30,
+                                      maxY: 50,
+                                      minY: 31,
                                       clipData: FlClipData(
                                           top: true,
                                           bottom: false,
@@ -169,7 +383,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.tigasd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: Colors.blue,
@@ -181,7 +395,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.duasd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: 'FD7948'.toColor(),
@@ -193,7 +407,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.satusd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: '9E401E'.toColor(),
@@ -205,7 +419,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.median!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: '529166'.toColor(),
@@ -217,7 +431,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.mintigasd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: '9E401E'.toColor(),
@@ -229,7 +443,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.minduasd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: 'FF6969'.toColor(),
@@ -240,7 +454,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: snapshot.grafiklk!.minsatusd!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lk ?? 0.0))
+                                                  e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: Colors.purpleAccent,
@@ -253,14 +467,14 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                           spots: state.hasillingkar!.grafik!
                                               .map((e) => FlSpot(
                                                   e.bulan!.toDouble(),
-                                                  e.lingkar ?? 0.0))
+                                                  e.lingkar!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
                                           color: Colors.purpleAccent,
                                           // color: 'FC7847'.toColor(),
                                           // color: 'FF6969'.toColor(),
                                           barWidth: 1,
-                                          dotData: FlDotData(show: false),
+                                          dotData: FlDotData(show: true),
                                         ),
                                       ],
                                     ),
@@ -554,11 +768,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                       return SizedBox();
                                     }
                                   } else {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: 'FF6969'.toColor(),
-                                      ),
-                                    );
+                                    return SizedBox();
                                   }
                                 }),
                               ],
@@ -608,17 +818,8 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                             SizedBox(width: 5),
                             Text(
                               snapshot.hasillingkar!.hasil!.lingkar
-                                      .toString() ??
+                                      .toString() + ' ' + 'cm' ??
                                   '',
-                              style: GoogleFonts.poppins().copyWith(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 11,
-                                color: '414141'.toColor(),
-                              ),
-                            ),
-                            SizedBox(width: 3),
-                            Text(
-                              'cm',
                               style: GoogleFonts.poppins().copyWith(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 11,
@@ -663,7 +864,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                 style: GoogleFonts.poppins().copyWith(
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
-                                  color: '6C1F1F'.toColor(),
+                                  color: Colors.black87,
                                 ),
                               ),
                               Text(
@@ -673,7 +874,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                 style: GoogleFonts.poppins().copyWith(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w300,
-                                  color: '6C1F1F'.toColor(),
+                                  color: Colors.black87,
                                 ),
                               ),
                             ],
@@ -723,12 +924,15 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                 onTap: () {
                                   Get.to(riwayatpencatatan(widget.anak_id));
                                 },
-                                child: Text(
-                                  'Lihat Semua',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10,
-                                    color: 'FF6969'.toColor(),
+                                child: Container(
+                                  color: Colors.white,
+                                  child: Text(
+                                    'Lihat Semua',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                      color: 'FF6969'.toColor(),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -761,126 +965,129 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                               Column(
                                 children: snapshot.tumbuhLk!
                                     .map(
-                                      (e) => Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                e.checked_at.toString() ?? '',
-                                                style: GoogleFonts.poppins()
-                                                    .copyWith(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: '414141'.toColor(),
+                                      (e) {
+                                        DateTime haha = DateFormat('yyyy-MM-dd hh:mm:ss')
+                                            .parse(e.checked_at!);
+
+                                        String date =
+                                        DateFormat('dd MMMM yyy').format(haha);
+                                        return Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  date,
+                                                  style: GoogleFonts.poppins()
+                                                      .copyWith(
+                                                    fontSize: 11,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: '414141'.toColor(),
+                                                  ),
                                                 ),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    e.lingkar_kepala
-                                                            .toString() ??
-                                                        '',
-                                                    style: GoogleFonts.poppins()
-                                                        .copyWith(
-                                                      fontSize: 11,
-                                                      fontWeight:
+                                                Container(
+                                                  width: 113,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        e.lingkar_kepala
+                                                            .toString() + ' ' + 'cm' ??
+                                                            '',
+                                                        style: GoogleFonts.poppins()
+                                                            .copyWith(
+                                                          fontSize: 11,
+                                                          fontWeight:
                                                           FontWeight.bold,
-                                                      color: '414141'.toColor(),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 3),
-                                                  Text(
-                                                    'cm',
-                                                    style: GoogleFonts.poppins()
-                                                        .copyWith(
-                                                      fontSize: 11,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: '414141'.toColor(),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 6),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
+                                                          color: '414141'.toColor(),
+                                                        ),
+                                                      ),
+                                                      SizedBox(width: 6),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (BuildContext
                                                               context) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                'Hapus data lingkar kepala anak',
-                                                                style: GoogleFonts.poppins().copyWith(
-                                                                    fontSize:
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                    'Hapus data lingkar kepala anak',
+                                                                    style: GoogleFonts.poppins().copyWith(
+                                                                        fontSize:
                                                                         13,
-                                                                    fontWeight:
+                                                                        fontWeight:
                                                                         FontWeight
                                                                             .bold,
-                                                                    color: Colors
-                                                                        .black),
-                                                              ),
-                                                              content: Text(
-                                                                'Kamu yakin akan menghapus data lingkar kepala badan anak?',
-                                                                style: GoogleFonts.poppins().copyWith(
-                                                                    fontSize:
+                                                                        color: Colors
+                                                                            .black),
+                                                                  ),
+                                                                  content: Text(
+                                                                    'Kamu yakin akan menghapus data lingkar kepala badan anak?',
+                                                                    style: GoogleFonts.poppins().copyWith(
+                                                                        fontSize:
                                                                         13,
-                                                                    fontWeight:
+                                                                        fontWeight:
                                                                         FontWeight
                                                                             .w300,
-                                                                    color: Colors
-                                                                        .black),
-                                                              ),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
+                                                                        color: Colors
+                                                                            .black),
+                                                                  ),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.of(
                                                                             context)
-                                                                        .pop();
-                                                                  },
-                                                                  child: Text(
-                                                                    'Tidak',
-                                                                    style: GoogleFonts.poppins().copyWith(
-                                                                        fontWeight:
+                                                                            .pop();
+                                                                      },
+                                                                      child: Text(
+                                                                        'Tidak',
+                                                                        style: GoogleFonts.poppins().copyWith(
+                                                                            fontWeight:
                                                                             FontWeight
                                                                                 .bold,
-                                                                        color: 'FF6969'
-                                                                            .toColor()),
-                                                                  ),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    deleted(e.id
-                                                                        .toString());
-                                                                  },
-                                                                  child: Text(
-                                                                    'Ya',
-                                                                    style: GoogleFonts.poppins().copyWith(
-                                                                        fontWeight:
+                                                                            color: 'FF6969'
+                                                                                .toColor()),
+                                                                      ),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        deleted(e.id
+                                                                            .toString());
+                                                                      },
+                                                                      child: Text(
+                                                                        'Ya',
+                                                                        style: GoogleFonts.poppins().copyWith(
+                                                                            fontWeight:
                                                                             FontWeight
                                                                                 .bold,
-                                                                        color: 'FF6969'
-                                                                            .toColor()),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Icon(
-                                                      Icons.delete,
-                                                      color: 'FF6969'.toColor(),
-                                                      size: 18,
-                                                    ),
+                                                                            color: 'FF6969'
+                                                                                .toColor()),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              });
+                                                        },
+                                                        child: Container(
+                                                          color: Colors.transparent,
+                                                          child: Icon(
+                                                            Icons.delete,
+                                                            color: 'FF6969'.toColor(),
+                                                            size: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        );
+                                      }
                                     )
                                     .toList(),
                               ),

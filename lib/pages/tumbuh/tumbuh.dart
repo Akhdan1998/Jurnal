@@ -10,13 +10,6 @@ class Tumbuh extends StatefulWidget {
 }
 
 class _TumbuhState extends State<Tumbuh> {
-  final tanggalcek1 = TextEditingController();
-  final tanggalcek2 = TextEditingController();
-  final tanggalcek3 = TextEditingController();
-  final tinggi = TextEditingController();
-  final lk = TextEditingController();
-  final berat = TextEditingController();
-
   BuatDataAnak? anak;
   List<TumbuhTinggi> tumbuhTinggi = [];
   List<TumbuhBerat> tumbuhBerat = [];
@@ -32,107 +25,6 @@ class _TumbuhState extends State<Tumbuh> {
     super.initState();
     context.read<BuatdataanakCubit>().getBuatDataAnak(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
-  }
-
-  Future<void> dataTinggi(
-      String anak_id, String tinggi, String checked_at) async {
-    Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/tinggi/create");
-    var res = await http.post(
-      url,
-      body: {
-        "anak_id": anak_id,
-        "tinggi": tinggi,
-        "checked_at": checked_at + ' ' + '07:00:00',
-      },
-      headers: {
-        "Accept": "application/json",
-        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
-      },
-    );
-    Map<String, dynamic> body = jsonDecode(res.body);
-    if (res.statusCode == 200) {
-      Fluttertoast.showToast(
-          msg: "Kamu berhasil memperbaharui data Tinggi Badan anak!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          timeInSecForIosWeb: 3,
-          backgroundColor: 'FF6969'.toColor(),
-          textColor: Colors.white,
-          fontSize: 16.0);
-      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
-      print(res.statusCode);
-    } else {
-      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
-    }
-  }
-
-  Future<void> dataBerat(
-      String anak_id, String berat, String checked_at) async {
-    Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/berat/create");
-    var res = await http.post(
-      url,
-      body: {
-        "anak_id": anak_id,
-        "berat": berat,
-        "checked_at": checked_at + ' ' + '07:00:00',
-      },
-      headers: {
-        "Accept": "application/json",
-        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
-      },
-    );
-    print(res.body.toString());
-    Map<String, dynamic> body = jsonDecode(res.body);
-    if (res.statusCode == 200) {
-      Fluttertoast.showToast(
-          msg: "Kamu berhasil memperbaharui data Berat Badan anak!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          timeInSecForIosWeb: 3,
-          backgroundColor: 'FF6969'.toColor(),
-          textColor: Colors.white,
-          fontSize: 16.0);
-      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
-      print(res.statusCode);
-    } else {
-      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
-    }
-  }
-
-  Future<void> dataLK(
-      String anak_id, String lingkarkepala, String checked_at) async {
-    Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/lingkar/create");
-    var res = await http.post(
-      url,
-      body: {
-        "anak_id": anak_id,
-        "lingkar_kepala": lingkarkepala,
-        "checked_at": checked_at + ' ' + '07:00:00',
-      },
-      headers: {
-        "Accept": "application/json",
-        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
-      },
-    );
-    print(res.body.toString());
-    Map<String, dynamic> body = jsonDecode(res.body);
-    if (res.statusCode == 200) {
-      Fluttertoast.showToast(
-          msg: "Kamu berhasil memperbaharui data Lingkar Kepala anak!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          timeInSecForIosWeb: 3,
-          backgroundColor: 'FF6969'.toColor(),
-          textColor: Colors.white,
-          fontSize: 16.0);
-      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
-      print(res.statusCode);
-    } else {
-      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
-    }
   }
 
   @override
@@ -282,7 +174,12 @@ class _TumbuhState extends State<Tumbuh> {
                                               ),
                                               SizedBox(width: 3),
                                               Text(
-                                                '0',
+                                                snapshot.dataanak!.first
+                                                            .umur_tahun
+                                                            .toString() +
+                                                        ' ' +
+                                                        'Tahun' ??
+                                                    '',
                                                 style: GoogleFonts.poppins()
                                                     .copyWith(
                                                   fontWeight: FontWeight.w300,
@@ -292,27 +189,12 @@ class _TumbuhState extends State<Tumbuh> {
                                               ),
                                               SizedBox(width: 3),
                                               Text(
-                                                'Tahun',
-                                                style: GoogleFonts.poppins()
-                                                    .copyWith(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 11,
-                                                  color: '7A7A7A'.toColor(),
-                                                ),
-                                              ),
-                                              SizedBox(width: 3),
-                                              Text(
-                                                '0',
-                                                style: GoogleFonts.poppins()
-                                                    .copyWith(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 11,
-                                                  color: '7A7A7A'.toColor(),
-                                                ),
-                                              ),
-                                              SizedBox(width: 3),
-                                              Text(
-                                                'Bulan',
+                                                snapshot.dataanak!.first
+                                                            .umur_bulan
+                                                            .toString() +
+                                                        ' ' +
+                                                        'Bulan' ??
+                                                    '',
                                                 style: GoogleFonts.poppins()
                                                     .copyWith(
                                                   fontWeight: FontWeight.w300,
@@ -346,25 +228,28 @@ class _TumbuhState extends State<Tumbuh> {
                                             },
                                           );
                                         },
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Ganti Anak',
-                                              style: GoogleFonts.poppins()
-                                                  .copyWith(
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: 10,
-                                                color: 'FF6969'.toColor(),
+                                        child: Container(
+                                          color: Colors.white,
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Ganti Anak',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 10,
+                                                  color: 'FF6969'.toColor(),
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(width: 5),
-                                            Icon(
-                                              Icons
-                                                  .keyboard_arrow_down_outlined,
-                                              color: 'FF6969'.toColor(),
-                                              size: 18,
-                                            ),
-                                          ],
+                                              SizedBox(width: 5),
+                                              Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_outlined,
+                                                color: 'FF6969'.toColor(),
+                                                size: 18,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -706,15 +591,16 @@ class _TumbuhState extends State<Tumbuh> {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {
-          if (pageChanged == 0) {
-            modelTinggi(context);
-          }
-          if (pageChanged == 1) {
-            modelBerat(context);
-          }
-          if (pageChanged == 2) {
-            modellk(context);
-          }
+          Get.to(semuaData());
+          // if (pageChanged == 0) {
+          //   modelTinggi(context);
+          // }
+          // if (pageChanged == 1) {
+          //   modelBerat(context);
+          // }
+          // if (pageChanged == 2) {
+          //   modellk(context);
+          // }
         },
         backgroundColor: 'FF6969'.toColor(),
         child: Icon(
@@ -724,493 +610,8 @@ class _TumbuhState extends State<Tumbuh> {
     );
   }
 
-  void modelTinggi(BuildContext context) {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(15), topLeft: Radius.circular(15))),
-      context: context,
-      builder: (context) {
-        return SingleChildScrollView(
-          child: Container(
-            // height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.only(
-                top: 16,
-                right: 16,
-                left: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Isi Data Tinggi',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: '323232'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Tanggal Cek',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  controller: tanggalcek1,
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.date_range,
-                      size: 20,
-                      color: '8F8F8F'.toColor(),
-                    ),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '24 Maret 2023',
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  onTap: () async {
-                    DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1945),
-                        lastDate: DateTime(2500));
 
-                    if (pickeddate != null) {
-                      setState(() {
-                        tanggalcek1.text =
-                            DateFormat('yyyy-MM-dd').format(pickeddate);
-                      });
-                    }
-                  },
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Tinggi Badan (cm)',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: tinggi,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '10',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 14),
-                BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
-                  builder: (context, snapshot) {
-                    if (snapshot is BuatdataanakLoaded) {
-                      if (snapshot.dataanak != null) {
-                        return GestureDetector(
-                          onTap: () async {
-                            await dataTinggi(
-                                    snapshot.dataanak!.first.anak_id.toString(),
-                                    tinggi.text,
-                                    tanggalcek1.text)
-                                .whenComplete(() {
-                              context.read<TumbuhTinggiCubit>().gettumbuhTinggi(
-                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                                  snapshot.dataanak!.first.anak_id.toString());
+  void modelBerat(BuildContext context) {}
 
-                              Navigator.of(context).pop();
-                            });
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: 'FF6969'.toColor(),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Text(
-                              'Simpan Data',
-                              style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: 'FFFFFF'.toColor(),
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return SizedBox();
-                      }
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: 'FF6969'.toColor(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void modelBerat(BuildContext context) {
-    showModalBottomSheet(
-      // clipBehavior: Clip.none,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(15), topLeft: Radius.circular(15))),
-      context: context,
-      builder: (context) {
-        return SingleChildScrollView(
-          child: Container(
-            // height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.only(
-                top: 16,
-                right: 16,
-                left: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Isi Data Berat',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: '323232'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Tanggal Cek',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  controller: tanggalcek2,
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.date_range,
-                      size: 20,
-                      color: '8F8F8F'.toColor(),
-                    ),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '24 Maret 1998',
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  onTap: () async {
-                    DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1945),
-                        lastDate: DateTime(2500));
-
-                    if (pickeddate != null) {
-                      setState(() {
-                        tanggalcek2.text =
-                            DateFormat('yyyy-MM-dd').format(pickeddate);
-                      });
-                    }
-                  },
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Berat Badan (kg)',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: berat,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '10',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 14),
-                BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
-                  builder: (context, snapshot) {
-                    if (snapshot is BuatdataanakLoaded) {
-                      if (snapshot.dataanak != null) {
-                        return GestureDetector(
-                          onTap: () async {
-                            await dataBerat(
-                                    snapshot.dataanak!.first.anak_id.toString(),
-                                    berat.text,
-                                    tanggalcek2.text)
-                                .whenComplete(() {
-                              context.read<TumbuhBeratCubit>().gettumbuhBerat(
-                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                                  snapshot.dataanak!.first.anak_id.toString());
-                              Navigator.of(context).pop();
-                            });
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: 'FF6969'.toColor(),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Text(
-                              'Simpan Data',
-                              style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: 'FFFFFF'.toColor(),
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return SizedBox();
-                      }
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: 'FF6969'.toColor(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void modellk(BuildContext context) {
-    showModalBottomSheet(
-      // clipBehavior: Clip.none,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(15), topLeft: Radius.circular(15))),
-      context: context,
-      builder: (context) {
-        return SingleChildScrollView(
-          child: Container(
-            // height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.only(
-                top: 16,
-                right: 16,
-                left: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Isi Data Lingkar Kepala',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: '323232'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Tanggal Cek',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  controller: tanggalcek3,
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.date_range,
-                      size: 20,
-                      color: '8F8F8F'.toColor(),
-                    ),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '24 Maret 2023',
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(top: 5, left: 10, bottom: 10),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  onTap: () async {
-                    DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1945),
-                        lastDate: DateTime(2500));
-
-                    if (pickeddate != null) {
-                      setState(() {
-                        tanggalcek3.text =
-                            DateFormat('yyyy-MM-dd').format(pickeddate);
-                      });
-                    }
-                  },
-                ),
-                SizedBox(height: 14),
-                Text(
-                  'Lingkar Kepala (cm)',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 11,
-                    color: '5A5A5A'.toColor(),
-                  ),
-                ),
-                SizedBox(height: 3),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: lk,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      borderSide:
-                          BorderSide(width: 1, color: 'FF6969'.toColor()),
-                    ),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                    hintStyle: GoogleFonts.poppins().copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: '989797'.toColor(),
-                    ),
-                    hintText: '10',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 14),
-                BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
-                  builder: (context, snapshot) {
-                    if (snapshot is BuatdataanakLoaded) {
-                      if (snapshot.dataanak != null) {
-                        return GestureDetector(
-                          onTap: () {
-                            dataLK(snapshot.dataanak!.first.anak_id.toString(),
-                                    lk.text, tanggalcek3.text)
-                                .whenComplete(() {
-                              context.read<TumbuhLkCubit>().gettumbuhLk(
-                                  'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                                  snapshot.dataanak!.first.anak_id.toString());
-                              Navigator.of(context).pop();
-                            });
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: 'FF6969'.toColor(),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Text(
-                              'Simpan Data',
-                              style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: 'FFFFFF'.toColor(),
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return SizedBox();
-                      }
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: 'FF6969'.toColor(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  void modellk(BuildContext context) {}
 }

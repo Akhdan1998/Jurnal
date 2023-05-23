@@ -182,7 +182,7 @@ class _ProfilState extends State<Profil> {
                                                           ),
                                                           SizedBox(width: 3),
                                                           Text(
-                                                            '0',
+                                                            snapshot.dataanak!.first.umur_tahun.toString() + ' ' + 'Tahun' ?? '',
                                                             style: GoogleFonts
                                                                     .poppins()
                                                                 .copyWith(
@@ -196,35 +196,7 @@ class _ProfilState extends State<Profil> {
                                                           ),
                                                           SizedBox(width: 3),
                                                           Text(
-                                                            'Tahun',
-                                                            style: GoogleFonts
-                                                                    .poppins()
-                                                                .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300,
-                                                              fontSize: 11,
-                                                              color: '7A7A7A'
-                                                                  .toColor(),
-                                                            ),
-                                                          ),
-                                                          SizedBox(width: 3),
-                                                          Text(
-                                                            '0',
-                                                            style: GoogleFonts
-                                                                    .poppins()
-                                                                .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300,
-                                                              fontSize: 11,
-                                                              color: '7A7A7A'
-                                                                  .toColor(),
-                                                            ),
-                                                          ),
-                                                          SizedBox(width: 3),
-                                                          Text(
-                                                            'Bulan',
+                                                            snapshot.dataanak!.first.umur_bulan.toString() + ' ' + 'Bulan' ?? '',
                                                             style: GoogleFonts
                                                                     .poppins()
                                                                 .copyWith(
@@ -262,29 +234,32 @@ class _ProfilState extends State<Profil> {
                                                         },
                                                       );
                                                     },
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          'Ganti Anak',
-                                                          style: GoogleFonts
-                                                                  .poppins()
-                                                              .copyWith(
-                                                            fontWeight:
-                                                                FontWeight.w300,
-                                                            fontSize: 10,
+                                                    child: Container(
+                                                      color: Colors.white,
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            'Ganti Anak',
+                                                            style: GoogleFonts
+                                                                .poppins()
+                                                                .copyWith(
+                                                              fontWeight:
+                                                              FontWeight.w300,
+                                                              fontSize: 10,
+                                                              color: 'FF6969'
+                                                                  .toColor(),
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 5),
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_outlined,
                                                             color: 'FF6969'
                                                                 .toColor(),
+                                                            size: 18,
                                                           ),
-                                                        ),
-                                                        SizedBox(width: 5),
-                                                        Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_outlined,
-                                                          color: 'FF6969'
-                                                              .toColor(),
-                                                          size: 18,
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -331,52 +306,46 @@ class _ProfilState extends State<Profil> {
                                                   ),
                                                 ),
                                                 SizedBox(height: 5),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      snapshot
+                                                Text(
+                                                  (snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .first
+                                                              .berat ==
+                                                          null)
+                                                      ? '-'
+                                                      : snapshot
                                                               .dataanak!
                                                               .first
                                                               .pertumbuhan!
                                                               .isNotEmpty
                                                           ? (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .pertumbuhan!
-                                                                  .first
-                                                                  .berat
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .pertumbuhan!
+                                                                      .first
+                                                                      .berat
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'kg' ??
                                                               '')
                                                           : (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .berat_lahir
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .pertumbuhan!
+                                                                      .first
+                                                                      .berat
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'kg' ??
                                                               ''),
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            'FF6969'.toColor(),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      'kg',
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            'FF6969'.toColor(),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  style: GoogleFonts.poppins()
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                    color: 'FF6969'.toColor(),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -416,52 +385,46 @@ class _ProfilState extends State<Profil> {
                                                   ),
                                                 ),
                                                 SizedBox(height: 5),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      (snapshot
+                                                Text(
+                                                  (snapshot
                                                               .dataanak!
                                                               .first
                                                               .pertumbuhan!
-                                                              .isNotEmpty)
+                                                              .first
+                                                              .tinggi ==
+                                                          null)
+                                                      ? '-'
+                                                      : snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .isNotEmpty
                                                           ? (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .pertumbuhan!
-                                                                  .first
-                                                                  .tinggi
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .pertumbuhan!
+                                                                      .first
+                                                                      .tinggi
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'cm' ??
                                                               '')
                                                           : (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .tinggi_lahir
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .pertumbuhan!
+                                                                      .first
+                                                                      .tinggi
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'cm' ??
                                                               ''),
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            '86C3BB'.toColor(),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      'cm',
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            '86C3BB'.toColor(),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  style: GoogleFonts.poppins()
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                    color: '86C3BB'.toColor(),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -501,52 +464,44 @@ class _ProfilState extends State<Profil> {
                                                   ),
                                                 ),
                                                 SizedBox(height: 5),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      (snapshot
+                                                Text(
+                                                  (snapshot
                                                               .dataanak!
                                                               .first
                                                               .pertumbuhan!
-                                                              .isNotEmpty)
+                                                              .first
+                                                              .lingkar_kepala ==
+                                                          null)
+                                                      ? '-'
+                                                      : snapshot
+                                                              .dataanak!
+                                                              .first
+                                                              .pertumbuhan!
+                                                              .isNotEmpty
                                                           ? (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .pertumbuhan!
-                                                                  .first
-                                                                  .lingkar_kepala
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .pertumbuhan!
+                                                                      .first
+                                                                      .lingkar_kepala
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'cm' ??
                                                               '')
                                                           : (snapshot
-                                                                  .dataanak!
-                                                                  .first
-                                                                  .lingkar_kepala_lahir
-                                                                  .toString() ??
+                                                                      .dataanak!
+                                                                      .first
+                                                                      .lingkar_kepala_lahir
+                                                                      .toString() +
+                                                                  ' ' +
+                                                                  'cm' ??
                                                               ''),
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            'D1B654'.toColor(),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      'cm',
-                                                      style:
-                                                          GoogleFonts.poppins()
-                                                              .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18,
-                                                        color:
-                                                            'D1B654'.toColor(),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  style: GoogleFonts.poppins()
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                    color: 'D1B654'.toColor(),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -755,28 +710,20 @@ class _ProfilState extends State<Profil> {
                                       ),
                                     ),
                                     SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          snapshot.dataanak!.first.berat_lahir
-                                                  .toString() ??
+                                    Text(
+                                      (snapshot.dataanak!.first.berat_lahir ==
+                                              null)
+                                          ? '-'
+                                          : snapshot.dataanak!.first.berat_lahir
+                                                      .toString() +
+                                                  ' ' +
+                                                  'gr' ??
                                               '',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: 'FF6969'.toColor(),
-                                          ),
-                                        ),
-                                        SizedBox(width: 3),
-                                        Text(
-                                          'kg',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: 'FF6969'.toColor(),
-                                          ),
-                                        ),
-                                      ],
+                                      style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: 'FF6969'.toColor(),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -807,28 +754,21 @@ class _ProfilState extends State<Profil> {
                                       ),
                                     ),
                                     SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          snapshot.dataanak!.first.tinggi_lahir
-                                                  .toString() ??
-                                              '' + 'cm',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: '86C3BB'.toColor(),
-                                          ),
-                                        ),
-                                        SizedBox(width: 3),
-                                        Text(
-                                          'cm',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: '86C3BB'.toColor(),
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      (snapshot.dataanak!.first.tinggi_lahir ==
+                                              null)
+                                          ? '-'
+                                          : snapshot.dataanak!.first
+                                                      .tinggi_lahir
+                                                      .toString() +
+                                                  ' ' +
+                                                  'cm' ??
+                                              '',
+                                      style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: '86C3BB'.toColor(),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -859,29 +799,22 @@ class _ProfilState extends State<Profil> {
                                       ),
                                     ),
                                     SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          snapshot.dataanak!.first
-                                                  .lingkar_kepala_lahir
-                                                  .toString() ??
+                                    Text(
+                                      (snapshot.dataanak!.first
+                                                  .lingkar_kepala_lahir ==
+                                              null)
+                                          ? '-'
+                                          : snapshot.dataanak!.first
+                                                      .lingkar_kepala_lahir
+                                                      .toString() +
+                                                  ' ' +
+                                                  'cm' ??
                                               '',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: 'D1B654'.toColor(),
-                                          ),
-                                        ),
-                                        SizedBox(width: 3),
-                                        Text(
-                                          'cm',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: 'D1B654'.toColor(),
-                                          ),
-                                        ),
-                                      ],
+                                      style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: 'D1B654'.toColor(),
+                                      ),
                                     ),
                                   ],
                                 ),

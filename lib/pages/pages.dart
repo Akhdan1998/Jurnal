@@ -70,10 +70,10 @@ import '../services/hpl_services.dart';
 import 'package:collection/collection.dart';
 import '../services/merek_services.dart';
 
-// part 'tumbuh/riwayatpencatatan_berat.dart';
+part 'tumbuh/semuaData.dart';
+
 part 'findername/finder.dart';
 
-// part 'tumbuh/riwayatpencatatan_lk.dart';
 part 'imunisasi/dataimunisasi.dart';
 
 part 'kehamilan/buatdatakehamilan.dart';
@@ -87,8 +87,6 @@ part 'imunisasi/successimunisasi.dart';
 part '../widget/kategori.dart';
 
 part 'tumbuh/riwayatpencatatan.dart';
-
-// part 'tumbuh/riwayatpencatatan_tinggi.dart';
 
 part 'profil/ubahdatakelahirananak.dart';
 
@@ -129,8 +127,6 @@ part 'imunisasi/listbelumimunisasi.dart';
 part 'imunisasi/listimunisasi.dart';
 
 part 'dataAnak/listAnak.dart';
-
-part 'dataAnak/main.dart';
 
 part 'dataAnak/navigasi.dart';
 

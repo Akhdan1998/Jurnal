@@ -14,6 +14,8 @@ class BuatDataAnak {
   String? cita_cita;
   String? warna;
   int? berat_lahir;
+  int? umur_tahun;
+  int? umur_bulan;
   int? tinggi_lahir;
   int? lingkar_kepala_lahir;
   List<Pertumbuhan>? pertumbuhan;
@@ -35,6 +37,8 @@ class BuatDataAnak {
       this.cita_cita,
       this.warna,
       this.berat_lahir,
+      this.umur_tahun,
+      this.umur_bulan,
       this.tinggi_lahir,
       this.lingkar_kepala_lahir,
       this.pertumbuhan,
@@ -56,11 +60,15 @@ class BuatDataAnak {
     cita_cita = json['cita_cita'];
     warna = json['warna'];
     berat_lahir = json['berat_lahir'];
+    umur_tahun = json['umur_tahun'];
+    umur_bulan = json['umur_bulan'];
     tinggi_lahir = json['tinggi_lahir'];
     lingkar_kepala_lahir = json['lingkar_kepala_lahir'];
-    pertumbuhan = (json['pertumbuhan'] != null) ? (json['pertumbuhan'] as Iterable)
-        .map((e) => Pertumbuhan.fromJson(e))
-        .toList() : [];
+    pertumbuhan = (json['pertumbuhan'] != null)
+        ? (json['pertumbuhan'] as Iterable)
+            .map((e) => Pertumbuhan.fromJson(e))
+            .toList()
+        : [];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
@@ -81,6 +89,8 @@ class BuatDataAnak {
     data['cita_cita'] = cita_cita;
     data['warna'] = warna;
     data['berat_lahir'] = berat_lahir;
+    data['umur_tahun'] = umur_tahun;
+    data['umur_bulan'] = umur_bulan;
     data['tinggi_lahir'] = tinggi_lahir;
     data['lingkar_kepala_lahir'] = lingkar_kepala_lahir;
     data['created_at'] = created_at;

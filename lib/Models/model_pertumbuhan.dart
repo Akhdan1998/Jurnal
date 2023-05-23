@@ -2,8 +2,8 @@ class Pertumbuhan {
   String? user_id;
   String? anak_id;
   double? tinggi;
-  int? berat;
-  int? lingkar_kepala;
+  double? berat;
+  double? lingkar_kepala;
   String? checked_at;
 
   Pertumbuhan(
@@ -18,8 +18,8 @@ class Pertumbuhan {
     user_id = json['user_id'];
     anak_id = json['anak_id'];
     tinggi = (json['tinggi'] != null) ? json['tinggi'].toDouble() : 0.0;
-    berat = json['berat'];
-    lingkar_kepala = json['lingkar_kepala'];
+    berat = (json['berat'] != null) ? json['berat'].toDouble() : 0.0;
+    lingkar_kepala = (json['lingkar_kepala']!= null) ? json['lingkar_kepala'].toDouble() : 0.0;
     checked_at = json['checked_at'];
   }
 

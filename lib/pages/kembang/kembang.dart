@@ -247,44 +247,30 @@ class _KembangState extends State<Kembang> {
                                                   ),
                                                   SizedBox(width: 3),
                                                   Text(
-                                                    '0',
+                                                    snapshot.dataanak!.first
+                                                        .umur_tahun
+                                                        .toString() +
+                                                        ' ' +
+                                                        'Tahun' ??
+                                                        '',
                                                     style: GoogleFonts.poppins()
                                                         .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
+                                                      fontWeight: FontWeight.w300,
                                                       fontSize: 11,
                                                       color: '7A7A7A'.toColor(),
                                                     ),
                                                   ),
                                                   SizedBox(width: 3),
                                                   Text(
-                                                    'Tahun',
+                                                    snapshot.dataanak!.first
+                                                        .umur_bulan
+                                                        .toString() +
+                                                        ' ' +
+                                                        'Bulan' ??
+                                                        '',
                                                     style: GoogleFonts.poppins()
                                                         .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 11,
-                                                      color: '7A7A7A'.toColor(),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 3),
-                                                  Text(
-                                                    '0',
-                                                    style: GoogleFonts.poppins()
-                                                        .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 11,
-                                                      color: '7A7A7A'.toColor(),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 3),
-                                                  Text(
-                                                    'Bulan',
-                                                    style: GoogleFonts.poppins()
-                                                        .copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w300,
+                                                      fontWeight: FontWeight.w300,
                                                       fontSize: 11,
                                                       color: '7A7A7A'.toColor(),
                                                     ),

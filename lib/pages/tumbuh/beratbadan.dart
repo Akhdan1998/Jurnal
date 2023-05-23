@@ -12,6 +12,7 @@ class beratbadan extends StatefulWidget {
 }
 
 class _beratbadanState extends State<beratbadan> {
+  final tanggalcek2 = TextEditingController();
   final tanggalcek = TextEditingController();
   final berat = TextEditingController();
   String selectedGrafik = '1';
@@ -45,6 +46,43 @@ class _beratbadanState extends State<beratbadan> {
       context.read<TumbuhBeratCubit>().gettumbuhBerat(
           'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
           widget.anak_id);
+      context.read<HasilBeratCubit>().gethasilBerat(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          widget.gender,
+          widget.anak_id);
+    } else {
+      throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
+    }
+  }
+  Future<void> dataBerat(
+      String anak_id, String berat, String checked_at) async {
+    Uri url = Uri.parse(
+        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/berat/create");
+    var res = await http.post(
+      url,
+      body: {
+        "anak_id": anak_id,
+        "berat": berat,
+        "checked_at": checked_at + ' ' + '07:00:00',
+      },
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4",
+      },
+    );
+    print(res.body.toString());
+    Map<String, dynamic> body = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: "Kamu berhasil memperbaharui data Berat Badan anak!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: 'FF6969'.toColor(),
+          textColor: Colors.white,
+          fontSize: 16.0);
+      BuatDataAnak data = BuatDataAnak.fromJson(body["data"]);
+      print(res.statusCode);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
@@ -81,21 +119,199 @@ class _beratbadanState extends State<beratbadan> {
                               fontSize: 11,
                               color: '323232'.toColor()),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Catat Berat',
-                              style: GoogleFonts.poppins().copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                  color: 'FF6969'.toColor()),
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              // clipBehavior: Clip.none,
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(15), topLeft: Radius.circular(15))),
+                              context: context,
+                              builder: (context) {
+                                return SingleChildScrollView(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+                                      color: Colors.white,
+                                    ),
+                                    // height: MediaQuery.of(context).size.height,
+                                    padding: EdgeInsets.only(
+                                        top: 16,
+                                        right: 16,
+                                        left: 16,
+                                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Isi Data Berat',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: '323232'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 14),
+                                        Text(
+                                          'Tanggal Cek',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            color: '5A5A5A'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        TextField(
+                                          controller: tanggalcek2,
+                                          decoration: InputDecoration(
+                                            suffixIcon: Icon(
+                                              Icons.date_range,
+                                              size: 20,
+                                              color: '8F8F8F'.toColor(),
+                                            ),
+                                            hintStyle: GoogleFonts.poppins().copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: '989797'.toColor(),
+                                            ),
+                                            hintText: '24 Maret 1998',
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                              borderSide:
+                                              BorderSide(width: 1, color: 'FF6969'.toColor()),
+                                            ),
+                                            contentPadding:
+                                            EdgeInsets.only(top: 5, left: 10, bottom: 10),
+                                            border: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(5)),
+                                          ),
+                                          onTap: () async {
+                                            DateTime? pickeddate = await showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(1945),
+                                                lastDate: DateTime(2500));
+
+                                            if (pickeddate != null) {
+                                              setState(() {
+                                                tanggalcek2.text =
+                                                    DateFormat('yyyy-MM-dd').format(pickeddate);
+                                              });
+                                            }
+                                          },
+                                        ),
+                                        SizedBox(height: 14),
+                                        Text(
+                                          'Berat Badan (gram)',
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontSize: 11,
+                                            color: '5A5A5A'.toColor(),
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        TextField(
+                                          keyboardType: TextInputType.number,
+                                          controller: berat,
+                                          decoration: InputDecoration(
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                              borderSide:
+                                              BorderSide(width: 1, color: 'FF6969'.toColor()),
+                                            ),
+                                            contentPadding:
+                                            EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                                            hintStyle: GoogleFonts.poppins().copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: '989797'.toColor(),
+                                            ),
+                                            hintText: '10',
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(5),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 14),
+                                        BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
+                                          builder: (context, snapshot) {
+                                            if (snapshot is BuatdataanakLoaded) {
+                                              if (snapshot.dataanak != null) {
+                                                return GestureDetector(
+                                                  onTap: () async {
+                                                    await dataBerat(
+                                                        snapshot.dataanak!.first.anak_id.toString(),
+                                                        berat.text,
+                                                        tanggalcek2.text)
+                                                        .whenComplete(() {
+                                                      context.read<TumbuhBeratCubit>().gettumbuhBerat(
+                                                          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                                          snapshot.dataanak!.first.anak_id.toString());
+                                                      context.read<HasilBeratCubit>().gethasilBerat(
+                                                        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                                        snapshot.dataanak!.first.gender.toString(),
+                                                        snapshot.dataanak!.first.anak_id.toString(),
+                                                      );
+                                                      Navigator.of(context).pop();
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: MediaQuery.of(context).size.width,
+                                                    height: 40,
+                                                    decoration: BoxDecoration(
+                                                      color: 'FF6969'.toColor(),
+                                                      borderRadius: BorderRadius.circular(5),
+                                                    ),
+                                                    child: Text(
+                                                      'Simpan Data',
+                                                      style: GoogleFonts.poppins().copyWith(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: 'FFFFFF'.toColor(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return SizedBox();
+                                              }
+                                            } else {
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  color: 'FF6969'.toColor(),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                        SizedBox(height: 40),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            color: Colors.white,
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Catat Berat',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                      color: 'FF6969'.toColor()),
+                                ),
+                                Icon(
+                                  Icons.add_outlined,
+                                  color: 'FF6969'.toColor(),
+                                  size: 16,
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.add_outlined,
-                              color: 'FF6969'.toColor(),
-                              size: 16,
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -115,9 +331,9 @@ class _beratbadanState extends State<beratbadan> {
                                     aspectRatio: 15 / 10,
                                     child: LineChart(
                                       LineChartData(
-                                        maxX: 60,
+                                        maxX: 6,
                                         minX: 0,
-                                        maxY: 30,
+                                        maxY: 15,
                                         minY: 2,
                                         clipData: FlClipData(
                                             top: true,
@@ -156,7 +372,7 @@ class _beratbadanState extends State<beratbadan> {
                                             spots: snapshot.grafikberat!.tigasd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: Colors.blue,
@@ -168,7 +384,7 @@ class _beratbadanState extends State<beratbadan> {
                                             spots: snapshot.grafikberat!.duasd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: 'FD7948'.toColor(),
@@ -180,7 +396,7 @@ class _beratbadanState extends State<beratbadan> {
                                             spots: snapshot.grafikberat!.satusd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: '9E401E'.toColor(),
@@ -192,7 +408,7 @@ class _beratbadanState extends State<beratbadan> {
                                             spots: snapshot.grafikberat!.median!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: '529166'.toColor(),
@@ -205,7 +421,7 @@ class _beratbadanState extends State<beratbadan> {
                                                 .grafikberat!.mintigasd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: '9E401E'.toColor(),
@@ -218,7 +434,7 @@ class _beratbadanState extends State<beratbadan> {
                                                 .grafikberat!.minduasd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: 'FF6969'.toColor(),
@@ -230,7 +446,7 @@ class _beratbadanState extends State<beratbadan> {
                                                 .grafikberat!.minsatusd!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: Colors.purpleAccent,
@@ -243,14 +459,14 @@ class _beratbadanState extends State<beratbadan> {
                                             spots: state.hasilberat!.grafik!
                                                 .map((e) => FlSpot(
                                                     e.bulan!.toDouble(),
-                                                    e.berat ?? 0.0))
+                                                    e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
                                             color: Colors.purpleAccent,
                                             // color: 'FC7847'.toColor(),
                                             // color: 'FF6969'.toColor(),
                                             barWidth: 1,
-                                            dotData: FlDotData(show: false),
+                                            dotData: FlDotData(show: true),
                                           ),
                                         ],
                                       ),
@@ -529,29 +745,34 @@ class _beratbadanState extends State<beratbadan> {
                                   ),
                                   BlocBuilder<HasilBeratCubit, HasilBeratState>(
                                       builder: (context, state) {
-                                        if (state is HasilBeratLoaded) {
-                                          if (state.hasilberat != null) {
-                                            var date = DateTime.fromMillisecondsSinceEpoch(state.hasilberat!.checked_at! * 1000);
-                                            String tanggal = DateFormat('dd MMMM yyyy').format(date);
-                                            return Text(
-                                              tanggal,
-                                              style: GoogleFonts.poppins().copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 10,
-                                                color: '343434'.toColor(),
-                                              ),
-                                            );
-                                          } else {
-                                            return SizedBox();
-                                          }
-                                        } else {
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                              color: 'FF6969'.toColor(),
-                                            ),
-                                          );
-                                        }
-                                      }),
+                                    if (state is HasilBeratLoaded) {
+                                      if (state.hasilberat != null) {
+                                        var date =
+                                            DateTime.fromMillisecondsSinceEpoch(
+                                                state.hasilberat!.checked_at! *
+                                                    1000);
+                                        String tanggal =
+                                            DateFormat('dd MMMM yyyy')
+                                                .format(date);
+                                        return Text(
+                                          tanggal,
+                                          style: GoogleFonts.poppins().copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10,
+                                            color: '343434'.toColor(),
+                                          ),
+                                        );
+                                      } else {
+                                        return SizedBox();
+                                      }
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: 'FF6969'.toColor(),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                 ],
                               ),
                             ],
@@ -564,118 +785,115 @@ class _beratbadanState extends State<beratbadan> {
             SizedBox(height: 15),
             BlocBuilder<HasilBeratCubit, HasilBeratState>(
                 builder: (context, state) {
-                  if (state is HasilBeratLoaded) {
-                    if (state.hasilberat != null) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
+              if (state is HasilBeratLoaded) {
+                if (state.hasilberat != null) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
+                    ),
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hasil Pertumbuhan:',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: '323232'.toColor(),
+                          ),
                         ),
-                        padding: EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        SizedBox(height: 5),
+                        Row(
                           children: [
                             Text(
-                              'Hasil Pertumbuhan:',
+                              'Berat Badan:',
                               style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.w300,
                                 fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: '323232'.toColor(),
+                                color: '414141'.toColor(),
                               ),
                             ),
-                            SizedBox(height: 5),
-                            Row(
-                              children: [
-                                Text(
-                                  'Berat Badan:',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: '414141'.toColor(),
-                                  ),
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  state.hasilberat!.hasil!.berat.toString() ?? '',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: '414141'.toColor(),
-                                  ),
-                                ),
-                                SizedBox(width: 3),
-                                Text(
-                                  'kg',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 11,
-                                    color: '414141'.toColor(),
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: state.hasilberat!.hasil!.color!.toColor(),
-                                  ),
-                                  padding: EdgeInsets.only(
-                                      top: 3, bottom: 3, left: 11, right: 11),
-                                  child: Text(
-                                    state.hasilberat!.hasil!.status.toString() ?? '',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 9,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(width: 5),
+                            Text(
+                              state.hasilberat!.hasil!.berat.toString() +
+                                      ' ' +
+                                      'kg' ??
+                                  '',
+                              style: GoogleFonts.poppins().copyWith(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 11,
+                                color: '414141'.toColor(),
+                              ),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(width: 10),
                             Container(
-                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: state.hasilberat!.hasil!.color_catatan!.toColor(),
+                                borderRadius: BorderRadius.circular(100),
+                                color:
+                                    state.hasilberat!.hasil!.color!.toColor(),
                               ),
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Catatan:',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      color: '6C1F1F'.toColor(),
-                                    ),
-                                  ),
-                                  Text(
-                                    state.hasilberat!.hasil!.catatan ?? '',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w300,
-                                      color: '6C1F1F'.toColor(),
-                                    ),
-                                  ),
-                                ],
+                              padding: EdgeInsets.only(
+                                  top: 3, bottom: 3, left: 11, right: 11),
+                              child: Text(
+                                state.hasilberat!.hasil!.status.toString() ??
+                                    '',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 9,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      );
-                    } else {
-                      return SizedBox();
-                    }
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: 'FF6969'.toColor(),
-                      ),
-                    );
-                  }
-                }),
+                        SizedBox(height: 8),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: state.hasilberat!.hasil!.color_catatan!
+                                .toColor(),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Catatan:',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              Text(
+                                state.hasilberat!.hasil!.catatan ?? '',
+                                style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return SizedBox();
+                }
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: 'FF6969'.toColor(),
+                  ),
+                );
+              }
+            }),
             SizedBox(height: 15),
             BlocBuilder<TumbuhBeratCubit, TumbuhBeratState>(
               builder: (context, snapshot) {
@@ -706,12 +924,15 @@ class _beratbadanState extends State<beratbadan> {
                                 onTap: () {
                                   Get.to(riwayatpencatatan(widget.anak_id));
                                 },
-                                child: Text(
-                                  'Lihat Semua',
-                                  style: GoogleFonts.poppins().copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10,
-                                    color: 'FF6969'.toColor(),
+                                child: Container(
+                                  color: Colors.white,
+                                  child: Text(
+                                    'Lihat Semua',
+                                    style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                      color: 'FF6969'.toColor(),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -729,7 +950,7 @@ class _beratbadanState extends State<beratbadan> {
                                 ),
                               ),
                               Text(
-                                'Berat Badan (Gram)',
+                                'Berat Badan (kg)',
                                 style: GoogleFonts.poppins().copyWith(
                                   fontSize: 11,
                                   color: '414141'.toColor(),
@@ -739,16 +960,23 @@ class _beratbadanState extends State<beratbadan> {
                           ),
                           SizedBox(height: 10),
                           Column(
-                            children: snapshot.tumbuhBerat!
-                                .map(
-                                  (e) => Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            e.checked_at.toString() ?? '',
+                            children: snapshot.tumbuhBerat!.map((e) {
+                              DateTime haha = DateFormat('yyyy-MM-dd hh:mm:ss')
+                                  .parse(e.checked_at!);
+
+                              String date =
+                                  DateFormat('dd MMMM yyy').format(haha);
+                              return Column(
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          child: Text(
+                                            date,
                                             style:
                                                 GoogleFonts.poppins().copyWith(
                                               fontSize: 11,
@@ -756,20 +984,18 @@ class _beratbadanState extends State<beratbadan> {
                                               color: '414141'.toColor(),
                                             ),
                                           ),
-                                          Row(
+                                        ),
+                                        Container(
+                                          width: 113,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                e.berat.toString() ?? '',
-                                                style: GoogleFonts.poppins()
-                                                    .copyWith(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: '414141'.toColor(),
-                                                ),
-                                              ),
-                                              SizedBox(width: 3),
-                                              Text(
-                                                'gram',
+                                                e.berat.toString() +
+                                                        ' ' +
+                                                        'kg' ??
+                                                    '',
                                                 style: GoogleFonts.poppins()
                                                     .copyWith(
                                                   fontSize: 11,
@@ -847,21 +1073,25 @@ class _beratbadanState extends State<beratbadan> {
                                                         );
                                                       });
                                                 },
-                                                child: Icon(
-                                                  Icons.delete,
-                                                  color: 'FF6969'.toColor(),
-                                                  size: 18,
+                                                child: Container(
+                                                  color: Colors.transparent,
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                    color: 'FF6969'.toColor(),
+                                                    size: 18,
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 5),
-                                    ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                )
-                                .toList(),
+                                  SizedBox(height: 5),
+                                ],
+                              );
+                            }).toList(),
                           ),
                         ],
                       ),
