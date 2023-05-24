@@ -2,9 +2,9 @@ class Berat {
   int? id;
   String? user_id;
   String? anak_id;
-  int? tinggi;
-  int? berat;
-  int? lingkar_kepala;
+  double? tinggi;
+  double? berat;
+  double? lingkar_kepala;
   String? checked_at;
   String? created_at;
   String? updated_at;
@@ -26,9 +26,11 @@ class Berat {
     id = json['id'];
     user_id = json['user_id'];
     anak_id = json['anak_id'];
-    tinggi = json['tinggi'];
-    berat = json['berat'];
-    lingkar_kepala = json['lingkar_kepala'];
+    tinggi = (json['tinggi'] != null) ? json['tinggi'].toDouble() : 0.0;
+    berat = (json['berat'] != null) ? json['berat'].toDouble() : 0.0;
+    lingkar_kepala = (json['lingkar_kepala'] != null)
+        ? json['lingkar_kepala'].toDouble()
+        : 0.0;
     checked_at = json['checked_at'];
     created_at = json['checked_at'];
     updated_at = json['checked_at'];

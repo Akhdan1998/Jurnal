@@ -2,9 +2,9 @@ class TumbuhLk {
   int? id;
   String? user_id;
   String? anak_id;
-  int? tinggi;
-  int? berat;
-  int? lingkar_kepala;
+  double? tinggi;
+  double? berat;
+  double? lingkar_kepala;
   dynamic checked_at;
   dynamic created_at;
   dynamic updated_at;
@@ -12,23 +12,25 @@ class TumbuhLk {
 
   TumbuhLk(
       {this.id,
-        this.user_id,
-        this.anak_id,
-        this.tinggi,
-        this.berat,
-        this.lingkar_kepala,
-        this.checked_at,
-        this.created_at,
-        this.updated_at,
-        this.deleted_at});
+      this.user_id,
+      this.anak_id,
+      this.tinggi,
+      this.berat,
+      this.lingkar_kepala,
+      this.checked_at,
+      this.created_at,
+      this.updated_at,
+      this.deleted_at});
 
   TumbuhLk.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user_id = json['user_id'];
     anak_id = json['anak_id'];
-    tinggi = json['tinggi'];
-    berat = json['berat'];
-    lingkar_kepala = json['lingkar_kepala'];
+    tinggi = (json['tinggi'] != null) ? json['tinggi'].toDouble() : 0.0;
+    berat = (json['berat'] != null) ? json['berat'].toDouble() : 0.0;
+    lingkar_kepala = (json['lingkar_kepala'] != null)
+        ? json['lingkar_kepala'].toDouble()
+        : 0.0;
     checked_at = json['checked_at'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];

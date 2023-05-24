@@ -8,8 +8,8 @@ import 'lk_state.dart';
 class LkCubit extends Cubit<LkState> {
   LkCubit() : super(LkInitial());
 
-  Future<void> getLk(String token) async {
-    ApiReturnLk<List<Lk>>? result = await LkServices.getLk(token);
+  Future<void> getLk(String token, String anak_id) async {
+    ApiReturnLk<List<Lk>>? result = await LkServices.getLk(token, anak_id);
     if (result?.value != null) {
       emit(LkLoaded(lk: result?.value));
     } else {

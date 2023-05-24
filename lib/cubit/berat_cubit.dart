@@ -8,9 +8,9 @@ import 'berat_state.dart';
 class BeratCubit extends Cubit<BeratState> {
   BeratCubit() : super(BeratInitial());
 
-  Future<void> getBerat(String token) async {
+  Future<void> getBerat(String token, String anak_id) async {
     ApiReturnBerat<List<Berat>>? result =
-    await BeratServices.getBerat(token);
+    await BeratServices.getBerat(token, anak_id);
     if (result?.value != null) {
       emit(BeratLoaded(berat: result?.value));
     } else {

@@ -8,10 +8,10 @@ import '../Models/model_berat.dart';
 import '../Models/model_lk.dart';
 
 class LkServices {
-  static Future<ApiReturnLk<List<Lk>>?> getLk(String token,
+  static Future<ApiReturnLk<List<Lk>>?> getLk(String token, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=7248038741';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=${anak_id}';
     if (client == null) {
       client = http.Client();
     }

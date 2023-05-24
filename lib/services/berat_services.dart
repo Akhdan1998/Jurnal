@@ -6,10 +6,10 @@ import '../Models/api_return_berat.dart';
 import '../Models/model_berat.dart';
 
 class BeratServices {
-  static Future<ApiReturnBerat<List<Berat>>?> getBerat(String token,
+  static Future<ApiReturnBerat<List<Berat>>?> getBerat(String token, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=7248038741';
+        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=${anak_id}';
     if (client == null) {
       client = http.Client();
     }

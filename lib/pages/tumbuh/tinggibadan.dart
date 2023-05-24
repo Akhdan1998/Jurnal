@@ -67,6 +67,7 @@ class _tinggibadanState extends State<tinggibadan> {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
     }
   }
+
   Future<void> dataTinggi(
       String anak_id, String tinggi, String checked_at) async {
     Uri url = Uri.parse(
@@ -121,6 +122,7 @@ class _tinggibadanState extends State<tinggibadan> {
                 child: Column(
                   children: [
                     Container(
+                      color: Colors.white,
                       padding: EdgeInsets.only(left: 12, right: 12, top: 12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,14 +136,14 @@ class _tinggibadanState extends State<tinggibadan> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              showModalBottomSheet<void>(
+                              showModalBottomSheet(
                                 isScrollControlled: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(15), topLeft: Radius.circular(15)),
                                 ),
                                 context: context,
-                                builder: (BuildContext context) {
+                                builder: (context) {
                                   return SingleChildScrollView(
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -306,7 +308,7 @@ class _tinggibadanState extends State<tinggibadan> {
                               );
                             },
                             child: Container(
-                              color: Colors.white,
+                              color: Colors.green,
                               child: Row(
                                 children: [
                                   Text(
@@ -339,6 +341,7 @@ class _tinggibadanState extends State<tinggibadan> {
                               if (snapshot is GrafikTinggiLoaded) {
                                 if (snapshot.grafiktinggi != null) {
                                   return Container(
+                                    color: Colors.white,
                                     padding: EdgeInsets.only(right: 16),
                                     child: AspectRatio(
                                       aspectRatio: 15 / 10,
@@ -496,11 +499,12 @@ class _tinggibadanState extends State<tinggibadan> {
                                   return SizedBox();
                                 }
                               } else {
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    color: 'FF6969'.toColor(),
-                                  ),
-                                );
+                                return SizedBox();
+                                // return Center(
+                                //   child: CircularProgressIndicator(
+                                //     color: 'FF6969'.toColor(),
+                                //   ),
+                                // );
                               }
                             },
                           );
@@ -909,11 +913,12 @@ class _tinggibadanState extends State<tinggibadan> {
                     return SizedBox();
                   }
                 } else {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: 'FF6969'.toColor(),
-                    ),
-                  );
+                  return SizedBox();
+                  // return Center(
+                  //   child: CircularProgressIndicator(
+                  //     color: 'FF6969'.toColor(),
+                  //   ),
+                  // );
                 }
               }),
               SizedBox(height: 15),

@@ -37,16 +37,6 @@ class _TumbuhState extends State<Tumbuh> {
         scrollDirection: Axis.vertical,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          // height: (pageChanged == 0)
-          //     ? (MediaQuery.of(context).size.height +
-          //     (12 * tumbuhTinggi.length.toDouble()))
-          //     : (pageChanged == 1)
-          //     ? (MediaQuery.of(context).size.height +
-          //     (12 * tumbuhBerat.length.toDouble()))
-          //     : (pageChanged == 2)
-          //     ? (MediaQuery.of(context).size.height +
-          //     (12 * tumbuhLk.length.toDouble()))
-          //     : MediaQuery.of(context).size.height,
           child: Column(
             children: [
               BlocBuilder<BuatdataanakCubit, BuatdataanakState>(
@@ -609,9 +599,9 @@ class _TumbuhState extends State<Tumbuh> {
       ),
     );
   }
-
-
-  void modelBerat(BuildContext context) {}
-
-  void modellk(BuildContext context) {}
+  // void modelTinggi(BuildContext context) {}
+  //
+  // void modelBerat(BuildContext context) {}
+  //
+  // void modellk(BuildContext context) {}
 }

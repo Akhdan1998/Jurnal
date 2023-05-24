@@ -307,41 +307,14 @@ class _ProfilState extends State<Profil> {
                                                 ),
                                                 SizedBox(height: 5),
                                                 Text(
-                                                  (snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .first
-                                                              .berat ==
-                                                          null)
+                                                  (snapshot.dataanak!.first.pertumbuhan == null && snapshot.dataanak!.first.pertumbuhan!.first.berat == null)
                                                       ? '-'
-                                                      : snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .isNotEmpty
-                                                          ? (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .pertumbuhan!
-                                                                      .first
-                                                                      .berat
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'kg' ??
-                                                              '')
-                                                          : (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .pertumbuhan!
-                                                                      .first
-                                                                      .berat
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'kg' ??
-                                                              ''),
-                                                  style: GoogleFonts.poppins()
-                                                      .copyWith(
+                                                      : snapshot.dataanak!.first.pertumbuhan!.isNotEmpty
+                                                          ? (snapshot.dataanak!.first.pertumbuhan!.first.berat.toString() + ' ' + 'kg' ?? '')
+                                                          : (snapshot.dataanak!.first.pertumbuhan!.isNotEmpty)
+                                                      ? (snapshot.dataanak!.first.pertumbuhan!.first.berat.toString() + ' ' + 'kg' ?? '')
+                                                      : '-',
+                                                  style: GoogleFonts.poppins().copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 18,
                                                     color: 'FF6969'.toColor(),
@@ -360,20 +333,17 @@ class _ProfilState extends State<Profil> {
                                                   BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
-                                            padding: (Platform.isIOS)
-                                                ? EdgeInsets.only(
+                                            padding: (Platform.isIOS) ? EdgeInsets.only(
                                                     top: 5,
                                                     bottom: 5,
                                                     left: 15,
-                                                    right: 15)
-                                                : EdgeInsets.only(
+                                                    right: 15) : EdgeInsets.only(
                                                     top: 5,
                                                     bottom: 5,
                                                     left: 10,
                                                     right: 10),
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Tinggi Badan',
@@ -386,41 +356,14 @@ class _ProfilState extends State<Profil> {
                                                 ),
                                                 SizedBox(height: 5),
                                                 Text(
-                                                  (snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .first
-                                                              .tinggi ==
-                                                          null)
+                                                  (snapshot.dataanak!.first.pertumbuhan == null && snapshot.dataanak!.first.pertumbuhan!.first.tinggi == null)
                                                       ? '-'
-                                                      : snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .isNotEmpty
-                                                          ? (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .pertumbuhan!
-                                                                      .first
-                                                                      .tinggi
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'cm' ??
-                                                              '')
-                                                          : (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .pertumbuhan!
-                                                                      .first
-                                                                      .tinggi
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'cm' ??
-                                                              ''),
-                                                  style: GoogleFonts.poppins()
-                                                      .copyWith(
+                                                      : snapshot.dataanak!.first.pertumbuhan!.isNotEmpty
+                                                          ? (snapshot.dataanak!.first.pertumbuhan!.first.tinggi.toString() + ' ' + 'cm' ?? '')
+                                                          : (snapshot.dataanak!.first.pertumbuhan!.isNotEmpty)
+                                                      ? (snapshot.dataanak!.first.pertumbuhan!.first.tinggi.toString() + ' ' + 'cm' ?? '')
+                                                      : '-',
+                                                  style: GoogleFonts.poppins().copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 18,
                                                     color: '86C3BB'.toColor(),
@@ -439,20 +382,17 @@ class _ProfilState extends State<Profil> {
                                                   BorderRadius.circular(5),
                                               color: Colors.white,
                                             ),
-                                            padding: (Platform.isIOS)
-                                                ? EdgeInsets.only(
+                                            padding: (Platform.isIOS) ? EdgeInsets.only(
                                                     top: 5,
                                                     bottom: 5,
                                                     left: 15,
-                                                    right: 15)
-                                                : EdgeInsets.only(
+                                                    right: 15) : EdgeInsets.only(
                                                     top: 5,
                                                     bottom: 5,
                                                     left: 10,
                                                     right: 10),
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   'Lingkar Kepala',
@@ -465,37 +405,13 @@ class _ProfilState extends State<Profil> {
                                                 ),
                                                 SizedBox(height: 5),
                                                 Text(
-                                                  (snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .first
-                                                              .lingkar_kepala ==
-                                                          null)
+                                                  (snapshot.dataanak!.first.pertumbuhan == null && snapshot.dataanak!.first.pertumbuhan!.first.lingkar_kepala == null)
                                                       ? '-'
-                                                      : snapshot
-                                                              .dataanak!
-                                                              .first
-                                                              .pertumbuhan!
-                                                              .isNotEmpty
-                                                          ? (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .pertumbuhan!
-                                                                      .first
-                                                                      .lingkar_kepala
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'cm' ??
-                                                              '')
-                                                          : (snapshot
-                                                                      .dataanak!
-                                                                      .first
-                                                                      .lingkar_kepala_lahir
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  'cm' ??
-                                                              ''),
+                                                      : snapshot.dataanak!.first.pertumbuhan!.isNotEmpty
+                                                          ? (snapshot.dataanak!.first.pertumbuhan!.first.lingkar_kepala.toString() + ' ' + 'cm' ?? '')
+                                                          : (snapshot.dataanak!.first.pertumbuhan!.isNotEmpty)
+                                                      ? (snapshot.dataanak!.first.pertumbuhan!.first.lingkar_kepala.toString() + ' ' + 'cm' ?? '')
+                                                      : '-',
                                                   style: GoogleFonts.poppins()
                                                       .copyWith(
                                                     fontWeight: FontWeight.bold,
@@ -693,10 +609,8 @@ class _ProfilState extends State<Profil> {
                                   borderRadius: BorderRadius.circular(5),
                                   color: Colors.white,
                                 ),
-                                padding: (Platform.isIOS)
-                                    ? EdgeInsets.only(
-                                        top: 5, bottom: 5, left: 15, right: 15)
-                                    : EdgeInsets.only(
+                                padding: (Platform.isIOS) ? EdgeInsets.only(
+                                        top: 5, bottom: 5, left: 15, right: 15) : EdgeInsets.only(
                                         top: 5, bottom: 5, left: 10, right: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -711,8 +625,7 @@ class _ProfilState extends State<Profil> {
                                     ),
                                     SizedBox(height: 5),
                                     Text(
-                                      (snapshot.dataanak!.first.berat_lahir ==
-                                              null)
+                                      (snapshot.dataanak!.first.berat_lahir == null)
                                           ? '-'
                                           : snapshot.dataanak!.first.berat_lahir
                                                       .toString() +

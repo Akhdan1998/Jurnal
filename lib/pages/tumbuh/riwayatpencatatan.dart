@@ -29,7 +29,7 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
       bool data = body["data"];
       Navigator.pop(context);
       Fluttertoast.showToast(
-          msg: "Kamu berhasil menghapus data Berat Badan anak!",
+          msg: "Kamu berhasil menghapus data Pertumbuhan anak!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 3,
@@ -38,6 +38,9 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
           fontSize: 16.0);
       context.read<TinggiCubit>().getTinggi(
           'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+          widget.anak_id);
+      context.read<HasilTinggiCubit>().gethasilTinggi(
+          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4', widget.anak_id,
           widget.anak_id);
     } else {
       throw "Error ${res.statusCode} => ${body["meta"]["message"]}";
@@ -164,8 +167,12 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                       Container(
                                         width: 104,
                                         child: Text(
-                                          e.tinggi.toString() + ' ' + 'cm' ??
-                                              '',
+                                          (e.tinggi == 0)
+                                              ? '-'
+                                              : e.tinggi.toString() +
+                                                      ' ' +
+                                                      'cm' ??
+                                                  '',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
@@ -176,7 +183,12 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                       Container(
                                         width: 97,
                                         child: Text(
-                                          e.berat.toString() + ' ' + 'kg' ?? '',
+                                          (e.berat == 0)
+                                              ? '-'
+                                              : e.berat.toString() +
+                                                      ' ' +
+                                                      'kg' ??
+                                                  '',
                                           style: GoogleFonts.poppins().copyWith(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
@@ -193,10 +205,13 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              e.lingkar_kepala.toString() +
-                                                      ' ' +
-                                                      'cm' ??
-                                                  '',
+                                              (e.lingkar_kepala == 0)
+                                                  ? '-'
+                                                  : e.lingkar_kepala
+                                                              .toString() +
+                                                          ' ' +
+                                                          'cm' ??
+                                                      '',
                                               style: GoogleFonts.poppins()
                                                   .copyWith(
                                                 fontSize: 11,
@@ -287,7 +302,7 @@ class _riwayatpencatatanState extends State<riwayatpencatatan> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                SizedBox(height: 10),
                               ],
                             );
                           },
