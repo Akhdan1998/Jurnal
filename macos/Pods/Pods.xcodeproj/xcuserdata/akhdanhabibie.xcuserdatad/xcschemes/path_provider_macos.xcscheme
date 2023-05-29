@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-               BuildableName = "jurnal.app"
-               BlueprintName = "Runner"
-               ReferencedContainer = "container:Runner.xcodeproj">
+               BlueprintIdentifier = "2BAA54CCA2AE7F6D5A99F3FF42E3978E"
+               BuildableName = "path_provider_macos.framework"
+               BlueprintName = "path_provider_macos"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "jurnal.app"
-            BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -49,33 +40,13 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "jurnal.app"
-            BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Profile"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "jurnal.app"
-            BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

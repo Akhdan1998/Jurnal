@@ -496,11 +496,153 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                         return SizedBox();
                       }
                     } else {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: 'FF6969'.toColor(),
-                        ),
-                      );
+                      return BlocBuilder<GrafikLKCubit, GrafikLKState>(
+                          builder: (context, data) {
+                            if (data is GrafikLKLoaded) {
+                              if (data.grafiklk != null) {
+                                return Container(
+                                  padding: EdgeInsets.only(right: 16),
+                                  child: AspectRatio(
+                                    aspectRatio: 15 / 10,
+                                    child: LineChart(
+                                      LineChartData(
+                                        maxX: 6,
+                                        minX: 0,
+                                        maxY: 50,
+                                        minY: 31,
+                                        clipData: FlClipData(
+                                            top: true,
+                                            bottom: false,
+                                            left: false,
+                                            right: false),
+                                        titlesData: FlTitlesData(
+                                          show: true,
+                                          topTitles: AxisTitles(
+                                            sideTitles: SideTitles(
+                                              showTitles: false,
+                                            ),
+                                          ),
+                                          rightTitles: AxisTitles(
+                                            sideTitles: SideTitles(
+                                              showTitles: false,
+                                            ),
+                                          ),
+                                        ),
+                                        gridData: FlGridData(
+                                          show: true,
+                                          drawVerticalLine: false,
+                                          drawHorizontalLine: true,
+                                        ),
+                                        borderData: FlBorderData(
+                                          show: true,
+                                          border: Border(
+                                            top: BorderSide(
+                                              style: BorderStyle.solid,
+                                              color: 'CFCFCF'.toColor(),
+                                            ),
+                                          ),
+                                        ),
+                                        lineBarsData: [
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.tigasd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: Colors.blue,
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.duasd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: 'FD7948'.toColor(),
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.satusd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: '9E401E'.toColor(),
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.median!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: '529166'.toColor(),
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.mintigasd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: '9E401E'.toColor(),
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.minduasd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                          LineChartBarData(
+                                            spots: data.grafiklk!.minsatusd!
+                                                .map((e) => FlSpot(
+                                                e.bulan!.toDouble(),
+                                                e.lk!.toDouble() ?? 0.0))
+                                                .toList(),
+                                            isCurved: true,
+                                            color: Colors.purpleAccent,
+                                            // color: 'FC7847'.toColor(),
+                                            // color: 'FF6969'.toColor(),
+                                            barWidth: 1,
+                                            dotData: FlDotData(show: false),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return SizedBox();
+                              }
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: 'FF6969'.toColor(),
+                                ),
+                              );
+                            }
+                          });
                     }
                   }),
                   SizedBox(height: 11),
@@ -768,7 +910,14 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                       return SizedBox();
                                     }
                                   } else {
-                                    return SizedBox();
+                                    return Text(
+                                      '-',
+                                      style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10,
+                                        color: '343434'.toColor(),
+                                      ),
+                                    );
                                   }
                                 }),
                               ],
@@ -887,9 +1036,46 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                   return SizedBox();
                 }
               } else {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: 'FF6969'.toColor(),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(width: 1, color: 'F0F0F0'.toColor()),
+                  ),
+                  padding: EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hasil Pertumbuhan:',
+                        style: GoogleFonts.poppins().copyWith(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          color: '323232'.toColor(),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Text(
+                            'Lingkar Kepala:',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 11,
+                              color: '414141'.toColor(),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text('-',
+                            style: GoogleFonts.poppins().copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 11,
+                              color: '414141'.toColor(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 );
               }

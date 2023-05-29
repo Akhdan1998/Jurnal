@@ -23,8 +23,6 @@ class Kembang extends StatefulWidget {
 }
 
 class _KembangState extends State<Kembang> {
-  String selectedUsia = listed.first;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -248,14 +246,15 @@ class _KembangState extends State<Kembang> {
                                                   SizedBox(width: 3),
                                                   Text(
                                                     snapshot.dataanak!.first
-                                                        .umur_tahun
-                                                        .toString() +
-                                                        ' ' +
-                                                        'Tahun' ??
+                                                                .umur_tahun
+                                                                .toString() +
+                                                            ' ' +
+                                                            'Tahun' ??
                                                         '',
                                                     style: GoogleFonts.poppins()
                                                         .copyWith(
-                                                      fontWeight: FontWeight.w300,
+                                                      fontWeight:
+                                                          FontWeight.w300,
                                                       fontSize: 11,
                                                       color: '7A7A7A'.toColor(),
                                                     ),
@@ -263,14 +262,15 @@ class _KembangState extends State<Kembang> {
                                                   SizedBox(width: 3),
                                                   Text(
                                                     snapshot.dataanak!.first
-                                                        .umur_bulan
-                                                        .toString() +
-                                                        ' ' +
-                                                        'Bulan' ??
+                                                                .umur_bulan
+                                                                .toString() +
+                                                            ' ' +
+                                                            'Bulan' ??
                                                         '',
                                                     style: GoogleFonts.poppins()
                                                         .copyWith(
-                                                      fontWeight: FontWeight.w300,
+                                                      fontWeight:
+                                                          FontWeight.w300,
                                                       fontSize: 11,
                                                       color: '7A7A7A'.toColor(),
                                                     ),

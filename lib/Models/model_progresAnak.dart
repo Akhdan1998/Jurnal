@@ -2,6 +2,7 @@ class AnakProgress {
   int? id;
   int? usia;
   String? judul;
+  String? icon;
   String? berat;
   String? panjang;
   String? jantung;
@@ -14,6 +15,7 @@ class AnakProgress {
       {this.id,
       this.usia,
       this.judul,
+      this.icon,
       this.berat,
       this.panjang,
       this.jantung,
@@ -26,6 +28,7 @@ class AnakProgress {
     id = json['id'];
     usia = json['usia'];
     judul = json['judul'];
+    icon = json['icon'];
     berat = json['berat'];
     panjang = json['panjang'];
     jantung = json['jantung'];
