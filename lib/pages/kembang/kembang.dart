@@ -37,7 +37,7 @@ class _KembangState extends State<Kembang> {
     context.read<KategoriCubit>().getMilestonesKat(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
 
-    if(selectedUsia == null) {
+    if (selectedUsia == null) {
       selectedUsia = listed.first;
     }
   }
@@ -458,7 +458,7 @@ class _KembangState extends State<Kembang> {
                                               : (MediaQuery.of(context)
                                                       .size
                                                       .width -
-                                                  239),
+                                                  34),
                                           lineHeight: 13,
                                           percent: total_percent,
                                           barRadius: Radius.circular(20),
