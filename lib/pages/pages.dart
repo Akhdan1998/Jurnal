@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:jurnal/Models/model_warna_kesukaan.dart';
@@ -69,7 +71,8 @@ import '../cubit/tumbuh_tinggi_state.dart';
 import '../services/hpl_services.dart';
 import 'package:collection/collection.dart';
 import '../services/merek_services.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:overlay_tooltip/overlay_tooltip.dart';
+
 part 'tumbuh/semuaData.dart';
 
 part 'findername/finder.dart';
@@ -86,12 +89,35 @@ part 'imunisasi/successimunisasi.dart';
 
 part '../widget/kategori.dart';
 
+part '../widget/tooltip_profil/tooltip_imunisasi.dart';
+
+part '../widget/tooltip_profil/tooltip_pencatatanProfil.dart';
+
+part '../widget/tooltip_profil/tooltip_gantiAnak.dart';
+
+part '../widget/tooltip_profil/tooltip_dataAwal.dart';
+
+part '../widget/tooltip_profil/tooltip_pengaturanProfil.dart';
+
+part '../widget/tooltip_tumbuh/tooltip_grafik.dart';
+
+part '../widget/tooltip_tumbuh/tooltip_sd.dart';
+
+part '../widget/tooltip_tumbuh/tooltip_riwayat.dart';
+
+part '../widget/tooltip_tumbuh/tooltip_hasilPertumbuhan.dart';
+
+part '../widget/tooltip_kembang/tooltip_bulan.dart';
+
+part '../widget/tooltip_kembang/tooltip_progres.dart';
+
+part '../widget/tooltip_kembang/tooltip_kategori.dart';
+
 part 'tumbuh/riwayatpencatatan.dart';
 
 part 'profil/ubahdatakelahirananak.dart';
 
 part '../widget/pertanyaanTes.dart';
-// part '../widget/bottomsheetTumbuh.dart';
 
 part '../widget/bottomsheetImunisasi.dart';
 

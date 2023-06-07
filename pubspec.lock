@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  coachmaker:
+    dependency: "direct dev"
+    description:
+      name: coachmaker
+      sha256: a7dc2b1386fe108d3829728f7c8cce7a01e1a02e9c29a13a7b6add1a64da2e6f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
   collection:
     dependency: "direct dev"
     description:
@@ -304,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  overlay_tooltip:
+    dependency: "direct dev"
+    description:
+      name: overlay_tooltip
+      sha256: ddc368ad9a558e81720246c07cc40ef0207c046a7f23f715756fc0963ba4694c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   path:
     dependency: transitive
     description:
@@ -408,14 +424,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
-  shimmer:
+  showcaseview:
     dependency: "direct dev"
     description:
-      name: shimmer
-      sha256: "5f88c883a22e9f9f299e5ba0e4f7e6054857224976a5d9f839d4ebdc94a14ac9"
+      name: showcaseview
+      sha256: dc62ce38820dead4a27ce39d9e6c98384be89c2f2b4da3255238a59b041c7ccd
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "2.0.3"
   sky_engine:
     dependency: transitive
     description: flutter

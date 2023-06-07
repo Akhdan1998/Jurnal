@@ -18,7 +18,7 @@ import 'cubit/lk_cubit.dart';
 import 'cubit/merekimunisasi_cubit.dart';
 import 'package:get/get.dart';
 import 'package:timezone/data/latest.dart' as tz;
-
+import 'package:coachmaker/coachmaker.dart';
 import 'cubit/milestone_cubit.dart';
 import 'cubit/temanama_cubit.dart';
 import 'cubit/tinggi_cubit.dart';
@@ -62,8 +62,8 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home:
-            navigation('Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'),
+        home: navigation(
+            'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4'),
       ),
     );
   }

@@ -10,12 +10,25 @@ class Kelahiran {
   double? progress;
   int? usia;
   int? trimester;
-  late AnakProgress anakProgress;
+  late AnakProgress? anakProgress;
   dynamic created_at;
   dynamic updated_at;
   dynamic deleted_at;
 
-  Kelahiran({this.id, this.user_id, this.anak_id, this.nama_anak, this.hpht, this.hpl, this.progress, this.usia, this.trimester, required this.anakProgress, this.created_at, this.updated_at, this.deleted_at});
+  Kelahiran(
+      {this.id,
+      this.user_id,
+      this.anak_id,
+      this.nama_anak,
+      this.hpht,
+      this.hpl,
+      this.progress,
+      this.usia,
+      this.trimester,
+      required this.anakProgress,
+      this.created_at,
+      this.updated_at,
+      this.deleted_at});
 
   Kelahiran.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,26 +40,11 @@ class Kelahiran {
     progress = json['progress'].toDouble();
     usia = json['usia'];
     trimester = json['trimester'];
-    anakProgress = AnakProgress.fromJson(json['anak_progress']);
+    anakProgress = (json['anak_progress'] != null)
+        ? AnakProgress.fromJson(json['anak_progress'])
+        : null;
     created_at = json['created_at'];
     updated_at = json['updated_at'];
     deleted_at = json['deleted_at'];
   }
-
-  // Map<String, dynamic> toJson() {
-  //   Map<String, dynamic> data = <String, dynamic>{};
-  //   data['id'] = id;
-  //   data['user_id'] = user_id;
-  //   data['anak_id'] = anak_id;
-  //   data['nama_anak'] = nama_anak;
-  //   data['hpht'] = hpht;
-  //   data['hpl'] = hpl;
-  //   data['usia'] = usia;
-  //   data['trimester'] = trimester;
-  //   data['anakProgress'] = anakProgress;
-  //   data['created_at'] = created_at;
-  //   data['updated_at'] = updated_at;
-  //   data['deleted_at'] = deleted_at;
-  //   return data;
-  // }
 }

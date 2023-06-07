@@ -10,6 +10,25 @@ class listimunisasi extends StatefulWidget {
 }
 
 class _listimunisasiState extends State<listimunisasi> {
+  final TooltipController _controller = TooltipController();
+  bool done = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.onDone(() {
+      setState(() {
+        done = true;
+      });
+    });
+  }
+
+  Future<void>? dancuk(BuildContext cs) {
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      OverlayTooltipScaffold.of(cs)?.controller.start();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,6 +36,7 @@ class _listimunisasiState extends State<listimunisasi> {
         Get.to(imunisasidetail(widget.imunisasi));
       },
       child: Container(
+        // height: 70,
         color: Colors.white,
         child: Column(
           children: [
@@ -53,7 +73,8 @@ class _listimunisasiState extends State<listimunisasi> {
                                 height: 15,
                                 padding: EdgeInsets.all(2.5),
                                 decoration: BoxDecoration(
-                                  color: (widget.imunisasi.is_active == true)
+                                  color:
+                                  (widget.imunisasi.is_active == true)
                                       ? '86C3BB'.toColor()
                                       : 'C6C6C6'.toColor(),
                                   borderRadius: BorderRadius.circular(50),
@@ -90,7 +111,6 @@ class _listimunisasiState extends State<listimunisasi> {
               ],
             ),
             Divider(color: Colors.grey),
-            // Divider(color: 'ECECEC'.toColor()),
           ],
         ),
       ),

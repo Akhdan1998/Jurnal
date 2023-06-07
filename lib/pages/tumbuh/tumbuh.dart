@@ -14,7 +14,6 @@ class _TumbuhState extends State<Tumbuh> {
   List<TumbuhTinggi> tumbuhTinggi = [];
   List<TumbuhBerat> tumbuhBerat = [];
   List<TumbuhLk> tumbuhLk = [];
-
   PageController pageController = PageController(initialPage: 0);
   String selectedButton = '1';
   int pageChanged = 0;
@@ -22,6 +21,7 @@ class _TumbuhState extends State<Tumbuh> {
   @override
   void initState() {
     // TODO: implement initState
+
     super.initState();
     context.read<BuatdataanakCubit>().getBuatDataAnak(
         'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4');
@@ -582,15 +582,6 @@ class _TumbuhState extends State<Tumbuh> {
         elevation: 0,
         onPressed: () {
           Get.to(semuaData());
-          // if (pageChanged == 0) {
-          //   modelTinggi(context);
-          // }
-          // if (pageChanged == 1) {
-          //   modelBerat(context);
-          // }
-          // if (pageChanged == 2) {
-          //   modellk(context);
-          // }
         },
         backgroundColor: 'FF6969'.toColor(),
         child: Icon(
@@ -599,9 +590,4 @@ class _TumbuhState extends State<Tumbuh> {
       ),
     );
   }
-  // void modelTinggi(BuildContext context) {}
-  //
-  // void modelBerat(BuildContext context) {}
-  //
-  // void modellk(BuildContext context) {}
 }

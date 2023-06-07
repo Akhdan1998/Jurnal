@@ -10,6 +10,21 @@ class kategori extends StatefulWidget {
 }
 
 class _kategoriState extends State<kategori> {
+  final TooltipController _controller = TooltipController();
+  bool done = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void>? dancuk(BuildContext cs) {
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      OverlayTooltipScaffold.of(cs)?.controller.start();
+    });
+  }
+
   List<List<Color>> listColor2 = [
     ['86C3BB'.toColor(), '679E97'.toColor()], //background, button [0]
     ['81B1DE'.toColor(), '3F719F'.toColor()], //background, button [1]
@@ -68,7 +83,8 @@ class _kategoriState extends State<kategori> {
       buttonColor = btn_kognitif;
     }
 
-    return Stack(
+    return
+      Stack(
       children: [
         Column(
           children: [
@@ -109,7 +125,8 @@ class _kategoriState extends State<kategori> {
                         Row(
                           children: [
                             Text(
-                              widget.kategorimilestone!.pencapaian.toString() ??
+                              widget.kategorimilestone!.pencapaian
+                                  .toString() ??
                                   '',
                               style: GoogleFonts.poppins().copyWith(
                                   fontSize: 10,
@@ -127,7 +144,7 @@ class _kategoriState extends State<kategori> {
                             SizedBox(width: 3),
                             Text(
                               widget.kategorimilestone!.total_pencapaian
-                                      .toString() ??
+                                  .toString() ??
                                   '',
                               style: GoogleFonts.poppins().copyWith(
                                   fontSize: 10,
@@ -152,8 +169,9 @@ class _kategoriState extends State<kategori> {
                     padding: EdgeInsets.only(bottom: 11, right: 12),
                     child: LinearPercentIndicator(
                       width: (Platform.isIOS)
-                          ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 -
-                              48)
+                          ? ((MediaQuery.of(context).size.width - 2 * 15) /
+                          2 -
+                          48)
                           : (MediaQuery.of(context).size.width - 239),
                       lineHeight: 7,
                       percent: total_percent,
@@ -197,7 +215,7 @@ class _kategoriState extends State<kategori> {
                               children: [
                                 Text(
                                   widget.kategorimilestone!.pencapaian
-                                          .toString() ??
+                                      .toString() ??
                                       '',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontSize: 10,
@@ -215,7 +233,7 @@ class _kategoriState extends State<kategori> {
                                 SizedBox(width: 3),
                                 Text(
                                   widget.kategorimilestone!.total_pencapaian
-                                          .toString() ??
+                                      .toString() ??
                                       '',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontSize: 10,
@@ -238,8 +256,9 @@ class _kategoriState extends State<kategori> {
                             mainAxisSize: MainAxisSize.min,
                             children: widget.kategorimilestone!.todolist
                                 .map((e) => pertanyaanTes(
-                                    widget.kategorimilestone!.milestones_id!,
-                                    e))
+                                widget
+                                    .kategorimilestone!.milestones_id!,
+                                e))
                                 .toList()),
                       );
                     },
@@ -248,7 +267,8 @@ class _kategoriState extends State<kategori> {
                 child: Container(
                   alignment: Alignment.center,
                   width: (Platform.isIOS)
-                      ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
+                      ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 -
+                      10)
                       : (MediaQuery.of(context).size.width - 205),
                   height: 40,
                   decoration: BoxDecoration(
@@ -280,5 +300,259 @@ class _kategoriState extends State<kategori> {
         ),
       ],
     );
+    //   OverlayTooltipScaffold(
+    //   tooltipAnimationCurve: Curves.linear,
+    //   tooltipAnimationDuration: const Duration(milliseconds: 1000),
+    //   controller: _controller,
+    //   startWhen: (initializedWidgetLength) async {
+    //     await Future.delayed(const Duration(milliseconds: 500));
+    //     return initializedWidgetLength == 3 && !done;
+    //   },
+    //   builder: (context) => FutureBuilder(
+    //     future: dancuk(context),
+    //     builder: (context, snaps) => OverlayTooltipItem(
+    //       displayIndex: 2,
+    //       child: Container(
+    //         padding: EdgeInsets.only(left: 5 ),
+    //         height: 35,
+    //         decoration: BoxDecoration(
+    //           color: Colors.white,
+    //           borderRadius: BorderRadius.circular(5),
+    //         ),
+    //         child: Stack(
+    //           children: [
+    //             Column(
+    //               children: [
+    //                 Container(
+    //                   width: (Platform.isIOS)
+    //                       ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
+    //                       : (MediaQuery.of(context).size.width - 205),
+    //                   height: 130,
+    //                   decoration: BoxDecoration(
+    //                     borderRadius: BorderRadius.only(
+    //                       topLeft: Radius.circular(10),
+    //                       topRight: Radius.circular(10),
+    //                     ),
+    //                     color: backgroundColor,
+    //                   ),
+    //                   child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       Container(
+    //                         padding: EdgeInsets.only(left: 12, top: 12),
+    //                         child: Image.asset(
+    //                             widget.kategorimilestone!.icon_path ?? '',
+    //                             scale: 1.5),
+    //                       ),
+    //                       SizedBox(height: 6),
+    //                       Container(
+    //                         padding: EdgeInsets.only(left: 12),
+    //                         child: Column(
+    //                           crossAxisAlignment: CrossAxisAlignment.start,
+    //                           children: [
+    //                             Text(
+    //                               widget.kategorimilestone!.title ?? '',
+    //                               style: GoogleFonts.poppins().copyWith(
+    //                                   fontSize: 10,
+    //                                   fontWeight: FontWeight.bold,
+    //                                   color: 'FFFFFF'.toColor()),
+    //                             ),
+    //                             Row(
+    //                               children: [
+    //                                 Text(
+    //                                   widget.kategorimilestone!.pencapaian
+    //                                       .toString() ??
+    //                                       '',
+    //                                   style: GoogleFonts.poppins().copyWith(
+    //                                       fontSize: 10,
+    //                                       fontWeight: FontWeight.w300,
+    //                                       color: 'FFFFFF'.toColor()),
+    //                                 ),
+    //                                 SizedBox(width: 3),
+    //                                 Text(
+    //                                   '/',
+    //                                   style: GoogleFonts.poppins().copyWith(
+    //                                       fontSize: 10,
+    //                                       fontWeight: FontWeight.w300,
+    //                                       color: 'FFFFFF'.toColor()),
+    //                                 ),
+    //                                 SizedBox(width: 3),
+    //                                 Text(
+    //                                   widget.kategorimilestone!.total_pencapaian
+    //                                       .toString() ??
+    //                                       '',
+    //                                   style: GoogleFonts.poppins().copyWith(
+    //                                       fontSize: 10,
+    //                                       fontWeight: FontWeight.w300,
+    //                                       color: 'FFFFFF'.toColor()),
+    //                                 ),
+    //                                 SizedBox(width: 3),
+    //                                 Text(
+    //                                   'Pencapaian',
+    //                                   style: GoogleFonts.poppins().copyWith(
+    //                                       fontSize: 10,
+    //                                       fontWeight: FontWeight.w300,
+    //                                       color: 'FFFFFF'.toColor()),
+    //                                 ),
+    //                               ],
+    //                             ),
+    //                           ],
+    //                         ),
+    //                       ),
+    //                       SizedBox(height: 20),
+    //                       Container(
+    //                         padding: EdgeInsets.only(bottom: 11, right: 12),
+    //                         child: LinearPercentIndicator(
+    //                           width: (Platform.isIOS)
+    //                               ? ((MediaQuery.of(context).size.width - 2 * 15) /
+    //                               2 -
+    //                               48)
+    //                               : (MediaQuery.of(context).size.width - 239),
+    //                           lineHeight: 7,
+    //                           percent: total_percent,
+    //                           barRadius: Radius.circular(20),
+    //                           progressColor: buttonColor,
+    //                           backgroundColor: 'FFFFFF'.toColor(),
+    //                           trailing: Text(
+    //                             percent.toString() + '' + '%',
+    //                             style: GoogleFonts.poppins().copyWith(
+    //                                 fontWeight: FontWeight.bold,
+    //                                 fontSize: 11,
+    //                                 color: 'FFFFFF'.toColor()),
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //                 Container(
+    //                   width: (Platform.isIOS)
+    //                       ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 - 10)
+    //                       : (MediaQuery.of(context).size.width - 205),
+    //                   height: 25,
+    //                   child: GestureDetector(
+    //                     onTap: () {
+    //                       showDialog(
+    //                         context: context,
+    //                         builder: (BuildContext context) {
+    //                           return AlertDialog(
+    //                             title: Row(
+    //                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                               children: [
+    //                                 Text(
+    //                                   widget.kategorimilestone!.title ?? '',
+    //                                   style: GoogleFonts.poppins().copyWith(
+    //                                       fontSize: 11,
+    //                                       fontWeight: FontWeight.bold,
+    //                                       color: '323232'.toColor()),
+    //                                 ),
+    //                                 Row(
+    //                                   children: [
+    //                                     Text(
+    //                                       widget.kategorimilestone!.pencapaian
+    //                                           .toString() ??
+    //                                           '',
+    //                                       style: GoogleFonts.poppins().copyWith(
+    //                                           fontSize: 10,
+    //                                           fontWeight: FontWeight.w300,
+    //                                           color: '939393'.toColor()),
+    //                                     ),
+    //                                     SizedBox(width: 3),
+    //                                     Text(
+    //                                       '/',
+    //                                       style: GoogleFonts.poppins().copyWith(
+    //                                           fontSize: 10,
+    //                                           fontWeight: FontWeight.w300,
+    //                                           color: '939393'.toColor()),
+    //                                     ),
+    //                                     SizedBox(width: 3),
+    //                                     Text(
+    //                                       widget.kategorimilestone!.total_pencapaian
+    //                                           .toString() ??
+    //                                           '',
+    //                                       style: GoogleFonts.poppins().copyWith(
+    //                                           fontSize: 10,
+    //                                           fontWeight: FontWeight.w300,
+    //                                           color: '939393'.toColor()),
+    //                                     ),
+    //                                     SizedBox(width: 3),
+    //                                     Text(
+    //                                       'Pencapaian',
+    //                                       style: GoogleFonts.poppins().copyWith(
+    //                                           fontSize: 10,
+    //                                           fontWeight: FontWeight.w300,
+    //                                           color: '939393'.toColor()),
+    //                                     ),
+    //                                   ],
+    //                                 ),
+    //                               ],
+    //                             ),
+    //                             content: Column(
+    //                                 mainAxisSize: MainAxisSize.min,
+    //                                 children: widget.kategorimilestone!.todolist
+    //                                     .map((e) => pertanyaanTes(
+    //                                     widget
+    //                                         .kategorimilestone!.milestones_id!,
+    //                                     e))
+    //                                     .toList()),
+    //                           );
+    //                         },
+    //                       );
+    //                     },
+    //                     child: Container(
+    //                       alignment: Alignment.center,
+    //                       width: (Platform.isIOS)
+    //                           ? ((MediaQuery.of(context).size.width - 2 * 15) / 2 -
+    //                           10)
+    //                           : (MediaQuery.of(context).size.width - 205),
+    //                       height: 40,
+    //                       decoration: BoxDecoration(
+    //                         color: buttonColor,
+    //                         borderRadius: BorderRadius.only(
+    //                           bottomLeft: Radius.circular(10),
+    //                           bottomRight: Radius.circular(10),
+    //                         ),
+    //                       ),
+    //                       child: Text(
+    //                         'Mulai Tes',
+    //                         style: GoogleFonts.poppins().copyWith(
+    //                           fontSize: 12,
+    //                           fontWeight: FontWeight.bold,
+    //                           color: 'FFFFFF'.toColor(),
+    //                         ),
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //             Positioned(
+    //               left: 100,
+    //               child: Image.asset(
+    //                 'assets/efek.png',
+    //                 scale: 1.1,
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       tooltip: (controller) =>
+    //           MTooltipKategori(
+    //             controller: controller,
+    //             title: '',
+    //           ),
+    //     ),
+    //   ),
+    // );
+  }
+
+  @override
+  void initState() {
+    _controller.onDone(() {
+      setState(() {
+        done = true;
+      });
+    });
+    super.initState();
   }
 }

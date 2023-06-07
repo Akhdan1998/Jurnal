@@ -13,11 +13,11 @@ class BuatDataAnak {
   String? hobi;
   String? cita_cita;
   String? warna;
-  int? berat_lahir;
+  double? berat_lahir;
   int? umur_tahun;
   int? umur_bulan;
-  int? tinggi_lahir;
-  int? lingkar_kepala_lahir;
+  double? tinggi_lahir;
+  double? lingkar_kepala_lahir;
   List<Pertumbuhan>? pertumbuhan;
   dynamic created_at;
   dynamic updated_at;
@@ -59,11 +59,11 @@ class BuatDataAnak {
     hobi = json['hobi'];
     cita_cita = json['cita_cita'];
     warna = json['warna'];
-    berat_lahir = json['berat_lahir'];
+    berat_lahir = (json['berat_lahir'] != null) ? json['berat_lahir'].toDouble() : 0.0;
     umur_tahun = json['umur_tahun'];
     umur_bulan = json['umur_bulan'];
-    tinggi_lahir = json['tinggi_lahir'];
-    lingkar_kepala_lahir = json['lingkar_kepala_lahir'];
+    tinggi_lahir = (json['tinggi_lahir'] != null) ? json['tinggi_lahir'].toDouble() : 0.0;
+    lingkar_kepala_lahir = (json['lingkar_kepala_lahir'] != null) ? json['lingkar_kepala_lahir'].toDouble() : 0.0;
     pertumbuhan = (json['pertumbuhan'] != null)
         ? (json['pertumbuhan'] as Iterable)
             .map((e) => Pertumbuhan.fromJson(e))

@@ -116,7 +116,7 @@ class _editdatakehamilanState extends State<editdatakehamilan> {
                     padding: EdgeInsets.zero,
                     child: Switch.adaptive(
                       activeColor:
-                          (Platform.isIOS) ? 'FF6969'.toColor() : Colors.white,
+                          (Platform.isIOS) ? '86C3BB'.toColor() : Colors.white,
                       activeTrackColor:
                           (Platform.isIOS) ? Colors.green : '86C3BB'.toColor(),
                       value: value,

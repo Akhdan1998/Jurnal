@@ -44,13 +44,16 @@ class _navigationState extends State<navigation> {
                 ? (MediaQuery.of(context).size.height - 92)
                 : (MediaQuery.of(context).size.height - 57),
             width: MediaQuery.of(context).size.width,
-            child: PageView(controller: controller, children: [
-              Profil(''),
-              Tumbuh(''),
-              Kembang(''),
-              Kehamilan(''),
-              imunisasi(''),
-            ]),
+            child: PageView(
+                controller: controller,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  Profil(''),
+                  Tumbuh(''),
+                  Kembang(''),
+                  Kehamilan(''),
+                  imunisasi(''),
+                ]),
           ),
           BottomNavigationBar(
             currentIndex: _selectedIndex,

@@ -5,7 +5,7 @@ List<String> list = <String>[
   'Bunga',
   'Bulan',
   'Islami',
-  'Sansekerta',
+  'Sanskerta',
   'Galaxy'
 ];
 
@@ -310,79 +310,97 @@ class _KehamilanState extends State<Kehamilan> {
                         ],
                       ),
                       SizedBox(height: 10),
-                      Container(
-                        padding: EdgeInsets.only(left: 16, right: 16),
-                        child: Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              width: 1,
-                              color: 'F0F0F0'.toColor(),
-                            ),
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
+                      (snapshot.bunting!.anakProgress != null)
+                          ? Container(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: Container(
+                                padding: EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: 'F0F0F0'.toColor(),
+                                  ),
+                                ),
                                 width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Perkembangan Bayi',
-                                      style: GoogleFonts.poppins().copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 11,
-                                          color: '323232'.toColor()),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Perkembangan Bayi',
+                                            style: GoogleFonts.poppins()
+                                                .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 11,
+                                                    color: '323232'.toColor()),
+                                          ),
+                                          Icon(
+                                            Icons.info_outlined,
+                                            color: 'FF6969'.toColor(),
+                                            size: 20,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Icon(
-                                      Icons.info_outlined,
-                                      color: 'FF6969'.toColor(),
-                                      size: 20,
+                                    SizedBox(height: 13),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Image.network(
+                                          snapshot.bunting!.anakProgress!.icon
+                                                  .toString() ??
+                                              '',
+                                          scale: 20,
+                                        ),
+                                        SizedBox(width: 12),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Bayi sebesar' +
+                                                      ' ' +
+                                                      snapshot.bunting!
+                                                          .anakProgress!.judul
+                                                          .toString() ??
+                                                  '',
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 10,
+                                                      color:
+                                                          '5C5C5C'.toColor()),
+                                            ),
+                                            Text(
+                                              snapshot.bunting!.anakProgress!
+                                                      .deskripsi ??
+                                                  '',
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 10,
+                                                      color:
+                                                          '7A7A7A'.toColor()),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 13),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/rice.png',
-                                    scale: 1.5,
-                                  ),
-                                  SizedBox(width: 12),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Bayi sebesar beras',
-                                        style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 10,
-                                            color: '5C5C5C'.toColor()),
-                                      ),
-                                      Text(
-                                        snapshot.bunting!.anakProgress
-                                                .deskripsi ??
-                                            '',
-                                        style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 10,
-                                            color: '7A7A7A'.toColor()),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                            )
+                          : SizedBox(),
                     ],
                   );
                 } else {
