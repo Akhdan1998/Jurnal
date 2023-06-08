@@ -492,17 +492,11 @@ class _imunisasiState extends State<imunisasi> {
                                                         ),
                                                       ),
                                                       tooltip: (controller) =>
-                                                          Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                right: 15),
-                                                        child:
-                                                            MTooltipImunisasi(
+                                                          MTooltipImunisasi(
                                                           controller:
-                                                              controller,
+                                                            controller,
                                                           title: '',
                                                         ),
-                                                      ),
                                                     ),
                                                   ],
                                                 ),

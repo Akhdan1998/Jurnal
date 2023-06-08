@@ -1,10 +1,10 @@
 part of '../../pages/pages.dart';
 
-class MTooltipKategori extends StatelessWidget {
+class MTooltipFinder extends StatelessWidget {
   final TooltipController controller;
   final String title;
 
-  const MTooltipKategori({
+  const MTooltipFinder({
     Key? key,
     required this.controller,
     required this.title,
@@ -17,7 +17,7 @@ class MTooltipKategori extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
-        width: size.width * .7,
+        width: size.width * .6,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -29,7 +29,7 @@ class MTooltipKategori extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Anda dapat mengisi pencapaian perkembangan Anak anda disini',
+              'Anda dapat mencari inspirasi nama untuk buah hati Anda',
               style: GoogleFonts.poppins().copyWith(
                   color: '414141'.toColor(),
                   fontSize: 13,
@@ -46,7 +46,7 @@ class MTooltipKategori extends StatelessWidget {
                   child: Container(
                     color: Colors.white,
                     child: Text(
-                      'Selesai',
+                      'Lewati',
                       style: GoogleFonts.poppins().copyWith(
                           color: '86C3BB'.toColor(),
                           fontSize: 11,

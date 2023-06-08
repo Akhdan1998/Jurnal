@@ -113,6 +113,20 @@ part '../widget/tooltip_kembang/tooltip_progres.dart';
 
 part '../widget/tooltip_kembang/tooltip_kategori.dart';
 
+part '../widget/tooltip_imunisasi/tooltip_listImunisasi.dart';
+
+part '../widget/tooltip_imunisasi/tooltip_list.dart';
+
+part '../widget/tooltip_kehamilan/tooltip_jadwal.dart';
+
+part '../widget/tooltip_kehamilan/tooltip_hpl.dart';
+
+part '../widget/tooltip_kehamilan/tooltip_indicator.dart';
+
+part '../widget/tooltip_kehamilan/tooltip_progresBayi.dart';
+
+part '../widget/tooltip_kehamilan/tooltip_finder.dart';
+
 part 'tumbuh/riwayatpencatatan.dart';
 
 part 'profil/ubahdatakelahirananak.dart';

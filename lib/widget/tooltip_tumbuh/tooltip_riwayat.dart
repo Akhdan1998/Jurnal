@@ -45,36 +45,11 @@ class MTooltipRiwayat extends StatelessWidget {
                   child: Container(
                     color: Colors.white,
                     child: Text(
-                      'Lewati',
+                      'Selesai',
                       style: GoogleFonts.poppins().copyWith(
                           color: '86C3BB'.toColor(),
                           fontSize: 11,
                           fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 12),
-                GestureDetector(
-                  onTap: () {
-                    controller.next();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Lanjut',
-                          style: GoogleFonts.poppins().copyWith(
-                              color: 'FF6969'.toColor(),
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          color: 'FF6969'.toColor(),
-                          size: 14,
-                        )
-                      ],
                     ),
                   ),
                 ),

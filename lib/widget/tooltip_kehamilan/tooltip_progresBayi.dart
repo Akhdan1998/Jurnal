@@ -1,10 +1,10 @@
 part of '../../pages/pages.dart';
 
-class MTooltipKategori extends StatelessWidget {
+class MTooltipProgresBayi extends StatelessWidget {
   final TooltipController controller;
   final String title;
 
-  const MTooltipKategori({
+  const MTooltipProgresBayi({
     Key? key,
     required this.controller,
     required this.title,
@@ -17,7 +17,7 @@ class MTooltipKategori extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
-        width: size.width * .7,
+        width: size.width * .6,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -29,7 +29,7 @@ class MTooltipKategori extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Anda dapat mengisi pencapaian perkembangan Anak anda disini',
+              'Simulasi dari perkiraan bentuk pertumbuhan bayi di rahim',
               style: GoogleFonts.poppins().copyWith(
                   color: '414141'.toColor(),
                   fontSize: 13,
@@ -46,11 +46,36 @@ class MTooltipKategori extends StatelessWidget {
                   child: Container(
                     color: Colors.white,
                     child: Text(
-                      'Selesai',
+                      'Lewati',
                       style: GoogleFonts.poppins().copyWith(
                           color: '86C3BB'.toColor(),
                           fontSize: 11,
                           fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12),
+                GestureDetector(
+                  onTap: () {
+                    controller.next();
+                  },
+                  child: Container(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Text(
+                          'Lanjut',
+                          style: GoogleFonts.poppins().copyWith(
+                              color: 'FF6969'.toColor(),
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          color: 'FF6969'.toColor(),
+                          size: 14,
+                        )
+                      ],
                     ),
                   ),
                 ),

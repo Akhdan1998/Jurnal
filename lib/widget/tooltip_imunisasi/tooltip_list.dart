@@ -1,22 +1,20 @@
 part of '../../pages/pages.dart';
 
-class MTooltipKategori extends StatelessWidget {
+class MTooltipList extends StatelessWidget {
   final TooltipController controller;
   final String title;
 
-  const MTooltipKategori({
-    Key? key,
-    required this.controller,
-    required this.title,
-  }) : super(key: key);
+  const MTooltipList({Key? key, required this.controller, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Padding(
+    return Container(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
+        // alignment: Alignment.topCenter,
         width: size.width * .7,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -29,7 +27,7 @@ class MTooltipKategori extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Anda dapat mengisi pencapaian perkembangan Anak anda disini',
+              'Catat data imunisasi anak anda disini',
               style: GoogleFonts.poppins().copyWith(
                   color: '414141'.toColor(),
                   fontSize: 13,
@@ -46,11 +44,36 @@ class MTooltipKategori extends StatelessWidget {
                   child: Container(
                     color: Colors.white,
                     child: Text(
-                      'Selesai',
+                      'Lewati',
                       style: GoogleFonts.poppins().copyWith(
                           color: '86C3BB'.toColor(),
                           fontSize: 11,
                           fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12),
+                GestureDetector(
+                  onTap: () {
+                    controller.next();
+                  },
+                  child: Container(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Text(
+                          'Lanjut',
+                          style: GoogleFonts.poppins().copyWith(
+                              color: 'FF6969'.toColor(),
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          color: 'FF6969'.toColor(),
+                          size: 14,
+                        )
+                      ],
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ part of '../pages.dart';
 
 class semua extends StatefulWidget {
   List<ImunisasiGroup>? imunisasi;
+
   semua(this.imunisasi);
 
   @override
@@ -17,8 +18,14 @@ class _semuaState extends State<semua> {
       physics: NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: Column(
-        children: widget.imunisasi!.map((e) => listimunisasi(e)).toList()
-      ),
+          children: widget.imunisasi!
+              .map(
+                (e) => listimunisasi(
+                  e,
+                  isFirst: (widget.imunisasi!.first == e) ? true : false,
+                ),
+              )
+              .toList()),
     );
   }
 }
