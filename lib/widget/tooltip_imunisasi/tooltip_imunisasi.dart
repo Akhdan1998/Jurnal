@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipImunisasi extends StatelessWidget {
+class MTooltipImunisasi extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -11,11 +11,26 @@ class MTooltipImunisasi extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<MTooltipImunisasi> createState() => _MTooltipImunisasiState();
+}
+
+class _MTooltipImunisasiState extends State<MTooltipImunisasi> {
+  // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late String? data;
+
+  Future<void> setPreference() async {
+    final kacuk = await SharedPreferences.getInstance();
+    kacuk.setString('imunisasi', 'ada');
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: EdgeInsets.only(top: 8.0),
       child: Container(
         width: size.width * .7,
         decoration: BoxDecoration(
@@ -41,7 +56,10 @@ class MTooltipImunisasi extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+
+                    widget.controller.pause();
+
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +75,7 @@ class MTooltipImunisasi extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

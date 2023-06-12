@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipDataAwal extends StatelessWidget {
+class MTooltipDataAwal extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -9,6 +9,16 @@ class MTooltipDataAwal extends StatelessWidget {
     required this.controller,
     required this.title,
   }) : super(key: key);
+
+  @override
+  State<MTooltipDataAwal> createState() => _MTooltipDataAwalState();
+}
+
+class _MTooltipDataAwalState extends State<MTooltipDataAwal> {
+  Future<void> setPreference() async {
+    final profil = await SharedPreferences.getInstance();
+    profil.setString('profil', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +51,8 @@ class MTooltipDataAwal extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +68,7 @@ class MTooltipDataAwal extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

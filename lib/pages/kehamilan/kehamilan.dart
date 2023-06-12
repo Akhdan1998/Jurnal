@@ -26,6 +26,7 @@ class _KehamilanState extends State<Kehamilan> {
   bool closeName = false;
   final TooltipController _controller = TooltipController();
   bool done = false;
+  String? getData;
 
   void hapus() async {
     Uri url_ = Uri.parse(
@@ -75,10 +76,15 @@ class _KehamilanState extends State<Kehamilan> {
     super.dispose();
   }
 
-  Future<void>? dancuk(BuildContext cs) {
+  Future<void>? getPreferences(BuildContext cs) async {
     Future.delayed(const Duration(milliseconds: 1000), () {
       OverlayTooltipScaffold.of(cs)?.controller.start();
     });
+    final get = await SharedPreferences.getInstance();
+
+    getData = get.getString('kehamilan');
+
+    print("HAHAHAi " + getData.toString());
   }
 
   @override
@@ -94,7 +100,7 @@ class _KehamilanState extends State<Kehamilan> {
       builder: (context) => Scaffold(
         backgroundColor: Colors.white,
         body: FutureBuilder(
-          future: dancuk(context),
+          future: getPreferences(context),
           builder: (context, snaps) => SingleChildScrollView(
             clipBehavior: Clip.hardEdge,
             // physics: BouncingScrollPhysics(),
@@ -189,82 +195,187 @@ class _KehamilanState extends State<Kehamilan> {
                                                       color:
                                                           '323232'.toColor()),
                                             ),
-                                            OverlayTooltipItem(
-                                              displayIndex: 0,
-                                              child: Container(
-                                                padding: EdgeInsets.only(left: 5, right: 5),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(5),
-                                                  color: Colors.white,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      snapshot.bunting!.usia
-                                                              .toString() ??
-                                                          '',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontSize: 10,
-                                                              color: 'FF6969'
-                                                                  .toColor()),
+                                            (getData == null)
+                                                ? OverlayTooltipItem(
+                                                    displayIndex: 0,
+                                                    child: Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: 5, right: 5),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            snapshot.bunting!
+                                                                    .usia
+                                                                    .toString() ??
+                                                                '',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                          ),
+                                                          SizedBox(width: 3),
+                                                          Text(
+                                                            'Minggu',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                          ),
+                                                          SizedBox(width: 3),
+                                                          Text(
+                                                            '-',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                          ),
+                                                          SizedBox(width: 3),
+                                                          Text(
+                                                            'Trimester',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                          ),
+                                                          SizedBox(width: 3),
+                                                          Text(
+                                                            snapshot.bunting!
+                                                                    .trimester
+                                                                    .toString() ??
+                                                                '',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: 'FF6969'
+                                                                        .toColor()),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      'Minggu',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontSize: 10,
-                                                              color: 'FF6969'
-                                                                  .toColor()),
+                                                    tooltip: (controller) =>
+                                                        MTooltipJadwal(
+                                                      controller: controller,
+                                                      title: '',
                                                     ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      '-',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontSize: 10,
-                                                              color: 'FF6969'
-                                                                  .toColor()),
+                                                  )
+                                                : Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 5, right: 5),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: Colors.white,
                                                     ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      'Trimester',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontSize: 10,
-                                                              color: 'FF6969'
-                                                                  .toColor()),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          snapshot.bunting!.usia
+                                                                  .toString() ??
+                                                              '',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: 'FF6969'
+                                                                      .toColor()),
+                                                        ),
+                                                        SizedBox(width: 3),
+                                                        Text(
+                                                          'Minggu',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: 'FF6969'
+                                                                      .toColor()),
+                                                        ),
+                                                        SizedBox(width: 3),
+                                                        Text(
+                                                          '-',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: 'FF6969'
+                                                                      .toColor()),
+                                                        ),
+                                                        SizedBox(width: 3),
+                                                        Text(
+                                                          'Trimester',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: 'FF6969'
+                                                                      .toColor()),
+                                                        ),
+                                                        SizedBox(width: 3),
+                                                        Text(
+                                                          snapshot.bunting!
+                                                                  .trimester
+                                                                  .toString() ??
+                                                              '',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: 'FF6969'
+                                                                      .toColor()),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      snapshot.bunting!.trimester
-                                                              .toString() ??
-                                                          '',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight.bold,
-                                                              fontSize: 10,
-                                                              color: 'FF6969'
-                                                                  .toColor()),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              tooltip: (controller) => MTooltipJadwal(
-                                                controller: controller,
-                                                title: '',
-                                              ),
-                                            ),
+                                                  ),
                                           ],
                                         ),
                                       ),
@@ -303,76 +414,159 @@ class _KehamilanState extends State<Kehamilan> {
                                                 ),
                                               ],
                                             ),
-                                            OverlayTooltipItem(
-                                              displayIndex: 1,
-                                              child: Container(
-                                                padding: EdgeInsets.only(left: 5, right: 5),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(5),
-                                                  color: Colors.white,
-                                                ),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'HPL :',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.w300,
-                                                          fontSize: 11,
-                                                          color: '7A7A7A'
-                                                              .toColor()),
+                                            (getData == null)
+                                                ? OverlayTooltipItem(
+                                                    displayIndex: 1,
+                                                    child: Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: 5, right: 5),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        color: Colors.white,
+                                                      ),
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'HPL :',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    fontSize:
+                                                                        11,
+                                                                    color: '7A7A7A'
+                                                                        .toColor()),
+                                                          ),
+                                                          SizedBox(width: 3),
+                                                          Text(
+                                                            date,
+                                                            // snapshot.bunting!.hpl ?? '',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    fontSize:
+                                                                        11,
+                                                                    color: '7A7A7A'
+                                                                        .toColor()),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    SizedBox(width: 3),
-                                                    Text(
-                                                      date,
-                                                      // snapshot.bunting!.hpl ?? '',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.w300,
-                                                          fontSize: 11,
-                                                          color: '7A7A7A'
-                                                              .toColor()),
+                                                    tooltip: (controller) =>
+                                                        MTooltipHpl(
+                                                      controller: controller,
+                                                      title: '',
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              tooltip: (controller) => MTooltipHpl(
-                                                controller: controller,
-                                                title: '',
-                                              ),
-                                            ),
+                                                  )
+                                                : Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 5, right: 5),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'HPL :',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                  fontSize: 11,
+                                                                  color: '7A7A7A'
+                                                                      .toColor()),
+                                                        ),
+                                                        SizedBox(width: 3),
+                                                        Text(
+                                                          date,
+                                                          // snapshot.bunting!.hpl ?? '',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                  fontSize: 11,
+                                                                  color: '7A7A7A'
+                                                                      .toColor()),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
                                           ],
                                         ),
                                       ),
                                       SizedBox(height: 10),
-                                      OverlayTooltipItem(
-                                        displayIndex: 2,
-                                        child: Container(
-                                          padding: EdgeInsets.only(bottom: 15),
-                                          child: LinearPercentIndicator(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width -
-                                                34,
-                                            // animation: true,
-                                            // animationDuration: 1000,
-                                            lineHeight: 15,
-                                            percent: snapshot.bunting!.progress!
-                                                .toDouble(),
-                                            barRadius: Radius.circular(20),
-                                            progressColor: 'FF6969'.toColor(),
-                                            backgroundColor: 'FFE7E7'.toColor(),
-                                          ),
-                                        ),
-                                        tooltip: (controller) => MTooltipIndicator(
-                                          controller: controller,
-                                          title: '',
-                                        ),
-                                      ),
+                                      (getData == null)
+                                          ? OverlayTooltipItem(
+                                              displayIndex: 2,
+                                              child: Container(
+                                                padding:
+                                                    EdgeInsets.only(bottom: 15),
+                                                child: LinearPercentIndicator(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      34,
+                                                  // animation: true,
+                                                  // animationDuration: 1000,
+                                                  lineHeight: 15,
+                                                  percent: snapshot
+                                                      .bunting!.progress!
+                                                      .toDouble(),
+                                                  barRadius:
+                                                      Radius.circular(20),
+                                                  progressColor:
+                                                      'FF6969'.toColor(),
+                                                  backgroundColor:
+                                                      'FFE7E7'.toColor(),
+                                                ),
+                                              ),
+                                              tooltip: (controller) =>
+                                                  MTooltipIndicator(
+                                                controller: controller,
+                                                title: '',
+                                              ),
+                                            )
+                                          : Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 15),
+                                              child: LinearPercentIndicator(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    34,
+                                                // animation: true,
+                                                // animationDuration: 1000,
+                                                lineHeight: 15,
+                                                percent: snapshot
+                                                    .bunting!.progress!
+                                                    .toDouble(),
+                                                barRadius: Radius.circular(20),
+                                                progressColor:
+                                                    'FF6969'.toColor(),
+                                                backgroundColor:
+                                                    'FFE7E7'.toColor(),
+                                              ),
+                                            ),
                                     ],
                                   ),
                                 ),
@@ -424,71 +618,151 @@ class _KehamilanState extends State<Kehamilan> {
                                           ),
                                         ),
                                         SizedBox(height: 13),
-                                        OverlayTooltipItem(
-                                          displayIndex: 3,
-                                          child: Container(
-                                            padding: EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
-                                              color: Colors.white,
-                                            ),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Image.network(
-                                                  snapshot.bunting!.anakProgress!
-                                                      .icon
-                                                      .toString() ??
-                                                      '',
-                                                  scale: 20,
+                                        (getData == null)
+                                            ? OverlayTooltipItem(
+                                                displayIndex: 3,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(5),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Image.network(
+                                                        snapshot
+                                                                .bunting!
+                                                                .anakProgress!
+                                                                .icon
+                                                                .toString() ??
+                                                            '',
+                                                        scale: 20,
+                                                      ),
+                                                      SizedBox(width: 12),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Bayi sebesar' +
+                                                                    ' ' +
+                                                                    snapshot
+                                                                        .bunting!
+                                                                        .anakProgress!
+                                                                        .judul
+                                                                        .toString() ??
+                                                                '',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: '5C5C5C'
+                                                                        .toColor()),
+                                                          ),
+                                                          Text(
+                                                            snapshot
+                                                                    .bunting!
+                                                                    .anakProgress!
+                                                                    .deskripsi ??
+                                                                '',
+                                                            style: GoogleFonts
+                                                                    .poppins()
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        10,
+                                                                    color: '7A7A7A'
+                                                                        .toColor()),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                SizedBox(width: 12),
-                                                Column(
+                                                tooltip: (controller) =>
+                                                    MTooltipProgresBayi(
+                                                  controller: controller,
+                                                  title: '',
+                                                ),
+                                              )
+                                            : Container(
+                                                padding: EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: Colors.white,
+                                                ),
+                                                child: Row(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      'Bayi sebesar' +
-                                                          ' ' +
-                                                          snapshot
+                                                    Image.network(
+                                                      snapshot
                                                               .bunting!
                                                               .anakProgress!
-                                                              .judul
+                                                              .icon
                                                               .toString() ??
                                                           '',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 10,
-                                                          color: '5C5C5C'
-                                                              .toColor()),
+                                                      scale: 20,
                                                     ),
-                                                    Text(
-                                                      snapshot
-                                                          .bunting!
-                                                          .anakProgress!
-                                                          .deskripsi ??
-                                                          '',
-                                                      style: GoogleFonts.poppins()
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          fontSize: 10,
-                                                          color: '7A7A7A'
-                                                              .toColor()),
+                                                    SizedBox(width: 12),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'Bayi sebesar' +
+                                                                  ' ' +
+                                                                  snapshot
+                                                                      .bunting!
+                                                                      .anakProgress!
+                                                                      .judul
+                                                                      .toString() ??
+                                                              '',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: '5C5C5C'
+                                                                      .toColor()),
+                                                        ),
+                                                        Text(
+                                                          snapshot
+                                                                  .bunting!
+                                                                  .anakProgress!
+                                                                  .deskripsi ??
+                                                              '',
+                                                          style: GoogleFonts
+                                                                  .poppins()
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                  color: '7A7A7A'
+                                                                      .toColor()),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                          tooltip: (controller) => MTooltipHasilPertumbuhan(
-                                            controller: controller,
-                                            title: '',
-                                          ),
-                                        ),
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -692,75 +966,80 @@ class _KehamilanState extends State<Kehamilan> {
                 SizedBox(height: 15),
                 Container(
                   padding: EdgeInsets.only(left: 16, right: 16),
-                  child: OverlayTooltipItem(
-                    displayIndex: 4,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white,
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              width: 1,
-                              color: 'F0F0F0'.toColor(),
+                  child: (getData == null)
+                      ? OverlayTooltipItem(
+                          displayIndex: 4,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.white,
                             ),
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Pencarian Nama',
-                                      style: GoogleFonts.poppins().copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 11,
-                                          color: '323232'.toColor()),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          hurufawalan.text = '';
-                                          selectedKelamin = 'Laki-laki';
-                                          dropdownValue = "Semua";
-                                          closeName = false;
-                                        });
-                                      },
-                                      child: Container(
-                                        color: Colors.white,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Reset',
-                                              style: GoogleFonts.poppins().copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 10.5,
-                                                  color: 'FF6969'.toColor()),
-                                            ),
-                                            SizedBox(width: 3),
-                                            Icon(
-                                              Icons.refresh_outlined,
-                                              color: 'FF6969'.toColor(),
-                                              size: 17,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                            child: Container(
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  width: 1,
+                                  color: 'F0F0F0'.toColor(),
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              BlocBuilder<TemaCubit, TemaState>(
-                                  builder: (context, snapshot) {
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Pencarian Nama',
+                                          style: GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 11,
+                                              color: '323232'.toColor()),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              hurufawalan.text = '';
+                                              selectedKelamin = 'Laki-laki';
+                                              dropdownValue = "Semua";
+                                              closeName = false;
+                                            });
+                                          },
+                                          child: Container(
+                                            color: Colors.white,
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  'Reset',
+                                                  style: GoogleFonts.poppins()
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 10.5,
+                                                          color: 'FF6969'
+                                                              .toColor()),
+                                                ),
+                                                SizedBox(width: 3),
+                                                Icon(
+                                                  Icons.refresh_outlined,
+                                                  color: 'FF6969'.toColor(),
+                                                  size: 17,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  BlocBuilder<TemaCubit, TemaState>(
+                                      builder: (context, snapshot) {
                                     if (snapshot is TemaLoaded) {
                                       if (snapshot.temanama != null) {
                                         return DropdownButtonFormField<String>(
@@ -773,13 +1052,15 @@ class _KehamilanState extends State<Kehamilan> {
                                             contentPadding: EdgeInsets.only(
                                                 left: 10, top: 5, right: 5),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                              BorderRadius.all(Radius.circular(5)),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
                                               borderSide: BorderSide(
-                                                  width: 1, color: 'FF6969'.toColor()),
+                                                  width: 1,
+                                                  color: 'FF6969'.toColor()),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(5),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
                                             ),
                                           ),
                                           onChanged: (String? value) {
@@ -787,20 +1068,22 @@ class _KehamilanState extends State<Kehamilan> {
                                               dropdownValue = value!;
                                             });
                                           },
-                                          items: list.map<DropdownMenuItem<String>>(
+                                          items: list
+                                              .map<DropdownMenuItem<String>>(
                                                   (String value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(
-                                                    value,
-                                                    style: GoogleFonts.poppins().copyWith(
-                                                      fontSize: 11,
-                                                      fontWeight: FontWeight.w300,
-                                                      // color: '989797'.toColor(),
-                                                    ),
-                                                  ),
-                                                );
-                                              }).toList(),
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(
+                                                value,
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w300,
+                                                  // color: '989797'.toColor(),
+                                                ),
+                                              ),
+                                            );
+                                          }).toList(),
                                         );
                                       } else {
                                         return SizedBox();
@@ -813,176 +1096,490 @@ class _KehamilanState extends State<Kehamilan> {
                                       );
                                     }
                                   }),
-                              SizedBox(height: 13),
-                              TextField(
-                                onChanged: (value) {
-                                  if (value.length > 1) {
-                                    setState(() {
-                                      hurufawalan.text = value[0].capitalize!;
-                                    });
-                                  }
-                                },
-                                controller: hurufawalan,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                    borderSide: BorderSide(
-                                        width: 1, color: 'FF6969'.toColor()),
-                                  ),
-                                  contentPadding:
-                                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
-                                  hintStyle: GoogleFonts.poppins().copyWith(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w300,
-                                    color: '989797'.toColor(),
-                                  ),
-                                  hintText: 'Ketik Awalan Huruf',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedKelamin = 'Laki-laki';
-                                      });
+                                  SizedBox(height: 13),
+                                  TextField(
+                                    onChanged: (value) {
+                                      if (value.length > 1) {
+                                        setState(() {
+                                          hurufawalan.text =
+                                              value[0].capitalize!;
+                                        });
+                                      }
                                     },
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: (selectedKelamin == 'Laki-laki')
-                                                ? 'FF6969'.toColor()
-                                                : 'E2E2E2'.toColor(),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          'Laki - laki',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 11,
-                                            color: '6D6767'.toColor(),
-                                          ),
-                                        ),
-                                      ],
+                                    controller: hurufawalan,
+                                    decoration: InputDecoration(
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: 'FF6969'.toColor()),
+                                      ),
+                                      contentPadding: EdgeInsets.only(
+                                          left: 10, top: 5, bottom: 5),
+                                      hintStyle: GoogleFonts.poppins().copyWith(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w300,
+                                        color: '989797'.toColor(),
+                                      ),
+                                      hintText: 'Ketik Awalan Huruf',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(width: 20),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedKelamin = 'Perempuan';
-                                      });
-                                    },
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: (selectedKelamin == 'Perempuan')
-                                                ? 'FF6969'.toColor()
-                                                : 'E2E2E2'.toColor(),
-                                          ),
+                                  SizedBox(height: 15),
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedKelamin = 'Laki-laki';
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 20,
+                                              height: 20,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                color: (selectedKelamin ==
+                                                        'Laki-laki')
+                                                    ? 'FF6969'.toColor()
+                                                    : 'E2E2E2'.toColor(),
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              'Laki - laki',
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11,
+                                                color: '6D6767'.toColor(),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          'Perempuan',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 11,
-                                            color: '6D6767'.toColor(),
-                                          ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedKelamin = 'Perempuan';
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 20,
+                                              height: 20,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                color: (selectedKelamin ==
+                                                        'Perempuan')
+                                                    ? 'FF6969'.toColor()
+                                                    : 'E2E2E2'.toColor(),
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              'Perempuan',
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11,
+                                                color: '6D6767'.toColor(),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedKelamin = 'Unisex';
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 20,
+                                              height: 20,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                color: (selectedKelamin ==
+                                                        'Unisex')
+                                                    ? 'FF6969'.toColor()
+                                                    : 'E2E2E2'.toColor(),
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              'Unisex',
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11,
+                                                color: '6D6767'.toColor(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(width: 20),
+                                  SizedBox(height: 15),
                                   GestureDetector(
                                     onTap: () {
+                                      context.read<HurufCubit>().getHuruf(
+                                          'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                          hurufawalan.text,
+                                          selectedKelamin ?? "",
+                                          dropdownValue ?? "");
                                       setState(() {
-                                        selectedKelamin = 'Unisex';
+                                        closeName = true;
                                       });
                                     },
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: (selectedKelamin == 'Unisex')
-                                                ? 'FF6969'.toColor()
-                                                : 'E2E2E2'.toColor(),
-                                          ),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      padding:
+                                          EdgeInsets.only(top: 11, bottom: 11),
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                          width: 1,
+                                          color: 'FF6969'.toColor(),
                                         ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          'Unisex',
-                                          style: GoogleFonts.poppins().copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 11,
-                                            color: '6D6767'.toColor(),
-                                          ),
+                                        color: Colors.white,
+                                      ),
+                                      child: Text(
+                                        'Cari inspirasi nama anak',
+                                        style: GoogleFonts.poppins().copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: 'FF6969'.toColor(),
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 15),
-                              GestureDetector(
-                                onTap: () {
-                                  context.read<HurufCubit>().getHuruf(
-                                      'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
-                                      hurufawalan.text,
-                                      selectedKelamin ?? "",
-                                      dropdownValue ?? "");
-                                  setState(() {
-                                    closeName = true;
-                                  });
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.only(top: 11, bottom: 11),
+                            ),
+                          ),
+                          tooltip: (controller) => MTooltipFinder(
+                            controller: controller,
+                            title: '',
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white,
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                width: 1,
+                                color: 'F0F0F0'.toColor(),
+                              ),
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
                                   width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                      width: 1,
-                                      color: 'FF6969'.toColor(),
-                                    ),
-                                    color: Colors.white,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Pencarian Nama',
+                                        style: GoogleFonts.poppins().copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 11,
+                                            color: '323232'.toColor()),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            hurufawalan.text = '';
+                                            selectedKelamin = 'Laki-laki';
+                                            dropdownValue = "Semua";
+                                            closeName = false;
+                                          });
+                                        },
+                                        child: Container(
+                                          color: Colors.white,
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Reset',
+                                                style: GoogleFonts.poppins()
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 10.5,
+                                                        color:
+                                                            'FF6969'.toColor()),
+                                              ),
+                                              SizedBox(width: 3),
+                                              Icon(
+                                                Icons.refresh_outlined,
+                                                color: 'FF6969'.toColor(),
+                                                size: 17,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  child: Text(
-                                    'Cari inspirasi nama anak',
-                                    style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: 'FF6969'.toColor(),
+                                ),
+                                SizedBox(height: 10),
+                                BlocBuilder<TemaCubit, TemaState>(
+                                    builder: (context, snapshot) {
+                                  if (snapshot is TemaLoaded) {
+                                    if (snapshot.temanama != null) {
+                                      return DropdownButtonFormField<String>(
+                                        value: dropdownValue,
+                                        icon: Icon(
+                                          Icons.expand_more_outlined,
+                                          color: 'B8B8B8'.toColor(),
+                                        ),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(
+                                              left: 10, top: 5, right: 5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                                width: 1,
+                                                color: 'FF6969'.toColor()),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            dropdownValue = value!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(
+                                              value,
+                                              style: GoogleFonts.poppins()
+                                                  .copyWith(
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w300,
+                                                // color: '989797'.toColor(),
+                                              ),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      );
+                                    } else {
+                                      return SizedBox();
+                                    }
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                    );
+                                  }
+                                }),
+                                SizedBox(height: 13),
+                                TextField(
+                                  onChanged: (value) {
+                                    if (value.length > 1) {
+                                      setState(() {
+                                        hurufawalan.text = value[0].capitalize!;
+                                      });
+                                    }
+                                  },
+                                  controller: hurufawalan,
+                                  decoration: InputDecoration(
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      borderSide: BorderSide(
+                                          width: 1, color: 'FF6969'.toColor()),
+                                    ),
+                                    contentPadding: EdgeInsets.only(
+                                        left: 10, top: 5, bottom: 5),
+                                    hintStyle: GoogleFonts.poppins().copyWith(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w300,
+                                      color: '989797'.toColor(),
+                                    ),
+                                    hintText: 'Ketik Awalan Huruf',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: 15),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedKelamin = 'Laki-laki';
+                                        });
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              color: (selectedKelamin ==
+                                                      'Laki-laki')
+                                                  ? 'FF6969'.toColor()
+                                                  : 'E2E2E2'.toColor(),
+                                            ),
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'Laki - laki',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 11,
+                                              color: '6D6767'.toColor(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 20),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedKelamin = 'Perempuan';
+                                        });
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              color: (selectedKelamin ==
+                                                      'Perempuan')
+                                                  ? 'FF6969'.toColor()
+                                                  : 'E2E2E2'.toColor(),
+                                            ),
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'Perempuan',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 11,
+                                              color: '6D6767'.toColor(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 20),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedKelamin = 'Unisex';
+                                        });
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              color:
+                                                  (selectedKelamin == 'Unisex')
+                                                      ? 'FF6969'.toColor()
+                                                      : 'E2E2E2'.toColor(),
+                                            ),
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'Unisex',
+                                            style:
+                                                GoogleFonts.poppins().copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 11,
+                                              color: '6D6767'.toColor(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 15),
+                                GestureDetector(
+                                  onTap: () {
+                                    context.read<HurufCubit>().getHuruf(
+                                        'Bearer 1354|r5uOe7c4yC14CDvrkeTfP73s0AIrkG01EKos4lC4',
+                                        hurufawalan.text,
+                                        selectedKelamin ?? "",
+                                        dropdownValue ?? "");
+                                    setState(() {
+                                      closeName = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    padding:
+                                        EdgeInsets.only(top: 11, bottom: 11),
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                      color: Colors.white,
+                                    ),
+                                    child: Text(
+                                      'Cari inspirasi nama anak',
+                                      style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                        color: 'FF6969'.toColor(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                    ),
-                    tooltip: (controller) => MTooltipFinder(
-                      controller: controller,
-                      title: '',
-                    ),
-                  ),
                 ),
                 SizedBox(height: 15),
                 (closeName == false)

@@ -1,12 +1,22 @@
 part of '../../pages/pages.dart';
 
-class MTooltipRiwayat extends StatelessWidget {
+class MTooltipRiwayat extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
   const MTooltipRiwayat(
       {Key? key, required this.controller, required this.title})
       : super(key: key);
+
+  @override
+  State<MTooltipRiwayat> createState() => _MTooltipRiwayatState();
+}
+
+class _MTooltipRiwayatState extends State<MTooltipRiwayat> {
+  Future<void> setPreference() async {
+    final tumbuh = await SharedPreferences.getInstance();
+    tumbuh.setString('tumbuh', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +45,21 @@ class MTooltipRiwayat extends StatelessWidget {
                   fontWeight: FontWeight.w300),
             ),
             SizedBox(height: 5),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    controller.pause();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Text(
-                      'Selesai',
-                      style: GoogleFonts.poppins().copyWith(
-                          color: '86C3BB'.toColor(),
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () {
+                widget.controller.pause();
+                setPreference();
+              },
+              child: Container(
+                color: Colors.white,
+                child: Text(
+                  'Selesai',
+                  style: GoogleFonts.poppins().copyWith(
+                      color: '86C3BB'.toColor(),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
             ),
           ],
         ),

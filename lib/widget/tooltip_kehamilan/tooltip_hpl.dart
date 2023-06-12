@@ -9,7 +9,10 @@ class MTooltipHpl extends StatelessWidget {
     required this.controller,
     required this.title,
   }) : super(key: key);
-
+  Future<void> setPreference() async {
+    final hpl = await SharedPreferences.getInstance();
+    hpl.setString('kehamilan', 'ada');
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,6 +45,7 @@ class MTooltipHpl extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,

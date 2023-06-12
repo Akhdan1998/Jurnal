@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipIndicator extends StatelessWidget {
+class MTooltipIndicator extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -10,6 +10,15 @@ class MTooltipIndicator extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
+  @override
+  State<MTooltipIndicator> createState() => _MTooltipIndicatorState();
+}
+
+class _MTooltipIndicatorState extends State<MTooltipIndicator> {
+  Future<void> setPreference() async {
+    final indicator = await SharedPreferences.getInstance();
+    indicator.setString('kehamilan', 'ada');
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,7 +50,8 @@ class MTooltipIndicator extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +67,7 @@ class MTooltipIndicator extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

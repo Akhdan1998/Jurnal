@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipKategori extends StatelessWidget {
+class MTooltipKategori extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -10,6 +10,15 @@ class MTooltipKategori extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
+  @override
+  State<MTooltipKategori> createState() => _MTooltipKategoriState();
+}
+
+class _MTooltipKategoriState extends State<MTooltipKategori> {
+  Future<void> setPreference() async {
+    final kacuk = await SharedPreferences.getInstance();
+    kacuk.setString('kembang', 'ada');
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,7 +50,8 @@ class MTooltipKategori extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,

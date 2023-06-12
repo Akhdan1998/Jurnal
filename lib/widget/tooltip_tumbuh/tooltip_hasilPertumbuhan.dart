@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipHasilPertumbuhan extends StatelessWidget {
+class MTooltipHasilPertumbuhan extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -9,6 +9,15 @@ class MTooltipHasilPertumbuhan extends StatelessWidget {
     required this.controller,
     required this.title}) : super(key: key);
 
+  @override
+  State<MTooltipHasilPertumbuhan> createState() => _MTooltipHasilPertumbuhanState();
+}
+
+class _MTooltipHasilPertumbuhanState extends State<MTooltipHasilPertumbuhan> {
+  Future<void> setPreference() async {
+    final tumbuh = await SharedPreferences.getInstance();
+    tumbuh.setString('tumbuh', 'ada');
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,7 +50,8 @@ class MTooltipHasilPertumbuhan extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +67,7 @@ class MTooltipHasilPertumbuhan extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

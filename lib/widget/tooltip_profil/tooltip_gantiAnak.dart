@@ -1,13 +1,22 @@
 part of '../../pages/pages.dart';
 
-class MTooltipGantiAnak extends StatelessWidget {
+class MTooltipGantiAnak extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
-  const MTooltipGantiAnak({
-    Key? key,
-    required this.controller,
-    required this.title}) : super(key: key);
+  const MTooltipGantiAnak(
+      {Key? key, required this.controller, required this.title})
+      : super(key: key);
+
+  @override
+  State<MTooltipGantiAnak> createState() => _MTooltipGantiAnakState();
+}
+
+class _MTooltipGantiAnakState extends State<MTooltipGantiAnak> {
+  Future<void> setPreference() async {
+    final profil = await SharedPreferences.getInstance();
+    profil.setString('profil', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +44,21 @@ class MTooltipGantiAnak extends StatelessWidget {
                   fontWeight: FontWeight.w300),
             ),
             SizedBox(height: 5),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    controller.pause();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Text(
-                      'Selesai',
-                      style: GoogleFonts.poppins().copyWith(
-                          color: '86C3BB'.toColor(),
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () {
+                widget.controller.pause();
+                setPreference();
+              },
+              child: Container(
+                color: Colors.white,
+                child: Text(
+                  'Selesai',
+                  style: GoogleFonts.poppins().copyWith(
+                      color: '86C3BB'.toColor(),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
             ),
           ],
         ),

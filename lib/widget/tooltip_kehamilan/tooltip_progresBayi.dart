@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipProgresBayi extends StatelessWidget {
+class MTooltipProgresBayi extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -9,6 +9,16 @@ class MTooltipProgresBayi extends StatelessWidget {
     required this.controller,
     required this.title,
   }) : super(key: key);
+
+  @override
+  State<MTooltipProgresBayi> createState() => _MTooltipProgresBayiState();
+}
+
+class _MTooltipProgresBayiState extends State<MTooltipProgresBayi> {
+  Future<void> setPreference() async {
+    final perkembangan = await SharedPreferences.getInstance();
+    perkembangan.setString('kehamilan', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +51,8 @@ class MTooltipProgresBayi extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +68,7 @@ class MTooltipProgresBayi extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

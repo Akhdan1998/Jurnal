@@ -25,6 +25,7 @@ class Kembang extends StatefulWidget {
 class _KembangState extends State<Kembang> {
   final TooltipController _controller = TooltipController();
   bool done = false;
+  String? getData;
 
   @override
   void initState() {
@@ -54,10 +55,15 @@ class _KembangState extends State<Kembang> {
     super.dispose();
   }
 
-  Future<void>? dancuk(BuildContext cs) {
+  Future<void>? getPreferences(BuildContext cs) async {
     Future.delayed(const Duration(milliseconds: 1000), () {
       OverlayTooltipScaffold.of(cs)?.controller.start();
     });
+    final get = await SharedPreferences.getInstance();
+
+    getData = get.getString('kembang');
+
+    print("HAHAHAi " + getData.toString());
   }
 
   double total_percent = 0;
@@ -77,7 +83,7 @@ class _KembangState extends State<Kembang> {
       builder: (context) => Scaffold(
         backgroundColor: Colors.white,
         body: FutureBuilder(
-          future: dancuk(context),
+          future: getPreferences(context),
           builder: (context, snaps) => SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -356,6 +362,7 @@ class _KembangState extends State<Kembang> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
+                                                      (getData == null) ?
                                                       OverlayTooltipItem(
                                                         displayIndex: 0,
                                                         child: Container(
@@ -422,7 +429,65 @@ class _KembangState extends State<Kembang> {
                                                               controller,
                                                           title: '',
                                                         ),
+                                                      ) : Container(
+                                                        padding:
+                                                        EdgeInsets.only(
+                                                            left: 5),
+                                                        height: 35,
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              5),
+                                                        ),
+                                                        child: DropdownButton<
+                                                            String>(
+                                                          value: selectedUsia,
+                                                          icon: Icon(
+                                                              Icons
+                                                                  .expand_more,
+                                                              color: 'FF6969'
+                                                                  .toColor()),
+                                                          style: TextStyle(
+                                                              color: 'FF6969'
+                                                                  .toColor()),
+                                                          underline:
+                                                          SizedBox(),
+                                                          onChanged: (String?
+                                                          value) {
+                                                            setState(() {
+                                                              selectedUsia =
+                                                              value!;
+                                                            });
+                                                          },
+                                                          items: listed.map<
+                                                              DropdownMenuItem<
+                                                                  String>>((String
+                                                          value) {
+                                                            return DropdownMenuItem<
+                                                                String>(
+                                                              value: value,
+                                                              child: Text(
+                                                                value,
+                                                                style: GoogleFonts
+                                                                    .poppins()
+                                                                    .copyWith(
+                                                                  fontSize:
+                                                                  11,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                                  color: 'FF6969'
+                                                                      .toColor(),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }).toList(),
+                                                        ),
                                                       ),
+
                                                       BlocBuilder<KategoriCubit,
                                                           KategoriState>(
                                                         builder: (context,
@@ -520,7 +585,7 @@ class _KembangState extends State<Kembang> {
                                               1.00 / total_pencapaian_percent;
                                           total_percent =
                                               pencapaian_percent * point;
-                                          return OverlayTooltipItem(
+                                          return (getData == null) ? OverlayTooltipItem(
                                             displayIndex: 1,
                                             child: Container(
                                               padding:
@@ -548,6 +613,27 @@ class _KembangState extends State<Kembang> {
                                                 MTooltipProgres(
                                               controller: controller,
                                               title: '',
+                                            ),
+                                          ) : Container(
+                                            padding:
+                                            EdgeInsets.only(bottom: 15),
+                                            child: LinearPercentIndicator(
+                                              width: (Platform.isIOS)
+                                                  ? (MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                                  34)
+                                                  : (MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                                  34),
+                                              lineHeight: 13,
+                                              percent: total_percent,
+                                              barRadius: Radius.circular(20),
+                                              progressColor:
+                                              'FF6969'.toColor(),
+                                              backgroundColor:
+                                              'FFE7E7'.toColor(),
                                             ),
                                           );
                                         } else {
@@ -733,7 +819,7 @@ class _KembangState extends State<Kembang> {
                                   .toList()),
                         );
                       } else {
-                        return const Center(
+                        return Center(
                           child: SizedBox(),
                         );
                       }

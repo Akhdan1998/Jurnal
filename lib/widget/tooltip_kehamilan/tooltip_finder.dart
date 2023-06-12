@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipFinder extends StatelessWidget {
+class MTooltipFinder extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -9,6 +9,16 @@ class MTooltipFinder extends StatelessWidget {
     required this.controller,
     required this.title,
   }) : super(key: key);
+
+  @override
+  State<MTooltipFinder> createState() => _MTooltipFinderState();
+}
+
+class _MTooltipFinderState extends State<MTooltipFinder> {
+  Future<void> setPreference() async {
+    final finder = await SharedPreferences.getInstance();
+    finder.setString('kehamilan', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,25 +46,21 @@ class MTooltipFinder extends StatelessWidget {
                   fontWeight: FontWeight.w300),
             ),
             SizedBox(height: 5),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    controller.pause();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Text(
-                      'Lewati',
-                      style: GoogleFonts.poppins().copyWith(
-                          color: '86C3BB'.toColor(),
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () {
+                widget.controller.pause();
+                setPreference();
+              },
+              child: Container(
+                color: Colors.white,
+                child: Text(
+                  'Lewati',
+                  style: GoogleFonts.poppins().copyWith(
+                      color: '86C3BB'.toColor(),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
             ),
           ],
         ),

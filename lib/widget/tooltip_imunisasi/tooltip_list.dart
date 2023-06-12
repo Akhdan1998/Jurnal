@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipList extends StatelessWidget {
+class MTooltipList extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -8,14 +8,25 @@ class MTooltipList extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<MTooltipList> createState() => _MTooltipListState();
+}
+
+class _MTooltipListState extends State<MTooltipList> {
+  Future<void> setPreferences() async {
+    final simpan = await SharedPreferences.getInstance();
+    simpan.setString('listImunisasi', 'ada');
+    simpan.setString('imunisasi', 'ada');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
         // alignment: Alignment.topCenter,
-        width: size.width * .7,
+        width: size.width * 7,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -34,50 +45,21 @@ class MTooltipList extends StatelessWidget {
                   fontWeight: FontWeight.w300),
             ),
             SizedBox(height: 5),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    controller.pause();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Text(
-                      'Lewati',
-                      style: GoogleFonts.poppins().copyWith(
-                          color: '86C3BB'.toColor(),
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () {
+                widget.controller.pause();
+                setPreferences();
+              },
+              child: Container(
+                color: Colors.white,
+                child: Text(
+                  'Selesai',
+                  style: GoogleFonts.poppins().copyWith(
+                      color: '86C3BB'.toColor(),
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 12),
-                GestureDetector(
-                  onTap: () {
-                    controller.next();
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Lanjut',
-                          style: GoogleFonts.poppins().copyWith(
-                              color: 'FF6969'.toColor(),
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          color: 'FF6969'.toColor(),
-                          size: 14,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

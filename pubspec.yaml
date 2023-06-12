@@ -53,8 +53,8 @@ dev_dependencies:
   collection: ^1.17.0
   timezone: ^0.9.2
   coachmaker: ^0.2.1
-  showcaseview: ^2.0.3
   overlay_tooltip: ^0.2.2
+  shared_preferences: ^2.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipJadwal extends StatelessWidget {
+class MTooltipJadwal extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -9,6 +9,16 @@ class MTooltipJadwal extends StatelessWidget {
     required this.controller,
     required this.title,
   }) : super(key: key);
+
+  @override
+  State<MTooltipJadwal> createState() => _MTooltipJadwalState();
+}
+
+class _MTooltipJadwalState extends State<MTooltipJadwal> {
+  Future<void> setPreference() async {
+    final jadwal = await SharedPreferences.getInstance();
+    jadwal.setString('kehamilan', 'ada');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +51,8 @@ class MTooltipJadwal extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +68,7 @@ class MTooltipJadwal extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,

@@ -1,6 +1,6 @@
 part of '../../pages/pages.dart';
 
-class MTooltipProgres extends StatelessWidget {
+class MTooltipProgres extends StatefulWidget {
   final TooltipController controller;
   final String title;
 
@@ -10,6 +10,15 @@ class MTooltipProgres extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
+  @override
+  State<MTooltipProgres> createState() => _MTooltipProgresState();
+}
+
+class _MTooltipProgresState extends State<MTooltipProgres> {
+  Future<void> setPreference() async {
+    final kacuk = await SharedPreferences.getInstance();
+    kacuk.setString('kembang', 'ada');
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,7 +50,8 @@ class MTooltipProgres extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pause();
+                    widget.controller.pause();
+                    setPreference();
                   },
                   child: Container(
                     color: Colors.white,
@@ -57,7 +67,7 @@ class MTooltipProgres extends StatelessWidget {
                 SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.next();
+                    widget.controller.next();
                   },
                   child: Container(
                     color: Colors.white,
