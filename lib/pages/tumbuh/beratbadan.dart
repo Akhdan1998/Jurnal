@@ -375,8 +375,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: Colors.blue,
-                                            // color: 'FF6969'.toColor(),
+                                            color: '9E401E'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
                                           ),
@@ -387,8 +386,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: 'FD7948'.toColor(),
-                                            // color: 'FF6969'.toColor(),
+                                            color: 'FCB447'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
                                           ),
@@ -399,7 +397,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: '9E401E'.toColor(),
+                                            color: '23A128'.toColor(),
                                             // color: 'FF6969'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
@@ -411,7 +409,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: '529166'.toColor(),
+                                            color: '4FA2EE'.toColor(),
                                             // color: 'FF6969'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
@@ -424,8 +422,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: '9E401E'.toColor(),
-                                            // color: 'FF6969'.toColor(),
+                                            color: '23A128'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
                                           ),
@@ -437,7 +434,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: 'FF6969'.toColor(),
+                                            color: 'FCB447'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
                                           ),
@@ -449,9 +446,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: Colors.purpleAccent,
-                                            // color: 'FC7847'.toColor(),
-                                            // color: 'FF6969'.toColor(),
+                                            color: '9E401E'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: false),
                                           ),
@@ -462,9 +457,7 @@ class _beratbadanState extends State<beratbadan> {
                                                     e.berat!.toDouble() ?? 0.0))
                                                 .toList(),
                                             isCurved: true,
-                                            color: Colors.purpleAccent,
-                                            // color: 'FC7847'.toColor(),
-                                            // color: 'FF6969'.toColor(),
+                                            color: 'ED75E8'.toColor(),
                                             barWidth: 1,
                                             dotData: FlDotData(show: true),
                                           ),
@@ -543,8 +536,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: Colors.blue,
-                                          // color: 'FF6969'.toColor(),
+                                          color: '9E401E'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -555,8 +547,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: 'FD7948'.toColor(),
-                                          // color: 'FF6969'.toColor(),
+                                          color: 'FCB447'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -567,8 +558,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: '9E401E'.toColor(),
-                                          // color: 'FF6969'.toColor(),
+                                          color: '23A128'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -579,7 +569,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: '529166'.toColor(),
+                                          color: '4FA2EE'.toColor(),
                                           // color: 'FF6969'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
@@ -593,7 +583,6 @@ class _beratbadanState extends State<beratbadan> {
                                               .toList(),
                                           isCurved: true,
                                           color: '9E401E'.toColor(),
-                                          // color: 'FF6969'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -605,7 +594,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: 'FF6969'.toColor(),
+                                          color: 'FCB447'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -617,9 +606,7 @@ class _beratbadanState extends State<beratbadan> {
                                               e.berat!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: Colors.purpleAccent,
-                                          // color: 'FC7847'.toColor(),
-                                          // color: 'FF6969'.toColor(),
+                                          color: '23A128'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -677,7 +664,7 @@ class _beratbadanState extends State<beratbadan> {
                                     height: 15,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      color: 'FC7847'.toColor(),
+                                      color: 'FCB447'.toColor(),
                                     ),
                                   ),
                                   SizedBox(width: 5),
@@ -697,8 +684,7 @@ class _beratbadanState extends State<beratbadan> {
                                     height: 15,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      color: Colors.purpleAccent,
-                                      // color: 'FC7847'.toColor(),
+                                      color: '23A128'.toColor(),
                                     ),
                                   ),
                                   SizedBox(width: 5),
@@ -718,7 +704,7 @@ class _beratbadanState extends State<beratbadan> {
                                     height: 15,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      color: '529166'.toColor(),
+                                      color: '4FA2EE'.toColor(),
                                     ),
                                   ),
                                   SizedBox(width: 5),
@@ -738,8 +724,7 @@ class _beratbadanState extends State<beratbadan> {
                                     height: 15,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      // color: 'FD7948'.toColor(),
-                                      color: Colors.blue,
+                                      color: '23A128'.toColor(),
                                     ),
                                   ),
                                   SizedBox(width: 5),
@@ -759,7 +744,7 @@ class _beratbadanState extends State<beratbadan> {
                                     height: 15,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      color: 'FD7948'.toColor(),
+                                      color: 'FCB447'.toColor(),
                                     ),
                                   ),
                                   SizedBox(width: 5),
