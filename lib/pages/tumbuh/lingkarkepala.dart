@@ -441,7 +441,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                                   e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: 'FF6969'.toColor(),
+                                          color: 'FCB447'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
@@ -452,7 +452,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
                                                   e.lk!.toDouble() ?? 0.0))
                                               .toList(),
                                           isCurved: true,
-                                          color: 'FCB447'.toColor(),
+                                          color: '23A128'.toColor(),
                                           barWidth: 1,
                                           dotData: FlDotData(show: false),
                                         ),
