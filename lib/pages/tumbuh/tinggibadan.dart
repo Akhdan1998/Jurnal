@@ -678,11 +678,11 @@ class _tinggibadanState extends State<tinggibadan> {
                                                                 0.0))
                                                         .toList(),
                                                     isCurved: true,
-                                                    color: '23A128'.toColor(),
+                                                    color: '9E401E'.toColor(),
                                                     barWidth: 1,
                                                     dotData:
                                                         FlDotData(show: false),
-                                                  ), // 1
+                                                  ), // 3
                                                   LineChartBarData(
                                                     spots: snapshot
                                                         .grafiktinggi!.duasd
@@ -708,11 +708,11 @@ class _tinggibadanState extends State<tinggibadan> {
                                                                 0.0))
                                                         .toList(),
                                                     isCurved: true,
-                                                    color: '9E401E'.toColor(),
+                                                    color: '23A128'.toColor(),
                                                     barWidth: 1,
                                                     dotData:
                                                         FlDotData(show: false),
-                                                  ), // 3
+                                                  ), // 1
                                                   LineChartBarData(
                                                     spots: snapshot
                                                         .grafiktinggi!.median
@@ -730,37 +730,6 @@ class _tinggibadanState extends State<tinggibadan> {
                                                   ), // median
                                                   LineChartBarData(
                                                     spots: snapshot
-                                                        .grafiktinggi!
-                                                        .mintigasd!
-                                                        .map((e) => FlSpot(
-                                                            e.bulan!.toDouble(),
-                                                            e.tinggi!
-                                                                    .toDouble() ??
-                                                                0.0))
-                                                        .toList(),
-                                                    isCurved: true,
-                                                    color: '9E401E'.toColor(),
-                                                    barWidth: 1,
-                                                    dotData:
-                                                        FlDotData(show: false),
-                                                  ), // -3
-                                                  LineChartBarData(
-                                                    spots: snapshot
-                                                        .grafiktinggi!.minduasd
-                                                        .map((e) => FlSpot(
-                                                            e.bulan!.toDouble(),
-                                                            e.tinggi!
-                                                                    .toDouble() ??
-                                                                0.0))
-                                                        .toList(),
-                                                    isCurved: true,
-                                                    color: 'FCB447'.toColor(),
-                                                    barWidth: 1,
-                                                    dotData:
-                                                        FlDotData(show: false),
-                                                  ), // -2
-                                                  LineChartBarData(
-                                                    spots: snapshot
                                                         .grafiktinggi!.minsatusd
                                                         .map((e) => FlSpot(
                                                             e.bulan!.toDouble(),
@@ -774,6 +743,37 @@ class _tinggibadanState extends State<tinggibadan> {
                                                     dotData:
                                                         FlDotData(show: false),
                                                   ), // -1
+                                                  LineChartBarData(
+                                                    spots: snapshot
+                                                        .grafiktinggi!.minduasd
+                                                        .map((e) => FlSpot(
+                                                        e.bulan!.toDouble(),
+                                                        e.tinggi!
+                                                            .toDouble() ??
+                                                            0.0))
+                                                        .toList(),
+                                                    isCurved: true,
+                                                    color: 'FCB447'.toColor(),
+                                                    barWidth: 1,
+                                                    dotData:
+                                                    FlDotData(show: false),
+                                                  ), // -2
+                                                  LineChartBarData(
+                                                    spots: snapshot
+                                                        .grafiktinggi!
+                                                        .mintigasd!
+                                                        .map((e) => FlSpot(
+                                                        e.bulan!.toDouble(),
+                                                        e.tinggi!
+                                                            .toDouble() ??
+                                                            0.0))
+                                                        .toList(),
+                                                    isCurved: true,
+                                                    color: '9E401E'.toColor(),
+                                                    barWidth: 1,
+                                                    dotData:
+                                                    FlDotData(show: false),
+                                                  ), // -3
                                                   LineChartBarData(
                                                     spots: state
                                                         .hasiltinggi!.grafik!
