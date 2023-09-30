@@ -13,7 +13,7 @@ class _inputdatakehamilanState extends State<inputdatakehamilan> {
 
   void tersimpan(String _nama, String _hpht) async {
     Uri url = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/kehamilan/create');
+        'url-backend');
     var response = await http.post(
       url,
       body: {

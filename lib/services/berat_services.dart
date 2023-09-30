@@ -9,7 +9,7 @@ class BeratServices {
   static Future<ApiReturnBerat<List<Berat>>?> getBerat(String token, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=${anak_id}';
+        'url-backend${anak_id}';
     if (client == null) {
       client = http.Client();
     }

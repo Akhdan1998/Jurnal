@@ -17,7 +17,7 @@ class _ubahdatakelahirananakState extends State<ubahdatakelahirananak> {
 
   void simpanData(String berat, String tinggi, String lingkar) async {
     Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/anak/pertumbuhan/update");
+        "url-backend");
     var res = await http.post(
       url,
       body: {

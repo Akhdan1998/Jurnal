@@ -11,7 +11,7 @@ class _dataanakState extends State<dataanak> {
   String selectedKelamin = '';
 
   void saveData(String namaAnak, String tanggalLahir) async {
-    Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/create');
+    Uri url = Uri.parse('url-backend');
 
     String gender = (selectedKelamin == '1') ? "Laki-laki" : "Perempuan";
 

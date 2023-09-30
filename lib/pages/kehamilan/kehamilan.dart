@@ -30,7 +30,7 @@ class _KehamilanState extends State<Kehamilan> {
 
   void hapus() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/kehamilan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

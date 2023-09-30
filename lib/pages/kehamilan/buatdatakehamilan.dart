@@ -16,7 +16,7 @@ class _dataanakKehamilanState extends State<dataanakKehamilan> {
   String selectedKelamin = '';
 
   void saveKehamilan(String namaAnak, String tanggalLahir) async {
-    Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/create/kehamilan');
+    Uri url = Uri.parse('url-backend');
 
     String gender = (selectedKelamin == '1') ? "Laki-laki" : "Perempuan";
 
@@ -60,7 +60,7 @@ class _dataanakKehamilanState extends State<dataanakKehamilan> {
 
   static Future<ApiReturnFoto<String>> uploadPhoto(File photoFile,
       {String? token, http.MultipartRequest? request}) async {
-    String url = 'https://dashboard.parentoday.com/api/anak/photo';
+    String url = 'url-backend';
     var uri = Uri.parse(url);
 
     if (request == null) {

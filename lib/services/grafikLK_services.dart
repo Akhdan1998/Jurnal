@@ -9,7 +9,7 @@ class GrafikLKServices {
       String token, String gender,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/lingkar?gender=${gender}';
+        'url-backend${gender}';
     if (client == null) {
       client = http.Client();
     }

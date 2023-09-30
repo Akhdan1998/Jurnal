@@ -9,7 +9,7 @@ class MerekServices {
       String token, String id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/imunisasi/merek?id=$id';
+        'url-backend$id';
     if (client == null) {
       client = http.Client();
     }

@@ -8,7 +8,7 @@ class keguguran extends StatefulWidget {
 class _keguguranState extends State<keguguran> {
   void gugur() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/kehamilan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

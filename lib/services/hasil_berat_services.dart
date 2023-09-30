@@ -9,7 +9,7 @@ class HasilBeratServices {
   static Future<ApiReturnHasilBerat<SemuaHasilBerat>?> getHasilBerat(
       String token, String gender, String anak_id,
       {http.Client? client}) async {
-    String baseUrl = 'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/result/berat?anak_id=${anak_id}&gender=${gender}';
+    String baseUrl = 'url-backend${anak_id}&gender=${gender}';
     if (client == null) {
       client = http.Client();
     }

@@ -12,7 +12,7 @@ class sukseskecillahir extends StatefulWidget {
 class _sukseskecillahirState extends State<sukseskecillahir> {
   void tandai() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/kehamilan/born');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

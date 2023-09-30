@@ -3,7 +3,7 @@ import '../Models/model_milestone.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-String baseUrl = 'https://dashboard.parentoday.com/api/jurnal/milestones';
+String baseUrl = 'url-backend';
 
 class MilestoneServices {
   static Future<ApiReturnMilestone<List<Milestones>>?> getMilestone(

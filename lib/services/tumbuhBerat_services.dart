@@ -10,7 +10,7 @@ class tumbuhBeratServices {
       String token, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/berat?anak_id=${anak_id}';
+        'url-backend${anak_id}';
     if (client == null) {
       client = http.Client();
     }

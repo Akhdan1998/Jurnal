@@ -13,7 +13,7 @@ class detailperkembangan extends StatefulWidget {
 class _detailperkembanganState extends State<detailperkembangan> {
   Future<void> berhasil() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/milestones/create');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {
@@ -36,7 +36,7 @@ class _detailperkembanganState extends State<detailperkembangan> {
 
   void reset() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/milestones/reset');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

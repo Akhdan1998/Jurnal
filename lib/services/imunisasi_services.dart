@@ -5,7 +5,7 @@ import '../Models/model_imunisasi.dart';
 import '../models/api_return_velue.dart';
 
 String baseUrl =
-    'https://dashboard.parentoday.com/api/jurnal/imunisasi';
+    'url-backend';
 
 class ImunisasiServices {
   static Future<ApiReturnValue<List<ImunisasiGroup>>?> getImunisasi(

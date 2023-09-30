@@ -18,7 +18,7 @@ class _editdatakehamilanState extends State<editdatakehamilan> {
 
   void edit(String _nama, String _hpht) async {
     Uri url = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/kehamilan/update');
+        'url-backend');
     var response = await http.post(
       url,
       body: {

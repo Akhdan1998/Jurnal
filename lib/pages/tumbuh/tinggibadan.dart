@@ -40,7 +40,7 @@ class _tinggibadanState extends State<tinggibadan> {
 
   void deleted(String id) async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {
@@ -96,7 +96,7 @@ class _tinggibadanState extends State<tinggibadan> {
   Future<void> dataTinggi(
       String anak_id, String tinggi, String checked_at) async {
     Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/tinggi/create");
+        "url-backend");
     var res = await http.post(
       url,
       body: {

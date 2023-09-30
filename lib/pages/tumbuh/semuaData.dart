@@ -14,7 +14,7 @@ class _semuaDataState extends State<semuaData> {
   void dataPertumbuhan(String anak_id, String tinggi, String berat,
       String lingkar_kepala, String checked_at) async {
     Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/create");
+        "url-backend");
     var res = await http.post(
       url,
       body: {

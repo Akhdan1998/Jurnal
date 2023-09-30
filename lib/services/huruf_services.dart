@@ -9,7 +9,7 @@ class HurufServices {
       String token, String hurufawalan, String selectedKelamin, String kategori,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/name_finder?huruf_awalan=$hurufawalan&kategori=$kategori&gender=$selectedKelamin';
+        'url-backend$hurufawalan&kategori=$kategori&gender=$selectedKelamin';
     if (client == null) {
       client = http.Client();
     }

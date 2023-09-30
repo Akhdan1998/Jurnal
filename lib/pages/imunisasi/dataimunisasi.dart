@@ -34,7 +34,7 @@ class _isidataimunisasiState extends State<isidataimunisasi> {
   void simpan(String tanggal, String merek, String lokasi, String tenaga,
       String batch) async {
     Uri _url = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/imunisasi/create');
+        'url-backend');
     var res = await http.post(
       _url,
       body: {

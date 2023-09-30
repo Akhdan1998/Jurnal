@@ -5,7 +5,7 @@ import 'package:jurnal/Models/api_return_buatdataanak.dart';
 import 'package:jurnal/Models/model_buatdataanak.dart';
 
 String baseUrl =
-    'https://dashboard.parentoday.com/api/anak';
+    'url-backend';
 
 class BuatDataServices {
   static Future<ApiReturnBuatAnak<List<BuatDataAnak>>?> getData(

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../Models/api_return_kehamilan.dart';
 import '../Models/model_kehamilan.dart';
 
-String baseUrl = 'https://dashboard.parentoday.com/api/jurnal/kehamilan';
+String baseUrl = 'url-backend';
 
 class KehamilanServices {
   static Future<ApiReturnKehamilan<Kelahiran>> dataGet(String token,

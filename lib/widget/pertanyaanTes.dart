@@ -26,7 +26,7 @@ class _pertanyaanTesState extends State<pertanyaanTes> {
   Future<void> pencapaian() async {
     try {
       Uri url_ = Uri.parse(
-          'https://dashboard.parentoday.com/api/jurnal/milestones/create');
+          'url-backend');
       var res = await http.post(
         url_,
         body: {
@@ -53,7 +53,7 @@ class _pertanyaanTesState extends State<pertanyaanTes> {
 
   Future<void> reset() async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/milestones/reset');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

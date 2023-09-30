@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../Models/model_milestone.dart';
 import '../Models/model_milestones_category.dart';
 
-String baseUrl = 'https://dashboard.parentoday.com/api/jurnal/milestones';
+String baseUrl = 'url-backend';
 
 class KategoriServices {
   static Future<ApiReturnKategori<List<Milestones>>?> getKategori(

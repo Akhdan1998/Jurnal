@@ -79,7 +79,7 @@ class _ubahdatadetailanakState extends State<ubahdatadetailanak> {
   void dataSimpan(
       String darah, String hobi, String citacita, String warna) async {
     Uri url =
-        Uri.parse("https://dashboard.parentoday.com/api/anak/lengkap/update");
+        Uri.parse("url-backend");
     var res = await http.post(
       url,
       body: {

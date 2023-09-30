@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 String baseUrl =
-    'https://dashboard.parentoday.com/api/jurnal/name_finder/kategori';
+    'url-backend';
 
 class TemaServices {
   static Future<ApiReturnTema<List<String>>?> getTema(String token,

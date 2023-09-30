@@ -10,7 +10,7 @@ class HasilLingkarServices {
       String token, String gender, String anak_id,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/result/lingkar?anak_id=${anak_id}&gender=${gender}';
+        'url-backend${anak_id}&gender=${gender}';
     if (client == null) {
       client = http.Client();
     }

@@ -9,7 +9,7 @@ class GrafikTinggiServices {
       String token, String gender,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/grafik/tinggi?gender=${gender}';
+        'url-backend${gender}';
     if (client == null) {
       client = http.Client();
     }

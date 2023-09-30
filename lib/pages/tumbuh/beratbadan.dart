@@ -19,7 +19,7 @@ class _beratbadanState extends State<beratbadan> {
 
   void deleted(String id) async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {
@@ -58,7 +58,7 @@ class _beratbadanState extends State<beratbadan> {
   Future<void> dataBerat(
       String anak_id, String berat, String checked_at) async {
     Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/berat/create");
+        "url-backend");
     var res = await http.post(
       url,
       body: {

@@ -8,7 +8,7 @@ class TumbuhServices {
   static Future<ApiReturnTumbuh<List<Pertumbuhan>>?> getTumbuh(String token,
       {http.Client? client}) async {
     String baseUrl =
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan?anak_id=7248038741';
+        'url-backend';
     if (client == null) {
       client = http.Client();
     }

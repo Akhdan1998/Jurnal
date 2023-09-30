@@ -12,7 +12,7 @@ class riwayatpencatatan extends StatefulWidget {
 class _riwayatpencatatanState extends State<riwayatpencatatan> {
   void deleted(String id) async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {

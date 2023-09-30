@@ -17,7 +17,7 @@ class _ubahdataanakState extends State<ubahdataanak> {
 
   void updateData(String namaAnak, String tanggalLahir) async {
     try {
-      Uri url = Uri.parse('https://dashboard.parentoday.com/api/anak/update');
+      Uri url = Uri.parse('url-backend');
 
       String gender = (selectedKelamin3 == '1') ? "Laki-laki" : "Perempuan";
 

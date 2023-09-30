@@ -20,7 +20,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
 
   void deleted(String id) async {
     Uri url_ = Uri.parse(
-        'https://dashboard.parentoday.com/api/jurnal/pertumbuhan/delete');
+        'url-backend');
     var res = await http.post(
       url_,
       body: {
@@ -58,7 +58,7 @@ class _lingkarkepalaState extends State<lingkarkepala> {
   Future<void> dataLK(
       String anak_id, String lingkarkepala, String checked_at) async {
     Uri url = Uri.parse(
-        "https://dashboard.parentoday.com/api/jurnal/pertumbuhan/lingkar/create");
+        "url-backend");
     var res = await http.post(
       url,
       body: {

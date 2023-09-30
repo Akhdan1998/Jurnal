@@ -5,7 +5,7 @@ import 'package:jurnal/Models/model_hpl.dart';
 import '../Models/api_return_hpl.dart';
 
 String baseUrl =
-    'https://dashboard.parentoday.com/api/jurnal/kehamilan/hpl?hpht=2023-02-23';
+    'url-backend';
 
 class HplServices {
   static Future<ApiReturnHpl<Hpl>> getHpl(String token,
